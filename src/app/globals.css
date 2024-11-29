@@ -11,6 +11,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --product-section__filter-width: 240px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -113,3 +114,10 @@ body {
   background:#EBEBEB;
 }
 
+
+.product-section__filter-wrap{
+  width: var(--product-section__filter-width);
+}
+.product-section__products-wrap{
+  width:calc(100% - var(--product-section__filter-width));
+}

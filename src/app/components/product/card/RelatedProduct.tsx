@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Rating } from "@smastrom/react-rating";
-const RelatedProductsCard = () => {
-    return <div className="overflow-hidden rounded-md border w-[340px]">
+const RelatedProductCard = () => {
+    return <div className="overflow-hidden rounded-md border w-full">
         <div className="w-full flex items-center justify-center h-[230px] overflow-hidden bg-white relative">
             <img src="https://m.media-amazon.com/images/I/713yemIsaPL._AC_SX679_.jpg" alt="" className="object-contain h-full" />
             <div className="absolute top-[10px] right-[10px]">
@@ -59,4 +59,4 @@ const RelatedProductsCard = () => {
     </div>
 }
 
-export default RelatedProductsCard;
+export default RelatedProductCard;

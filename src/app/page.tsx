@@ -1,8 +1,12 @@
-import HomeProductSection from "./components/pages/product/section/product";
+import HeroCarousel from './components/widget/HeroCarousel';
+import ProductShopNowList from './components/product/list/ShopNow';
+import ProductsSection from './components/section/Products';
 export default function Home() {
   return (
     <div>
-      {/* <HomeProductSection /> */}
+      <HeroCarousel />
+      <ProductShopNowList />
+      <ProductsSection />
     </div>
   );
 }
