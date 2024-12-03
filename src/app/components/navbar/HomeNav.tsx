@@ -266,27 +266,27 @@ const HomeNav = () => {
 
     // const [selectedParentNav, setSelectedParentNav] = useState([])
     const handleParentClick = (label) => {
-            setSelectedParent(prev=>{
-                if(prev===label){
-                    return null;
-                }else{
-                    return label;
-                }
-            })
+        setSelectedParent(prev => {
+            if (prev === label) {
+                return null;
+            } else {
+                return label;
+            }
+        })
     }
 
     const handleClickOutside = (event: MouseEvent) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-          setSelectedParent(null); // Close when clicking outside
+            setSelectedParent(null); // Close when clicking outside
         }
-      };
-    
-      useEffect(() => {
+    };
+
+    useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
-          document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside);
         };
-      }, []);
+    }, []);
 
     return <header className="sticky top-0 z-50 shadow-md bg-white">
         <nav className="container mx-auto bg-white">
@@ -296,8 +296,18 @@ const HomeNav = () => {
                     <HomeSearch />
                 </div>
                 <ul className="flex space-x-4">
-                    <li><a href="#home" className="text-gray-700 hover:text-blue-500">Cart</a></li>
-                    <li><a href="#about" className="text-gray-700 hover:text-blue-500">Heart</a></li>
+                    <li><a href="#home" className="text-gray-700 hover:text-blue-500 relative">
+                        <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
+                            <div className="text-[10px]">26</div>
+                        </div>
+                        <Icon icon="bx:cart" width="24" height="24" /></a></li>
+                    <li><a href="#about" className="text-gray-700 hover:text-blue-500 relative">
+                        
+                    <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
+                            <div className="text-[10px]">739</div>
+                        </div>
+                        <Icon icon="bx:heart" width="24" height="24" />
+                    </a></li>
                 </ul>
             </div>
             <div className="flex items-center justify-between mt-[20px]">
@@ -324,8 +334,8 @@ const HomeNav = () => {
                     </div> */}
                     {
                         menu.map((i, index) =>
-                            <div onClick={()=>{
-                                if(i.featured){
+                            <div onClick={() => {
+                                if (i.featured) {
                                     handleParentClick(i.label)
                                 }
                             }} key={`parent-nav-${index}`} className={`relative py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center cursor-pointer ${i.isActive ? 'text-white bg-pallete-orange' : 'bg-white text-pallete-dark'}`}>
