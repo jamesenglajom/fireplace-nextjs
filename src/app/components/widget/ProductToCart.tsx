@@ -17,6 +17,32 @@ type Product = {
     category: [];
 };
 const ProductToCart = ({product}: {product:Product}) => {
+    const [quantity, setQuantity] = useState(1);
+
+    const handleQuantityChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+        const {value} = e.target;
+        setQuantity(prev => {
+            if(value===""){
+                return 0;
+            }else{
+                return parseInt(value);
+            }
+        });
+    }
+
+    const handleQuantityButtons = (direction:string) => {
+        setQuantity(prev=>{
+            let newQuantity = typeof prev === 'number' ? prev:0;
+            if(direction === 'inc'){
+                newQuantity = newQuantity + 1;
+            }else if(direction === 'dec'){
+                if(newQuantity > 0){
+                    newQuantity = newQuantity - 1;
+                }
+            }
+            return newQuantity
+        });
+    }
 
     const [productData, setProductData] = useState(product);
     useEffect(()=>{
@@ -73,11 +99,11 @@ const ProductToCart = ({product}: {product:Product}) => {
                     }
                 </div>
                 <div className="product-add-to-cart-quantity-input">
-                    <button>
+                    <button onClick={()=> handleQuantityButtons('dec')}>
                         <Icon icon="icons8:minus" className="text-[32px] text-pallete-gray" />
                     </button>
-                    <input type="number" value="1" />
-                    <button>
+                    <input type="number" value={quantity}  onChange={handleQuantityChange}/>
+                    <button onClick={()=> handleQuantityButtons('inc')}>
                         <Icon icon="icons8:plus" className="text-[32px] text-pallete-gray" />
                     </button>
                 </div>
