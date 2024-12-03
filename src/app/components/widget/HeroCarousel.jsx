@@ -1,53 +1,94 @@
 'use client'
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
-const HeroCarousel = () => {
-  const slides = [
-    { id: 1, content: "Slide 1", bgColor: "bg-blue-500" },
-    { id: 2, content: "Slide 2", bgColor: "bg-red-500" },
-    { id: 3, content: "Slide 3", bgColor: "bg-green-500" },
-  ];
-  
-  const [currentSlide, setCurrentSlide] = useState(0);
+const Carousel = ({ slides, autoSlideInterval = 3000 }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
+  // Auto-slide functionality
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, autoSlideInterval);
+
+    return () => clearInterval(timer);
+  }, [isPaused, slides.length, autoSlideInterval]);
+
+  // Change to a specific slide
   const goToSlide = (index) => {
-    setCurrentSlide(index);
+    setCurrentIndex(index);
   };
 
   return (
-    <div className="relative w-full bg-gray-300">
-      {/* Slides container */}
-      <div className="overflow-hidden relative h-[400px]">
-        <div
-          className="flex transition-transform duration-500"
-          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-        >
-          {slides.map((slide) => (
-            <div
-              key={slide.id}
-              className={`flex-shrink-0 w-full h-full ${slide.bgColor} text-white flex items-center justify-center text-2xl`}
-            >
-              {slide.content}
+    <div
+      className="relative h-full"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* Slides */}
+      <div
+        className="flex transition-transform duration-500"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className="w-full flex-shrink-0 relative h-56 sm:h-64 md:h-80 lg:h-96 flex"
+            style={{backgroundImage:`url("${slide.background}")`}}
+          >
+            <div className={`Absolute top-0 left-0 w-full text-white flex items-center h-56 sm:h-64 md:h-80 lg:h-96`}>
+              <div className={`container mx-auto flex ${slide.position}`}>
+               <div className="flex flex-col gap-[20px]">
+                  <div className={`${slide.headline.twClass && slide.headline.twClass!==""? slide.headline.twClass: "text-white text-5xl font-bold"}`}>{slide.headline.text}</div>
+                  <div className={`${slide.subheadline.twClass && slide.subheadline.twClass!==""? slide.subheadline.twClass: "text-[18px]"}`}>{slide.subheadline.text}</div>
+                  <div className={`${slide.cta.position && slide.cta.position!=="" ? slide.cta.position: '' }`}>
+                    <a href={slide.cta.href} className={`${slide.cta.twClass}`}>{slide.cta.label}</a>
+                  </div>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
+            {/* <img
+              src={slide}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-56 sm:h-64 md:h-80 lg:h-96 object-cover"
+            /> */}
+          </div>
+        ))}
       </div>
 
-      {/* Dots */}
+      {/* Page Indicators */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-colors ${
-              currentSlide === index ? "bg-gray-900" : "bg-gray-400"
+            className={`rounded-full transition-width duration-500 ease-in-out ${
+              index === currentIndex
+                ? "bg-pallete-orange w-6 h-1 md:w-8 md:h-2 "
+                : "bg-pallete-lightgray w-1 h-1 md:w-2 md:h-2 "
             }`}
-            aria-label={`Go to slide ${index + 1}`}
-          ></button>
+          />
         ))}
       </div>
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={() => goToSlide((currentIndex - 1 + slides.length) % slides.length)}
+        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full sm:p-3 hover:bg-opacity-75"
+      >
+        <Icon icon="mingcute:left-fill" width="24" height="24" />
+      </button>
+      <button
+        onClick={() => goToSlide((currentIndex + 1) % slides.length)}
+        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full sm:p-3 hover:bg-opacity-75"
+      >
+        <Icon icon="mingcute:right-fill" width="24" height="24" />
+      </button>
     </div>
   );
 };
 
-export default HeroCarousel;
+export default Carousel;

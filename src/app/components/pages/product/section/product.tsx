@@ -1,9 +1,28 @@
 
+'use client'
 import ProductMetaTabs from "@/app/components/product/meta/Tabs";
 import MediaGallery from "@/app/components/widget/MediaGallery";
 import ProductToCart from "@/app/components/widget/ProductToCart";
 import RelatedProducts from "@/app/components/widget/RelatedProducts";
-const ProductSection = () => {
+import {useState} from "react";
+
+type Product = {
+  id: number;
+  name: string;
+  description: string;
+  description_html: string;
+  price: string;
+  url:string;
+  like:Boolean,
+  likes: number;
+  ratings:number;
+  sku:string;
+  sales_tag:string;
+  category:[];
+};
+
+const ProductSection = ({product}:{product:Product}) => {
+  const [product_data, setProductData] = useState(product);
   const mediaItems = [
     { type: "image", src: "https://m.media-amazon.com/images/I/713yemIsaPL._AC_SX679_.jpg" },
     { type: "image", src: "https://m.media-amazon.com/images/I/713yemIsaPL._AC_SX679_.jpg" },
@@ -21,18 +40,18 @@ const ProductSection = () => {
             <MediaGallery mediaItems={mediaItems}/>
           </div>
           <div className="flex-1">
-            <ProductToCart />
+            <ProductToCart product={product} />
           </div>
         </div>
       </div>
     <div className="p-4">
       <div className="container mx-auto">
-        <ProductMetaTabs />
+        <ProductMetaTabs product={product}/>
       </div>
     </div>
     <div className="p-4">
       <div className="container mx-auto">
-        <RelatedProducts />
+        <RelatedProducts product={product}/>
       </div>
     </div>
     </>

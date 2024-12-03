@@ -1,7 +1,20 @@
 "use client"
 import {useState} from "react"
-
-const ProductMetaTabs = () => {
+type Product = {
+  id: number;
+  name: string;
+  description: string;
+  description_html: string;
+  price: string;
+  url:string;
+  like:Boolean,
+  likes: number;
+  ratings:number;
+  sku:string;
+  sales_tag:string;
+  category:[];
+};
+const ProductMetaTabs = ({product}:{product:Product}) => {
     const [tab, setTab] = useState("Product Descriptions"); 
     const tabs = [
         {

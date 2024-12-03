@@ -28,7 +28,7 @@ const ProductsSection = () => {
                             {
                                 [1, 1, 1, 1, 1, 1, 1, 1, 1].map((v, i) =>
                                     <div key={`product-display-${i}`}>
-                                        <RelatedProductCard />
+                                        <RelatedProductCard product={{url:`/product/${i+1}`}}/>
                                     </div>
                                 )
                             }
