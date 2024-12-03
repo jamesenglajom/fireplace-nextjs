@@ -75,7 +75,15 @@ const ProductsFilter = () => {
                             {
                                 v.type === "featured" ?
                                     <div className="flex items-center gap-[4px]">
-                                        <input type="checkbox" checked={v.checked} onChange={(e)=>handleFilterCheckboxChange(e,v.prop)}/>
+                                        <div className="relative">
+                                                <input type="checkbox"  checked={v.checked} onChange={(e)=>handleFilterCheckboxChange(e,v.prop)}/>
+                                                {
+                                                    v.checked && <div className="absolute top-0 left-0">
+                                                        <Icon icon="bx:check" width="18" height="18" className="text-white"/>
+                                                    </div>
+                                                }
+                                            </div>
+
                                         <div>
                                             ({v.count})
                                         </div>
@@ -101,8 +109,13 @@ const ProductsFilter = () => {
                                             <div>
                                                 {v1.label} ({v1.count})
                                             </div>
-                                            <div>
+                                            <div className="relative">
                                                 <input type="checkbox" name="" id="" checked={v1.checked} onChange={(e)=>handleFilterCheckboxChange(e,v1.prop)}/>
+                                                {
+                                                    v1.checked && <div className="absolute top-0 left-0">
+                                                        <Icon icon="bx:check" width="18" height="18" className="text-white"/>
+                                                    </div>
+                                                }
                                             </div>
                                         </div>
                                     ))
