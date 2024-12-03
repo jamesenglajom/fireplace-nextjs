@@ -1,6 +1,29 @@
+'use client'
 import RelatedProductCard from "../product/card/RelatedProduct";
 import ProductsFilter from "../product/Filters";
+import { useState, useEffect } from "react";
 const ProductsSection = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetch('/data/products.json') // URL relative to the public folder
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setProducts(data);
+            })
+            .catch((error) => console.error('Error loading products:', error));
+    }, []);
+
+
+
+
+
+
     return (
         <div className="w-full">
             <div className="container mx-auto">
@@ -26,9 +49,9 @@ const ProductsSection = () => {
                     <div className="product-section__products-wrap">
                         <div className="grid grid-cols-3 gap-4 px-[30px] py-[50px]">
                             {
-                                [1, 1, 1, 1, 1, 1, 1, 1, 1].map((v, i) =>
+                                products.map((v, i) =>
                                     <div key={`product-display-${i}`}>
-                                        <RelatedProductCard product={{url:`/product/${i+1}`}}/>
+                                        <RelatedProductCard product={v} />
                                     </div>
                                 )
                             }

@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 const ProductShopNowCard = () => {
     return (
         <div className="w-full rounded-lg border flex overflow-hidden items-center;">
-            <div className="w-[155px] overflow-hidden flex justify-center items-center bg-red-500">
+            <div className="w-[155px] overflow-hidden flex justify-center items-center">
                 <img src="https://m.media-amazon.com/images/I/713yemIsaPL._AC_SX679_.jpg" alt="" className="object-contain h-full" />
             </div>
             <div className="p-[20px] w-full flex flex-col gap-[20px]">
