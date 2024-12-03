@@ -28,6 +28,10 @@ const ProductToCart = ({product}: {product:Product}) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
       }
       
+    const handleHeartToggle = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        setProductData(prev=>({...prev, like: !prev.like}))
+    }
+
     return <div className="flex flex-col gap-[15px] w-full">
         <div className="flex gap-[10px]">
             {
@@ -88,7 +92,7 @@ const ProductToCart = ({product}: {product:Product}) => {
                     </button>
                 </div>
                 <div>
-                    <button className={`flex justify-center items-center w-[54px] h-[54px] rounded-full ${productData?.like ? 'bg-pallete-orange':'bg-stone-400'}`}>
+                    <button onClick={handleHeartToggle} className={`flex justify-center items-center w-[54px] h-[54px] rounded-full ${productData?.like ? 'bg-pallete-orange':'bg-stone-400'}`}>
                         <Icon icon="teenyicons:heart-outline" className="text-white text-[30px]" />
                     </button>
                 </div>
