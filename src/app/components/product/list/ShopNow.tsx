@@ -109,7 +109,7 @@ const ProductShopNowList = () => {
                         {/* related product cards display */}
                         {
                             shopNowItems.map(i =>
-                                <div ref={cardElement} key={`related-products-${i}`} className={`w-[${cardWidth}px]`}>
+                                <div ref={cardElement} key={`related-products-${i}`} className={`w-[${cardWidth}px] shop-now-card-wrap`}>
                                     <ProductShopNowCard />
                                 </div>
                             )

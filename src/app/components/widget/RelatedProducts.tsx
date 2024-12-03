@@ -134,7 +134,7 @@ const RelatedProducts = ({ product }: { product: Product }) => {
             {/* related product cards display */}
             {
                 products && products.map((i, index) =>
-                    <div ref={relatedProductCard} key={`related-products-${index}`} className={`w-[${cardWidth}px] min-w-[${cardWidth}px]`}>
+                    <div ref={relatedProductCard} key={`related-products-${index}`} className={`w-[${cardWidth}px] min-w-[${cardWidth}px] related-product-card-wrap`}>
                         <RelatedProductCard product={i}></RelatedProductCard>
                     </div>
                 )

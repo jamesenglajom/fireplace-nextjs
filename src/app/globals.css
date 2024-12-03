@@ -137,4 +137,7 @@ body {
       opacity:.5;
   }
 
-  
+  .shop-now-card-wrap,
+  .related-product-card-wrap{
+    min-width: 340px !important;
+  }
