@@ -121,3 +121,20 @@ body {
 .product-section__products-wrap{
   width:calc(100% - var(--product-section__filter-width));
 }
+
+.related-products-scroll-wrap::-webkit-scrollbar,
+.shop-now-scroll-wrap::-webkit-scrollbar {
+  display: none;  /* Hides the scrollbar for Webkit browsers */
+  }
+
+  /* For Firefox */
+  .related-products-scroll-wrap,
+  .shop-now-scroll-wrap {
+  scrollbar-width: none; /* Hides scrollbar in Firefox */
+  }
+  
+  button:disabled{
+      opacity:.5;
+  }
+
+  
