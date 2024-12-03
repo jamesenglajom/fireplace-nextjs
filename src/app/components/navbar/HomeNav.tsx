@@ -1,8 +1,9 @@
 'use client'
 import HomeSearch from "../search/HomeSearch";
 import { Icon } from '@iconify/react';
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 const HomeNav = () => {
+    const dropdownRef = useRef(null);
     const menu = [
         {
             isActive: true,
@@ -57,7 +58,7 @@ const HomeNav = () => {
                 {
                     featured: false, label: "Fireplace Category 2", url: "#", child: [
                         {
-                            label: "FireplateCat1 Category1",
+                            label: "FireplateCat2 Category1",
                             items: [
                                 { label: "FC2C1 Item1", url: "#" },
                                 { label: "FC2C1 Item2", url: "#" },
@@ -68,7 +69,7 @@ const HomeNav = () => {
                             ]
                         },
                         {
-                            label: "FireplateCat1 Category2",
+                            label: "FireplateCat2 Category2",
                             items: [
                                 { label: "FC2C2 Item1", url: "#" },
                                 { label: "FC2C2 Item2", url: "#" },
@@ -79,7 +80,7 @@ const HomeNav = () => {
                             ]
                         },
                         {
-                            label: "FireplateCat1 Category3",
+                            label: "FireplateCat2 Category3",
                             items: [
                                 { label: "FC2C3 Item1", url: "#" },
                                 { label: "FC2C3 Item2", url: "#" },
@@ -105,7 +106,7 @@ const HomeNav = () => {
                             ]
                         },
                         {
-                            label: "FireplateCat1 Category2",
+                            label: "FireplateCat3 Category2",
                             items: [
                                 { label: "FC3C2 Item1", url: "#" },
                                 { label: "FC3C2 Item2", url: "#" },
@@ -116,7 +117,7 @@ const HomeNav = () => {
                             ]
                         },
                         {
-                            label: "FireplateCat1 Category3",
+                            label: "FireplateCat3 Category3",
                             items: [
                                 { label: "FC3C3 Item1", url: "#" },
                                 { label: "FC3C3 Item2", url: "#" },
@@ -133,7 +134,7 @@ const HomeNav = () => {
         },
         {
             isActive: false,
-            featured: true,
+            featured: false,
             label: "Promotion 1",
             icon: {
                 name: "game-icons:hamburger-menu",
@@ -260,10 +261,32 @@ const HomeNav = () => {
         }
     ];
 
-    const [selectedParent, setSelectedParent] = useState("All Categories");
+    const [selectedParent, setSelectedParent] = useState(null);
     const [selectedChild, setSelectedChild] = useState("Fireplace Category 1");
 
     // const [selectedParentNav, setSelectedParentNav] = useState([])
+    const handleParentClick = (label) => {
+            setSelectedParent(prev=>{
+                if(prev===label){
+                    return null;
+                }else{
+                    return label;
+                }
+            })
+    }
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+          setSelectedParent(null); // Close when clicking outside
+        }
+      };
+    
+      useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+        };
+      }, []);
 
     return <header className="sticky top-0 z-50 shadow-md bg-white">
         <nav className="container mx-auto bg-white">
@@ -279,73 +302,85 @@ const HomeNav = () => {
             </div>
             <div className="flex items-center justify-between mt-[20px]">
                 <div className="flex">
-                    <div className="relative text-white bg-pallete-orange py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center">
+                    {/* <div className="relative text-white bg-pallete-orange py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center cursor-pointer">
                         <div><Icon icon="game-icons:hamburger-menu" /></div>
                         <div className="font-bold">All Categories</div>
                     </div>
-                    <div className="text-white bg-white py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center">
+                    <div className="text-white bg-white py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center cursor-pointer">
                         <div><Icon icon="game-icons:hamburger-menu" /></div>
                         <div className="font-bold text-slate-800">Promotion 1</div>
                     </div>
-                    <div className="text-white bg-white py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center">
+                    <div className="text-white bg-white py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center cursor-pointer">
                         <div><Icon icon="game-icons:hamburger-menu" /></div>
                         <div className="font-bold text-slate-800">Promotion 2</div>
                     </div>
-                    <div className="text-white bg-white py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center">
+                    <div className="text-white bg-white py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center cursor-pointer">
                         <div><Icon icon="game-icons:hamburger-menu" /></div>
                         <div className="font-bold text-slate-800">Promotion 3</div>
                     </div>
-                    <div className="text-white bg-white py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center">
+                    <div className="text-white bg-white py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center cursor-pointer">
                         <div><Icon icon="game-icons:hamburger-menu" /></div>
                         <div className="font-bold text-slate-800">Promotion 4</div>
-                    </div>
-                    {/* {
+                    </div> */}
+                    {
                         menu.map((i, index) =>
-                            <div key={`parent-nav-${index}`} className={`relative py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center ${i.isActive ? 'text-white bg-pallete-orange' : 'bg-white text-pallete-dark'}`}>
+                            <div onClick={()=>{
+                                if(i.featured){
+                                    handleParentClick(i.label)
+                                }
+                            }} key={`parent-nav-${index}`} className={`relative py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center cursor-pointer ${i.isActive ? 'text-white bg-pallete-orange' : 'bg-white text-pallete-dark'}`}>
                                 <div className="text-white"><Icon icon={i.icon.name} /></div>
                                 <div className="font-bold">{i.label}</div>
                             </div>
                         )
-                    } */}
+                    }
                 </div>
                 <div>
-                    Free Shipping over $50
+                    <div className="cursor-pointer font-semibold text-pallete-gray">
+                        Free Shipping over $50
+                    </div>
                 </div>
             </div>
         </nav>
 
-        {/* <nav className="container mx-auto">
-            {
-                menu.filter(i => i.label === selectedParent).length > 0 &&
-                <div className="p-[5px] flex">
-                    <div className="p-[5px] border-r">
-                        <ul>
-                            {
-                                menu.filter(i1 => i1.label === selectedParent)[0]["child"].map((i1, index) =>
-                                    <li key={`sub-nav-${index}`} className={`py-[10px] ${menu.filter(i1 => i1.label === selectedParent)[0]["child"].length - 1 === index ? '' : 'border-b'} `}>
-                                        <a href={i1?.featured ? i1?.url : '#'} className={`text-black text-[18px] flex items-center justify-between gap-[20px] ${i1?.featured ? 'font-semibold' : ''}`}>
-                                            <div>
-                                                {i1?.label}
-                                            </div>
-                                            {
-                                                !i1?.featured && <Icon icon="solar:alt-arrow-right-line-duotone" className="text-pallete-gray" />
+
+        {
+            selectedParent && <nav ref={dropdownRef} className="relative container mx-auto">
+                {
+                    menu.filter(i => i.label === selectedParent).length > 0 &&
+                    <div className="px-[0px] pt-[20px] flex">
+                        <div className="p-[0px] border-r">
+                            <ul>
+                                {
+                                    menu.filter(i1 => i1.label === selectedParent)[0]["child"].map((i1, index) =>
+                                        <li onClick={() => {
+                                            if (!i1?.featured) {
+                                                setSelectedChild(i1.label)
                                             }
-                                        </a>
-                                    </li>
-                                )
-                            }
-                        </ul>
-                    </div>
-                        <div className="p-[5px] flex flex-col flex-wrap">
+                                        }} key={`sub-nav-${index}`} className={`py-[15px] ${menu.filter(i1 => i1.label === selectedParent)[0]["child"].length - 1 === index ? '' : 'border-b'} ${i1.label === selectedChild ? 'font-bold bg-gray-100' : ''}`}>
+                                            <a href={i1?.featured ? i1?.url : '#'} className={`px-[15px] text-black text-[18px] flex items-center justify-between gap-[20px] ${i1?.featured ? 'font-semibold' : ''}`}>
+                                                <div>
+                                                    {i1?.label}
+                                                </div>
+                                                {
+                                                    !i1?.featured && <Icon icon="solar:alt-arrow-right-line-duotone" className="text-pallete-gray" />
+                                                }
+                                            </a>
+                                        </li>
+                                    )
+                                }
+                            </ul>
+                        </div>
+                        <div className="py-[15px] px-[20px] flex gap-[40px]">
                             {
-                                menu.filter(i => i.label === selectedParent)[0]["child"].filter(i1=> i1?.label === selectedChild)[0]?.child.map((i2,index)=>
+                                menu.filter(i => i.label === selectedParent)[0]["child"].filter(i1 => i1?.label === selectedChild)[0]?.child.map((i2, index) =>
                                     <div key={`cat-item-group-${index}`}>
-                                        <div>{i2.label}</div>
-                                        <div>
+                                        <div className="font-bold">{i2.label}</div>
+                                        <div className="py-[10px]">
                                             <ul key={`cat-item-group-ul-${index}`}>
                                                 {
-                                                    i2.items.map((i,index2)=>
-                                                        <li className="py-[8px]">
+                                                    i2.items.map((i, index2) =>
+                                                        <li key={`sub-cat-${index}-item-${index2}`} className="py-[10px]">
                                                             <a href={i.url}>{i.label}</a>
                                                         </li>
                                                     )
@@ -356,9 +391,14 @@ const HomeNav = () => {
                                 )
                             }
                         </div>
+                    </div>
+                }
+
+                <div className="absolute right-0 top-[30%] bg-red-500 w-[150px] h-[150px] rounded-l-3xl overflow-hidden">
+                    <img src="/images/nav/b0e0957222be79827a6625bcc5a5585d.png" alt="nav-extra-pic" className="object-contain" />
                 </div>
-            }
-        </nav> */}
+            </nav>
+        }
     </header>
 
 }
