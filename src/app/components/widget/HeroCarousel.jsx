@@ -24,7 +24,7 @@ const Carousel = ({ slides, autoSlideInterval = 3000 }) => {
 
   return (
     <div
-      className="relative h-full"
+      className="relative h-full overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -92,3 +92,6 @@ const Carousel = ({ slides, autoSlideInterval = 3000 }) => {
 };
 
 export default Carousel;
+
+
+//36.37.70.147.148.149.150

@@ -2,7 +2,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Rating } from "@smastrom/react-rating";
 import Link from "next/link";
-import {useState} from "react";
+import {useState,useEffect} from "react";
 type Product = {
     id: number;
     name: string;
@@ -20,6 +20,24 @@ type Product = {
 
   
 const RelatedProductCard = ({ product }: { product: Product }) => {
+    const [productImages, setProductImages] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+          try {
+            const response = await fetch(`/api/product_images?${product?.id}`);
+            const data = await response.json();
+            setProductImages(data.data || []);
+          } catch (error) {
+            console.error('Error fetching products:', error);
+          } finally {
+            setLoading(false);
+          }
+        };
+        fetchProducts();
+      }, []);
+
     // const [liked, setLiked] = useState(false);
     const [product_data, setProductData] = useState(product);
     const handleHeartButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -64,6 +82,7 @@ const RelatedProductCard = ({ product }: { product: Product }) => {
                 </div>
                 <div className="text-[12px]">
                     ({product_data.ratings})
+                    (id:{product_data.id})
                 </div>
             </div>
             <div className="text-pallete-gray text-[12px]">SKU: {product_data.sku}</div>

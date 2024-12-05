@@ -1,8 +1,10 @@
+'use client'
 import HeroCarousel from './components/widget/HeroCarousel';
 import ProductShopNowList from './components/product/list/ShopNow';
 import ProductsSection from './components/section/Products';
+import { useState, useEffect } from "react";
+
 export default function Home() {
-  
   const slides = [
     {
       position: "justify-left",
@@ -61,6 +63,7 @@ export default function Home() {
       }
     }
   ]
+
   return (
     <div>
       <HeroCarousel slides={slides}/>
@@ -69,3 +72,4 @@ export default function Home() {
     </div>
   );
 }
+
