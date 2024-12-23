@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
     const handleHeartButtonClick = () => {
     }
 
-    return <Link href={`/product/${product.id}`} className="flex w-full"><div className="overflow-hidden rounded-md border w-full">
+    return <Link href={`/product/${product.id}`} className="flex w-full"><div className="overflow-hidden rounded-md border w-full duration-500 hover:scale-105 hover:shadow-xl">
     <div className="w-full flex items-center justify-center h-[230px] overflow-hidden bg-white relative">
         <img src={thumbnail} alt="" className="object-contain h-full" />
         <div className="absolute top-[10px] right-[10px]">

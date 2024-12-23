@@ -323,9 +323,9 @@ export default function TuiFilterSort({ category, products, loading, onFilterCha
 
                             {/* Product grid */}
 
-                            <div className="lg:col-span-3 overflow-hidden">
+                            <div className="lg:col-span-3 overflow-hidden p-5">
                                 {
-                                    loading ? <div className="grid sm:gap-3 lg:grid-cols-3 lg:gap-4 grid-cols-2 gap-2">
+                                    loading ? <div className="grid sm:gap-3 lg:grid-cols-3 lg:gap-5 grid-cols-2 gap-2">
                                         {
                                             loaderArray.map((v, i) =>
                                                 <div key={`product-loader-${i}`}>
@@ -339,7 +339,7 @@ export default function TuiFilterSort({ category, products, loading, onFilterCha
                                             <div className="flex justify-center">
                                                 <div className="text-stone-500 text-3xl py-10 font-bold">Nothing to display</div>
                                             </div> 
-                                            :<div className="grid sm:gap-3 lg:grid-cols-3 lg:gap-4 grid-cols-2 gap-2">
+                                            :<div className="grid sm:gap-3 lg:grid-cols-3 lg:gap-6 grid-cols-2 gap-2">
                                                 {
                                                     products.map((v, i) =>
                                                         <div key={`product-display-${i}`}>
