@@ -1,14 +1,19 @@
 'use client'
-import ProductCard from "../atom/ProductCard";
-import ProductsFilter from "../product/Filters";
+
 import { useState, useEffect } from "react";
 import useFetchProducts from "../../hooks/useFetchProducts";
-import useFetchCategories from "../../hooks/useFetchCategories";
-const ProductsSection = () => {
-    const [productsParams, setProductsParams] = useState({
+import TuiFilterSort from "../template/tui_filter_sort";
+import { getCategoryIds } from "@/app/lib/helpers";
+import cat_json from '../../data/category.json'
+import bccat_json from '../../data/bc_categories_20241213.json'
+
+const ProductsSection = ({category}) => {
+    const onloadParams = {
         include:"images",
         page:1,
-    }); 
+        'categories:in': getCategoryIds(category, cat_json, bccat_json).join(",")
+    };
+    const [productsParams, setProductsParams] = useState(onloadParams); 
     const {
         products,
         loading:products_loading,
@@ -16,17 +21,14 @@ const ProductsSection = () => {
         refetch: productsRefetch
      } = useFetchProducts(productsParams);
 
-      
-    const {
-        categories,
-        loading:categories_loading,
-        error:categories_error,
-        refetch: categoriesRefetch
-     } = useFetchCategories({
-        is_visible:true,
-     });
+     useEffect(()=>{
+        // console.log("products loading: ",products_loading);
+     },[products_loading]);
 
      const handleFilterChange = (val) => {
+        // console.log("fchange",val);
+        const uniqueCatIds = [...new Set(val.flatMap(item => item.cat_ids))];
+        // console.log("uniqueCatIds",uniqueCatIds);
         setProductsParams(prev=>{
             let newParams = {
                 ...prev,
@@ -34,7 +36,7 @@ const ProductsSection = () => {
             }
 
             if(val.length>0){
-                newParams["categories:in"] = val.join(",");
+                newParams["categories:in"] = uniqueCatIds.join(",");
             }else{
                 delete newParams["categories:in"];
             }
@@ -43,42 +45,20 @@ const ProductsSection = () => {
      }
 
      useEffect(()=>{
-        productsRefetch(productsParams)
+        productsRefetch(productsParams);
      },[productsParams]);
+
     return (
-        <div className="w-fullx">
+        <div className="w-full">
             <div className="container mx-auto">
-                <div className="w-full flex justify-between items-center border-b py-[20px] sticky top-[112px] bg-white z-[999]">
-                    <div className="text-[32px]"><span className="font-bold">All Fireplace</span> (678)</div>
-                    <div className="flex items-center gap-[10px]">
-                        <div className="font-bold text-[18px]">
-                            SORT PRODUCTS BY
-                        </div>
-                        <select name="" id="">
-                            <option value="">TEST</option>
-                        </select>
-                    </div>
-                </div>
-                <div className="flex">
-                    {/* side filter widht 190px */}
-                    <div className="product-section__filter-wrap border-r">
-                        <div className="px-[0px] py-[30px]  sticky top-[201px]">
-                            <ProductsFilter categories={categories}  onChange={handleFilterChange}/>
-                        </div>
-                    </div>
-                    {/* products display */}
-                    <div className="product-section__products-wrap">
-                        <div className="grid grid-cols-3 gap-4 px-[30px] py-[50px]">
-                            {
-                                products && products.length > 0 && products.map((v, i) =>
-                                    <div key={`product-display-${i}`}>
-                                        <ProductCard product={v} />
-                                    </div>
-                                )
-                            }
-                        </div>
-                    </div>
-                </div>
+                {
+                    products && 
+                    <TuiFilterSort
+                    category={category}
+                    products={products}
+                    loading={products_loading}
+                    onFilterChange={handleFilterChange} />
+                }
             </div>
         </div>
     )

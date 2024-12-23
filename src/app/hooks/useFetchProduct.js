@@ -1,26 +1,29 @@
 import { useState, useEffect, useCallback } from 'react';
 
-export default function useFetchProducts(initialParams = {}) {
-  const [products, setProducts] = useState([]);
+export default function useFetchProduct(initialParams = {}) {
+  const {id} = initialParams;
+  const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
-  const [pagination, setPagination] = useState({});
   const [error, setError] = useState(null);
   const [params, setParams] = useState(initialParams); // State for query params
 
-  const fetchProducts = useCallback(async (signal, customParams = null) => {
+
+
+  const fetchProduct = useCallback(async (signal, customParams = null) => {
     setLoading(true);
     setError(null);
-    setProducts([]);
-    const queryParams = new URLSearchParams(customParams || params).toString();
-    const url = `/api/products?${queryParams}`; // Replace with your API endpoint
-
+    setProduct({});
+    const queryParams = new URLSearchParams(customParams || params);
+    queryParams.delete("id");
+    const url = `/api/product/${id}/?${queryParams.toString()}`; // Replace with your API endpoint
+    console.log(url);
     try {
       const res = await fetch(url, { signal }); // Pass the signal to fetch
       if (!res.ok) {
-        throw new Error('Failed to fetch products');
+        throw new Error('Failed to fetch product');
       }
       const data = await res.json();
-      setProducts(data.data);
+      setProduct(data.data);
       setPagination(data.meta);
       setLoading(false);
 
@@ -38,7 +41,7 @@ export default function useFetchProducts(initialParams = {}) {
 
     // Define the function to perform the fetch
     const performFetch = async () => {
-      await fetchProducts(signal);
+      await fetchProduct(signal);
     };
 
     performFetch(); // Trigger fetch on mount or param change
@@ -46,12 +49,8 @@ export default function useFetchProducts(initialParams = {}) {
     return () => {
       controller.abort(); // Cleanup: Abort ongoing request on unmount or dependency change
     };
-  }, [fetchProducts]);
+  }, [fetchProduct]);
 
-  // Refetch with new parameters
-  const refetch = (newParams = {}) => {
-    setParams(newParams); // Update query params
-  };
 
-  return { products, loading, pagination, error, refetch, setParams };
+  return { product, loading, error};
 }

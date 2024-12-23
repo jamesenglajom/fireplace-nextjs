@@ -36,14 +36,14 @@ const Carousel = ({ slides, autoSlideInterval = 3000 }) => {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className="w-full flex-shrink-0 relative h-56 sm:h-64 md:h-80 lg:h-96 flex"
+            className="w-full flex-shrink-0 relative h-60 sm:h-80 lg:h-96 flex"
             style={{backgroundImage:`url("${slide.background}")`}}
           >
-            <div className={`Absolute top-0 left-0 w-full text-white flex items-center h-56 sm:h-64 md:h-80 lg:h-96`}>
+            <div className={`absolute top-0 left-0 w-full text-white flex items-center h-56 sm:h-64 md:h-80 lg:h-96`}>
               <div className={`container mx-auto flex ${slide.position}`}>
                <div className="flex flex-col gap-[20px]">
-                  <div className={`${slide.headline.twClass && slide.headline.twClass!==""? slide.headline.twClass: "text-white text-5xl font-bold"}`}>{slide.headline.text}</div>
-                  <div className={`${slide.subheadline.twClass && slide.subheadline.twClass!==""? slide.subheadline.twClass: "text-[18px]"}`}>{slide.subheadline.text}</div>
+                  <div className={`${slide.headline.twClass && slide.headline.twClass!==""? slide.headline.twClass: "text-white text-2xl sm:text-5xl font-bold"}`}>{slide.headline.text}</div>
+                  <div className={`${slide.subheadline.twClass && slide.subheadline.twClass!==""? slide.subheadline.twClass: "text-[14px] sm:text-[18px]"}`}>{slide.subheadline.text}</div>
                   <div className={`${slide.cta.position && slide.cta.position!=="" ? slide.cta.position: '' }`}>
                     <a href={slide.cta.href} className={`${slide.cta.twClass}`}>{slide.cta.label}</a>
                   </div>

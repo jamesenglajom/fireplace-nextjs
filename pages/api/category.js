@@ -1,6 +1,7 @@
 export default async function handler(req, res) {
-    const API_URL = `${process.env.NEXT_PUBLIC_BC_STORE_API}/catalog/trees/categories?`;
-    const API_TOKEN = process.env.NEXT_PUBLIC_BC_ACCESS_TOKEN; // Replace with your BigCommerce API token
+    const params = new URLSearchParams(req.query);
+    const API_URL = `${process.env.NEXT_PUBLIC_BC_STORE_API}/catalog/trees/categories?${params}`;
+    const API_TOKEN = process.env.NEXT_PUBLIC_BC_ACCESS_TOKEN;
   
     try {
       const response = await fetch(API_URL, {

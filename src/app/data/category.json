@@ -1,0 +1,139 @@
+[
+    {
+        "name": "Fireplaces",
+        "key_words": [
+            "fireplace",
+            "fireplaces"
+        ],
+        "menu": {
+            "href": "fireplaces",
+            "visible": true,
+            "order":1
+        },
+        "filter": {
+            "visible": true,
+            "order":1
+        }
+    },
+    {
+        "name": "Fire Pits",
+        "key_words": [
+            "fire pit",
+            "fire pits",
+            "fire-pit",
+            "fire-pits"
+        ],
+        "menu": {
+            "href": "fire-pits",
+            "visible": true,
+            "order":2
+        },
+        "filter": {
+            "visible": true,
+            "order":2
+        }
+    },
+    {
+        "name": "Patio Heaters",
+        "key_words": [
+            "patio heater",
+            "patio heaters",
+            "patio-heater",
+            "patio-heaters"
+        ],
+        "menu": {
+            "href": "patio-heaters",
+            "visible": true,
+            "order":6
+        },
+        "filter": {
+            "visible": true,
+            "order":6
+        }
+    },
+    {
+        "name": "Patio Furnitures",
+        "key_words": [
+            "patio furniture",
+            "patio furnitures",
+            "patio-furniture",
+            "patio-furnitures",
+            "furniture",
+            "furnitures"
+        ],
+        "menu": {
+            "href": "patio-furnitures",
+            "visible": true,
+            "order":3
+        },
+        "filter": {
+            "visible": true,
+            "order":3
+        }
+    },
+    {
+        "name": "Gas Logs",
+        "key_words": [
+            "gas log",
+            "gas logs",
+            "gas-log",
+            "gas-logs"
+        ],
+        "menu": {
+            "href": "gas-logs",
+            "visible": true,
+            "order":5
+        },
+        "filter": {
+            "visible": true,
+            "order":5
+        }
+    },
+    {
+        "name": "BBQ",
+        "key_words": [
+            "bbq"
+        ],
+        "menu": {
+            "href": "bbq",
+            "visible": true,
+            "order":4
+        },
+        "filter": {
+            "visible": true,
+            "order":4
+        }
+    },
+    {
+        "name": "Brands",
+        "key_words": [
+            "brand",
+            "brands"
+        ],
+        "menu": {
+            "href": "#",
+            "visible": false,
+            "order":0
+        },
+        "filter": {
+            "visible": true,
+            "order":0
+        }
+    },
+    {
+        "name": "On sale",
+        "key_words": [
+            "brand",
+            "brands"
+        ],
+        "menu": {
+            "href": "#",
+            "visible": false,
+            "order":0
+        },
+        "filter": {
+            "visible": true,
+            "order":0
+        }
+    }
+]
