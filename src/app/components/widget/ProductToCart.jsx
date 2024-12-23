@@ -73,7 +73,7 @@ const ProductToCart = ({ product, loading }) => {
     }
 
     return <div className="flex flex-col gap-[15px] w-full">
-        <div className="flex gap-[10px]">
+        <div className="flex gap-[10px] flex-wrap">
             {
                 product && product.categories.map((v, i) =>
                     <div key={`category-tag-${i}`} className="py-[5px] px-[25px] bg-stone-300 text-stone-600 font-semibold rounded-full">
