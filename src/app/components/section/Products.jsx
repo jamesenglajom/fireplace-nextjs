@@ -11,7 +11,9 @@ const ProductsSection = ({category}) => {
     const onloadParams = {
         include:"images",
         page:1,
-        'categories:in': getCategoryIds(category, cat_json, bccat_json).join(",")
+        'categories:in': getCategoryIds(category, cat_json, bccat_json).join(","),
+        sort: "total_sold",
+        direction: "desc"
     };
     const [productsParams, setProductsParams] = useState(onloadParams); 
     const {
@@ -45,9 +47,17 @@ const ProductsSection = ({category}) => {
      }
 
      useEffect(()=>{
+        console.log("triggerProductFetching");
         productsRefetch(productsParams);
      },[productsParams]);
 
+     const handleSortChange = (option) => {
+        setProductsParams(prev=>{
+            const updateParams = {...prev, sort: option.sort, direction:option.direction};
+            console.log("updateParams",updateParams)
+            return updateParams;
+        });
+     }
     return (
         <div className="w-full">
             <div className="container mx-auto">
@@ -57,7 +67,7 @@ const ProductsSection = ({category}) => {
                     category={category}
                     products={products}
                     loading={products_loading}
-                    onFilterChange={handleFilterChange} />
+                    onSortChange={handleSortChange} />
                 }
             </div>
         </div>

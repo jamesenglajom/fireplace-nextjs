@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { createSlug } from "../../lib/helpers"
 import Link from 'next/link';
 import {
     Dialog,
@@ -23,11 +22,11 @@ import cat_json from "../../data/category.json";
 import bccat_json from "../../data/bc_categories_20241213.json";
 
 const sortOptions = [
-    { name: 'Most Popular', href: '#', current: true },
-    { name: 'Best Rating', href: '#', current: false },
-    { name: 'Newest', href: '#', current: false },
-    { name: 'Price: Low to High', href: '#', current: false },
-    { name: 'Price: High to Low', href: '#', current: false },
+    { name: 'Most Popular', sort: 'total_sold', direction: 'desc', current: true },
+    // { name: 'Best Rating', sort: 'rating', direction:'desc', current: false },
+    { name: 'Newest', sort: 'id', direction:'desc', current: false }, // using id as replacement for date_created for sorting
+    { name: 'Price: Low to High', sort: 'price', direction:'asc', current: false },
+    { name: 'Price: High to Low', sort: 'price', direction:'desc', current: false },
 ]
 
 const loaderArray = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -77,7 +76,8 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function TuiFilterSort({ category, products, loading, onFilterChange }) {
+export default function TuiFilterSort({ category, products, loading, onSortChange }) {
+    const [sort, setSort] = useState(sortOptions);
     const activeCategory = (path) => {
         return category === path;
     };
@@ -88,6 +88,12 @@ export default function TuiFilterSort({ category, products, loading, onFilterCha
     useEffect(() => {
         console.log("TUIFILTER PRODUCT_LOADING: ", loading);
     }, [loading]);
+    const handleSort = (option) => {
+        onSortChange(option);
+        setSort(prev=> prev.map(i=> {
+            return {...i, current: i.name === option.name};
+        }));
+    }
     return (
         <div className="bg-white">
             <div className="relative">
@@ -199,7 +205,9 @@ export default function TuiFilterSort({ category, products, loading, onFilterCha
                             <Menu as="div" className="relative inline-block text-left">
                                 <div>
                                     <MenuButton className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                                        Sort
+                                        {
+                                            sort.find(({current})=> current===true).name
+                                        }
                                         <ChevronDownIcon
                                             aria-hidden="true"
                                             className="-mr-1 ml-1 size-5 shrink-0 text-gray-400 group-hover:text-gray-500"
@@ -212,17 +220,17 @@ export default function TuiFilterSort({ category, products, loading, onFilterCha
                                     className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
                                 >
                                     <div className="py-1">
-                                        {sortOptions.map((option) => (
+                                        {sort.map((option) => (
                                             <MenuItem key={option.name}>
-                                                <a
-                                                    href={option.href}
+                                                <div
                                                     className={classNames(
                                                         option.current ? 'font-medium text-gray-900' : 'text-gray-500',
-                                                        'block px-4 py-2 text-sm data-[focus]:bg-gray-100 data-[focus]:outline-none',
+                                                        'block px-4 py-2 text-sm data-[focus]:bg-gray-100 data-[focus]:outline-none cursor-default',
                                                     )}
+                                                    onClick={()=>handleSort(option)}
                                                 >
                                                     {option.name}
-                                                </a>
+                                                </div>
                                             </MenuItem>
                                         ))}
                                     </div>

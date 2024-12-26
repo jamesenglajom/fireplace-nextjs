@@ -5,6 +5,10 @@ import useFetchProduct from "@/app/hooks/useFetchProduct";
 export default function Product({params}) {
   const {id} = React.use(params);
   const {product, loading, error} = useFetchProduct({id, include:"images"});
+  const handleSortChange = (sort) =>{
+    console.log("page sort", sort)
+
+  }
   return (
     <div>
       <ProductSection product={product} loading={loading}/>
