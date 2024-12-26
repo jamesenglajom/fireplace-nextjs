@@ -49,11 +49,11 @@ const ProductCard = ({ product }) => {
         <div className="flex flex-col gap-[5px]">
             <div className="flex items-center gap-[5px]">
                 <div>
-                    <Rating value={product.ratings} style={{ maxWidth: 80 }}></Rating>
+                    <Rating value={product.reviews_rating_sum} style={{ maxWidth: 80 }}></Rating>
                 </div>
                 <div className="text-[12px]">
                     ({product.reviews_count})
-                    (id:{product.id})
+                    {/* (id:{product.id}) */}
                 </div>
             </div>
             <div className="text-pallete-gray text-[12px]">SKU: {product.sku}</div>
