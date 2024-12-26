@@ -19,6 +19,7 @@ const ProductsSection = ({category}) => {
     const {
         products,
         loading:products_loading,
+        pagination,
         error:products_error,
         refetch: productsRefetch
      } = useFetchProducts(productsParams);
@@ -53,8 +54,22 @@ const ProductsSection = ({category}) => {
 
      const handleSortChange = (option) => {
         setProductsParams(prev=>{
-            const updateParams = {...prev, sort: option.sort, direction:option.direction};
-            console.log("updateParams",updateParams)
+            const updateParams = {
+                ...prev,
+                sort: option.sort,
+                direction:option.direction,
+                page:1
+            };
+            return updateParams;
+        });
+     }
+
+     const handlePageChange = (page) => {
+        setProductsParams(prev=>{
+            const updateParams = {
+                ...prev,
+                page: page
+            };
             return updateParams;
         });
      }
@@ -67,7 +82,9 @@ const ProductsSection = ({category}) => {
                     category={category}
                     products={products}
                     loading={products_loading}
-                    onSortChange={handleSortChange} />
+                    pagination={pagination}
+                    onSortChange={handleSortChange}
+                    onPageChange={handlePageChange} />
                 }
             </div>
         </div>

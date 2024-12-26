@@ -24,9 +24,9 @@ import bccat_json from "../../data/bc_categories_20241213.json";
 const sortOptions = [
     { name: 'Most Popular', sort: 'total_sold', direction: 'desc', current: true },
     // { name: 'Best Rating', sort: 'rating', direction:'desc', current: false },
-    { name: 'Newest', sort: 'id', direction:'desc', current: false }, // using id as replacement for date_created for sorting
-    { name: 'Price: Low to High', sort: 'price', direction:'asc', current: false },
-    { name: 'Price: High to Low', sort: 'price', direction:'desc', current: false },
+    { name: 'Newest', sort: 'id', direction: 'desc', current: false }, // using id as replacement for date_created for sorting
+    { name: 'Price: Low to High', sort: 'price', direction: 'asc', current: false },
+    { name: 'Price: High to Low', sort: 'price', direction: 'desc', current: false },
 ]
 
 const loaderArray = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -76,8 +76,9 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function TuiFilterSort({ category, products, loading, onSortChange }) {
+export default function TuiFilterSort({ category, products, pagination, loading, onSortChange, onPageChange }) {
     const [sort, setSort] = useState(sortOptions);
+    const [displayProducts, setDisplayProducts] = useState([]);
     const activeCategory = (path) => {
         return category === path;
     };
@@ -85,14 +86,26 @@ export default function TuiFilterSort({ category, products, loading, onSortChang
         return subCategories.find(i => i.menu.href === category)?.name;
     };
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
     useEffect(() => {
-        console.log("TUIFILTER PRODUCT_LOADING: ", loading);
-    }, [loading]);
+        if(products && products.length > 0){
+            if(pagination.current_page !== 1){
+                setDisplayProducts(prev=> ([...prev,...products]));
+            }else{
+                setDisplayProducts(products)
+            }
+        }
+    }, [products]);
+
     const handleSort = (option) => {
         onSortChange(option);
-        setSort(prev=> prev.map(i=> {
-            return {...i, current: i.name === option.name};
+        setSort(prev => prev.map(i => {
+            return { ...i, current: i.name === option.name };
         }));
+    }
+
+    const handleShowMorePagination = (page) => {
+        onPageChange(page);
     }
     return (
         <div className="bg-white">
@@ -206,7 +219,7 @@ export default function TuiFilterSort({ category, products, loading, onSortChang
                                 <div>
                                     <MenuButton className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                                         {
-                                            sort.find(({current})=> current===true).name
+                                            sort.find(({ current }) => current === true).name
                                         }
                                         <ChevronDownIcon
                                             aria-hidden="true"
@@ -227,7 +240,7 @@ export default function TuiFilterSort({ category, products, loading, onSortChang
                                                         option.current ? 'font-medium text-gray-900' : 'text-gray-500',
                                                         'block px-4 py-2 text-sm data-[focus]:bg-gray-100 data-[focus]:outline-none cursor-default',
                                                     )}
-                                                    onClick={()=>handleSort(option)}
+                                                    onClick={() => handleSort(option)}
                                                 >
                                                     {option.name}
                                                 </div>
@@ -343,22 +356,30 @@ export default function TuiFilterSort({ category, products, loading, onSortChang
                                         }
                                     </div> : <>
                                         {
-                                            products.length === 0 ?
-                                            <div className="flex justify-center">
-                                                <div className="text-stone-500 text-3xl py-10 font-bold">Nothing to display</div>
-                                            </div> 
-                                            :<div className="grid sm:gap-3 lg:grid-cols-3 lg:gap-6 grid-cols-2 gap-2">
-                                                {
-                                                    products.map((v, i) =>
-                                                        <div key={`product-display-${i}`}>
-                                                            <ProductCard product={v} />
-                                                        </div>
-                                                    )
+                                            displayProducts.length === 0 ?
+                                                <div className="flex justify-center">
+                                                    <div className="text-stone-500 text-3xl py-10 font-bold">Nothing to display</div>
+                                                </div>
+                                                : <div className="grid sm:gap-3 lg:grid-cols-3 lg:gap-6 grid-cols-2 gap-2">
+                                                    {
+                                                        displayProducts.map((v, i) =>
+                                                            <div key={`product-display-${i}`}>
+                                                                <ProductCard product={v} />
+                                                            </div>
+                                                        )
 
-                                                }
-                                            </div>
+                                                    }
+                                                </div>
                                         }
                                     </>
+                                }
+                                {
+                                    pagination && pagination.total_pages !== 0 && <div className="w-full flex justify-between items-center mt-10 flex-col">
+                                        <div className="text-center order-2">
+                                            Showing { pagination.current_page === 1 ? "1": `1 to ${pagination.current_page}` } of {pagination.total_pages} Pages ({pagination.total} total items)
+                                        </div>
+                                        <button disabled={pagination.current_page === pagination.total_pages} onClick={()=>handleShowMorePagination((pagination.current_page + 1))} className={`order-1 bg-pallete-orange text-white px-[25px] py-[7px] rounded-md`}>Show More</button>
+                                    </div>
                                 }
                             </div>
                         </div>

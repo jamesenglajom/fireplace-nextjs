@@ -21,7 +21,7 @@ export default function useFetchProducts(initialParams = {}) {
       }
       const data = await res.json();
       setProducts(data.data);
-      setPagination(data.meta);
+      setPagination(data.meta.pagination);
       setLoading(false);
 
     } catch (err) {
