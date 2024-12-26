@@ -44,12 +44,12 @@ export default function TuiNavbar({pageUrl}) {
                             />
                         </div>
                     </div>
-                    <div className="hidden sm:block sm:w-[300px] md:w-[500px]">
+                    {/* <div className="hidden sm:block sm:w-[300px] md:w-[500px]">
                         <HomeSearch />
-                    </div>
+                    </div> */}
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
-                        <ul className="flex space-x-4">
+                        {/* <ul className="flex space-x-4">
                             <li><a href="#home" className="text-gray-700 hover:text-blue-500 relative">
                                 <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
                                     <div className="text-[10px]">26</div>
@@ -62,7 +62,7 @@ export default function TuiNavbar({pageUrl}) {
                                 </div>
                                 <Icon icon="bx:heart" width="24" height="24" />
                             </a></li>
-                        </ul>
+                        </ul> */}
                         {/* <button
               type="button"
               className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
