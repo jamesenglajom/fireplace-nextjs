@@ -165,7 +165,7 @@ const ProductToCart = ({ product, loading }) => {
                 <div className="text-[22px] font-bold">Ships Within 1 to 2 Business Days</div>
             </div>
             <div className="">
-                <div className="flex items-center gap-[20px]">
+                {/* <div className="flex items-center gap-[20px]">
                     <div className="text-[2.625em] font-extrabold text-pallete-green">
                         ${
                             productData?.price
@@ -180,7 +180,7 @@ const ProductToCart = ({ product, loading }) => {
                             <Icon icon="icons8:plus" className="text-[32px] text-pallete-gray" />
                         </button>
                     </div>
-                </div>
+                </div> */}
                 <div className="flex items-center gap-[10px] mt-[10px]">
                     <div className="font-bold text-white">
                         <button className="flex items-cencer gap-[5px] bg-pallete-green rounded-full py-[9px] px-[35px]" onClick={handleAddToCart}>
@@ -190,11 +190,11 @@ const ProductToCart = ({ product, loading }) => {
                             <div className="font-bold uppercase text-[1.5em]">add to cart</div>
                         </button>
                     </div>
-                    <div>
+                    {/* <div>
                         <button onClick={handleHeartToggle} className={`flex justify-center items-center w-[54px] h-[54px] rounded-full ${productData?.like ? 'bg-pallete-orange' : 'bg-stone-400'}`}>
                             <Icon icon="teenyicons:heart-outline" className="text-white text-[30px]" />
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className="mt-[30px] flex flex-col gap-[10px]">
