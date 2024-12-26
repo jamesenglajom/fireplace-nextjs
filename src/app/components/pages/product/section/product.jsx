@@ -33,11 +33,11 @@ const ProductSection = ({product, loading}) => {
         <ProductMetaTabs product={product}/>
       </div>
     </div>
-    <div className="p-4">
+    {/* <div className="p-4">
       <div className="container mx-auto">
         <RelatedProducts product={product}/>
       </div>
-    </div>
+    </div> */}
     </>
 }
 
