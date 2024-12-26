@@ -32,7 +32,7 @@ const ProductCard = ({ product }) => {
         {
             product.sales_tag === "ON SALE" && <div className="absolute bottom-[60px] left-0 rounded-r-full bg-pallete-orange text-white text-[12px] font-bold py-[7px] px-[15px]">ONSALE</div>
         }
-        <div className="absolute bottom-0 left-0 bg-pallete-green text-white text-[12px] font-semibold py-[7px] px-[15px] flex items-center w-full justify-center gap-[5px]">
+        <div className="absolute bottom-0 left-0 bg-pallete-orange text-white text-[12px] font-semibold py-[7px] px-[15px] flex items-center w-full justify-center gap-[5px]">
             <div>
                 <Icon icon="mi:shopping-cart-add" className="text-lg" />
             </div>
@@ -40,7 +40,7 @@ const ProductCard = ({ product }) => {
         </div>
     </div>
     <div className="flex flex-col gap-[15px] p-[20px]">
-        <div>Starting at <span className="text-pallete-green font-bold text-[20px]">${parseFloat(product.price).toFixed(2)}</span></div>
+        <div>Starting at <span className="text-pallete-orange font-bold text-[20px]">${parseFloat(product.price).toFixed(2)}</span></div>
         <div className="flex h-[80px]  my-[15px]">
             <div className="font-bold text-[18px]">
                 {product.name}
