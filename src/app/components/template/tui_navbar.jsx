@@ -12,7 +12,6 @@ import HomeSearch from '../search/HomeSearch'
 // data
 import cat_json from '../../data/category.json'
 
-
 const navigation = cat_json.filter(i=> i.menu.visible === true);
 
 function classNames(...classes) {
@@ -23,7 +22,14 @@ export default function TuiNavbar({pageUrl}) {
     const path = usePathname();
     const category_slug = cat_json.find(i=> i.menu.href === getFirstPathSegment(path))?.menu?.href;
     return (
-        <Disclosure as="nav" className="bg-white z-[9999]" >
+      <>
+      <div className="bg-[#4C4C53] flex items-center justify-center py-[8px]">
+        <div className="text-white mr-[10px]">
+          Free shipping on orders over $99
+        </div>
+        <Icon icon="material-symbols-light:delivery-truck-speed" width="28" height="28"  className="text-white" />
+      </div>
+      <Disclosure as="nav" className="bg-white z-[9999]" >
             <div className="mx-auto container px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
                     <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -155,5 +161,6 @@ export default function TuiNavbar({pageUrl}) {
                 </div>
             </DisclosurePanel>
         </Disclosure>
+      </>
     )
 }
