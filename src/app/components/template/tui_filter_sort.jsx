@@ -212,14 +212,14 @@ export default function TuiFilterSort({ category, products, pagination, loading,
 
                 <main className="px-2 sm:px-4 relative bg-white">
                     <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24  sticky top-[-61px] bg-white z-[5]">
-                        <h1 className="text-xl sm:text-4xl font-bold tracking-tight text-gray-900">{activeCategoryName(category)}</h1>
+                        <h1 className="text-xl sm:text-4xl font-bold tracking-tight text-gray-900">{ `${activeCategoryName(category)}`} <span className="font-normal text-2xl">{`${pagination && pagination.total!==0 && pagination.total!==undefined ? `(${pagination?.total})`:''}`}</span></h1>
 
                         <div className="flex items-center">
                             <Menu as="div" className="relative inline-block text-left">
                                 <div>
                                     <MenuButton className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                                         {
-                                            sort.find(({ current }) => current === true).name
+                                            `${sort.find(({ current }) => current === true).name}`
                                         }
                                         <ChevronDownIcon
                                             aria-hidden="true"
