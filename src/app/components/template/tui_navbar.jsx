@@ -12,50 +12,44 @@ import HomeSearch from '../search/HomeSearch'
 // data
 import cat_json from '../../data/category.json'
 
-const navigation = cat_json.filter(i=> i.menu.visible === true);
+const navigation = cat_json.filter(i => i.menu.visible === true);
 
 function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(' ')
 }
 
-export default function TuiNavbar({pageUrl}) {
-    const path = usePathname();
-    const category_slug = cat_json.find(i=> i.menu.href === getFirstPathSegment(path))?.menu?.href;
-    return (
-      <>
-      <div className="bg-[#4C4C53] flex items-center justify-center py-[8px]">
-        <div className="text-white mr-[10px]">
-          Free shipping on orders over $99
-        </div>
-        <Icon icon="material-symbols-light:delivery-truck-speed" width="28" height="28"  className="text-white" />
-      </div>
+export default function TuiNavbar() {
+  const path = usePathname();
+  const category_slug = cat_json.find(i => "/category/" + i.menu.href === path)?.menu?.href;
+  return (
+    <>
       <Disclosure as="nav" className="bg-white z-[9999]" >
-            <div className="mx-auto container px-2 sm:px-6 lg:px-8">
-                <div className="relative flex h-16 items-center justify-between">
-                    <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                        {/* Mobile menu button*/}
-                        <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-800 hover:border-gray-700 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white ">
-                            <span className="absolute -inset-0.5" />
-                            <span className="sr-only">Open main menu</span>
-                            <Bars3Icon aria-hidden="true" className="block size-6 group-data-[open]:hidden" />
-                            <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-[open]:block" />
-                        </DisclosureButton>
-                    </div>
-                    <div className="flex items-center justify-center flex-1 sm:flex-initial sm:items-stretch sm:justify-start"> {/** flex-1 sm:items-stretch sm:justify-start */}
-                        <div className="flex shrink-0 items-center">
-                            <img
-                                alt="Bull Fireplace"
-                                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
-                                className="h-8 w-auto"
-                            />
-                        </div>
-                    </div>
-                    {/* <div className="hidden sm:block sm:w-[300px] md:w-[500px]">
+        <div className="mx-auto container px-2 sm:px-6 lg:px-8">
+          <div className="relative flex h-16 items-center justify-between">
+            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+              {/* Mobile menu button*/}
+              <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-800 hover:border-gray-700 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white ">
+                <span className="absolute -inset-0.5" />
+                <span className="sr-only">Open main menu</span>
+                <Bars3Icon aria-hidden="true" className="block size-6 group-data-[open]:hidden" />
+                <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-[open]:block" />
+              </DisclosureButton>
+            </div>
+            <div className="flex items-center justify-center flex-1 sm:flex-initial sm:items-stretch sm:justify-start"> {/** flex-1 sm:items-stretch sm:justify-start */}
+              <div className="flex shrink-0 items-center">
+                <img
+                  alt="Bull Fireplace"
+                  src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
+                  className="h-8 w-auto"
+                />
+              </div>
+            </div>
+            {/* <div className="hidden sm:block sm:w-[300px] md:w-[500px]">
                         <HomeSearch />
                     </div> */}
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
-                        {/* <ul className="flex space-x-4">
+              {/* <ul className="flex space-x-4">
                             <li><a href="#home" className="text-gray-700 hover:text-blue-500 relative">
                                 <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
                                     <div className="text-[10px]">26</div>
@@ -69,7 +63,7 @@ export default function TuiNavbar({pageUrl}) {
                                 <Icon icon="bx:heart" width="24" height="24" />
                             </a></li>
                         </ul> */}
-                        {/* <button
+              {/* <button
               type="button"
               className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
             >
@@ -120,47 +114,52 @@ export default function TuiNavbar({pageUrl}) {
                 </MenuItem>
               </MenuItems>
             </Menu> */}
-                    </div>
-                </div>
             </div>
-            <div className="hidden sm:block mx-auto container px-2 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-center mt-[20px] sm:flex-wrap xl:justify-between">
-                    <div className="flex sm:flex-wrap justify-center gap-y-4">
-                        {
-                            navigation.map((i, index) =>
-                                <div key={`parent-nav-${index}`} className={`relative py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center cursor-pointer border-b ${i.menu.href === category_slug ? 'text-white bg-pallete-orange' : 'text-pallete-dark'}`}>
-                                    {/* <div className="text-white"><Icon icon={i.icon.name} /></div> */}
-                                    <Link href={`/${i.menu.href}`} className={`${i.menu.href === category_slug ?"font-semibold":"font-normal"}`}>{i.name}</Link>
-                                </div>
-                            )
-                        }
-                    </div>
-                    <div className="sm:flex sm:justify-center sm:w-full xl:w-auto sm:mt-4 xl:mt-0">
-                        <div className="cursor-pointer font-semibold text-pallete-gray">
-                            Free Shipping over $50
-                        </div>
-                    </div>
-                </div>
+          </div>
+        </div>
+        <div className="hidden sm:block mx-auto container px-2 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center mt-[20px] sm:flex-wrap xl:justify-between">
+            <div className="flex sm:flex-wrap justify-center gap-y-4">
+              {
+                navigation.map((i, index) =>
+                  <div key={`parent-nav-${index}`} className={`relative py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center cursor-pointer border-b ${i.menu.href === category_slug ? 'text-white bg-pallete-orange' : 'text-pallete-dark'}`}>
+                    {/* <div className="text-white"><Icon icon={i.icon.name} /></div> */}
+                    <Link href={`/category/${i.menu.href}`} className={`${i.menu.href === category_slug ? "font-semibold" : "font-normal"}`}>{i.name}</Link>
+                  </div>
+                )
+              }
             </div>
-            <DisclosurePanel className="sm:hidden">
-                <div className="space-y-1 px-2 pb-3 pt-2">
-                    {navigation.map((item) => (
-                        <DisclosureButton
-                            key={item.name}
-                            as="a"
-                            href={`/${item.menu.href}`}
-                            aria-current={item.menu.href === category_slug ? 'page' : undefined}
-                            className={classNames(
-                                item.menu.href === category_slug ? 'bg-pallete-orange text-white' : 'text-gray-800 hover:bg-gray-600 hover:text-white',
-                                'block rounded-md px-3 py-2 text-base font-medium',
-                            )}
-                        >
-                            {item.name}
-                        </DisclosureButton>
-                    ))}
+            <div className="sm:flex sm:justify-center sm:w-full xl:w-auto sm:mt-4 xl:mt-0">
+              <div className="cursor-pointer font-semibold  flex">
+                <div>
+                  <Link href="/auth/signin">SignIn</Link>
                 </div>
-            </DisclosurePanel>
-        </Disclosure>
-      </>
-    )
+                <div className="border-l pl-[10px] ml-[10px] border-stone-900">
+                  <Link href="/auth/signup">SignUp</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <DisclosurePanel className="sm:hidden">
+          <div className="space-y-1 px-2 pb-3 pt-2">
+            {navigation.map((item) => (
+              <DisclosureButton
+                key={item.name}
+                as="a"
+                href={`/category/${item.menu.href}`}
+                aria-current={item.menu.href === category_slug ? 'page' : undefined}
+                className={classNames(
+                  item.menu.href === category_slug ? 'bg-pallete-orange text-white' : 'text-gray-800 hover:bg-gray-600 hover:text-white',
+                  'block rounded-md px-3 py-2 text-base font-medium',
+                )}
+              >
+                {item.name}
+              </DisclosureButton>
+            ))}
+          </div>
+        </DisclosurePanel>
+      </Disclosure>
+    </>
+  )
 }

@@ -1,13 +1,11 @@
 import { Metadata } from "next";
 import localFont from "next/font/local";
-import {Inter} from "next/font/google"  
+import { Inter } from "next/font/google"
 import "./globals.css";
-import HomeNav from "./components/navbar/HomeNav";
-import TuiNavbar from "./components/template/tui_navbar"
-
+import { Icon } from "@iconify/react/dist/iconify.js";
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['100','200','300','400','500','600','700','800','900'], // Specify weights as needed
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'], // Specify weights as needed
 });
 
 
@@ -24,8 +22,12 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased`}
       >
-        {/* <HomeNav /> */}
-        <TuiNavbar />
+        <div className="bg-[#4C4C53] flex items-center justify-center py-[8px]">
+          <div className="text-white mr-[10px] text-[16px]">
+            Free shipping on orders over $99
+          </div>
+          <Icon icon="material-symbols-light:delivery-truck-speed" width="28" height="28" className="text-white" />
+        </div>
         {children}
       </body>
     </html>
