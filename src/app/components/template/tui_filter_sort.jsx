@@ -344,7 +344,7 @@ export default function TuiFilterSort({ category, products, pagination, loading,
 
                             {/* Product grid */}
 
-                            <div className="lg:col-span-3 overflow-hidden p-5">
+                            <div className="lg:col-span-3 overflow-hidden p-[0px] md:p-5">
                                 {
                                     loading ? <div className="grid sm:gap-3 lg:grid-cols-3 lg:gap-5 grid-cols-2 gap-2">
                                         {

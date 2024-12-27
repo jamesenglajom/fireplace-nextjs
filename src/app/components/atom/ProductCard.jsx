@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
     const handleHeartButtonClick = () => {
     }
 
-    return <Link href={`/product/${product.id}`} className="flex w-full"><div className="overflow-hidden rounded-md border w-full duration-500 hover:scale-105 hover:shadow-xl">
+    return <Link href={`/product/${product.id}`} className="flex w-full"><div className="overflow-hidden rounded-md border w-full duration-500 hover:scale-105 hover:shadow-xl pb-[8px]">
     <div className="w-full flex items-center justify-center h-[230px] overflow-hidden bg-white relative">
         <img src={thumbnail} alt="" className="object-contain h-full" />
         {/* <div className="absolute top-[10px] right-[10px]">
@@ -32,19 +32,17 @@ const ProductCard = ({ product }) => {
         {
             product.sales_tag === "ON SALE" && <div className="absolute bottom-[60px] left-0 rounded-r-full bg-pallete-orange text-white text-[12px] font-bold py-[7px] px-[15px]">ONSALE</div>
         }
-        <div className="absolute bottom-0 left-0 bg-pallete-orange text-white text-[12px] font-semibold py-[7px] px-[15px] flex items-center w-full justify-center gap-[5px]">
+        <div className="absolute bottom-0 left-0 bg-pallete-orange text-white text-[12px] py-[5px] font-semibold md:py-[7px] md:px-[15px] flex items-center w-full justify-center gap-[5px]">
             <div>
                 <Icon icon="mi:shopping-cart-add" className="text-lg" />
             </div>
-            <div>CUSTOMIZE TO PURCHASE</div>
+            <div className="text-[10px] md:text-[16px]">CUSTOMIZE TO PURCHASE</div>
         </div>
     </div>
-    <div className="flex flex-col gap-[15px] p-[20px]">
-        <div>Starting at <span className="text-pallete-orange font-bold text-[20px]">${parseFloat(product.price).toFixed(2)}</span></div>
-        <div className="flex h-[80px]  my-[15px]">
-            <div className="font-bold text-[18px]">
-                {product.name}
-            </div>
+    <div className="flex flex-col gap-[8px] md:gap-[15px] p-[5px] md:p-[20px]">
+        <div className="text-[12px] md:text-[16px]">Starting at <span className="text-pallete-orange font-bold text-[16px] md:text-[20px]">${parseFloat(product.price).toFixed(2)}</span></div>
+        <div className="line-clamp-3 my-[7px] md:my-[15px]  font-bold text-[14px] md:text-[18px]">
+            {product.name}
         </div>
         <div className="flex flex-col gap-[5px]">
             <div className="flex items-center gap-[5px]">
@@ -58,13 +56,13 @@ const ProductCard = ({ product }) => {
             </div>
             <div className="text-pallete-gray text-[12px]">SKU: {product.sku}</div>
         </div>
-        <div className="flex items-center justify-between   ">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-[7px]">
             <div className="flex items-center font-bold gap-[3px]">
                 <div>
                     <Icon icon="lucide:circle-check-big" className={`${product.is_free_shipping ? 'text-pallete-green':'text-pallete-gray'}`} />
                     
                 </div>
-                <div className={`text-[14px] relative ${product.is_free_shipping ? 'text-black':'text-pallete-gray line-through'}`}>
+                <div className={`text-[12px] md:text-[14px] relative ${product.is_free_shipping ? 'text-black':'text-pallete-gray line-through'}`}>
                     <span className={`${product.is_free_shipping ? 'text-pallete-green':'text-pallete-gray'}`}>FREE</span> Shipping
                 </div>
             </div>
@@ -72,7 +70,7 @@ const ProductCard = ({ product }) => {
                 <div>
                     <Icon icon="lucide:circle-check-big" className="text-pallete-green" />
                 </div>
-                <div className="text-[14px]">
+                <div className="text-[12px] md:text-[14px]">
                     Quick Ship Available
                 </div>
             </div>
