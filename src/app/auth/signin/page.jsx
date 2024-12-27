@@ -34,7 +34,7 @@ export default function Signin(){
                         </div>
                         <button type="submit" className="w-full text-white bg-pallete-orange hover:bg-pallete-orange focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800">Sign in</button>
                         <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                            Don’t have an account yet? <Link href="/auth/singup" className="font-medium text-pallete-orange hover:underline dark:text-pallete-orange">Sign up</Link>
+                            Don’t have an account yet? <Link href="/auth/signup" className="font-medium text-pallete-orange hover:underline dark:text-pallete-orange">Sign up</Link>
                         </p>
                     </form>
                 </div>
