@@ -135,7 +135,7 @@ const ProductToCart = ({ product, loading }) => {
             <div className="flex gap-[10px] flex-wrap">
                 {
                     product && product.categories.map((v, i) =>
-                        <div key={`category-tag-${i}`} className="py-[5px] px-[25px] bg-stone-300 text-stone-600 font-semibold rounded-full">
+                        <div key={`category-tag-${i}`} className="text-[12px] py-[2px] px-[10px] md:text-[16px] md:py-[5px] md:px-[25px] bg-stone-300 text-stone-600 font-semibold rounded-full">
                             {getCategoryNameById(v, bccat_json)}
                         </div>
                     )
@@ -150,19 +150,19 @@ const ProductToCart = ({ product, loading }) => {
                 }
             </div>
             <div className="">
-                <div className="font-bold text-4xl">
+                <div className="font-bold text-[24px] md:text-4xl">
                     {
                         productData?.name
                     }
                 </div>
-                <div className="font-light text-stone-400">
+                <div className="font-light text-stone-400 text-[12px] md:[16px]">
                     {
                         productData?.sku
                     }
                 </div>
             </div>
             <div className="">
-                <div className="text-[22px] font-bold">Ships Within 1 to 2 Business Days</div>
+                <div className="text-[14px] md:text-[20px] font-bold">Ships Within 1 to 2 Business Days</div>
             </div>
             <div className="">
                 {/* <div className="flex items-center gap-[20px]">
@@ -181,13 +181,13 @@ const ProductToCart = ({ product, loading }) => {
                         </button>
                     </div>
                 </div> */}
-                <div className="flex items-center gap-[10px] mt-[10px]">
+                <div className="flex items-center gap-[10px] mt-[7px] md:mt-[10px]">
                     <div className="font-bold text-white">
-                        <button className="flex items-cencer gap-[5px] bg-pallete-green rounded-full py-[9px] px-[35px]" onClick={handleAddToCart}>
+                        <button className="flex items-cencer gap-[5px] bg-pallete-green rounded-full py-[5px] px-[25px] md:py-[9px] md:px-[35px]" onClick={handleAddToCart}>
                             <div >
-                                <Icon icon="ph:shopping-cart-simple-bold" className="text-[30px]" />
+                                <Icon icon="ph:shopping-cart-simple-bold" className="text-[24px] md:text-[30px]" />
                             </div>
-                            <div className="font-bold uppercase text-[1.5em]">add to cart</div>
+                            <div className="font-bold uppercase text-[18px] md:text-[1.5em]">add to cart</div>
                         </button>
                     </div>
                     {/* <div>
@@ -197,17 +197,17 @@ const ProductToCart = ({ product, loading }) => {
                     </div> */}
                 </div>
             </div>
-            <div className="mt-[30px] flex flex-col gap-[10px]">
+            <div className="mt-[10px] md:mt-[30px] flex flex-col gap-[10px]">
                 <div className="flex items-center">
                     <Rating value={productData?.reviews_rating_sum} style={{ maxWidth: 100 }}></Rating>
                     <div>({productData?.reviews_count})</div>
                 </div>
-                <div className="flex items-center gap-[25px]">
+                <div className="flex  flex-col md:flex-row md:items-center gap-[10px] md:gap-[25px]">
                     <div className="flex items-center font-bold gap-[8px]">
                         <div>
                             <Icon icon="lucide:circle-check-big" className={`${productData?.is_free_shipping ? 'text-pallete-green' : 'text-stone-400'}`} />
                         </div>
-                        <div className={`text-[20px] ${productData?.is_free_shipping ? '' : 'line-through text-stone-400'}`}>
+                        <div className={`text-[14px] md:text-[20px] ${productData?.is_free_shipping ? '' : 'line-through text-stone-400'}`}>
                             <span className={`${productData?.is_free_shipping ? 'text-pallete-green' : 'text-stone-400'}`}>FREE</span> Shipping
                         </div>
                     </div>
@@ -215,15 +215,15 @@ const ProductToCart = ({ product, loading }) => {
                         <div>
                             <Icon icon="lucide:circle-check-big" className="text-pallete-green" />
                         </div>
-                        <div className="text-[20px]">
+                        <div className="text-[14px] md:text-[20px]">
                             Quick Ship Available
                         </div>
                     </div>
-                    <div className="py-[6.5px] px-[25px] flex gap-[5px] items-center rounded-full bg-pallete-lightgray">
+                    <div className="py-[5px] px-[15px] md:py-[6.5px] md:px-[25px] w-fit gap-[5px] flex items-center rounded-full bg-pallete-lightgray">
                         <div>
-                            <Icon icon="material-symbols:info-outline" className="text-pallete-dark text-[25px]" />
+                            <Icon icon="material-symbols:info-outline" className="text-pallete-dark text-[18px] mdtext-[25px]" />
                         </div>
-                        <div className="text-[18px] text-pallete-dark font-semibold">Learn More</div>
+                        <div className="text-[14px] md:text-[20px] text-pallete-dark font-semibold">Learn More</div>
                     </div>
                 </div>
             </div>
