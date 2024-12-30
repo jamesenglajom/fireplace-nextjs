@@ -77,6 +77,7 @@ function classNames(...classes) {
 }
 
 export default function TuiFilterSort({ category, products, pagination, loading, onSortChange, onPageChange }) {
+    const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
     const [sort, setSort] = useState(sortOptions);
     const [displayProducts, setDisplayProducts] = useState([]);
     const activeCategory = (path) => {
@@ -148,7 +149,7 @@ export default function TuiFilterSort({ category, products, pagination, loading,
                                 <ul role="list" className="px-2 py-3 font-medium text-gray-900">
                                     {subCategories.map((category) => (
                                         <li key={category.name}>
-                                            <Link href={category.menu.href} className={`block px-2 py-3 ${activeCategory(category.menu.href) ? "text-pallete-orange" : ""}`}>
+                                            <Link href={`${BASE_URL}/${category.menu.href}`} className={`block px-2 py-3 ${activeCategory(category.menu.href) ? "text-pallete-orange" : ""}`}>
                                                 {category.name} {activeCategory(category.menu.href)}
                                             </Link>
                                         </li>
@@ -286,7 +287,7 @@ export default function TuiFilterSort({ category, products, pagination, loading,
                                     <ul role="list" className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
                                         {subCategories.map((category) => (
                                             <li key={category.name}>
-                                                <Link href={category.menu.href} className={`${activeCategory(category.menu.href) ? "text-pallete-orange" : ""}`}>{category.name}</Link>
+                                                <Link href={`${BASE_URL}/${category.menu.href}`} className={`${activeCategory(category.menu.href) ? "text-pallete-orange" : ""}`}>{category.name}</Link>
                                             </li>
                                         ))}
                                     </ul>
