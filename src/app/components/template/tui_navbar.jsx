@@ -20,7 +20,7 @@ function classNames(...classes) {
 
 export default function TuiNavbar() {
   const path = usePathname();
-  const category_slug = cat_json.find(i => "/category/" + i.menu.href === path)?.menu?.href;
+  const category_slug = cat_json.find(i => "/" + i.menu.href === path)?.menu?.href;
   return (
     <>
       <Disclosure as="nav" className="bg-white z-[9999]" >
@@ -124,7 +124,7 @@ export default function TuiNavbar() {
                 navigation.map((i, index) =>
                   <div key={`parent-nav-${index}`} className={`relative py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center cursor-pointer border-b ${i.menu.href === category_slug ? 'text-white bg-pallete-orange' : 'text-pallete-dark'}`}>
                     {/* <div className="text-white"><Icon icon={i.icon.name} /></div> */}
-                    <Link href={`/category/${i.menu.href}`} className={`${i.menu.href === category_slug ? "font-semibold" : "font-normal"}`}>{i.name}</Link>
+                    <Link href={`/${i.menu.href}`} className={`${i.menu.href === category_slug ? "font-semibold" : "font-normal"}`}>{i.name}</Link>
                   </div>
                 )
               }
@@ -147,7 +147,7 @@ export default function TuiNavbar() {
               <DisclosureButton
                 key={item.name}
                 as="a"
-                href={`/category/${item.menu.href}`}
+                href={`/${item.menu.href}`}
                 aria-current={item.menu.href === category_slug ? 'page' : undefined}
                 className={classNames(
                   item.menu.href === category_slug ? 'bg-pallete-orange text-white' : 'text-gray-800 hover:bg-gray-600 hover:text-white',
