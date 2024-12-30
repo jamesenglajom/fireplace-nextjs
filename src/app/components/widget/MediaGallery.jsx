@@ -46,7 +46,11 @@ const MediaGallery = ({ mediaItems, loading }) => {
                         <img src={activeItem?.url_standard} alt="Product"
                             className="object-contain" id="mainImage" />
                     </div>
-                    <div className="flex gap-4 py-4 justify-center overflow-x-auto">
+                    <div className="flex gap-4 py-4 justify-center overflow-x-auto [&::-webkit-scrollbar]:h-[10px]
+  [&::-webkit-scrollbar-track]:bg-gray-100
+  [&::-webkit-scrollbar-thumb]:bg-gray-300
+  dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
                         {
                             mediaItems && mediaItems.length > 0 && mediaItems.map((item, index) =>
                                 <img key={`img-gallery-${index}`} src={item.url_thumbnail} alt={`Thumbnail ${index}`}
