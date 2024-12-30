@@ -18,11 +18,65 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+
+const menuPlaceHolder = [
+  [
+      {
+        name: "Quick Ship Fireplaces", url: "", children: []
+      },
+      {
+        name: "Gas Fireplaces", url: "", children: [
+          {name: "Direct Vent Fireplaces", url: ""},
+          {name: "Ventless Fireplaces", url: ""},
+          {name: "Linear Fireplaces", url: ""},
+          {name: "Multi-Sided Fireplaces", url: ""},
+        ]
+      },
+      {
+        name: "Wood Fireplaces", url: "", children: []
+      }
+  ],
+  [
+    { name: "Electric Fireplaces", children:[
+      {name: "Link 1"},
+      {name: "Link 2"},
+      {name: "Link 3"},
+      {name: "Link 4"},
+      {name: "Link 5"},
+      {name: "Link 6"},
+      {name: "Link 7"},
+    ]},
+    { name: "Outdoor Fireplaces", children:[
+      {name: "Link 1"},
+      {name: "Link 2"},
+      {name: "Link 3"},
+      {name: "Link 4"},
+    ]},
+  ],
+  [
+    { name: "Fireplace Inserts", children:[
+      {name: "Link 1"},
+      {name: "Link 2"},
+      {name: "Link 3"},
+    ]},
+    { name: "Fireplace Accessories", children:[
+      {name: "Link 1"},
+      {name: "Link 2"},
+      {name: "Link 3"},
+      {name: "Link 4"},
+      {name: "Link 5"},
+      {name: "Link 6"},
+      {name: "Link 7"},
+    ]},
+  ]
+];
+
+
 export default function TuiNavbar() {
   const path = usePathname();
   const category_slug = cat_json.find(i => "/" + i.menu.href === path)?.menu?.href;
   return (
-    <>
+    <div className="relative">
       <Disclosure as="nav" className="bg-white z-[9999]" >
         <div className="mx-auto container px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
@@ -122,9 +176,38 @@ export default function TuiNavbar() {
             <div className="flex sm:flex-wrap justify-center gap-y-4">
               {
                 navigation.map((i, index) =>
-                  <div key={`parent-nav-${index}`} className={`relative py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center cursor-pointer border-b ${i.menu.href === category_slug ? 'text-white bg-pallete-orange' : 'text-pallete-dark'}`}>
+                  <div key={`parent-nav-${index}`} className={`group py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center cursor-pointer border-b ${i.menu.href === category_slug ? 'text-white bg-pallete-orange' : 'text-pallete-dark'}`}>
                     {/* <div className="text-white"><Icon icon={i.icon.name} /></div> */}
                     <Link href={`/${i.menu.href}`} className={`${i.menu.href === category_slug ? "font-semibold" : "font-normal"}`}>{i.name}</Link>
+
+                    <div className="bg-white absolute w-full left-0 top-[100%] z-[999] invisible group-hover:visible">
+                      <div className="container mx-auto py-5">
+                        <div className="flex justify-between">
+                          <div className="w-full flex gap-[70px]">
+                            {
+                              menuPlaceHolder.map((i,index)=>
+                                <div key={`fireplace-col-${index}`} className="flex flex-col gap-[20px]">
+                                  {
+                                  i.map((i2, index2)=>
+                                    <div key={`fireplace-col-${index}-content-${index2}`}>
+                                      <div className="text-black font-bold mb-[10px]">{i2.name}</div>
+                                      {
+                                        i2.children && i2.children.length > 0 && i2.children.map((i3,index3)=>
+                                        <div className="text-black">{i3.name}</div>
+                                        )
+                                      }
+                                      <div className="text-black">Shop All</div>
+                                    </div>
+                                  )
+                                  }
+                                </div>
+                              )
+                            }
+                          </div>
+                          <div className="">extras</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )
               }
@@ -160,6 +243,6 @@ export default function TuiNavbar() {
           </div>
         </DisclosurePanel>
       </Disclosure>
-    </>
+    </div>
   )
 }
