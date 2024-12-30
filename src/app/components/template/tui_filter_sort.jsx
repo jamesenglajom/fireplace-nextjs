@@ -220,7 +220,7 @@ export default function TuiFilterSort({ category, products, pagination, loading,
                 </Dialog>
 
                 <main className="px-2 sm:px-4 relative bg-white">
-                    <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24  sticky top-[-61px] bg-white z-[5]">
+                    <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24  sticky top-[-31px] bg-white z-[5]">
                         <h1 className="text-xl sm:text-4xl font-bold tracking-tight text-gray-900">{ `${activeCategoryName(category)}`} <span className="font-normal text-2xl">{`${pagination && pagination.total!==0 && pagination.total!==undefined ? `(${pagination?.total})`:''}`}</span></h1>
 
                         <div className="flex items-center">
@@ -282,7 +282,7 @@ export default function TuiFilterSort({ category, products, pagination, loading,
                         <div className="grid grid-cols-1 gap-x-8 gap-y-5 md:gap-y-10 lg:grid-cols-4">
                             {/* Filters */}
                             <div className="relative">
-                                <form className="hidden lg:block lg:sticky top-[110px]">
+                                <form className="hidden lg:block lg:sticky top-[140px]">
                                     <h3 className="sr-only">Categories</h3>
                                     <ul role="list" className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
                                         {subCategories.map((category) => (

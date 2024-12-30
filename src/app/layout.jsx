@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google"
 import "./globals.css";
+import FixedHeader from "./components/template/fixed_header"
 import { Icon } from "@iconify/react/dist/iconify.js";
 const inter = Inter({
   subsets: ['latin'],
@@ -28,7 +29,17 @@ export default function RootLayout({
         </div>
         <Icon icon="material-symbols-light:delivery-truck-speed" width="28" height="28" className="text-white" />
       </div>
-        <div className="bg-pallete-orange flex items-center justify-center py-[8px] h-[50px]"></div>
+        <div className="bg-pallete-orange flex items-center justify-between py-[8px] px-[30px] text-white">
+          <div className="flex justify-between w-[80%]">
+            <div>Promotions</div>
+            <div>Learning Center</div>
+            <div>Professional Program</div>
+            <div>Order Status</div>
+            <div>Why Buy From The Expert In Fire?</div>
+          </div>
+          <div className="w-[20%] text-right">SignIn | SignUp</div>
+        </div>
+      <FixedHeader></FixedHeader>
         {children}
       </body>
     </html>
