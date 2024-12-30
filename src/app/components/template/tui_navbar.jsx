@@ -129,7 +129,7 @@ export default function TuiNavbar() {
                 )
               }
             </div>
-            <div className="sm:flex sm:justify-center sm:w-full xl:w-auto sm:mt-4 xl:mt-0">
+            {/* <div className="sm:flex sm:justify-center sm:w-full xl:w-auto sm:mt-4 xl:mt-0">
               <div className="cursor-pointer font-semibold  flex">
                 <div>
                   <Link href="/auth/signin">SignIn</Link>
@@ -138,7 +138,7 @@ export default function TuiNavbar() {
                   <Link href="/auth/signup">SignUp</Link>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <DisclosurePanel className="sm:hidden">
