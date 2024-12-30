@@ -80,10 +80,18 @@ export default function TuiFilterSort({ category, products, pagination, loading,
     const [sort, setSort] = useState(sortOptions);
     const [displayProducts, setDisplayProducts] = useState([]);
     const activeCategory = (path) => {
-        return category === path;
+        if(category==="all-products"){
+            return path === '';
+        }else{
+            return category === path;
+        }
     };
     const activeCategoryName = (category) => {
-        return subCategories.find(i => i.menu.href === category)?.name;
+        if(category==="all-products"){
+            return "All Products";
+        }else{
+            return subCategories.find(i => i.menu.href === category)?.name;
+        }
     };
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 

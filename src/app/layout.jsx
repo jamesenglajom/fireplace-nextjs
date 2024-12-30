@@ -22,12 +22,13 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased`}
       >
-        <div className="bg-[#4C4C53] flex items-center justify-center py-[8px]">
-          <div className="text-white mr-[10px] text-[16px]">
-            Free shipping on orders over $99
-          </div>
-          <Icon icon="material-symbols-light:delivery-truck-speed" width="28" height="28" className="text-white" />
+      <div className="bg-[#4C4C53] flex items-center justify-center py-[8px]">
+        <div className="text-white mr-[10px] text-[16px]">
+          Free shipping on orders over $99
         </div>
+        <Icon icon="material-symbols-light:delivery-truck-speed" width="28" height="28" className="text-white" />
+      </div>
+        <div className="bg-pallete-orange flex items-center justify-center py-[8px] h-[50px]"></div>
         {children}
       </body>
     </html>

@@ -1,13 +1,13 @@
-'use client'
-import { useState, useEffect } from "react";
-import StorefrontHero from './components/template/storefront_hero';
-
-export default function Home() {
-
-  return (
-    <>
-      <StorefrontHero />
-    </>
-  );
+import ProductsSection from './components/section/Products';
+import TuiNavbar from "./components/template/tui_navbar"
+import TuiHero from "./components/template/tui_hero"
+export default async function HomePage({ params }) {
+    return (
+        <div>
+            <TuiNavbar />
+            <TuiHero />
+            <ProductsSection category={"all-products"} />
+        </div>
+    );
 }
 

@@ -1,5 +1,40 @@
 [
     {
+        "name": "All Products",
+        "key_words": [
+            "fireplace",
+            "fireplaces",
+            "fire pit",
+            "fire pits",
+            "fire-pit",
+            "fire-pits",
+            "patio heater",
+            "patio heaters",
+            "patio-heater",
+            "patio-heaters",
+            "patio furniture",
+            "patio furnitures",
+            "patio-furniture",
+            "patio-furnitures",
+            "furniture",
+            "furnitures",
+            "gas log",
+            "gas logs",
+            "gas-log",
+            "gas-logs",
+            "bbq"
+        ],
+        "menu": {
+            "href": "",
+            "visible": true,
+            "order": 1
+        },
+        "filter": {
+            "visible": true,
+            "order": 1
+        }
+    },
+    {
         "name": "Fireplaces",
         "key_words": [
             "fireplace",
@@ -8,11 +43,11 @@
         "menu": {
             "href": "fireplaces",
             "visible": true,
-            "order":1
+            "order": 1
         },
         "filter": {
             "visible": true,
-            "order":1
+            "order": 1
         }
     },
     {
@@ -26,11 +61,11 @@
         "menu": {
             "href": "fire-pits",
             "visible": true,
-            "order":2
+            "order": 2
         },
         "filter": {
             "visible": true,
-            "order":2
+            "order": 2
         }
     },
     {
@@ -44,11 +79,11 @@
         "menu": {
             "href": "patio-heaters",
             "visible": true,
-            "order":6
+            "order": 6
         },
         "filter": {
             "visible": true,
-            "order":6
+            "order": 6
         }
     },
     {
@@ -64,11 +99,11 @@
         "menu": {
             "href": "patio-furnitures",
             "visible": true,
-            "order":3
+            "order": 3
         },
         "filter": {
             "visible": true,
-            "order":3
+            "order": 3
         }
     },
     {
@@ -82,11 +117,11 @@
         "menu": {
             "href": "gas-logs",
             "visible": true,
-            "order":5
+            "order": 5
         },
         "filter": {
             "visible": true,
-            "order":5
+            "order": 5
         }
     },
     {
@@ -97,11 +132,11 @@
         "menu": {
             "href": "bbq",
             "visible": true,
-            "order":4
+            "order": 4
         },
         "filter": {
             "visible": true,
-            "order":4
+            "order": 4
         }
     },
     {
@@ -113,11 +148,11 @@
         "menu": {
             "href": "#",
             "visible": false,
-            "order":0
+            "order": 0
         },
         "filter": {
             "visible": true,
-            "order":0
+            "order": 0
         }
     },
     {
@@ -129,11 +164,11 @@
         "menu": {
             "href": "#",
             "visible": false,
-            "order":0
+            "order": 0
         },
         "filter": {
             "visible": true,
-            "order":0
+            "order": 0
         }
     }
 ]
