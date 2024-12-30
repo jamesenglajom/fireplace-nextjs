@@ -38,35 +38,50 @@ const menuPlaceHolder = [
   ],
   [
     { name: "Electric Fireplaces", children:[
-      {name: "Link 1"},
-      {name: "Link 2"},
-      {name: "Link 3"},
-      {name: "Link 4"},
-      {name: "Link 5"},
-      {name: "Link 6"},
-      {name: "Link 7"},
+      {name: "Electric Inserts"},
+      {name: "Built-In Electric Fireplaces"},
+      {name: "Free-Standing Electric Fireplaces"},
+      {name: "See-Trhough Electric Fireplaces"},
+      {name: "Wall Mounted Electric Fireplaces"},
+      {name: "Outdoor Electric Fireplaces"},
+      {name: "Electric Log Set"},
     ]},
     { name: "Outdoor Fireplaces", children:[
-      {name: "Link 1"},
-      {name: "Link 2"},
-      {name: "Link 3"},
-      {name: "Link 4"},
+      {name: "Outdoor Gas Fireplaces"},
+      {name: "Outdoor Wood Fireplaces"},
+      {name: "Outdoor Fireplace Burners"},
+      {name: "Masonry Outdoor Fireplace Kits"},
     ]},
   ],
   [
     { name: "Fireplace Inserts", children:[
-      {name: "Link 1"},
-      {name: "Link 2"},
-      {name: "Link 3"},
+      {name: "Wood Stove Inserts"},
+      {name: "Direct Vent Gas Firebox Inserts"},
+      {name: "Electric Fireplace Inserts"},
     ]},
     { name: "Fireplace Accessories", children:[
-      {name: "Link 1"},
-      {name: "Link 2"},
-      {name: "Link 3"},
-      {name: "Link 4"},
-      {name: "Link 5"},
-      {name: "Link 6"},
-      {name: "Link 7"},
+      {name: "Fireplace Doors"},
+      {name: "Firewood Racks"},
+      {name: "Fireplace Screens"},
+      {name: "Fireplace Grates"},
+      {name: "Fireplace Heaters & Blowers"},
+      {name: "Fireplace Tools"},
+      {name: "Fireplace Mantels"},
+    ]},
+  ],
+  [
+    {name:"Chimney", children:[
+      {name:"Chimney & Stove Pipe"},
+      {name:"Chimney Caps"},
+      {name:"Chimney Liners"},
+      {name:"Chimney Fans"},
+      {name:"Chimney Cleaning & Repair"},
+    ]},
+    {name:"Stove & Furnaces", children:[
+      {name:"Wood Stoves"},
+      {name:"Wood Stove Inserts"},
+      {name:"Gas Burning Stoves"},
+      {name:"Wood Stove Accessories"},
     ]},
   ]
 ];
@@ -176,38 +191,43 @@ export default function TuiNavbar() {
             <div className="flex sm:flex-wrap justify-center gap-y-4">
               {
                 navigation.map((i, index) =>
-                  <div key={`parent-nav-${index}`} className={`group py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center cursor-pointer border-b ${i.menu.href === category_slug ? 'text-white bg-pallete-orange' : 'text-pallete-dark'}`}>
+                  <div key={`parent-nav-${index}`} className={`group py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center border-b ${i.menu.href === category_slug ? 'text-white bg-pallete-orange' : 'text-pallete-dark'}`}>
                     {/* <div className="text-white"><Icon icon={i.icon.name} /></div> */}
                     <Link href={`/${i.menu.href}`} className={`${i.menu.href === category_slug ? "font-semibold" : "font-normal"}`}>{i.name}</Link>
-
-                    <div className="bg-white absolute w-full left-0 top-[100%] z-[999] invisible group-hover:visible">
-                      <div className="container mx-auto py-5">
-                        <div className="flex justify-between">
-                          <div className="w-full flex gap-[70px]">
-                            {
-                              menuPlaceHolder.map((i,index)=>
-                                <div key={`fireplace-col-${index}`} className="flex flex-col gap-[20px]">
-                                  {
-                                  i.map((i2, index2)=>
-                                    <div key={`fireplace-col-${index}-content-${index2}`}>
-                                      <div className="text-black font-bold mb-[10px]">{i2.name}</div>
-                                      {
-                                        i2.children && i2.children.length > 0 && i2.children.map((i3,index3)=>
-                                        <div className="text-black">{i3.name}</div>
-                                        )
-                                      }
-                                      <div className="text-black">Shop All</div>
-                                    </div>
-                                  )
-                                  }
-                                </div>
-                              )
-                            }
+                    {
+                      i.links && i.links.length > 0 && 
+                      <div className="bg-white absolute w-full left-0 top-[100%] z-[999] invisible group-hover:visible">
+                        <div className="container mx-auto py-5">
+                          <div className="flex justify-between">
+                            <div className="w-full flex gap-[70px]">
+                              {
+                                 i.links.map((i1,index1)=>
+                                  <div key={`${i.menu.href}-col-${index1}`} className="flex flex-col gap-[20px]">
+                                    {
+                                    i1.map((i2, index2)=>
+                                      <div key={`${i.menu.href}-col-${index1}-content-${index2}`}>
+                                        <div className="text-black font-bold mb-[10px] hover-text-pallete-orange cursor-pointer">{i2.name}</div>
+                                        <div className="flex flex-col gap-[5px]">
+                                          {
+                                            i2.children && i2.children.length > 0 && i2.children.map((i3,index3)=>
+                                            <div key={`${i.menu.href}-col-${index}-content-${index2}-child-${index3}`} className="text-black hover-text-pallete-orange cursor-pointer">{i3.name}</div>
+                                            )
+                                          }
+                                          <div className="text-black hover-text-pallete-orange cursor-pointer flex gap-[10px] items-center">
+                                            <Icon icon="teenyicons:arrow-solid" width="16" height="16" /><div>Shop All</div></div>
+                                        </div>
+                                      </div>
+                                    )
+                                    }
+                                  </div>
+                                )
+                              }
+                            </div>
+                            <div className="">extras</div>
                           </div>
-                          <div className="">extras</div>
                         </div>
                       </div>
-                    </div>
+                    }
                   </div>
                 )
               }
