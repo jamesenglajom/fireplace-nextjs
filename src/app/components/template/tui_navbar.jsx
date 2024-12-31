@@ -12,91 +12,11 @@ import HomeSearch from '../search/HomeSearch'
 // data
 import cat_json from '../../data/category.json'
 
-const navigation = cat_json.filter(i => i.menu.visible === true);
+const navigation = cat_json.filter(i => i.menu.visible === true).sort((a,b)=> a.menu.order - b.menu.order);
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
-
-
-const menuPlaceHolder = [
-  [
-    {
-      name: "Quick Ship Fireplaces", url: "", children: []
-    },
-    {
-      name: "Gas Fireplaces", url: "", children: [
-        { name: "Direct Vent Fireplaces", url: "" },
-        { name: "Ventless Fireplaces", url: "" },
-        { name: "Linear Fireplaces", url: "" },
-        { name: "Multi-Sided Fireplaces", url: "" },
-      ]
-    },
-    {
-      name: "Wood Fireplaces", url: "", children: []
-    }
-  ],
-  [
-    {
-      name: "Electric Fireplaces", children: [
-        { name: "Electric Inserts" },
-        { name: "Built-In Electric Fireplaces" },
-        { name: "Free-Standing Electric Fireplaces" },
-        { name: "See-Trhough Electric Fireplaces" },
-        { name: "Wall Mounted Electric Fireplaces" },
-        { name: "Outdoor Electric Fireplaces" },
-        { name: "Electric Log Set" },
-      ]
-    },
-    {
-      name: "Outdoor Fireplaces", children: [
-        { name: "Outdoor Gas Fireplaces" },
-        { name: "Outdoor Wood Fireplaces" },
-        { name: "Outdoor Fireplace Burners" },
-        { name: "Masonry Outdoor Fireplace Kits" },
-      ]
-    },
-  ],
-  [
-    {
-      name: "Fireplace Inserts", children: [
-        { name: "Wood Stove Inserts" },
-        { name: "Direct Vent Gas Firebox Inserts" },
-        { name: "Electric Fireplace Inserts" },
-      ]
-    },
-    {
-      name: "Fireplace Accessories", children: [
-        { name: "Fireplace Doors" },
-        { name: "Firewood Racks" },
-        { name: "Fireplace Screens" },
-        { name: "Fireplace Grates" },
-        { name: "Fireplace Heaters & Blowers" },
-        { name: "Fireplace Tools" },
-        { name: "Fireplace Mantels" },
-      ]
-    },
-  ],
-  [
-    {
-      name: "Chimney", children: [
-        { name: "Chimney & Stove Pipe" },
-        { name: "Chimney Caps" },
-        { name: "Chimney Liners" },
-        { name: "Chimney Fans" },
-        { name: "Chimney Cleaning & Repair" },
-      ]
-    },
-    {
-      name: "Stove & Furnaces", children: [
-        { name: "Wood Stoves" },
-        { name: "Wood Stove Inserts" },
-        { name: "Gas Burning Stoves" },
-        { name: "Wood Stove Accessories" },
-      ]
-    },
-  ]
-];
 
 
 export default function TuiNavbar() {
