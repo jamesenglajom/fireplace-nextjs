@@ -23,23 +23,25 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased`}
       >
-      <div className="bg-[#4C4C53] flex items-center justify-center py-[8px]">
-        <div className="text-white mr-[10px] text-[16px]">
-          Free shipping on orders over $99
-        </div>
-        <Icon icon="material-symbols-light:delivery-truck-speed" width="28" height="28" className="text-white" />
-      </div>
-        <div className="bg-pallete-orange flex items-center justify-between py-[8px] px-[30px] text-white">
-          <div className="flex justify-between w-[80%]">
-            <div>Promotions</div>
-            <div>Learning Center</div>
-            <div>Professional Program</div>
-            <div>Order Status</div>
-            <div>Why Buy From The Expert In Fire?</div>
+        <div className="bg-[#4C4C53] flex items-center justify-center py-[8px]">
+          <div className="text-white mr-[10px] text-[16px]">
+            Free shipping on orders over $99
           </div>
-          <div className="w-[20%] text-right">SignIn | SignUp</div>
+          <Icon icon="material-symbols-light:delivery-truck-speed" width="28" height="28" className="text-white" />
         </div>
-      <FixedHeader></FixedHeader>
+        <div className="bg-pallete-orange py-[8px] px-[30px] text-white">
+          <div className="container mx-auto  flex items-center justify-between">
+            <div className="flex justify-between w-[80%]">
+              <div className="font-extralight">Promotions</div>
+              <div className="font-extralight">Learning Center</div>
+              <div className="font-extralight">Professional Program</div>
+              <div className="font-extralight">Order Status</div>
+              <div className="font-extralight">Why Buy From The Expert In Fire?</div>
+            </div>
+            <div className="w-[20%] text-right">SignIn | SignUp</div>
+          </div>
+        </div>
+        <FixedHeader></FixedHeader>
         {children}
       </body>
     </html>
