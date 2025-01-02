@@ -33,7 +33,8 @@
             "visible": true,
             "order": 1
         },
-        "links": []
+        "links": [],
+        "searchable": false
     },
     {
         "name": "Fireplaces",
@@ -204,7 +205,8 @@
                     ]
                 }
             ]
-        ]
+        ],
+        "searchable": true
     },
     {
         "name": "Fire Pits",
@@ -352,7 +354,8 @@
                     ]
                 }
             ]
-        ]
+        ],
+        "searchable": true
     },
     {
         "name": "Patio Heaters",
@@ -391,7 +394,8 @@
                     {"name": "Sunpak"}
                 ]}
             ]
-        ]
+        ],
+        "searchable": true
     },
     {
         "name": "Patio Furnitures",
@@ -479,7 +483,8 @@
                     ]
                 }
             ]
-        ]
+        ],
+        "searchable": true
     },
     {
         "name": "Gas Logs",
@@ -498,7 +503,8 @@
             "visible": true,
             "order": 5
         },
-        "links": []
+        "links": [],
+        "searchable": true
     },
     {
         "name": "BBQ",
@@ -550,7 +556,8 @@
                     {"name": "DCS"}
                 ]}
             ]
-        ]
+        ],
+        "searchable": true
     },
     {
         "name": "Brands",
@@ -559,14 +566,16 @@
             "brands"
         ],
         "menu": {
-            "href": "#",
+            "href": "brands",
             "visible": true,
             "order": 8
         },
         "filter": {
             "visible": true,
             "order": 0
-        }
+        },
+        "links": [],
+        "searchable": true
     },
     {
         "name": "New Arrivals",
@@ -585,7 +594,9 @@
         "filter": {
             "visible": true,
             "order": 0
-        }
+        },
+        "links":[],
+        "searchable": true
     },
     {   
         "name": "On sale",
@@ -596,13 +607,15 @@
             "on sale"
         ],
         "menu": {
-            "href": "/on-sale",
+            "href": "on-sale",
             "visible": true,
             "order": 10
         },
         "filter": {
             "visible": true,
             "order": 0
-        }
+        },
+        "links":[],
+        "searchable": true
     }
 ]

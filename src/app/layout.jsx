@@ -29,7 +29,7 @@ export default function RootLayout({
           </div>
           <Icon icon="material-symbols-light:delivery-truck-speed" width="28" height="28" className="text-white" />
         </div>
-        <div className="bg-pallete-orange py-[8px] px-[30px] text-white">
+        <div className="hidden md:block bg-pallete-orange py-[8px] px-[30px] text-white">
           <div className="container mx-auto  flex items-center justify-between">
             <div className="flex justify-between w-[80%]">
               <div className="font-extralight">Promotions</div>
