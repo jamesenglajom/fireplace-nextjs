@@ -49,11 +49,7 @@ const HomeSearch = () => {
       .map((i) => ({ name: i.name, url: i.menu.href }));
   });
   const [productResults, setProductResults] = useState([]);
-  const [popularSearchesResults, setPopularSearchesResults] = useState([
-    "popular",
-    "popular 1",
-    "popular 2",
-  ]);
+  const [popularSearchesResults, setPopularSearchesResults] = useState([]);
   const [brandResults, setBrandResults] = useState(brands);
   const {
     products,
@@ -166,6 +162,7 @@ const HomeSearch = () => {
     } else {
       localStorage.setItem("recent_searches", JSON.stringify([search]));
     }
+    setSearch("");
   };
 
   return (
