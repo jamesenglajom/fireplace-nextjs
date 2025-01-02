@@ -148,7 +148,7 @@ const HomeSearch = () => {
 
   const handleOptionClick = (e) => {
     // store search value inside a local storage array
-    e.preventDefault();
+    // e.preventDefault();
     const recentLS = localStorage.getItem("recent_searches");
     console.log("recentLS", recentLS ? "YES" : "NO");
     if (recentLS) {
@@ -228,7 +228,7 @@ const HomeSearch = () => {
                       <div className="py-1">
                         {recentResults.map((i, index) => (
                           <div
-                            key={`popular-search-${index}`}
+                            key={`recent-search-${index}`}
                             className="group hover:bg-stone-200 px-2 py-[5px]"
                             onClick={() => setSearch(i)}>
                             <div className="text-[14px] group-hover:text-orange-600">
@@ -273,6 +273,8 @@ const HomeSearch = () => {
                       <div className="py-1">
                         {productResults.map((i, index) => (
                           <Link
+                            onClick={handleOptionClick}
+                            onContextMenu={handleOptionClick}
                             key={`product-result-${index}`}
                             href={`${BASE_URL}/product/${i.id}`}>
                             <div className="flex items-center group hover:bg-stone-200 px-2 py-[5px]">
@@ -329,7 +331,11 @@ const HomeSearch = () => {
                       </div>
                       <div className="py-1">
                         {brandResults.map((i, index) => (
-                          <Link key={`brand-result-${index}`} href={`#`}>
+                          <Link
+                            onClick={handleOptionClick}
+                            onContextMenu={handleOptionClick}
+                            key={`brand-result-${index}`}
+                            href={`#`}>
                             <div className="w-full group hover:bg-stone-200 px-2 py-[5px]">
                               <div className="text-[14px] group-hover:text-orange-600">
                                 {i.name}
