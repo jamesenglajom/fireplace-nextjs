@@ -503,7 +503,41 @@
             "visible": true,
             "order": 5
         },
-        "links": [],
+        "links": [
+            [
+                {"name":"Qucik Ship Gas Logs", "children": [] },
+                {"name":"Vented Gas Log Sets", "children": []},
+                {"name":"Ventless Gas Log Sets", "children": []},
+                {"name":"Outdoor Gas Log Sets", "children": []},
+                {"name":"Fireballs, Shapes & Stones", "children": []},
+                {"name":"Replacement Gas Logs", "children": []},
+                {"name":"See-Through Gas Logs", "children": []}
+
+            ],
+            [
+                {"name":"Electric Log Sets", "children": []},
+                {"name":"Gas Log Accessories", "children": [
+                    {"name":"Indoor Gas Fireplace Burners"},
+                    {"name":"Fire Glass and Lava Rock"},
+                    {"name":"Gas Log Valves, Keys, and Covers"},
+                    {"name":"Gas Log Safety Pilot Kits"}
+                ]}
+            ],
+            [
+                {"name":"Gas Log Brands", "children": [
+                    {"name":"Grand Canyon"},
+                    {"name":"Real Fyre"},
+                    {"name":"Superior"},
+                    {"name":"Empire"},
+                    {"name":"Northern Flame"},
+                    {"name":"Rasmussen"},
+                    {"name":"Wilderness Collection"},
+                    {"name":"Hargrove"},
+                    {"name":"Napoleon"},
+                    {"name":"Monessen"}
+                ]}
+            ]
+        ],
         "searchable": true
     },
     {
