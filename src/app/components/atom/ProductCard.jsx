@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Rating } from "@smastrom/react-rating";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const ProductCard = ({ product }) => {
   const [thumbnail, setThumbnail] = useState(null);
   useEffect(() => {
@@ -21,7 +21,9 @@ const ProductCard = ({ product }) => {
   const handleHeartButtonClick = () => {};
 
   return (
-    <Link href={`/product/${product.id}`} className="flex w-full">
+    <Link
+      href={`${BASE_URL}/product/${product.custom_url.url}`}
+      className="flex w-full">
       <div className="overflow-hidden rounded-md border w-full duration-500 hover:scale-105 hover:shadow-xl pb-[8px] hover:border-stone-700">
         <div className="w-full flex items-center justify-center h-[230px] overflow-hidden bg-white relative">
           <img src={thumbnail} alt="" className="object-contain h-full" />

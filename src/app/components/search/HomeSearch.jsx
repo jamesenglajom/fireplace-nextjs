@@ -274,7 +274,7 @@ const HomeSearch = () => {
                             onClick={handleOptionClick}
                             onContextMenu={handleOptionClick}
                             key={`product-result-${index}`}
-                            href={`${BASE_URL}/product/${i.id}`}>
+                            href={`${BASE_URL}/product/${i.custom_url.url}`}>
                             <div className="flex items-center group hover:bg-stone-200 px-2 py-[5px]">
                               <div className="w-[75px] h-[75px] overflow-hidden bg-white mr-[10px] flex items-center rounded">
                                 <img
