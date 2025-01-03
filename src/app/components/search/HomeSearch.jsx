@@ -163,6 +163,7 @@ const HomeSearch = () => {
       localStorage.setItem("recent_searches", JSON.stringify([search]));
     }
     setSearch("");
+    setOpenSearch(false);
   };
 
   return (
