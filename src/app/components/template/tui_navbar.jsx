@@ -184,27 +184,47 @@ export default function TuiNavbar() {
                                   {i1.map((i2, index2) => (
                                     <div
                                       key={`${i.menu.href}-col-${index1}-content-${index2}`}>
-                                      <div className="text-black font-bold mb-[10px] hover-text-pallete-orange cursor-pointer">
-                                        {i2.name}
-                                      </div>
+                                      <Link
+                                        href={`${
+                                          i2?.url
+                                            ? BASE_URL + "/" + i2.url
+                                            : "#"
+                                        }`}>
+                                        <div className="text-black font-bold mb-[10px] hover-text-pallete-orange cursor-pointer">
+                                          {i2.name}
+                                        </div>
+                                      </Link>
                                       <div className="flex flex-col gap-[5px]">
                                         {i2.children &&
                                           i2.children.length > 0 &&
                                           i2.children.map((i3, index3) => (
-                                            <div
-                                              key={`${i.menu.href}-col-${index}-content-${index2}-child-${index3}`}
-                                              className="text-black hover-text-pallete-orange cursor-pointer">
-                                              {i3.name}
-                                            </div>
+                                            <Link
+                                              href={`${
+                                                i3?.url
+                                                  ? BASE_URL + "/" + i3.url
+                                                  : "#"
+                                              }`}
+                                              key={`${i.menu.href}-col-${index}-content-${index2}-child-${index3}`}>
+                                              <div className="text-black hover-text-pallete-orange cursor-pointer">
+                                                {i3.name}
+                                              </div>
+                                            </Link>
                                           ))}
-                                        <div className="text-black hover-text-pallete-orange cursor-pointer flex gap-[10px] items-center">
-                                          <Icon
-                                            icon="teenyicons:arrow-solid"
-                                            width="16"
-                                            height="16"
-                                          />
-                                          <div>Shop All</div>
-                                        </div>
+                                        <Link
+                                          href={`${
+                                            i2?.url
+                                              ? BASE_URL + "/" + i2.url
+                                              : "#"
+                                          }`}>
+                                          <div className="text-black hover-text-pallete-orange cursor-pointer flex gap-[10px] items-center">
+                                            <Icon
+                                              icon="teenyicons:arrow-solid"
+                                              width="16"
+                                              height="16"
+                                            />
+                                            <div>Shop All</div>
+                                          </div>
+                                        </Link>
                                       </div>
                                     </div>
                                   ))}

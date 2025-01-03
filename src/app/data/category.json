@@ -55,71 +55,91 @@
             [
                 {
                     "name": "Quick Ship Fireplaces",
+                    "url":"quick-ship-fireplaces",
                     "children": []
                 },
                 {
                     "name": "Gas Fireplaces",
+                    "url": "gas-fireplaces",
                     "children": [
                         {
-                            "name": "Direct Vent Fireplaces"
+                            "name": "Direct Vent Fireplaces",
+                            "url":"direct-vent-fireplaces"
                         },
                         {
-                            "name": "Ventless Fireplaces"
+                            "name": "Ventless Fireplaces",
+                            "url":"ventless-fireplaces"
                         },
                         {
-                            "name": "Linear Fireplaces"
+                            "name": "Linear Fireplaces",
+                            "url":"linear-fireplaces"
                         },
                         {
-                            "name": "Multi-Sided Fireplaces"
+                            "name": "Multi-Sided Fireplaces",
+                            "url":"multi-sided-fireplaces"
                         }
                     ]
                 },
                 {
                     "name": "Wood Fireplaces",
+                            "url":"wood-fireplaces",
                     "children": []
                 }
             ],
             [
                 {
                     "name": "Electric Fireplaces",
+                            "url":"electric-fireplaces",
                     "children": [
                         {
-                            "name": "Electric Inserts"
+                            "name": "Electric Inserts",
+                            "url":"electric-inserts"
                         },
                         {
-                            "name": "Built-In Electric Fireplaces"
+                            "name": "Built-In Electric Fireplaces",
+                            "url":"built-in-electric-fireplaces"
                         },
                         {
-                            "name": "Free-Standing Electric Fireplaces"
+                            "name": "Free-Standing Electric Fireplaces",
+                            "url":"free-standing-electric-fireplaces"
                         },
                         {
-                            "name": "See-Trhough Electric Fireplaces"
+                            "name": "See-Trhough Electric Fireplaces",
+                            "url":"see-through-electric-fireplaces"
                         },
                         {
-                            "name": "Wall Mounted Electric Fireplaces"
+                            "name": "Wall Mounted Electric Fireplaces",
+                            "url":"wall-mounted-electric-fireplaces"
                         },
                         {
-                            "name": "Outdoor Electric Fireplaces"
+                            "name": "Outdoor Electric Fireplaces",
+                            "url":"outdoor-electric-fireplaces"
                         },
                         {
-                            "name": "Electric Log Set"
+                            "name": "Electric Log Set",
+                            "url":"electric-fireplace-log-sets"
                         }
                     ]
                 },
                 {
                     "name": "Outdoor Fireplaces",
+                            "url":"outdoor-fireplaces",
                     "children": [
                         {
-                            "name": "Outdoor Gas Fireplaces"
+                            "name": "Outdoor Gas Fireplaces",
+                            "url":"outdoor-fireplaces-gas"
                         },
                         {
-                            "name": "Outdoor Wood Fireplaces"
+                            "name": "Outdoor Wood Fireplaces",
+                            "url":"outdoor-fireplaces-wood-burning"
                         },
                         {
-                            "name": "Outdoor Fireplace Burners"
+                            "name": "Outdoor Fireplace Burners",
+                            "url":"outdoor-fireplace-burners"
                         },
                         {
-                            "name": "Masonry Outdoor Fireplace Kits"
+                            "name": "Masonry Outdoor Fireplace Kits",
+                            "url":"masonry-fireplace-kits"
                         }
                     ]
                 }
@@ -127,41 +147,53 @@
             [
                 {
                     "name": "Fireplace Inserts",
+                    "url":"fireplace-inserts",
                     "children": [
                         {
-                            "name": "Wood Stove Inserts"
+                            "name": "Wood Stove Inserts",
+                            "url":"wood-stove-inserts"
                         },
                         {
-                            "name": "Direct Vent Gas Firebox Inserts"
+                            "name": "Direct Vent Gas Firebox Inserts",
+                            "url":"direct-vent-fireplace-inserts"
                         },
                         {
-                            "name": "Electric Fireplace Inserts"
+                            "name": "Electric Fireplace Inserts",
+                            "url":"electric-fireplace-inserts"
                         }
                     ]
                 },
                 {
                     "name": "Fireplace Accessories",
+                    "url":"fireplace-accessories",
                     "children": [
                         {
-                            "name": "Fireplace Doors"
+                            "name": "Fireplace Doors",
+                            "url":"fireplace-doors"
                         },
                         {
-                            "name": "Firewood Racks"
+                            "name": "Firewood Racks",
+                            "url":"firewood-racks"
                         },
                         {
-                            "name": "Fireplace Screens"
+                            "name": "Fireplace Screens",
+                            "url":"fireplace-screens"
                         },
                         {
-                            "name": "Fireplace Grates"
+                            "name": "Fireplace Grates",
+                            "url":"fireplace-grates"
                         },
                         {
-                            "name": "Fireplace Heaters & Blowers"
+                            "name": "Fireplace Heaters & Blowers",
+                            "url":"fireplace-heaters-and-blowers"
                         },
                         {
-                            "name": "Fireplace Tools"
+                            "name": "Fireplace Tools",
+                            "url":"fireplace-tools"
                         },
                         {
-                            "name": "Fireplace Mantels"
+                            "name": "Fireplace Mantels",
+                            "url":"fireplace-mantels"
                         }
                     ]
                 }
@@ -169,38 +201,49 @@
             [
                 {
                     "name": "Chimney",
+                    "url":"chimney",
                     "children": [
                         {
-                            "name": "Chimney & Stove Pipe"
+                            "name": "Chimney & Stove Pipe",
+                            "url":"chimney-and-stove-pipe"
                         },
                         {
-                            "name": "Chimney Caps"
+                            "name": "Chimney Caps",
+                            "url":"chimney-caps"
                         },
                         {
-                            "name": "Chimney Liners"
+                            "name": "Chimney Liners",
+                            "url":"chimney-liners"
                         },
                         {
-                            "name": "Chimney Fans"
+                            "name": "Chimney Fans",
+                            "url":"chimney-fans"
                         },
                         {
-                            "name": "Chimney Cleaning & Repair"
+                            "name": "Chimney Cleaning & Repair",
+                            "url":"chimney-cleaning-and-repair"
                         }
                     ]
                 },
                 {
                     "name": "Stove & Furnaces",
+                    "url":"wood-stoves-furnaces",
                     "children": [
                         {
-                            "name": "Wood Stoves"
+                            "name": "Wood Stoves",
+                            "url":"wood-stoves"
                         },
                         {
-                            "name": "Wood Stove Inserts"
+                            "name": "Wood Stove Inserts",
+                            "url":"wood-stove-inserts"
                         },
                         {
-                            "name": "Gas Burning Stoves"
+                            "name": "Gas Burning Stoves",
+                            "url":"gas-burning-wood-stoves"
                         },
                         {
-                            "name": "Wood Stove Accessories"
+                            "name": "Wood Stove Accessories",
+                            "url":"wood-stove-accessories"
                         }
                     ]
                 }
