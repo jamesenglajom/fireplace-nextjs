@@ -35,11 +35,18 @@ const ProductCard = ({ product }) => {
               ONSALE
             </div>
           )}
-          <div className="absolute bottom-0 left-0 bg-pallete-orange text-white text-[12px] py-[5px] font-semibold md:py-[7px] md:px-[15px] flex items-center w-full justify-center gap-[5px]">
-            <div>
-              <Icon icon="mi:shopping-cart-add" className="text-lg" />
+          <div className="absolute bottom-0 left-0 bg-pallete-orange text-white text-[12px] py-[5px] md:py-[7px] md:px-[15px] flex items-center w-full justify-center gap-[5px]">
+            <div className="flex justify-center">
+              <div className="font-semibold text-[0.775rem] inline-block text-center">
+                <Icon
+                  icon="mi:shopping-cart-add"
+                  className="text-lg font-thin inline-block"
+                />
+                {/* <div className="inline-block"> */}
+                CUSTOMIZE TO PURCHASE
+                {/* </div> */}
+              </div>
             </div>
-            <div className="text-[0.775rem]">CUSTOMIZE TO PURCHASE</div>
           </div>
         </div>
         <div className="flex flex-col gap-[8px] md:gap-[5px] p-[15px]">
@@ -57,59 +64,66 @@ const ProductCard = ({ product }) => {
               by Brand Name
             </div>
           </div>
-          <div className="flex flex-col gap-[5px]">
-            <div className="flex items-center gap-[5px]">
+          <div className={`flex flex-col gap-[5px]`}>
+            <div
+              className={`flex items-center gap-[5px]  ${
+                product.reviews_rating_sum > 0 ? "visible" : "invisible"
+              }`}>
               <div>
                 <Rating
                   value={product.reviews_rating_sum}
                   style={{ maxWidth: 80 }}></Rating>
               </div>
-              <div className="text-[0.75rem]">
+              <div className={`text-[0.75rem]`}>
                 ({product.reviews_count}){/* (id:{product.id}) */}
               </div>
             </div>
-            <div className="text-pallete-gray text-[12px]">
-              SKU: {product.sku}
+            <div className="text-pallete-gray text-[0.65rem] md:text-sm h-[33px]">
+              {product.sku}
             </div>
           </div>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-[7px]">
-            <div className="flex items-center font-bold gap-[3px]">
-              <div>
-                <Icon
-                  icon="lucide:circle-check-big"
-                  className={`${
+            {product.is_free_shipping && (
+              <div className="flex items-center font-bold gap-[3px]">
+                <div>
+                  <Icon
+                    icon="lucide:circle-check-big"
+                    className={`${
+                      product.is_free_shipping
+                        ? "text-pallete-green"
+                        : "text-pallete-gray"
+                    }`}
+                  />
+                </div>
+                <div
+                  className={`text-[0.875rem] relative ${
                     product.is_free_shipping
-                      ? "text-pallete-green"
-                      : "text-pallete-gray"
-                  }`}
-                />
-              </div>
-              <div
-                className={`text-[0.875rem] relative ${
-                  product.is_free_shipping
-                    ? "text-black"
-                    : "text-pallete-gray line-through"
-                }`}>
-                <span
-                  className={`${
-                    product.is_free_shipping
-                      ? "text-pallete-green"
-                      : "text-pallete-gray"
+                      ? "text-black"
+                      : "text-pallete-gray line-through"
                   }`}>
-                  FREE
-                </span>{" "}
-                Shipping
+                  <span
+                    className={`${
+                      product.is_free_shipping
+                        ? "text-pallete-green"
+                        : "text-pallete-gray"
+                    }`}>
+                    FREE
+                  </span>{" "}
+                  Shipping
+                </div>
               </div>
-            </div>
-            <div className="flex items-center font-bold gap-[3px]">
-              <div>
-                <Icon
-                  icon="lucide:circle-check-big"
-                  className="text-pallete-green"
-                />
+            )}
+            {product?.custom_fields?.quick_ship && (
+              <div className="flex items-center font-bold gap-[3px]">
+                <div>
+                  <Icon
+                    icon="lucide:circle-check-big"
+                    className="text-pallete-green"
+                  />
+                </div>
+                <div className="text-[0.875rem]">Quick Ship Available</div>
               </div>
-              <div className="text-[0.875rem]">Quick Ship Available</div>
-            </div>
+            )}
           </div>
         </div>
       </div>
