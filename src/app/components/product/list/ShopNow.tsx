@@ -7,11 +7,11 @@ const ProductShopNowList = () => {
     const gapWidth = 20;
     const shopNowItems = [0, 1, 2, 3, 4];
     const cardElement = useRef(null);
-    const shopNowWrapper = useRef(null);
+    const shopNowWrapper = useRef<any>(null);
     const [scrollWidth, setScrollWidth] = useState(0);
     const [scrollIndex, setScrollIndex] = useState(0);
     const [scrollPos, setScrollPos] = useState([]);
-    const [scrollPosArray, setScrollPosArray] = useState([]);
+    const [scrollPosArray, setScrollPosArray] = useState<any>([]);
     const [prevButtonDisabled, setPrevButtonDisabled] = useState(true);
     const [nextButtonDisabled, setNextButtonDisabled] = useState(false);
     
@@ -36,7 +36,7 @@ const ProductShopNowList = () => {
     
     useEffect(() => {
         if(shopNowWrapper?.current){
-            shopNowWrapper.current.scrollTo({left: scrollPos, behavior:"smooth"});
+            shopNowWrapper.current?.scrollTo({left: scrollPos, behavior:"smooth"});
         }
     }, [scrollPos]);
 
@@ -48,11 +48,11 @@ const ProductShopNowList = () => {
     }
 
 
-    function generatePosArray(start, increment, length) {
+    function generatePosArray(start: number, increment: number, length: number) {
         return Array.from({ length }, (_, index) => start + index * increment);
     }
 
-    const handleButtonScroll = (direction) => {
+    const handleButtonScroll = (direction: any) => {
         if (shopNowItems && cardElement?.current) {
             const childCount = shopNowItems.length;
             // console.log("childCount",childCount);

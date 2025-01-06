@@ -3,7 +3,7 @@ import RelatedProductCard from "../product/card/RelatedProduct";
 import { useState, useEffect, useRef } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 type Product = {
-    id: number;
+    id: string | number;
     name: string;
     description: string;
     description_html: string;
@@ -17,16 +17,16 @@ type Product = {
     category: [];
 };
 
-const RelatedProducts = ({ product }: { product: Product }) => {
-    const [products, setProducts] = useState(null);
-    const productsWrapper = useRef(null);
+const RelatedProducts = ({ product }: { product: any }) => {
+    const [products, setProducts] = useState<any | null>(null);
+    const productsWrapper = useRef<any>();
     const relatedProductCard = useRef(null);
     const [prevButtonDisabled, setPrevButtonDisabled] = useState(true);
     const [nextButtonDisabled, setNextButtonDisabled] = useState(false);
     const [scrollWidth, setScrollWidth] = useState(0);
     const [scrollIndex, setScrollIndex] = useState(0);
     const [scrollPos, setScrollPos] = useState([]);
-    const [scrollPosArray, setScrollPosArray] = useState([]);
+    const [scrollPosArray, setScrollPosArray] = useState<any>(null);
     // scroll mechanism varialbles
     const cardWidth = 340;
     const gapWidth = 20;
@@ -69,12 +69,12 @@ const RelatedProducts = ({ product }: { product: Product }) => {
     }
 
 
-    function generatePosArray(start, increment, length) {
+    function generatePosArray(start: number, increment: number, length: number) {
         return Array.from({ length }, (_, index) => start + index * increment);
     }
 
 
-    const handleButtonScroll = (direction) => {
+    const handleButtonScroll = (direction: string) => {
         if (products) {
             const childCount = products?.length;
             const calcScrollWidth = (childCount * (cardWidth + gapWidth)) - 20;
@@ -121,7 +121,7 @@ const RelatedProducts = ({ product }: { product: Product }) => {
                     }
                     return response.json();
                 })
-                .then((data) => setProducts(data.filter(i => parseInt(i.id) !== parseInt(product?.id))))
+                .then((data) => setProducts(data.filter((i: { id: string; }) => parseInt(i.id) !== parseInt(product?.id))))
                 .catch((error) => console.error('Error loading products:', error));
         }
     }, [product]);
@@ -133,7 +133,7 @@ const RelatedProducts = ({ product }: { product: Product }) => {
         <div ref={productsWrapper} className={`related-products-scroll-wrap w-full flex items-center overflow-y-auto pb-[20px] gap-[${gapWidth}px]`}>
             {/* related product cards display */}
             {
-                products && products.map((i, index) =>
+                products && products.map((i: { id: number; name: string; description: string; description_html: string; price: string; url: string; like: Boolean; likes: number; ratings: number; sku: string; sales_tag: string; category: []; }, index: any) =>
                     <div ref={relatedProductCard} key={`related-products-${index}`} className={`w-[${cardWidth}px] min-w-[${cardWidth}px] related-product-card-wrap`}>
                         <RelatedProductCard product={i}></RelatedProductCard>
                     </div>

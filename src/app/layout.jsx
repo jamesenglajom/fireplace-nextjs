@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import FixedHeader from "./components/template/fixed_header";

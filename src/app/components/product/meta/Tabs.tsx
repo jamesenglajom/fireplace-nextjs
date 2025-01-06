@@ -31,7 +31,7 @@ const ProductMetaTabs = ({product}:{product:Product}) => {
         },
     ];
 
-    const handleTabChange = (tab) => {
+    const handleTabChange = (tab: any) => {
         setTab(prev=> tab);
     }
 
