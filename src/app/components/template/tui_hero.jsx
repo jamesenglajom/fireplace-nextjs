@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Link from "next/link";
+import LoaderIcon from "../atom/LoaderIcon";
 export default function Hero({ data }) {
   if (data.children && data.children.length > 0) {
     return (
@@ -128,6 +129,7 @@ export default function Hero({ data }) {
                             <div
                               className={`text-sm uppercase text-stone-600 font-bold w-[calc(100%-95px)] group-hover:text-orange-500`}>
                               {i.name}
+                              Load
                             </div>
                             <div className="text-stone-600 group-hover:text-orange-500">
                               <Icon
@@ -161,10 +163,13 @@ export default function Hero({ data }) {
         }}>
         <div className="mx-auto max-w-4xl  py-[50px] sm:py-48 lg:py-56 ">
           <div className="text-center flex justify-center">
-            <div className="px-[20px] py-[7px] border-white bg-[rgba(0,0,0,.8)] border-4 ">
+            {/* <div className="px-[20px] py-[7px] border-white bg-[rgba(0,0,0,.8)] border-4 ">
               <div className="text-balance text-xl font-semibold tracking-tight text-white sm:text-4xl">
                 {data?.name ?? "Design for Modern Living"}
               </div>
+            </div> */}
+            <div>
+              <LoaderIcon />
             </div>
           </div>
         </div>
