@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Rating } from "@smastrom/react-rating";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { formatPrice } from "@/app/lib/helpers";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const ProductCard = ({ product }) => {
   const [thumbnail, setThumbnail] = useState(null);
@@ -55,7 +56,7 @@ const ProductCard = ({ product }) => {
           <div className="text-xs">
             STARTING AT{" "}
             <span className="text-pallete-orange font-bold text-lg">
-              ${parseFloat(product.price).toFixed(2)}
+              ${formatPrice(parseFloat(product.price).toFixed(2))}
             </span>
           </div>
           <div className="my-[7px] text-sm h-[100px]">
