@@ -11,7 +11,11 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import {
+  usePathname,
+  //  useSearchParams,
+  useRouter,
+} from "next/navigation";
 // icon
 import { Icon } from "@iconify/react/dist/iconify.js";
 // components
@@ -40,20 +44,20 @@ export default function TuiNavbar() {
   const [overviewUrl, setOverviewUrl] = useState(null);
   const router = useRouter();
   const path = usePathname();
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
   const category_slug = cat_json.find((i) => "/" + i.menu.href === path)?.menu
     ?.href;
-  const [prevPath, setPrevPath] = useState(`${path}?${searchParams}`);
-  useEffect(() => {
-    const url = `${path}?${searchParams}`;
-    setPrevPath((prev) => {
-      if (prev !== url) {
-        console.log("trigger loading and close menu and modal");
-        setMobileMenuDialog((prev) => false);
-      }
-      return url;
-    });
-  }, [path, searchParams]);
+  // const [prevPath, setPrevPath] = useState(`${path}?${searchParams}`);
+  // useEffect(() => {
+  //   const url = `${path}?${searchParams}`;
+  //   setPrevPath((prev) => {
+  //     if (prev !== url) {
+  //       console.log("trigger loading and close menu and modal");
+  //       setMobileMenuDialog((prev) => false);
+  //     }
+  //     return url;
+  //   });
+  // }, [path, searchParams]);
 
   const redirectToHome = (e) => {
     router.push("/");
