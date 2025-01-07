@@ -135,9 +135,12 @@ export default function TuiNavbar() {
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <ul className="flex space-x-4">
-                  <li>
+                  <li className="relative">
+                    <div className="absolute text-[9px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">
+                      Soon
+                    </div>
                     <a
-                      href="#home"
+                      href="#"
                       className="text-gray-700 hover:text-blue-500 relative">
                       <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
                         <div className="text-[10px]">26</div>
@@ -145,9 +148,12 @@ export default function TuiNavbar() {
                       <Icon icon="bx:cart" width="24" height="24" />
                     </a>
                   </li>
-                  <li>
+                  <li className="relative">
+                    <div className="absolute text-[9px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">
+                      Soon
+                    </div>
                     <a
-                      href="#about"
+                      href="#"
                       className="text-gray-700 hover:text-blue-500 relative">
                       <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
                         <div className="text-[10px]">739</div>
