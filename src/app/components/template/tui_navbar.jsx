@@ -1,22 +1,17 @@
 "use client";
 import { useState, useEffect } from "react";
 import { createSlug } from "@/app/lib/helpers";
+import PageLoader from "../atom/PageLoader";
 import {
   Disclosure,
   DisclosureButton,
-  DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
   Dialog,
   DialogPanel,
   DialogBackdrop,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 // icon
 import { Icon } from "@iconify/react/dist/iconify.js";
 // components
@@ -27,10 +22,6 @@ import cat_json from "../../data/category.json";
 const navigation = cat_json
   .filter((i) => i.menu.visible === true)
   .sort((a, b) => a.menu.order - b.menu.order);
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const mobile_navigation = cat_json
@@ -49,12 +40,24 @@ export default function TuiNavbar() {
   const [overviewUrl, setOverviewUrl] = useState(null);
   const router = useRouter();
   const path = usePathname();
+  const searchParams = useSearchParams();
   const category_slug = cat_json.find((i) => "/" + i.menu.href === path)?.menu
     ?.href;
+  const [prevPath, setPrevPath] = useState(`${path}?${searchParams}`);
+  useEffect(() => {
+    const url = `${path}?${searchParams}`;
+    setPrevPath((prev) => {
+      if (prev !== url) {
+        console.log("trigger loading and close menu and modal");
+        setMobileMenuDialog((prev) => false);
+      }
+      return url;
+    });
+  }, [path, searchParams]);
 
   const redirectToHome = (e) => {
     router.push("/");
-    setMobileMenuDialog(false);
+    // setMobileMenuDialog(false);
   };
 
   const handleMenuLinkItemClick = (e) => {
@@ -63,7 +66,7 @@ export default function TuiNavbar() {
     console.log(url);
     if (url) {
       router.push(url);
-      setMobileMenuDialog(false);
+      // setMobileMenuDialog(false);
     } else {
       alert("no url");
     }
@@ -149,57 +152,6 @@ export default function TuiNavbar() {
                     </a>
                   </li>
                 </ul>
-                {/* <button
-              type="button"
-              className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-            >
-              <span className="absolute -inset-1.5" />
-              <span className="sr-only">View notifications</span>
-              <BellIcon aria-hidden="true" className="size-6" />
-            </button>
-
-            <Menu as="div" className="relative ml-3">
-              <div>
-                <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                  <span className="absolute -inset-1.5" />
-                  <span className="sr-only">Open user menu</span>
-                  <img
-                    alt=""
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    className="size-8 rounded-full"
-                  />
-                </MenuButton>
-              </div>
-              <MenuItems
-                transition
-                className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
-              >
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
-                  >
-                    Your Profile
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
-                  >
-                    Settings
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
-                  >
-                    Sign out
-                  </a>
-                </MenuItem>
-              </MenuItems>
-            </Menu> */}
               </div>
             </div>
           </div>
@@ -209,7 +161,7 @@ export default function TuiNavbar() {
                 {navigation.map((i, index) => (
                   <div
                     key={`parent-nav-${index}`}
-                    className={`group py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center border-b ${
+                    className={`group py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center border-b hover:bg-orange-400 hover:text-white ${
                       i.menu.href === category_slug
                         ? "text-white bg-pallete-orange"
                         : "text-pallete-dark"
@@ -225,7 +177,7 @@ export default function TuiNavbar() {
                       {i.name}
                     </Link>
                     {i.links && i.links.length > 0 && (
-                      <div className="bg-white absolute w-full left-0 top-[100%] z-[999] invisible group-hover:visible">
+                      <div className="bg-white absolute w-full left-0 top-[100%] z-[100] invisible group-hover:visible">
                         <div className="container mx-auto py-5">
                           <div className="flex justify-between">
                             <div className="w-full flex gap-[70px]">

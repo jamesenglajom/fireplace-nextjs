@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import FixedHeader from "./components/template/fixed_header";
 import TuiNavBar from "./components/template/tui_navbar";
+import PageLoader from "./components/atom/PageLoader";
 import { Icon } from "@iconify/react/dist/iconify.js";
 const inter = Inter({
   subsets: ["latin"],
@@ -48,6 +49,7 @@ export default function RootLayout({ children }) {
         <TuiNavBar />
         <FixedHeader></FixedHeader>
         {children}
+        <PageLoader />
       </body>
     </html>
   );

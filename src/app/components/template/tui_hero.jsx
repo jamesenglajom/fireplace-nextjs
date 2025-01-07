@@ -9,18 +9,7 @@ export default function Hero({ data }) {
       <div>
         <div className="container mx-auto flex flex-col md:flex-row">
           <div className="w-full  md:w-[calc(100%-370px)]">
-            <div
-              className="w-full relative isolate px-6 lg:px-8 bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px] md:h-[510px]"
-              // style={{
-              //   background: `linear-gradient(to right, rgba(41, 37, 36, 1), rgba(41, 37, 36, 0) 20%, rgba(41, 37, 36, 0) 80%, rgba(41, 37, 36, 0)), url('${
-              //     data?.banner_img ??
-              //     "/images/banner/fireplace-home-banner.webp"
-              //   }')`,
-              //   backgroundRepeat: "no-repeat",
-              //   backgroundPosition: "center",
-              //   backgroundSize: "cover",
-              // }}
-            >
+            <div className="w-full relative isolate px-6 lg:px-8 bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px] md:h-[510px]">
               <div className="absolute z-[9999] inset-0 m-auto flex items-center justify-center">
                 <div className="text-center flex justify-center">
                   <div className="px-[20px] py-[7px] border-white bg-[rgba(0,0,0,.8)] border-4 ">

@@ -24,14 +24,6 @@ export default async function GenericCategoryPage({ params }) {
   const slug = (await params)?.slug;
   const page_data = flatCategories.find(({ url }) => url === slug);
 
-  console.log("slug", slug);
-  console.log("page_data", page_data);
-  // const category = "fire-pits";
-  // const hero_props = {
-  //   banner_img: "/images/banner/firepit-banner.webp",
-  //   text: "Shop All Fire Pits",
-  // };
-
   return (
     <div>
       <TuiHero data={page_data} />
