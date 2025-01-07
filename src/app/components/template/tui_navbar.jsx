@@ -136,7 +136,7 @@ export default function TuiNavbar() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <ul className="flex space-x-4">
                   <li className="relative">
-                    <div className="absolute text-[9px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">
+                    <div className="absolute text-[7px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">
                       Soon
                     </div>
                     <a
@@ -149,7 +149,7 @@ export default function TuiNavbar() {
                     </a>
                   </li>
                   <li className="relative">
-                    <div className="absolute text-[9px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">
+                    <div className="absolute text-[7px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">
                       Soon
                     </div>
                     <a
