@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import FixedHeader from "./components/template/fixed_header";
@@ -9,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "SolanaFireplaces",
+  title: "Solana Fireplaces",
   description:
     "Shop high-quality fireplaces, grills, gas stoves, and outdoor heating solutions. Enhance your home or patio with stylish and energy-efficient products. Free shipping and expert advice available!",
 };
