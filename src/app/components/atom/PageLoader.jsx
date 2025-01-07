@@ -7,7 +7,6 @@ export default function PageLoader() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [loadingFlag, setLoadingFlag] = useState(false);
-  document.body.style.overflow = "hidden";
 
   useEffect(() => {
     const url = `${pathname}?${searchParams}`;
@@ -18,15 +17,15 @@ export default function PageLoader() {
   useEffect(() => {
     console.log("triggered LOADING");
     setIsVisible(true); // Show the component initially
-    // document.body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
     const timer = setTimeout(() => {
-      //   document.body.style.overflow = "";
+      document.body.style.overflow = "";
       setIsVisible(false); // Hide the component after 5 seconds
     }, 2000);
 
     return () => {
       clearTimeout(timer); // Cleanup the timer on unmount
-      //   document.body.style.overflow = ""; // Cleanup on unmount
+      document.body.style.overflow = ""; // Cleanup on unmount
     };
   }, [loadingFlag]);
 
