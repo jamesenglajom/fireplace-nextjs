@@ -92,7 +92,7 @@ export default function Hero({ data }) {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-[370px] p-[25px]">
+          <div className="w-full md:w-[370px] p-[25px] overflow-hidden">
             <div>
               <div className="text-stone-500 flex items-center gap-[4px]">
                 <Icon icon="mdi:cart" width="24" height="24" />{" "}
@@ -101,7 +101,7 @@ export default function Hero({ data }) {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-[15px] mt-[20px]">
+              <div className="flex flex-col gap-[15px] mt-[20px]  md:h-[729px] md:overflow-y-auto md:pb-[20px] md:pt-[8px] md:pr-[10px]">
                 {data.children &&
                   data.children.length > 0 &&
                   data.children.map((i, index) => (
