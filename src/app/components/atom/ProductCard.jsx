@@ -73,11 +73,9 @@ const ProductCard = ({ product }) => {
           {/* bg-yellow-300 */}
           <div className={`flex flex-col`}>
             <div className={`flex items-center gap-[5px]`}>
-              <div>
-                <Rating
-                  value={product.reviews_rating_sum}
-                  style={{ maxWidth: 80 }}></Rating>
-              </div>
+              <Rating
+                value={product.reviews_rating_sum}
+                style={{ maxWidth: 80 }}></Rating>
               <div className={`text-[0.75rem]`}>
                 ({product.reviews_count}){/* (id:{product.id}) */}
               </div>
