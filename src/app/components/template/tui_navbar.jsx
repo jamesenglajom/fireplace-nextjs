@@ -66,11 +66,10 @@ export default function TuiNavbar() {
 
   const handleMenuLinkItemClick = (e) => {
     e.preventDefault();
-    const url = e.target.getAttribute("href");
+    const url = e.target.closest("a").getAttribute("href");
     console.log(url);
     if (url) {
       router.push(url);
-      // setMobileMenuDialog(false);
     } else {
       alert("no url");
     }
