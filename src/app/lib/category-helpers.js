@@ -35,22 +35,23 @@ console.log("shop-all-categories", shop_all_categories);
 console.log("filterBCCatById(168)", filterBCCatById(168));
 console.log("filterBCCatByKeyword('bbq')", filterBCCatByKeyword("bbq"));
 console.log(
-  "filterBCCatByKeyword('bbq') Grilling Tools And Accessories/bbq-grilling-tools-and-accessories/grill-replacement-parts",
+  "filterBCCatByKeyword('bbq') filtered",
   filterBCCatByKeyword("bbq")
-    .filter((i) =>
-      i?.url?.path.includes(
-        "grilling-tools-and-accessories/grill-replacement-parts"
-      )
+    .filter((i) => !i?.url?.path.includes("/brands/"))
+    .filter((i) => !i?.url?.path.includes("/bbq-islands-kits/"))
+    .filter((i) => !i?.url?.path.includes("/built-in-grills/"))
+    .filter(
+      (i) => !i?.url?.path.includes("/bbq-grilling-tools-and-accessories/")
     )
-    .filter((i) => !i?.url?.path.includes("shop-all"))
-    .filter((i) => !i?.url?.path.includes("/covers/"))
-    .filter((i) => !i?.url?.path.includes("/food-prep"))
-    .filter((i) => !i?.url?.path.includes("/charcoal-pellets-starters/"))
-    .filter((i) => !i?.url?.path.includes("/grill-attachments"))
-    .filter((i) => !i?.url?.path.includes("/grill-carts-tables"))
-    .filter((i) => !i?.url?.path.includes("/grill-cleaning-tools-supplies/"))
+    .filter((i) => !i?.url?.path.includes("/shop-all"))
     // .sort((a, b) => a.name.localeCompare(b.name))
     .sort((a, b) => a.url.path.localeCompare(b.url.path))
+    .map((i) => ({
+      name: i.name,
+      url: i.url.path.split("/").filter(Boolean).pop(),
+      key_words: [i.url.path],
+      children: [],
+    }))
   // .map(i=> i?.url?.path)
 );
 console.log(

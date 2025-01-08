@@ -429,28 +429,95 @@
           "children": []
         },
         {
-          "name": "BBQ Grilling Tools and Accessories",
-          "url": "bbq-grilling-tools-and-accessories",
-          "key_words": ["bbq-grilling-tools-and-accessories"],
+          "name": "BBQ Grills and Smokers",
+          "url": "bbq-grills-and-smokers",
+          "key_words": ["/bbq-grills-and-smokers/"],
           "children": []
         },
         {
-          "name": "BBQ Grills and Smokers",
-          "url": "bbq-grills-and-smokers",
-          "key_words": ["bbq-grills-and-smokers"],
+          "name": "Gas Grills",
+          "url": "gas-grills",
+          "key_words": ["/bbq-grills-and-smokers/gas-grills/"],
+          "children": []
+        },
+        {
+          "name": "BBQ Island Gas Vent Panels",
+          "url": "bbq-island-gas-vent-panels",
+          "key_words": [
+            "/outdoor-kitchen/outdoor-kitchen-ventilation/bbq-island-gas-vent-panels/"
+          ],
           "children": []
         },
         {
           "name": "BBQ Islands and Kits",
           "url": "bbq-islands-kits",
           "key_words": ["bbq-islands-kits"],
-          "children": []
+          "children": [
+            [
+              {
+                "name": "BBQ Island Equipment Packages",
+                "url": "bbq-island-equipment-packages",
+                "key_words": [
+                  "/outdoor-kitchen/bbq-islands-kits/bbq-island-equipment-packages/"
+                ],
+                "children": []
+              },
+              {
+                "name": "Installation Components",
+                "url": "installation-components",
+                "key_words": [
+                  "/outdoor-kitchen/bbq-islands-kits/installation-components/"
+                ],
+                "children": []
+              },
+              {
+                "name": "Outdoor Kitchen Kits",
+                "url": "outdoor-kitchen-kits",
+                "key_words": [
+                  "/outdoor-kitchen/bbq-islands-kits/outdoor-kitchen-kits/"
+                ],
+                "children": []
+              }
+            ]
+          ]
         },
         {
-          "name": "BBQ Islands and Kits",
-          "url": "bbq-islands-and-kits",
-          "key_words": ["bbq-islands-kits"],
-          "children": []
+          "name": "BBQ Brands",
+          "url": "bbq-brands",
+          "key_words": [
+            "/brands/american-outdoor-grill/american-outdoor-grill-bbq-grills/",
+            "/brands/brand-man-grills/brand-man-bbq-grills/",
+            "/brands/fire-magic/fire-magic-bbq-grills/",
+            "/brands/tec-grills/tec-bbq-grills/"
+          ],
+          "children": [
+            {
+              "name": "American Outdoor Grill (BBQ Grills)",
+              "url": "american-outdoor-grill-bbq-grills",
+              "key_words": [
+                "/brands/american-outdoor-grill/american-outdoor-grill-bbq-grills/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Brand-Man BBQ Grills",
+              "url": "brand-man-bbq-grills",
+              "key_words": ["/brands/brand-man-grills/brand-man-bbq-grills/"],
+              "children": []
+            },
+            {
+              "name": "Fire Magic BBQ Grills",
+              "url": "fire-magic-bbq-grills",
+              "key_words": ["/brands/fire-magic/fire-magic-bbq-grills/"],
+              "children": []
+            },
+            {
+              "name": "TEC BBQ Grills",
+              "url": "tec-bbq-grills",
+              "key_words": ["/brands/tec-grills/tec-bbq-grills/"],
+              "children": []
+            }
+          ]
         }
       ],
       [
@@ -619,12 +686,53 @@
           ]
         },
         {
-          "name": "Grill Carts & Tables",
-          "url": "grill-carts-and-tables",
+          "name": "Grilling Cookware",
+          "url": "grilling-cookware",
           "key_words": [
-            "/bbq-grilling-tools-and-accessories/grill-carts-tables/"
+            "/bbq-grilling-tools-and-accessories/grilling-cookware/"
           ],
-          "children": []
+          "children": [
+            {
+              "name": "BBQ Griddles",
+              "url": "bbq-griddles",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/grilling-cookware/bbq-griddles/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Cast Iron Cookware",
+              "url": "cast-iron-cookware",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/grilling-cookware/cast-iron-cookware/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Grill Racks and Roasters",
+              "url": "grill-racks-and-roasters",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/grilling-cookware/grill-racks-and-roasters/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Grill Toppers",
+              "url": "grill-toppers",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/grilling-cookware/grill-toppers/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Warming Racks",
+              "url": "warming-racks",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/grilling-cookware/warming-racks/"
+              ],
+              "children": []
+            }
+          ]
         }
       ],
       [
@@ -673,6 +781,161 @@
               "url": "grill-cleaning-brushes",
               "key_words": [
                 "/bbq-grilling-tools-and-accessories/grill-cleaning-tools-supplies/grill-cleaning-brushes/"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Knives & Cutlery",
+          "url": "knives-cutlery",
+          "key_words": ["/bbq-grilling-tools-and-accessories/knives-cutlery/"],
+          "children": [
+            {
+              "name": "Carving Knives",
+              "url": "carving-knives",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/knives-cutlery/carving-knives/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Chef's Knives",
+              "url": "chefs-knives",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/knives-cutlery/chefs-knives/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Knife Sets",
+              "url": "knife-sets",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/knives-cutlery/knife-sets/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Paring Knives",
+              "url": "paring-knives",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/knives-cutlery/paring-knives/"
+              ],
+              "children": []
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "name": "Built In Charcoal Grills",
+          "url": "built-in-charcoal-grills",
+          "key_words": [
+            "/bbq-grills-and-smokers/built-in-grills/built-in-charcoal-grills/"
+          ],
+          "children": [
+            {
+              "name": "Built In Electric Griddles",
+              "url": "built-in-electric-griddles",
+              "key_words": [
+                "/bbq-grills-and-smokers/built-in-grills/built-in-electric-griddles/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Built In Gas Griddles",
+              "url": "built-in-gas-griddles",
+              "key_words": [
+                "/bbq-grills-and-smokers/built-in-grills/built-in-gas-griddles/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Built In Kamado Grills",
+              "url": "built-in-kamado-grills",
+              "key_words": [
+                "/bbq-grills-and-smokers/built-in-grills/built-in-kamado-grills/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Built In Pellet Grills",
+              "url": "built-in-pellet-grills",
+              "key_words": [
+                "/bbq-grills-and-smokers/built-in-grills/built-in-pellet-grills/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Built In Pizza Ovens",
+              "url": "built-in-pizza-ovens",
+              "key_words": [
+                "/bbq-grills-and-smokers/built-in-grills/built-in-pizza-ovens/"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Grilling Tools and Utensils",
+          "url": "grilling-tools-and-utensils",
+          "key_words": [
+            "/bbq-grilling-tools-and-accessories/grilling-tools-and-utensils/"
+          ],
+          "children": [
+            {
+              "name": "Basting Brushes & Brushes",
+              "url": "basting-brushes-brushes",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/grilling-tools-and-utensils/basting-brushes-brushes/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Grill Scrapers",
+              "url": "grill-scrapers",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/grilling-tools-and-utensils/grill-scrapers/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Grilling Tool Sets",
+              "url": "grilling-tool-sets",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/grilling-tools-and-utensils/grilling-tool-sets/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Pizza Accessories",
+              "url": "pizza-accessories",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/grilling-tools-and-utensils/pizza-accessories/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Thermometers",
+              "url": "thermometers",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/grilling-tools-and-utensils/thermometers/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Timers",
+              "url": "timers",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/grilling-tools-and-utensils/timers/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Utensils",
+              "url": "utensils",
+              "key_words": [
+                "/bbq-grilling-tools-and-accessories/grilling-tools-and-utensils/utensils/"
               ],
               "children": []
             }
