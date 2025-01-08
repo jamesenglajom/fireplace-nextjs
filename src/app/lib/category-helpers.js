@@ -32,27 +32,28 @@ export const shop_all_categories = bc_categories.filter((i) =>
 );
 
 console.log("shop-all-categories", shop_all_categories);
-console.log("filterBCCatById(168)", filterBCCatById(168));
-console.log("filterBCCatByKeyword('bbq')", filterBCCatByKeyword("bbq"));
+console.log("filterBCCatByKeyword('arrival')", filterBCCatByKeyword("arrival"));
 console.log(
-  "filterBCCatByKeyword('bbq') filtered",
-  filterBCCatByKeyword("bbq")
-    .filter((i) => !i?.url?.path.includes("/brands/"))
-    .filter((i) => !i?.url?.path.includes("/bbq-islands-kits/"))
-    .filter((i) => !i?.url?.path.includes("/built-in-grills/"))
-    .filter(
-      (i) => !i?.url?.path.includes("/bbq-grilling-tools-and-accessories/")
-    )
+  "filterBCCatByKeyword('arrival') filtered",
+  filterBCCatByKeyword("arrival")
+    .sort((a, b) => a.url.path.localeCompare(b.url.path))
+    // .filter((i) => {
+    //   const path = i?.url?.path.split("/");
+    //   console.log(path);
+    //   if (path.length === 4) {
+    //     return i;
+    //   }
+    // })
     .filter((i) => !i?.url?.path.includes("/shop-all"))
     // .sort((a, b) => a.name.localeCompare(b.name))
-    .sort((a, b) => a.url.path.localeCompare(b.url.path))
     .map((i) => ({
+      id: i.category_id,
       name: i.name,
       url: i.url.path.split("/").filter(Boolean).pop(),
       key_words: [i.url.path],
       children: [],
     }))
-  // .map(i=> i?.url?.path)
+  // .map((i) => i.key_words[0])
 );
 console.log(
   "filterBCCatByKeyword('bbq') shopall",

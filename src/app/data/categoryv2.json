@@ -257,24 +257,94 @@
     },
     "links": [
       [
-        { "name": "Quick Ship Patio Heaters", "children": [] },
-        { "name": "Gas Patio Heaters", "children": [] },
-        { "name": "Electric Patio Heaters", "children": [] },
-        { "name": "Commercial Patio Heaters", "children": [] },
-        { "name": "Infrared Patio Heaters", "children": [] },
-        { "name": "Wall & Ceiling Mount Heaters", "children": [] },
-        { "name": "Free Standing Patio Heaters", "children": [] }
+        {
+          "name": "Quick Ship Patio Heaters",
+          "url": "quick-ship-patio-heaters",
+          "key_words": ["quick-ship-patio-heaters"],
+          "children": []
+        },
+        {
+          "name": "Electric Patio Heaters",
+          "url": "electric-patio-heaters",
+          "key_words": [
+            "/outdoor-living/patio-heaters/electric-patio-heaters/"
+          ],
+          "children": []
+        },
+        {
+          "name": "Gas Patio Heaters",
+          "url": "gas-patio-heaters",
+          "key_words": ["/outdoor-living/patio-heaters/gas-patio-heaters/"],
+          "children": []
+        },
+        {
+          "name": "Patio Heaters Accessories",
+          "url": "patio-heaters-accessories",
+          "key_words": [
+            "/outdoor-living/patio-heaters/patio-heaters-accessories/",
+            "/home-garden/patio-heater-accessories/"
+          ],
+          "children": []
+        }
       ],
       [
-        { "name": "Patio Heater Accessories", "children": [] },
         {
-          "name": "Patio Heater Brands",
+          "name": "Patio Heater brands",
+          "url": "patio-heaters-brands",
+          "key_words": [
+            "/brands/bromic-heaters/",
+            "/brands/bromic-heaters/bromic-electric-patio-heaters/",
+            "/brands/bromic-heaters/bromic-gas-patio-heaters/",
+            "/brands/infratech/infratech-heaters/",
+            "/brands/infratech/infratech-patio-heaters/",
+            "/brands/sunglo/sunglo-gas-patio-heaters/",
+            "/brands/sunpak/sunpak-heaters/"
+          ],
           "children": [
-            { "name": "Bromic" },
-            { "name": "Infratech" },
-            { "name": "Solaira" },
-            { "name": "Detroit Radiant" },
-            { "name": "Sunpak" }
+            {
+              "name": "Bromic Heaters",
+              "url": "bromic-heaters",
+              "key_words": ["/brands/bromic-heaters/"],
+              "children": []
+            },
+            {
+              "name": "Bromic Electric Patio Heaters",
+              "url": "bromic-electric-patio-heaters",
+              "key_words": [
+                "/brands/bromic-heaters/bromic-electric-patio-heaters/"
+              ],
+              "children": []
+            },
+            {
+              "name": "Bromic Gas Patio Heaters",
+              "url": "bromic-gas-patio-heaters",
+              "key_words": ["/brands/bromic-heaters/bromic-gas-patio-heaters/"],
+              "children": []
+            },
+            {
+              "name": "Infratech Heaters",
+              "url": "infratech-heaters",
+              "key_words": ["/brands/infratech/infratech-heaters/"],
+              "children": []
+            },
+            {
+              "name": "Infratech Patio Heaters Accessories",
+              "url": "infratech-patio-heaters",
+              "key_words": ["/brands/infratech/infratech-patio-heaters/"],
+              "children": []
+            },
+            {
+              "name": "Sunglo Gas Patio Heaters",
+              "url": "sunglo-gas-patio-heaters",
+              "key_words": ["/brands/sunglo/sunglo-gas-patio-heaters/"],
+              "children": []
+            },
+            {
+              "name": "Sunpak Heaters",
+              "url": "sunpak-heaters",
+              "key_words": ["/brands/sunpak/sunpak-heaters/"],
+              "children": []
+            }
           ]
         }
       ]
@@ -367,40 +437,29 @@
     },
     "links": [
       [
-        { "name": "Qucik Ship Gas Logs", "children": [] },
-        { "name": "Vented Gas Log Sets", "children": [] },
-        { "name": "Ventless Gas Log Sets", "children": [] },
-        { "name": "Outdoor Gas Log Sets", "children": [] },
-        { "name": "Fireballs, Shapes & Stones", "children": [] },
-        { "name": "Replacement Gas Logs", "children": [] },
-        { "name": "See-Through Gas Logs", "children": [] }
-      ],
-      [
-        { "name": "Electric Log Sets", "children": [] },
         {
-          "name": "Gas Log Accessories",
+          "name": "Peterson Gas Logs",
+          "url": "peterson-gas-logs",
+          "key_words": ["/brands/peterson-gas-logs/"],
           "children": [
-            { "name": "Indoor Gas Fireplace Burners" },
-            { "name": "Fire Glass and Lava Rock" },
-            { "name": "Gas Log Valves, Keys, and Covers" },
-            { "name": "Gas Log Safety Pilot Kits" }
-          ]
-        }
-      ],
-      [
-        {
-          "name": "Gas Log Brands",
-          "children": [
-            { "name": "Grand Canyon" },
-            { "name": "Real Fyre" },
-            { "name": "Superior" },
-            { "name": "Empire" },
-            { "name": "Northern Flame" },
-            { "name": "Rasmussen" },
-            { "name": "Wilderness Collection" },
-            { "name": "Hargrove" },
-            { "name": "Napoleon" },
-            { "name": "Monessen" }
+            {
+              "name": "PGL Fire Pit Burners",
+              "url": "pgl-fire-pit-burners",
+              "key_words": ["/brands/peterson-gas-logs/pgl-fire-pit-burners/"],
+              "children": []
+            },
+            {
+              "name": "PGL Fire Pit Glasses",
+              "url": "pgl-fire-pit-glasses",
+              "key_words": ["/brands/peterson-gas-logs/pgl-fire-pit-glasses/"],
+              "children": []
+            },
+            {
+              "name": "PGL Fire Pit Logs",
+              "url": "pgl-fire-pit-logs",
+              "key_words": ["/brands/peterson-gas-logs/pgl-fire-pit-logs/"],
+              "children": []
+            }
           ]
         }
       ]
@@ -1074,7 +1133,7 @@
   },
   {
     "name": "On sale",
-    "key_words": ["onsale", "on-sale", "on_sale", "on sale"],
+    "key_words": ["onsale", "on-sale", "on_sale", "on sale", "/sale/"],
     "menu": {
       "href": "on-sale",
       "visible": true,
