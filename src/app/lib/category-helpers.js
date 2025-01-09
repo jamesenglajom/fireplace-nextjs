@@ -4,7 +4,10 @@ import cat_json from "../data/categoryv3.json";
 // import bccat_json from "../data/bc_categories_20241213.json";
 import bccat_json from "../data/bc_categories_20250108.json";
 
-export const solana_categories = cat_json;
+export const solana_categories = cat_json.map((i) => ({
+  ...i,
+  children: i.links.flatMap((i2) => i2),
+}));
 export const bc_categories = bccat_json;
 
 export const main_categories = cat_json

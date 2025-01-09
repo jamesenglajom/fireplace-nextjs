@@ -59,6 +59,8 @@ export function getPageData(pathname, categories) {
 }
 
 export function findParentByUrl(categories, url) {
+  console.log("categories", categories);
+  console.log("url", url);
   // Helper function to recursively search children up to the 3rd level
   function search(children, parent, level = 1) {
     if (level > 3) return null; // Stop searching beyond the 3rd level
@@ -83,8 +85,6 @@ export function findParentByUrl(categories, url) {
     const result = search(category.children || [], category, 1);
     if (result) {
       const result2 = categories.find(({ url }) => url === result.url);
-      console.log("result", result.url);
-      console.log("condition", result2);
       if (result2) {
         return result2;
       } else {

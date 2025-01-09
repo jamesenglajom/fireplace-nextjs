@@ -34,7 +34,8 @@
       "order": 1
     },
     "links": [],
-    "searchable": false
+    "searchable": false,
+    "url": ""
   },
   {
     "name": "Fireplaces",
@@ -112,7 +113,8 @@
         }
       ]
     ],
-    "searchable": true
+    "searchable": true,
+    "url": "fireplaces"
   },
   {
     "name": "Fire Pits",
@@ -235,7 +237,8 @@
         }
       ]
     ],
-    "searchable": true
+    "searchable": true,
+    "url": "fire-pits"
   },
   {
     "name": "Patio Heaters",
@@ -349,7 +352,8 @@
         }
       ]
     ],
-    "searchable": true
+    "searchable": true,
+    "url": "patio-heaters"
   },
   {
     "name": "Patio Furnitures",
@@ -420,7 +424,8 @@
         }
       ]
     ],
-    "searchable": true
+    "searchable": true,
+    "url": "patio-furnitures"
   },
   {
     "name": "Gas Logs",
@@ -464,7 +469,8 @@
         }
       ]
     ],
-    "searchable": true
+    "searchable": true,
+    "url": "gas-logs"
   },
   {
     "name": "BBQ",
@@ -1093,7 +1099,8 @@
         }
       ]
     ],
-    "searchable": true
+    "searchable": true,
+    "url": "bbq"
   },
   {
     "name": "Brands",
@@ -2917,7 +2924,8 @@
         }
       ]
     ],
-    "searchable": true
+    "searchable": true,
+    "url": "brands"
   },
   {
     "name": "New Arrivals",
@@ -2938,7 +2946,8 @@
       "order": 0
     },
     "links": [],
-    "searchable": true
+    "searchable": true,
+    "url": "new-arrivals"
   },
   {
     "name": "On sale",
@@ -2953,6 +2962,7 @@
       "order": 0
     },
     "links": [],
-    "searchable": true
+    "searchable": true,
+    "url": "on-sale"
   }
 ]
