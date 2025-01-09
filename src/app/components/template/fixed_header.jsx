@@ -39,6 +39,10 @@ export default function FixedHeader() {
                   <div className="text-[10px]">26</div>
                 </div>
                 <CartIcon width="24" height="24" color="white" />
+
+                <div className="absolute text-[7px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">
+                  Soon
+                </div>
               </a>
             </li>
             <li>
@@ -47,6 +51,10 @@ export default function FixedHeader() {
                   <div className="text-[10px]">739</div>
                 </div>
                 <HeartIcon width="24" height="24" color="white" />
+
+                <div className="absolute text-[7px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">
+                  Soon
+                </div>
               </a>
             </li>
           </ul>
