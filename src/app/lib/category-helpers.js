@@ -33,11 +33,11 @@ export const flatCategories = [
 //------------------------------------------------------------------------------
 // UNCOMMENT CODE BELOW TO EVEALUATE BC CATEGORIES TO MENU - START
 
-console.log("filterBCCatByKeyword('brands')", filterBCCatByKeyword("brands"));
+console.log("filterBCCatByKeyword('/sale')", filterBCCatByKeyword("/sale"));
 console.log(
-  "filterBCCatByKeyword('brands') filtered",
+  "filterBCCatByKeyword('/sale') filtered",
   buildHierarchy(
-    filterBCCatByKeyword("brands")
+    filterBCCatByKeyword("/sale")
       .sort((a, b) => a.url.path.localeCompare(b.url.path))
       .filter((i) => !i?.url?.path.includes("/shop-all"))
       // .sort((a, b) => a.name.localeCompare(b.name))
@@ -67,7 +67,7 @@ function filterBCCatByKeyword(keyword) {
 // UNCOMMENT CODE BELOW TO EVEALUATE BC CATEGORIES TO MENU - START
 //------------------------------------------------------------------------------
 // UNCOMMENT CODE BELOW TO CONSOLE LOG BC CATEGORIES HIERARCHY -- START
-createAutoMenuFromBCCategories();
+// createAutoMenuFromBCCategories();
 
 function buildHierarchy(categories) {
   const categoryMap = new Map();
@@ -110,12 +110,12 @@ function createAutoMenuFromBCCategories() {
       },
       key_words: [i?.url?.path],
     }));
-  console.log(
-    "bc_categories hierarchy",
-    buildHierarchy(formatCategories)
-      .map((i) => ({ ...i, links: i.children }))
-      .map((i) => ({ ...i, links: groupInPairs(i.links) }))
-  );
+  // console.log(
+  //   "bc_categories hierarchy",
+  //   buildHierarchy(formatCategories)
+  //     .map((i) => ({ ...i, links: i.children }))
+  //     .map((i) => ({ ...i, links: groupInPairs(i.links) }))
+  // );
 }
 // UNCOMMENT CODE BELOW TO CONSOLE LOG BC CATEGORIES HIERARCHY -- END
 //------------------------------------------------------------------------------
