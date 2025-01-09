@@ -61,7 +61,7 @@ export default function TuiNavbar() {
 
   const redirectToHome = (e) => {
     router.push("/");
-    // setMobileMenuDialog(false);
+    setMobileMenuDialog(false);
   };
 
   const handleMenuLinkItemClick = (e) => {
@@ -70,6 +70,7 @@ export default function TuiNavbar() {
     console.log(url);
     if (url) {
       router.push(url);
+      setMobileMenuDialog(false);
     } else {
       alert("no url");
     }
