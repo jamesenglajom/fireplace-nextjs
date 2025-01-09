@@ -422,7 +422,7 @@ export default function TuiFilterSort({
                       <div className="grid sm:gap-3 lg:grid-cols-3 lg:gap-6 grid-cols-2 gap-2">
                         {displayProducts.map((v, i) => (
                           <div
-                            key={`product-display-${v.id}`}
+                            key={`product-display-${i}-${v.id}`}
                             onClick={() => handleProductItemClick(v.id)}>
                             <ProductCard product={v} />
                           </div>
