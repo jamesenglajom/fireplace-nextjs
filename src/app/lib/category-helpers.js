@@ -71,3 +71,10 @@ function filterBCCatByKeyword(keyword) {
   );
   // .map((i) => i.name);
 }
+
+console.log(
+  "bc_categories PARENTS",
+  bc_categories
+    .sort((a, b) => a?.url?.path.localeCompare(b?.url?.path))
+    .filter((i) => i?.url?.path.split("/").length === 3)
+);
