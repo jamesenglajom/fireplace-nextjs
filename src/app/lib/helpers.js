@@ -95,3 +95,10 @@ export function findParentByUrl(categories, url) {
 
   return null; // Return null if no match is found
 }
+
+export function isProductOnSale(categories) {
+  return (
+    categories.filter((i) => [294, 360, 361, 362, 363, 364, 365].includes(i))
+      .length > 0
+  );
+}
