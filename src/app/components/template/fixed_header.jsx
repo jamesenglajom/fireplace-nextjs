@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import HomeSearch from "../search/HomeSearch";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { HeartIcon, CartIcon } from "../icons/lib";
 export default function FixedHeader() {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -38,12 +38,7 @@ export default function FixedHeader() {
                 <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
                   <div className="text-[10px]">26</div>
                 </div>
-                <Icon
-                  icon="bx:cart"
-                  width="24"
-                  height="24"
-                  className="text-white"
-                />
+                <CartIcon width="24" height="24" color="white" />
               </a>
             </li>
             <li>
@@ -51,12 +46,7 @@ export default function FixedHeader() {
                 <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
                   <div className="text-[10px]">739</div>
                 </div>
-                <Icon
-                  icon="bx:heart"
-                  width="24"
-                  height="24"
-                  className="text-white"
-                />
+                <HeartIcon width="24" height="24" color="white" />
               </a>
             </li>
           </ul>

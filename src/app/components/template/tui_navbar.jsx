@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { createSlug } from "@/app/lib/helpers";
-import PageLoader from "../atom/PageLoader";
 import {
   Disclosure,
   DisclosureButton,
@@ -18,6 +17,7 @@ import {
 } from "next/navigation";
 // icon
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { HeartIcon, CartIcon } from "@/app/components/icons/lib";
 // components
 import HomeSearch from "../search/HomeSearch";
 // data
@@ -145,7 +145,7 @@ export default function TuiNavbar() {
                       <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
                         <div className="text-[10px]">26</div>
                       </div>
-                      <Icon icon="bx:cart" width="24" height="24" />
+                      <CartIcon color="black" width="24" height="24" />
                     </a>
                   </li>
                   <li className="relative">
@@ -158,7 +158,7 @@ export default function TuiNavbar() {
                       <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
                         <div className="text-[10px]">739</div>
                       </div>
-                      <Icon icon="bx:heart" width="24" height="24" />
+                      <HeartIcon color="black" width="24" height="24" />
                     </a>
                   </li>
                 </ul>
