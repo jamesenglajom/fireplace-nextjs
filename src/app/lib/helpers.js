@@ -57,3 +57,41 @@ export function getPageData(pathname, categories) {
   // console.log("lib/helper.js fn(getPageData):params->categories", categories);
   return categories.find(({ url }) => url === pathname);
 }
+
+export function findParentByUrl(categories, url) {
+  // Helper function to recursively search children up to the 3rd level
+  function search(children, parent, level = 1) {
+    if (level > 3) return null; // Stop searching beyond the 3rd level
+
+    for (const child of children) {
+      if (child.url === url) {
+        return parent; // Return the parent if a match is found
+      }
+      if (child.children && child.children.length > 0) {
+        const result = search(child.children, child, level + 1);
+        if (result) {
+          return result; // If a match is found deeper, return it
+        }
+      }
+    }
+
+    return null; // No match found
+  }
+
+  // Start searching from the top-level categories
+  for (const category of categories) {
+    const result = search(category.children || [], category, 1);
+    if (result) {
+      const result2 = categories.find(({ url }) => url === result.url);
+      console.log("result", result.url);
+      console.log("condition", result2);
+      if (result2) {
+        return result2;
+      } else {
+        return findParentByUrl(categories, result?.url);
+      }
+    }
+  }
+
+  return null; // Return null if no match is found
+}

@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { createSlug } from "@/app/lib/helpers";
+import { createSlug, findParentByUrl } from "@/app/lib/helpers";
 import {
   Disclosure,
   DisclosureButton,
@@ -10,11 +10,7 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import {
-  usePathname,
-  //  useSearchParams,
-  useRouter,
-} from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 // icon
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { HeartIcon, CartIcon } from "@/app/components/icons/lib";
@@ -44,20 +40,13 @@ export default function TuiNavbar() {
   const [overviewUrl, setOverviewUrl] = useState(null);
   const router = useRouter();
   const path = usePathname();
-  // const searchParams = useSearchParams();
+
   const category_slug = cat_json.find((i) => "/" + i.menu.href === path)?.menu
     ?.href;
-  // const [prevPath, setPrevPath] = useState(`${path}?${searchParams}`);
-  // useEffect(() => {
-  //   const url = `${path}?${searchParams}`;
-  //   setPrevPath((prev) => {
-  //     if (prev !== url) {
-  //       console.log("trigger loading and close menu and modal");
-  //       setMobileMenuDialog((prev) => false);
-  //     }
-  //     return url;
-  //   });
-  // }, [path, searchParams]);
+
+  const ParentSlug =
+    category_slug ?? findParentByUrl(cat_json, path.replace(/\//g, ""))?.url;
+  console.log("ParentSlug", ParentSlug);
 
   const redirectToHome = (e) => {
     router.push("/");
@@ -172,7 +161,7 @@ export default function TuiNavbar() {
                   <div
                     key={`parent-nav-${index}`}
                     className={`group py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center border-b hover:bg-orange-400 hover:text-white ${
-                      i.menu.href === category_slug
+                      i.menu.href === ParentSlug
                         ? "text-white bg-pallete-orange"
                         : "text-pallete-dark"
                     }`}>
@@ -180,7 +169,7 @@ export default function TuiNavbar() {
                     <Link
                       href={`${BASE_URL}/${i.menu.href}`}
                       className={`${
-                        i.menu.href === category_slug
+                        i.menu.href === ParentSlug
                           ? "font-semibold"
                           : "font-normal"
                       }`}>
