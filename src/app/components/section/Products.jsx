@@ -25,6 +25,7 @@ const ProductsSection = ({ category }) => {
     products,
     loading: products_loading,
     pagination,
+    filters,
     noResult,
     error: products_error,
     refetch: productsRefetch,
@@ -43,25 +44,6 @@ const ProductsSection = ({ category }) => {
   useEffect(() => {
     // console.log("products loading: ",products_loading);
   }, [products_loading]);
-
-  const handleFilterChange = (val) => {
-    // console.log("fchange",val);
-    const uniqueCatIds = [...new Set(val.flatMap((item) => item.cat_ids))];
-    // console.log("uniqueCatIds",uniqueCatIds);
-    setProductsParams((prev) => {
-      let newParams = {
-        ...prev,
-        page: 1, // reset to page 1 everytime the filter has changes
-      };
-
-      if (val.length > 0) {
-        newParams["categories:in"] = uniqueCatIds.join(",");
-      } else {
-        delete newParams["categories:in"];
-      }
-      return newParams;
-    });
-  };
 
   useEffect(() => {
     console.log("triggerProductFetching");
@@ -89,6 +71,10 @@ const ProductsSection = ({ category }) => {
       return updateParams;
     });
   };
+
+  const handleFilterChange = (e) => {
+    // console.log("filter from product.js", e);
+  };
   return (
     <div className="w-full">
       <div className="container mx-auto">
@@ -97,10 +83,12 @@ const ProductsSection = ({ category }) => {
             category={category}
             products={products}
             loading={products_loading}
+            filters={filters}
             noResult={noResult}
             pagination={pagination}
             onSortChange={handleSortChange}
             onPageChange={handlePageChange}
+            onFilterChange={handleFilterChange}
           />
         )}
       </div>

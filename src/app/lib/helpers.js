@@ -1,3 +1,16 @@
+export const onsale_category_ids = [294, 360, 361, 362, 363, 364, 365];
+export const filter_price_range = [
+  { label: "Request A Quote", min: 0, max: 0 },
+  { label: "$1 - $50", min: 1, max: 50 },
+  { label: "$50 - $100", min: 50, max: 100 },
+  { label: "$100 - $250", min: 100, max: 250 },
+  { label: "$250 - $500", min: 250, max: 500 },
+  { label: "$1000 - $2500", min: 1000, max: 2500 },
+  { label: "$2500 - $5000", min: 2500, max: 5000 },
+  { label: "$5000 and up", min: 5000, max: 100000 },
+  { label: "$100000 and up", min: 100000, max: 200000 },
+];
+
 export function createSlug(string, separator = "-") {
   return string
     .toString() // Ensure the input is a string
@@ -97,8 +110,5 @@ export function findParentByUrl(categories, url) {
 }
 
 export function isProductOnSale(categories) {
-  return (
-    categories.filter((i) => [294, 360, 361, 362, 363, 364, 365].includes(i))
-      .length > 0
-  );
+  return categories.filter((i) => onsale_category_ids.includes(i)).length > 0;
 }
