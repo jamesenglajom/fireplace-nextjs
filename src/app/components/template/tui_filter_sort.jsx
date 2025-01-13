@@ -159,29 +159,33 @@ export default function TuiFilterSort({
     const { value, checked } = e.target;
     // console.log(`${value}: ${checked} (checked)`);
     const tmp = value.split(":");
+    let filterValue = null;
     if (tmp.length > 1) {
       setFilters((prev) => {
         const property = tmp[0];
         prev[property]["options"] = prev[property]["options"].map((i) => {
           const checkValue = i.prop == value ? checked : false;
-          // console.log(`${i.prop} === ${value}`);
-          // console.log("checkValue", checkValue);
           return {
             ...i,
             is_checked: checkValue,
           };
         });
         // console.log("prevValue", prev);
-        onFilterChange(prev);
+        // onFilterChange(prev);
+        filterValue = prev;
         return prev;
       });
     } else {
       setFilters((prev) => {
         prev[value]["is_checked"] = checked;
-        onFilterChange(prev);
+        // onFilterChange(prev);
+        filterValue = prev;
         return prev;
       });
     }
+
+    onFilterChange(filterValue);
+    return filterValue;
   };
 
   return (

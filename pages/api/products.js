@@ -71,6 +71,10 @@ export default async function handler(req, res) {
         const data = await price_range_response.json();
         if (data.meta.pagination.total > 0) {
           const product_count = data.meta.pagination.total || 0;
+          const range_props = `price:${min}-${max}`;
+          const params_range_props = `price:${params.get(
+            "price:min"
+          )}-${params.get("price:max")}`;
           return {
             label: `${
               max === 0
@@ -79,9 +83,9 @@ export default async function handler(req, res) {
                     max >= 100000 ? "UP" : `$${max}`
                   } (${product_count})`
             }`,
-            prop: `price:${min}-${max}`,
+            prop: range_props,
             count: product_count,
-            is_checked: false,
+            is_checked: range_props === params_range_props,
           };
         }
       })

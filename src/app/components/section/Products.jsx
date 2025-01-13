@@ -73,7 +73,32 @@ const ProductsSection = ({ category }) => {
   };
 
   const handleFilterChange = (e) => {
-    // console.log("filter from product.js", e);
+    const filtersArray = transformObjectToArray(e);
+    const selectedFiltersArray = filtersArray.filter((i) => i.is_checked);
+    const filterObjParams = {};
+
+    selectedFiltersArray.forEach((v, i) => {
+      const tmp = v.prop.split(":");
+      if (tmp.length > 1) {
+        if (tmp[0] === "price") {
+          const range = tmp[1].split("-");
+          filterObjParams["price:min"] = range[0];
+          filterObjParams["price:max"] = range[1];
+        }
+      } else {
+        // if root filter checkbox
+      }
+    });
+    setProductsParams((prev) => ({ ...prev, ...filterObjParams }));
+  };
+
+  const transformObjectToArray = (obj) => {
+    return Object.values(obj).flatMap((item) => {
+      if (item.options) {
+        return item.options;
+      }
+      return item;
+    });
   };
   return (
     <div className="w-full">
