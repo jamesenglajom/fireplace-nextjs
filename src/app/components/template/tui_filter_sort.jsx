@@ -385,6 +385,7 @@ export default function TuiFilterSort({
                     <div className="border-t py-5">
                       <FilterDrawer
                         data={filters.brand}
+                        multiSelect={false}
                         onFilterItemChange={handleFilterChange}
                       />
                     </div>
@@ -406,23 +407,23 @@ export default function TuiFilterSort({
                       />
                     </div>
                   )}
-                  {filters?.venting_type && (
+                  {/* {filters?.venting_type && (
                     <div className="border-t py-5">
                       <FilterDrawer
                         data={filters.venting_type}
                         onFilterItemChange={handleFilterChange}
                       />
                     </div>
-                  )}
-                  {filters?.product_type && (
+                  )} */}
+                  {/* {filters?.product_type && (
                     <div className="border-t py-5">
                       <FilterDrawer
                         data={filters.product_type}
                         onFilterItemChange={handleFilterChange}
                       />
                     </div>
-                  )}
-                  {filters?.made_in_usa && (
+                  )} */}
+                  {/* {filters?.made_in_usa && (
                     <div className="border-t py-5">
                       <FilterSelectItem
                         data={filters.made_in_usa}
@@ -430,15 +431,15 @@ export default function TuiFilterSort({
                         onChange={handleFilterChange}
                       />
                     </div>
-                  )}
-                  {filters?.new_arrivals && (
+                  )} */}
+                  {/* {filters?.new_arrivals && (
                     <div className="border-t py-5">
                       <FilterDrawer
                         data={filters.new_arrivals}
                         onFilterItemChange={handleFilterChange}
                       />
                     </div>
-                  )}
+                  )} */}
                 </form>
               </div>
 

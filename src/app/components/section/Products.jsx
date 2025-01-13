@@ -85,6 +85,9 @@ const ProductsSection = ({ category }) => {
           filterObjParams["price:min"] = range[0];
           filterObjParams["price:max"] = range[1];
         }
+        if (tmp[0] === "brand") {
+          filterObjParams["brand_id"] = tmp[1];
+        }
       } else {
         // if root filter checkbox
       }

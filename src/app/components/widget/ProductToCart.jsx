@@ -173,7 +173,7 @@ const ProductToCart = ({ product, loading }) => {
           {product && <OnsaleTag categories={product?.categories} />}
         </div>
         <div className="">
-          <div className="font-bold text-[24px] md:text-4xl">
+          <div className="font-bold text-[24px] md:text-3xl">
             {productData?.name}
           </div>
           <div className="font-light text-stone-400 text-[12px] md:[16px]">

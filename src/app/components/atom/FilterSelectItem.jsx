@@ -54,7 +54,12 @@ export default function FilterSelectItem({ data, labelStyle, onChange }) {
           <label
             htmlFor={item.prop}
             className={labelStyle ?? "text-sm text-gray-600"}>
-            {item.label}
+            {item.label}{" "}
+            {["on sale", "quick ship"].includes(item.label.toLowerCase()) ? (
+              <span className="text-[10px]">Soon</span>
+            ) : (
+              <></>
+            )}
           </label>
         </div>
       </div>
