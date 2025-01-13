@@ -1,30 +1,5 @@
 [
   {
-    "name": "All Products",
-    "key_words": [
-      "/fireplaces/",
-      "/fire-pits/",
-      "/bbq-grills-and-smokers/",
-      "gas log",
-      "gas logs",
-      "gas-log",
-      "gas-logs",
-      "/outdoor-living/patio-heaters/"
-    ],
-    "menu": {
-      "href": "",
-      "visible": true,
-      "order": 1
-    },
-    "filter": {
-      "visible": true,
-      "order": 1
-    },
-    "links": [],
-    "searchable": false,
-    "url": ""
-  },
-  {
     "category_id": 70,
     "parent_id": 0,
     "tree_id": 1,
