@@ -35,8 +35,9 @@ export default function FilterDrawer({
     });
     onFilterItemChange(e);
   };
+
   return (
-    <Disclosure as="div" className="">
+    <Disclosure as="div" className="px-[15px]">
       <h3 className="-my-3 flow-root">
         <DisclosureButton className="group flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
           <span className="font-medium text-gray-900">

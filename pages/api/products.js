@@ -1,6 +1,7 @@
 import {
   onsale_category_ids,
   filter_price_range,
+  formatPrice,
 } from "../../src/app/lib/helpers";
 import { brands } from "../../src/app/lib/category-helpers";
 
@@ -85,8 +86,8 @@ export default async function handler(req, res) {
             label: `${
               max === 0
                 ? `Request a Qoute (${product_count})`
-                : `$${min} - ${
-                    max >= 100000 ? "UP" : `$${max}`
+                : `$${formatPrice(min)} - ${
+                    max >= 100000 ? "UP" : `$${formatPrice(max)}`
                   } (${product_count})`
             }`,
             prop: range_props,
