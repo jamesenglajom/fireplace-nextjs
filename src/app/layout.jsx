@@ -3,6 +3,8 @@ import "./globals.css";
 import FixedHeader from "./components/template/fixed_header";
 import TuiNavBar from "./components/template/tui_navbar";
 import FreeShippingBanner from "@/app/components/molecule/FreeShippingBanner";
+import Footer from "@/app/components/section/Footer";
+
 const inter = Inter({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], // Specify weights as needed
@@ -41,6 +43,7 @@ export default function RootLayout({ children }) {
         <TuiNavBar />
         <FixedHeader></FixedHeader>
         {children}
+        <Footer />
       </body>
     </html>
   );
