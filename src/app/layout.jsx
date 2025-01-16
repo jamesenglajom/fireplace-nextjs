@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { Inter, Bellefair } from "next/font/google";
 import "./globals.css";
 import FixedHeader from "./components/template/fixed_header";
 import TuiNavBar from "./components/template/tui_navbar";
@@ -6,6 +6,10 @@ import FreeShippingBanner from "@/app/components/molecule/FreeShippingBanner";
 const inter = Inter({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], // Specify weights as needed
+});
+const bell = Bellefair({
+  subsets: ["latin"],
+  weight: ["400"], // Specify weights as needed
 });
 
 export const metadata = {
@@ -15,6 +19,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  console.log("font bask", bell.className);
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>

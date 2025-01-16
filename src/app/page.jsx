@@ -1,7 +1,18 @@
 import ProductsSection from "./components/section/Products";
 import TuiNavbar from "./components/template/tui_navbar";
-import TuiHero from "./components/template/tui_hero";
 import MobileLoader from "./components/molecule/MobileLoader";
+
+// home page section import in order
+import TuiHero from "./components/template/tui_hero";
+import FeatureCategoriesSection from "@/app/components/section/HomePageFeatureCategories";
+import ShopAllClearanceSection from "@/app/components/section/HomePageShopAllClearance";
+import AboutProductSection from "@/app/components/section/HomePageAboutProduct";
+import ReviewsSection from "@/app/components/section/HomePageReviews";
+import ShopCategorySection from "@/app/components/section/HomePageShopCategory";
+import GuidesAndInspirationSection from "@/app/components/section/HomePageGuidesAndInspiration";
+import ShopOpenBoxSection from "@/app/components/section/HomePageShopOpenBox";
+import PartsAndAccessoriesSection from "@/app/components/section/HomePagePartsAndAccessories";
+import FrequentlyAskedSection from "@/app/components/section/HomePageFrequentlyAsked";
 export default async function HomePage({ params }) {
   const page_data = {
     name: "All Products",
@@ -9,10 +20,18 @@ export default async function HomePage({ params }) {
     banner_img: null,
   };
   return (
-    <div>
+    <div className="pb-20">
       <MobileLoader />
       <TuiHero data={page_data} />
-      <ProductsSection category={"all-products"} />
+      <FeatureCategoriesSection />
+      <ShopAllClearanceSection />
+      <AboutProductSection />
+      <ReviewsSection />
+      <ShopCategorySection />
+      <GuidesAndInspirationSection />
+      <ShopOpenBoxSection />
+      <PartsAndAccessoriesSection />
+      <FrequentlyAskedSection />
     </div>
   );
 }
