@@ -32,7 +32,11 @@ export default function HomePageReviews() {
           <div className="w-[30%] p-[20px] flex flex-col gap-[8px]">
             <div className="font-bell text-3xl">Our customer reviews</div>
             <div>
-              <Rating value={5} style={{ maxWidth: 150 }}></Rating>
+              <Rating
+                readOnly
+                value={4.5}
+                fractions={2}
+                style={{ maxWidth: 150 }}></Rating>
             </div>
             <div>
               4.4 stars out of based from{" "}
@@ -53,7 +57,7 @@ export default function HomePageReviews() {
                 key={`review-${idx}`}
                 className="bg-white w-full flex flex-col gap-[15px] justify-center items-center p-[20px] text-center">
                 <div>
-                  <Rating value={i.rating} style={{ maxWidth: 150 }} />
+                  <Rating readOnly value={i.rating} style={{ maxWidth: 150 }} />
                 </div>
                 <div className="font-extrabold">{i.title}</div>
                 <div className="text-sm">{i.text}</div>

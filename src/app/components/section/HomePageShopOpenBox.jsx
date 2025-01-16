@@ -108,7 +108,11 @@ export default function HomePageShopOpenBox() {
                   className={`flex items-center gap-[3px] ${
                     i.ratings !== 0 ? "visible" : "invisible"
                   }`}>
-                  <Rating value={i.ratings} style={{ maxWidth: 80 }}></Rating>
+                  <Rating
+                    readOnly
+                    value={i.ratings}
+                    fractions={2}
+                    style={{ maxWidth: 80 }}></Rating>
                   <div className={``}>{i.reviews} Reviews</div>
                 </div>
               </div>
