@@ -4,7 +4,7 @@ export default function HomePageAboutProduct() {
       <div className="container mx-auto bg-[#F6F6F6]">
         <div className="w-full flex flex-col md:flex-row">
           <div className="w-full md:w-[60%] p-[40px] flex flex-col gap-[30px]">
-            <div className="text-3xl font-semibold font-bell">
+            <div className="text-xl md:text-3xl font-semibold font-bell">
               About Blaze Grill Products
             </div>
             <div className="w-full flex items-center justify-center md:hidden">
@@ -14,7 +14,7 @@ export default function HomePageAboutProduct() {
                 className="w-full"
               />
             </div>
-            <div>
+            <div className="text-sm md:text-base">
               <p className="text-left">
                 Blaze Outdoor Products brings quality, affordable outdoor
                 cooking to your backyard. With over 45 years of experience, we
