@@ -28,10 +28,10 @@ export default function HomePageReviews() {
   return (
     <div className="w-full mt-10">
       <div className="container mx-auto">
-        <div className="flex gap-[10px] items-center">
-          <div className="w-[30%] p-[20px] flex flex-col gap-[8px]">
+        <div className="flex-col md:flex-row flex gap-[50px] md:gap-[10px] items-center">
+          <div className="md:w-[30%] md:p-[20px] flex flex-col gap-[8px] justify-center text-center">
             <div className="font-bell text-3xl">Our customer reviews</div>
-            <div>
+            <div className="flex justify-center md:justify-start">
               <Rating
                 readOnly
                 value={4.5}
@@ -42,7 +42,7 @@ export default function HomePageReviews() {
               4.4 stars out of based from{" "}
               <span className="underline cursor-pointer">122 reviews</span>
             </div>
-            <div>
+            <div className="flex justify-center md:justify-start">
               <div className="w-[250px] border  border-stone-500 bg-stone-200 h-[35px] rounded-lg overflow-hidden">
                 <div className="h-[35px] w-[90%] bg-amber-400 border-t border-t-white"></div>
               </div>
@@ -51,7 +51,7 @@ export default function HomePageReviews() {
               Write a review
             </div>
           </div>
-          <div className="w-[70%] flex gap-[10px]">
+          <div className="w-[70%] flex-col md:flex-row flex gap-[10px]">
             {reviews.map((i, idx) => (
               <div
                 key={`review-${idx}`}

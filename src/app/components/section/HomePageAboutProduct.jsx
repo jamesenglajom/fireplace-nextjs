@@ -2,8 +2,8 @@ export default function HomePageAboutProduct() {
   return (
     <div className="w-full mt-5">
       <div className="container mx-auto bg-[#F6F6F6]">
-        <div className="w-full flex">
-          <div className="w-[60%] p-[40px] flex flex-col gap-[30px]">
+        <div className="w-full flex flex-col md:flex-row">
+          <div className="w-full md:w-[60%] p-[40px] flex flex-col gap-[30px]">
             <div className="text-3xl font-semibold font-bell">
               About Blaze Grill Products
             </div>
@@ -32,7 +32,7 @@ export default function HomePageAboutProduct() {
               </button>
             </div>
           </div>
-          <div className="w-[40%] p-[40px]">
+          <div className="w-full md:w-[40%] p-[40px]">
             <div className="w-full flex items-center justify-center">
               <img
                 src="/images/home/about-blaze.webp"

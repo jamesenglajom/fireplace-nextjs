@@ -56,7 +56,7 @@ export default function HomePagePartsAndAccessories() {
           Fireplace Parts & Accessories
         </div>
         <div className="flex flex-col gap-[10px] mt-5">
-          <div className=" w-full flex gap-5">
+          <div className=" w-full flex flex-col md:flex-row gap-5">
             {partsandaccessories1.map((i, idx) => (
               <div
                 key={`fireplace-stoves-2-${idx}`}
@@ -70,7 +70,7 @@ export default function HomePagePartsAndAccessories() {
               </div>
             ))}
           </div>
-          <div className=" w-full flex gap-5">
+          <div className=" w-full flex flex-col md:flex-row  gap-5">
             {partsandaccessories2.map((i, idx) => (
               <div
                 key={`fireplace-stoves-2-${idx}`}

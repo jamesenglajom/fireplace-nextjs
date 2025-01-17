@@ -2,7 +2,7 @@ export default function HomePageShopAllClearance() {
   return (
     <div className="w-full mt-5">
       <div className="container mx-auto">
-        <div className="w-full flex gap-[20px]">
+        <div className="w-full flex flex-col md:flex-row gap-[20px]">
           <div className="w-full flex flex-col gap-[10px]">
             <div className="w-full aspect-2">
               <div className="w-full h-full flex items-center justify-center overflow-hidden rounded-lg">

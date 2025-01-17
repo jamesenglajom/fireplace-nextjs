@@ -32,7 +32,7 @@ export default function HomePageGuidesAndInspiration() {
         <div className="text-4xl underline italic font-semibold font-bell">
           Fireplaces How-To Guides & Inspiration
         </div>
-        <div className="flex gap-[20px] mt-5">
+        <div className="flex flex-col md:flex-row gap-[20px] mt-5">
           {blogs.map((i, idx) => (
             <div key={`blog-${idx}`} className="w-full group hover:shadow">
               <div className="relative bg-green-400">

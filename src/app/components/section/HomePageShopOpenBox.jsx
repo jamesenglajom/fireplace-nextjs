@@ -61,7 +61,7 @@ export default function HomePageShopOpenBox() {
         <div className="text-4xl underline italic font-semibold font-bell">
           Shop Open Box Blaze Products
         </div>
-        <div className="flex gap-[10px] mt-5">
+        <div className="flex flex-col md:flex-row gap-[10px] mt-5">
           {products.map((i, idx) => (
             <div
               key={`open-box-product-${idx}`}

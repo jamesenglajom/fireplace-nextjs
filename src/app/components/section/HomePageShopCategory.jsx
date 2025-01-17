@@ -96,7 +96,7 @@ export default function HomePageShopCategory() {
         <div className="text-4xl underline italic font-semibold  font-bell">
           Shop Fireplaces
         </div>
-        <div className="flex gap-[10px] mt-5">
+        <div className="flex-col md:flex-row flex gap-[10px] mt-5">
           <div className="w-[25%]  flex flex-col gap-5">
             {menu.map((i, idx) => (
               <div key={`menu-item-${idx}`} className="">
@@ -114,7 +114,7 @@ export default function HomePageShopCategory() {
               Fireplaces & Stove
             </div>
             <div className="flex flex-col gap-[30px] mt-5">
-              <div className=" w-full flex gap-5">
+              <div className=" w-full flex flex-col md:flex-row gap-5">
                 {fireplacesStoves1.map((i, idx) => (
                   <div
                     key={`fireplace-stoves-1-${idx}`}
@@ -128,7 +128,7 @@ export default function HomePageShopCategory() {
                   </div>
                 ))}
               </div>
-              <div className=" w-full flex gap-5">
+              <div className=" w-full flex flex-col md:flex-row gap-5">
                 {fireplacesStoves2.map((i, idx) => (
                   <div
                     key={`fireplace-stoves-2-${idx}`}

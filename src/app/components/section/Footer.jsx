@@ -155,7 +155,7 @@ export default function Footer() {
     <div className="bg-black text-white">
       <div className="container mx-auto pt-[60px] pb-[30px]">
         <div className="flex flex-col gap-[50px]">
-          <div className="flex gap-[20px]">
+          <div className="flex flex-col md:flex-row gap-[20px]">
             {footer.map((i, idx) => (
               <div key={`footer-section-${idx}`} className="w-full">
                 <div className="text-lg font-light">{i.name}</div>
@@ -196,9 +196,9 @@ export default function Footer() {
               </div>
             ))}
           </div>
-          <div className="flex items-center justify-center">
+          <div className="flex flex-col md:flex-row items-center justify-center">
             <div className="mr-[20px]">We Accept: </div>
-            <div className="flex items-center gap-[20px]">
+            <div className="flex items-center gap-[20px] flex-wrap justify-center">
               {payments.map((i, idx) => (
                 <div>
                   <img src={i.img} alt={i.alt} />
