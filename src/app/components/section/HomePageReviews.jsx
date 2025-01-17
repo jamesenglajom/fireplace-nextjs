@@ -30,7 +30,9 @@ export default function HomePageReviews() {
       <div className="container mx-auto">
         <div className="flex-col md:flex-row flex gap-[50px] md:gap-[10px] items-center">
           <div className="md:w-[30%] md:p-[20px] flex flex-col gap-[8px] justify-center text-center">
-            <div className="font-bell text-3xl">Our customer reviews</div>
+            <div className="font-bell text-xl md:text-3xl">
+              Our customer reviews
+            </div>
             <div className="flex justify-center md:justify-start">
               <Rating
                 readOnly
@@ -38,7 +40,7 @@ export default function HomePageReviews() {
                 fractions={2}
                 style={{ maxWidth: 150 }}></Rating>
             </div>
-            <div>
+            <div className="text-xs md:text-base">
               4.4 stars out of based from{" "}
               <span className="underline cursor-pointer">122 reviews</span>
             </div>
@@ -47,7 +49,7 @@ export default function HomePageReviews() {
                 <div className="h-[35px] w-[90%] bg-amber-400 border-t border-t-white"></div>
               </div>
             </div>
-            <div className="underline text-sm text-stone-700 cursor-pointer">
+            <div className="text-xs md:text-sm underline text-stone-700 cursor-pointer">
               Write a review
             </div>
           </div>
@@ -59,9 +61,11 @@ export default function HomePageReviews() {
                 <div>
                   <Rating readOnly value={i.rating} style={{ maxWidth: 150 }} />
                 </div>
-                <div className="font-extrabold">{i.title}</div>
-                <div className="text-sm">{i.text}</div>
-                <div className="flex items-center gap-[10px]">
+                <div className="font-extrabold text-sm md:text-base">
+                  {i.title}
+                </div>
+                <div className="text-xs md:text-sm">{i.text}</div>
+                <div className="flex items-center">
                   <div>
                     <img src={i.img} alt={i.name} />
                   </div>
