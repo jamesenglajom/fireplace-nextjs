@@ -7,6 +7,13 @@ export default function HomePageAboutProduct() {
             <div className="text-3xl font-semibold font-bell">
               About Blaze Grill Products
             </div>
+            <div className="w-full flex items-center justify-center md:hidden">
+              <img
+                src="/images/home/about-blaze.webp"
+                alt=""
+                className="w-full"
+              />
+            </div>
             <div>
               <p className="text-left">
                 Blaze Outdoor Products brings quality, affordable outdoor
@@ -26,18 +33,18 @@ export default function HomePageAboutProduct() {
                 luxury, quality, and affordability right in your backyard.
               </p>
             </div>
-            <div>
-              <button className="bg-red-600 text-white px-[20px] rounded-md">
+            <div className="flex justify-center md:justify-start">
+              <button className="bg-red-600 text-white py-[7px] px-[25px] rounded-md">
                 Call Now <span>888-667-4986</span>
               </button>
             </div>
           </div>
-          <div className="w-full md:w-[40%] p-[40px]">
+          <div className="hidden md:block w-full md:w-[40%] p-[40px]">
             <div className="w-full flex items-center justify-center">
               <img
                 src="/images/home/about-blaze.webp"
                 alt=""
-                className="h-[300px]"
+                className="w-full"
               />
             </div>
           </div>
