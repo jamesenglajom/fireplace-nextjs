@@ -37,7 +37,7 @@ export default function HomePageGuidesAndInspiration() {
             <div key={`blog-${idx}`} className="w-full group hover:shadow">
               <div className="relative bg-green-400">
                 <div
-                  className={`text-sm md:text-base z-[10] absolute bottom-[20px] right-[0px] h-[auto] w-[content] text-white px-[25px] py-[5px] shadow-md ${i.tag_bg}`}>
+                  className={`text-sm md:text-base z-[1] absolute bottom-[20px] right-[0px] h-[auto] w-[content] text-white px-[25px] py-[5px] shadow-md ${i.tag_bg}`}>
                   {i.tag}
                 </div>
                 <div className="aspect-w-3 aspect-h-2 bg-stone-800">
