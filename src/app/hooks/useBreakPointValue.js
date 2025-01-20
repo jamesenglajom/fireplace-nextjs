@@ -1,13 +1,10 @@
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 
+import { useWindowWidth } from "@/app/hooks/useWindowWidth";
 export const useBreakpointValue = (breakpoints) => {
-  const matchingBreakpoint = breakpoints
-    .map((breakpoint) => ({
-      ...breakpoint,
-      matches: useMediaQuery({ minWidth: breakpoint.minWidth }),
-    }))
-    .filter((b) => b.matches)
-    .pop(); // Get the last matching breakpoint
+  const width = useWindowWidth();
 
-  return matchingBreakpoint?.value;
+  return breakpoints
+    .sort((a, b) => b.minWidth - a.minWidth)
+    .find(({ minWidth }) => minWidth < width)?.value;
 };
