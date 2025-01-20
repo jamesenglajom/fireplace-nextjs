@@ -68,19 +68,31 @@ const HomeSearch = () => {
     // }
   }, [products]);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   refetchProducts((prev) => {
+  //     if (search === "") {
+  //       return { is_featured: true, include: "images" };
+  //     } else {
+  //       return { keyword: search, include: "images" };
+  //     }
+  //   });
+  //   getSearchResults(search);
+  // }, [search]);
+
+  const onSearchUpdate = (search_string) => {
     refetchProducts((prev) => {
-      if (search === "") {
+      if (search_string === "") {
         return { is_featured: true, include: "images" };
       } else {
-        return { keyword: search, include: "images" };
+        return { keyword: search_string, include: "images" };
       }
     });
-    getSearchResults(search);
-  }, [search]);
+    getSearchResults(search_string);
+  };
 
   const handleSearch = (e) => {
     const { value } = e.target;
+    onSearchUpdate(value);
     setSearch(value);
   };
 
@@ -164,6 +176,7 @@ const HomeSearch = () => {
     } else {
       localStorage.setItem("recent_searches", JSON.stringify([search]));
     }
+    onSearchUpdate("");
     setSearch("");
     setOpenSearch(false);
   };
