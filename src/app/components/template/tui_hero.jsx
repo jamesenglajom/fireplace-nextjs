@@ -19,7 +19,6 @@ export default function Hero({ data }) {
                   </div>
                 </div>
               </div>
-
               <Image
                 src={
                   data?.banner_img ??
@@ -28,7 +27,7 @@ export default function Hero({ data }) {
                 alt={`Banner`}
                 className="object-cover"
                 layout="fill"
-                priority={false}
+                priority={true}
               />
             </div>
             <div className="flex-col flex md:flex-row">
@@ -152,27 +151,14 @@ export default function Hero({ data }) {
     );
   } else {
     return (
-      // , url('${
-      //   data?.banner_img ?? "/images/banner/fireplace-home-banner.webp"
-      // }')
       <div className="w-full">
         <div className="container mx-auto w-full relative isolate  bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px] md:h-[510px]">
-          {/* <Image
-            src={
-              data?.banner_img ?? "/images/banner/fireplace-home-banner.webp"
-            }
+          <Image
+            src={data?.banner_img ?? "/images/banner/solana-home-hero.webp"}
             alt={`Banner`}
             className="object-cover"
             layout="fill"
-            // priority={false}
-          /> */}
-          <img
-            src={
-              // data?.banner_img ?? "/images/banner/fireplace-home-banner.webp"
-              data?.banner_img ?? "/images/banner/solana-home-hero.webp"
-            }
-            alt="Banner"
-            className="object-cover  w-full h-full"
+            priority={true}
           />
           <div className="absolute z-[9999] inset-0 m-auto flex items-center justify-center">
             <div className="text-center flex justify-center">
