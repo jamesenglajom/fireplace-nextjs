@@ -15,10 +15,6 @@ const bell = Bellefair({
 });
 
 export const metadata = {
-  preload: [
-    "/images/banner/solana-home-hero-mobile.webp",
-    "/images/banner/solana-home-hero.webp",
-  ],
   title: "Solana Fireplaces",
   description:
     "Shop high-quality fireplaces, grills, gas stoves, and outdoor heating solutions. Enhance your home or patio with stylish and energy-efficient products. Free shipping and expert advice available!",
