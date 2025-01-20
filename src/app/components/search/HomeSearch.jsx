@@ -296,15 +296,20 @@ const HomeSearch = () => {
                             href={`${BASE_URL}/product/${i.custom_url.url}`}>
                             <div className="flex items-center group hover:bg-stone-200 px-2 py-[5px]">
                               <div className="w-[75px] h-[75px] overflow-hidden bg-white mr-[10px] flex items-center rounded">
-                                <img
-                                  src={
-                                    i.images.find(
-                                      ({ is_thumbnail }) => is_thumbnail
-                                    )?.url_thumbnail
-                                  }
-                                  alt={`product:${i.name}`}
-                                  className="object-fit w-full"
-                                />
+                                {i?.images &&
+                                  i.images.find(
+                                    ({ is_thumbnail }) => is_thumbnail
+                                  )?.url_thumbnail && (
+                                    <img
+                                      src={
+                                        i.images.find(
+                                          ({ is_thumbnail }) => is_thumbnail
+                                        )?.url_thumbnail
+                                      }
+                                      alt={`product:${i.name}`}
+                                      className="object-fit w-full"
+                                    />
+                                  )}
                               </div>
                               <div className="w-full">
                                 <div className="text-[14px] group-hover:text-orange-600">
