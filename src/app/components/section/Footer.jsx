@@ -200,7 +200,7 @@ export default function Footer() {
             <div className="md:mr-[20px]">We Accept: </div>
             <div className="flex items-center gap-[20px] p-[20px] md:p-[0px] flex-wrap justify-center">
               {payments.map((i, idx) => (
-                <div>
+                <div key={`payment-img-${idx}`}>
                   <img
                     src={i.img}
                     alt={i.alt}
