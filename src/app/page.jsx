@@ -30,7 +30,7 @@ export default async function HomePage({ params }) {
       <ReviewsSection />
       <ShopCategorySection />
       <GuidesAndInspirationSection />
-      {/* <ShopOpenBoxSection /> */}
+      <ShopOpenBoxSection />
       <PartsAndAccessoriesSection />
       <FrequentlyAskedSection />
       <NewsLetterSection />

@@ -1,5 +1,6 @@
+"use client";
 import { Rating } from "@smastrom/react-rating";
-
+import Carousel from "@/app/components/atom/Carousel";
 const reviews = [
   {
     rating: 5,
@@ -24,6 +25,11 @@ const reviews = [
   },
 ];
 
+const carousel_breakpoints = [
+  { minWidth: 0, value: 1 },
+  { minWidth: 1024, value: 2 },
+  { minWidth: 1280, value: 3 },
+];
 export default function HomePageReviews() {
   return (
     <div className="w-full mt-10">
@@ -53,26 +59,32 @@ export default function HomePageReviews() {
               Write a review
             </div>
           </div>
-          <div className="w-[70%] flex-col md:flex-row flex gap-[10px]">
-            {reviews.map((i, idx) => (
-              <div
-                key={`review-${idx}`}
-                className="bg-white w-full flex flex-col gap-[15px] justify-center items-center p-[20px] text-center">
-                <div>
-                  <Rating readOnly value={i.rating} style={{ maxWidth: 150 }} />
-                </div>
-                <div className="font-extrabold text-sm md:text-base">
-                  {i.title}
-                </div>
-                <div className="text-xs md:text-sm">{i.text}</div>
-                <div className="flex items-center">
-                  <div>
-                    <img src={i.img} alt={i.name} />
+          <div className="w-full lg:w-[70%] flex-col md:flex-row flex gap-[10px]">
+            <Carousel breakpoints={carousel_breakpoints}>
+              {reviews.map((i, idx) => (
+                <div
+                  key={`review-${idx}`}
+                  className="bg-white w-full flex flex-col gap-[15px] justify-center items-center p-[20px] text-center">
+                  <div className="flex text-center justify-center">
+                    <Rating
+                      readOnly
+                      value={i.rating}
+                      style={{ maxWidth: 150 }}
+                    />
                   </div>
-                  <div className="text-xs text-stone-700">{i.name}</div>
+                  <div className="font-extrabold text-sm md:text-base">
+                    {i.title}
+                  </div>
+                  <div className="text-xs md:text-sm">{i.text}</div>
+                  <div className="flex items-center justify-center">
+                    <div>
+                      <img src={i.img} alt={i.name} />
+                    </div>
+                    <div className="text-xs text-stone-700">{i.name}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </Carousel>
           </div>
         </div>
       </div>
