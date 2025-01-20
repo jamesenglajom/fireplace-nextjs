@@ -28,20 +28,20 @@ export default function Hero({ data }) {
                 <>
                   {
                     // for lazy loading
-                    <Image
-                      src={useBanner}
-                      alt={`Banner`}
-                      className="object-cover"
-                      layout="fill"
-                    />
+                    // <Image
+                    //   src={useBanner}
+                    //   alt={`Banner`}
+                    //   className="object-cover"
+                    //   layout="fill"
+                    // />
                     // -----------------
                   }
                   {
-                    //   <img
-                    //   src={useBanner}
-                    //   alt="Banner"
-                    //   className="object-cover  w-full h-full"
-                    // />
+                    <img
+                      src={useBanner}
+                      alt="Banner"
+                      className="object-cover  w-full h-full"
+                    />
                   }
                   <div className="absolute z-[9999] inset-0 m-auto flex items-center justify-center">
                     <div className="text-center flex justify-center">
@@ -182,20 +182,20 @@ export default function Hero({ data }) {
             <>
               {
                 // for lazy loading
-                <Image
-                  src={useBanner}
-                  alt={`Banner`}
-                  className="object-cover"
-                  layout="fill"
-                />
+                // <Image
+                //   src={useBanner}
+                //   alt={`Banner`}
+                //   className="object-cover"
+                //   layout="fill"
+                // />
                 // -----------------
               }
               {
-                //   <img
-                //   src={useBanner}
-                //   alt="Banner"
-                //   className="object-cover  w-full h-full"
-                // />
+                <img
+                  src={useBanner}
+                  alt="Banner"
+                  className="object-cover  w-full h-full"
+                />
               }
               <div className="absolute z-[9999] inset-0 m-auto flex items-center justify-center">
                 <div className="text-center flex justify-center">
