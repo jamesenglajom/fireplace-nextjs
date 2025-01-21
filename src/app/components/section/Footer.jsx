@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -200,12 +201,17 @@ export default function Footer() {
             <div className="md:mr-[20px]">We Accept: </div>
             <div className="flex items-center gap-[20px] p-[20px] md:p-[0px] flex-wrap justify-center">
               {payments.map((i, idx) => (
-                <div key={`payment-img-${idx}`}>
-                  <img
-                    src={i.img}
-                    alt={i.alt}
-                    className="h-[30px] md:h-[auto]"
-                  />
+                <div
+                  key={`payment-img-${idx}`}
+                  className="w-[60px] md:w-[90px] md:h-[auto] relative aspect-2">
+                  {
+                    //   <img
+                    //   src={i.img}
+                    //   alt={i.alt}
+                    //   className="h-[30px] md:h-[auto]"
+                    // />
+                    <Image src={i.img} alt={i.alt} width={300} height={0} />
+                  }
                 </div>
               ))}
             </div>
