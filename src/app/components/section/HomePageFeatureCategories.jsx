@@ -1,7 +1,7 @@
 "use client";
 import Carousel from "@/app/components/atom/Carousel";
 const items = [
-  { label: "Fireplace", img: "/images/home/categories/fireplace.webp" },
+  { label: "Fireplace", img: "/images/home/categories/Fireplace.webp" },
   { label: "Fire Pits", img: "/images/home/categories/firepits.webp" },
   { label: "BBQ Grills", img: "/images/home/categories/bbq_grills.webp" },
   {
