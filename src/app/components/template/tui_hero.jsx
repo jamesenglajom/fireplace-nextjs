@@ -183,13 +183,13 @@ export default function Hero({ data }) {
             <>
               {
                 // for lazy loading
-                <Image
-                  src={useBanner}
-                  alt={`Banner`}
-                  className="object-cover"
-                  layout="fill"
-                  priority
-                />
+                // <Image
+                //   src={useBanner}
+                //   alt={`Banner`}
+                //   className="object-cover"
+                //   layout="fill"
+                //   priority
+                // />
                 // -----------------
               }
               {
