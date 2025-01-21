@@ -1,5 +1,7 @@
 "use client";
 import Carousel from "@/app/components/atom/Carousel";
+import Image from "next/image";
+
 const items = [
   { label: "Fireplace", img: "/images/home/categories/Fireplace.webp" },
   { label: "Fire Pits", img: "/images/home/categories/firepits.webp" },
@@ -31,9 +33,21 @@ export default function HomePageFeatureCategories() {
               key={`feature-category-item-${idx}`}
               className={`min-w-[180px] w-[180px] flex flex-col gap-[8px] group`}>
               <div
-                className={`w-full h-[150px] flex items-center justify-center group-hover:border group-hover:bg-stone-100 rounded-md overflow-hidden transition-all duration-500`}>
+                className={`relative w-full h-[150px] flex items-center justify-center group-hover:border group-hover:bg-stone-100 rounded-md overflow-hidden transition-all duration-500`}>
                 {/* <div>image Here</div> */}
-                <img src={v.img} alt="" className="object-contain h-[150px]" />
+                {
+                  // <img
+                  //   src={v.img}
+                  //   alt=""
+                  //   className="object-contain h-[150px]"
+                  // />
+                  <Image
+                    src={v.img}
+                    alt={`${v.label}-image`}
+                    className="object-contain"
+                    fill
+                  />
+                }
               </div>
               <div
                 className={`flex items-center justify-center w-full h-[60px] overflow-hidden`}>

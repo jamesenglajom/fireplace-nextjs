@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const blogs = [
   {
     title: "Fireplace Ideas",
@@ -41,11 +43,19 @@ export default function HomePageGuidesAndInspiration() {
                   {i.tag}
                 </div>
                 <div className="aspect-w-3 aspect-h-2 bg-stone-800">
-                  <img
-                    src={i.img}
-                    alt={i.title}
-                    className={`object-cover group-hover:opacity-100 opacity-50 transition-opacity duration-500`}
-                  />
+                  {
+                    // <img
+                    //   src={i.img}
+                    //   alt={i.title}
+                    //   className={`object-cover group-hover:opacity-100 opacity-50 transition-opacity duration-500`}
+                    // />
+                    <Image
+                      src={i.img}
+                      alt={`${i.title}-image`}
+                      className="object-cover group-hover:opacity-100 opacity-50 transition-opacity duration-500"
+                      fill
+                    />
+                  }
                 </div>
               </div>
               <div className="py-[15px] flex flex-col gap-[20px] group-hover:px-[15px] transition-all duration-500">

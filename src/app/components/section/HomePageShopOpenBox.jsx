@@ -2,6 +2,7 @@
 import { Rating } from "@smastrom/react-rating";
 import ItemPrice from "@/app/components/atom/openBoxItemPrice";
 import Carousel from "@/app/components/atom/Carousel";
+import Image from "next/image";
 const products = [
   {
     img: "/images/home/open-box/open-boxes-image-1.webp",
@@ -76,17 +77,25 @@ export default function HomePageShopOpenBox() {
                 key={`open-box-product-${idx}`}
                 className="aspect-1 border w-full bg-[#f8f8f8]">
                 <div className="relative">
-                  <div className="text-white bg-red-700 absolute left-0 rounded-sm px-[15px] py-[5px]">
+                  <div className="text-white bg-red-700 absolute left-0 rounded-sm px-[15px] py-[5px] z-[1]">
                     {"Open Box"}
                   </div>
                   <div
                     className={`${
                       i.sale_price < i.original_price ? "visible" : "invisible"
-                    } text-white bg-red-700 absolute left-[10px] bottom-[3px] rounded-sm px-[15px] py-[5px]`}>
+                    } text-white bg-red-700 absolute left-[10px] bottom-[3px] rounded-sm px-[15px] py-[5px] z-[1]`}>
                     {"SALE"}
                   </div>
-                  <div className="aspect-1 flex justify-center">
-                    <img src={i.img} alt={i.name} />
+                  <div className="relative aspect-1 flex justify-center">
+                    {
+                      // <img src={i.img} alt={i.name} />
+                      <Image
+                        src={i.img}
+                        alt={`${i.name}-image`}
+                        fill
+                        className="object-contain"
+                      />
+                    }
                   </div>
                 </div>
                 <div className="flex items-center justify-center py-[10px]">

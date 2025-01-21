@@ -26,13 +26,8 @@ export default function FixedHeader() {
         isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       }`}>
       <div className="container mx-auto h-[50px] flex items-center justify-around">
-        <div className="w-[40px] h-[40px]  relative">
-          <Image
-            src="/logo-s1.webp"
-            alt="solana-icon"
-            objectFit="contain"
-            layout="fill"
-          />
+        <div className="w-[40px] h-[40px] relative">
+          <Image src="/logo-s1.webp" alt="solana-icon" fill />
         </div>
         <div className="w-[180px] sm:w-[auto] md:w-[500px]">
           <HomeSearch />

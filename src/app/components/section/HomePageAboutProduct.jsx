@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function HomePageAboutProduct() {
   return (
     <div className="w-full mt-5">
@@ -7,12 +8,20 @@ export default function HomePageAboutProduct() {
             <div className="text-xl md:text-3xl font-semibold font-bell">
               About Blaze Grill Products
             </div>
-            <div className="w-full flex items-center justify-center md:hidden">
-              <img
-                src="/images/home/about-blaze.webp"
-                alt=""
-                className="w-full"
-              />
+            <div className="relative w-full flex items-center justify-center md:hidden">
+              {
+                // <img
+                //   src="/images/home/about-blaze.webp"
+                //   alt=""
+                //   className="w-full"
+                // />
+                <Image
+                  src="/images/home/about-blaze.webp"
+                  alt="About-Blaze-Image"
+                  width={1000}
+                  height={0}
+                />
+              }
             </div>
             <div className="text-sm md:text-base">
               <p className="text-left">
@@ -40,12 +49,20 @@ export default function HomePageAboutProduct() {
             </div>
           </div>
           <div className="hidden md:block w-full md:w-[40%] p-[40px]">
-            <div className="w-full flex items-center justify-center">
-              <img
-                src="/images/home/about-blaze.webp"
-                alt=""
-                className="w-full"
-              />
+            <div className="relative w-full flex items-center justify-center">
+              {
+                // <img
+                //   src="/images/home/about-blaze.webp"
+                //   alt=""
+                //   className="w-full"
+                // />
+                <Image
+                  src="/images/home/about-blaze.webp"
+                  alt="About-Blaze-Image"
+                  width={1000}
+                  height={0}
+                />
+              }
             </div>
           </div>
         </div>

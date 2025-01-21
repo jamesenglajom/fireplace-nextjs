@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function HomePageShopAllClearance() {
   return (
     <div className="w-full mt-5">
@@ -5,15 +7,24 @@ export default function HomePageShopAllClearance() {
         <div className="w-full flex flex-col md:flex-row gap-[20px]">
           <div className="w-full flex flex-col gap-[10px]">
             <div className="w-full aspect-2">
-              <div className="w-full h-full flex items-center justify-center overflow-hidden rounded-lg">
+              <div className="w-full h-full flex items-center justify-center overflow-hidden rounded-lg relative">
                 {/* <div className="font-extrabold text-stone-700 text-3xl">
                   CONTENT 1
                 </div> */}
-                <img
-                  src="/images/home/elevate-your-fireplace.webp"
-                  alt=""
-                  className="object-contain"
-                />
+                {
+                  // <img
+                  //   src="/images/home/elevate-your-fireplace.webp"
+                  //   alt=""
+                  //   className="object-contain"
+                  // />
+
+                  <Image
+                    src={"/images/home/elevate-your-fireplace.webp"}
+                    alt={`Elevate-Your-Fireplace-Img`}
+                    className="object-contain"
+                    fill
+                  />
+                }
               </div>
             </div>
             <div className="text-center text-xl md:text-3xl font-semibold font-bell">
@@ -34,15 +45,25 @@ export default function HomePageShopAllClearance() {
           </div>
           <div className="w-full flex flex-col gap-[10px]">
             <div className="w-full aspect-2">
-              <div className="w-full h-full flex items-center justify-center overflow-hidden rounded-md">
+              <div className="w-full h-full flex items-center justify-center overflow-hidden rounded-md relative">
                 {/* <div className="font-extrabold text-stone-700 text-3xl">
                   CONTENT 2
                 </div> */}
-                <img
-                  src="/images/home/clearance.webp"
-                  alt=""
-                  className="object-contain"
-                />
+
+                {
+                  // <img
+                  //   src="/images/home/clearance.webp"
+                  //   alt=""
+                  //   className="object-contain"
+                  // />
+
+                  <Image
+                    src={"/images/home/clearance.webp"}
+                    alt={`Clearance-Shopping-Img`}
+                    className="object-contain"
+                    fill
+                  />
+                }
               </div>
             </div>
             <div className="text-center text-xl md:text-3xl font-semibold font-bell">

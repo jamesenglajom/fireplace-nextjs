@@ -10,6 +10,7 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 // icon
 import { Icon } from "@iconify/react/dist/iconify.js";
@@ -111,12 +112,20 @@ export default function TuiNavbar() {
               </div>
               <div className="flex items-center justify-center flex-1 sm:flex-initial sm:items-stretch sm:justify-start">
                 {/** flex-1 sm:items-stretch sm:justify-start */}
-                <div className="flex shrink-0 items-center">
-                  <img
-                    alt="Bull Fireplace"
-                    src="/Logo.webp"
-                    className="h-[60px] w-auto"
-                  />
+                <div className="flex items-center relative w-[100px] aspect-2">
+                  {
+                    //   <img
+                    //   alt="Bull Fireplace"
+                    //   src="/Logo.webp"
+                    //   className="h-[60px] w-auto"
+                    // />
+                    <Image
+                      alt="Bull Fireplace"
+                      src="/Logo.webp"
+                      fill
+                      className="object-contain"
+                    />
+                  }
                 </div>
               </div>
               <div className="hidden sm:block sm:w-[300px] md:w-[500px]">

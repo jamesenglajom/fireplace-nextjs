@@ -1,6 +1,7 @@
 "use client";
 import { Rating } from "@smastrom/react-rating";
 import Carousel from "@/app/components/atom/Carousel";
+import Image from "next/image";
 const reviews = [
   {
     rating: 5,
@@ -62,25 +63,28 @@ export default function HomePageReviews() {
           <div className="w-full lg:w-[70%] flex-col md:flex-row flex gap-[10px]">
             <Carousel breakpoints={carousel_breakpoints}>
               {reviews.map((i, idx) => (
-                <div
-                  key={`review-${idx}`}
-                  className="bg-white w-full flex flex-col gap-[15px] justify-center items-center p-[20px] text-center">
-                  <div className="flex text-center justify-center">
-                    <Rating
-                      readOnly
-                      value={i.rating}
-                      style={{ maxWidth: 150 }}
-                    />
-                  </div>
-                  <div className="font-extrabold text-sm md:text-base">
-                    {i.title}
-                  </div>
-                  <div className="text-xs md:text-sm">{i.text}</div>
-                  <div className="flex items-center justify-center">
-                    <div>
-                      <img src={i.img} alt={i.name} />
+                <div key={`review-${idx}`} className="bg-white w-full p-[20px]">
+                  <div className=" flex flex-col gap-[15px]  justify-center items-center  text-center">
+                    <div className="flex text-center justify-center">
+                      <Rating
+                        readOnly
+                        value={i.rating}
+                        style={{ maxWidth: 150 }}
+                      />
                     </div>
-                    <div className="text-xs text-stone-700">{i.name}</div>
+                    <div className="font-extrabold text-sm md:text-base">
+                      {i.title}
+                    </div>
+                    <div className="text-xs md:text-sm">{i.text}</div>
+                    <div className="flex items-center justify-center">
+                      <div className="relative w-[30px] h-[30px]">
+                        {
+                          // <img src={i.img} alt={i.name} />
+                          <Image src={i.img} alt={`${i.name}-image`} fill />
+                        }
+                      </div>
+                      <div className="text-xs text-stone-700">{i.name}</div>
+                    </div>
                   </div>
                 </div>
               ))}

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const partsandaccessories1 = [
   { name: "Firewood", img: "/images/home/parts_and_accessories/firewood.webp" },
   {
@@ -61,12 +63,20 @@ export default function HomePagePartsAndAccessories() {
               <div
                 key={`fireplace-stoves-2-${idx}`}
                 className="md:w-1/6 border p-4 w-[120px] flex flex-col gap-4 hover:shadow-lg transition-all duration-300">
-                <div className="aspect-1 bg-stone-100 flex">
-                  <img
-                    src={i.img}
-                    alt={i.name}
-                    className="object-contain w-full"
-                  />
+                <div className="relative aspect-1 bg-stone-100 flex">
+                  {
+                    // <img
+                    //   src={i.img}
+                    //   alt={i.name}
+                    //   className="object-contain w-full"
+                    // />
+                    <Image
+                      src={i.img}
+                      alt={i.name}
+                      className="object-cover"
+                      fill
+                    />
+                  }
                 </div>
                 <div className="h-[49px]">
                   <div className="font-bold text-base md:text-lg">{i.name}</div>
@@ -78,13 +88,21 @@ export default function HomePagePartsAndAccessories() {
             {partsandaccessories2.map((i, idx) => (
               <div
                 key={`fireplace-stoves-2-${idx}`}
-                className="md:min-w-1/6 border p-4  flex flex-col hover:shadow-lg transition-all duration-300">
-                <div className="aspect-1 bg-stone-100 flex w-full">
-                  <img
-                    src={i.img}
-                    alt={i.name}
-                    className="object-contain w-full"
-                  />
+                className="md:w-1/6 border p-4 w-[120px] flex flex-col gap-4 hover:shadow-lg transition-all duration-300">
+                <div className="relative aspect-1 bg-stone-100 flex">
+                  {
+                    // <img
+                    //   src={i.img}
+                    //   alt={i.name}
+                    //   className="object-contain w-full"
+                    // />
+                    <Image
+                      src={i.img}
+                      alt={i.name}
+                      className="object-cover"
+                      fill
+                    />
+                  }
                 </div>
                 <div className="h-[49px]">
                   <div className="font-bold text-base md:text-lg">{i.name}</div>
