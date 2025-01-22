@@ -1,5 +1,6 @@
 [
   {
+    "banner_img": "/images/banner/fireplace-banner.webp",
     "category_id": 70,
     "parent_id": 0,
     "tree_id": 1,
@@ -26,6 +27,7 @@
     "links": []
   },
   {
+    "banner_img": "/images/banner/firepit-banner.webp",
     "category_id": 69,
     "parent_id": 0,
     "tree_id": 1,
@@ -52,6 +54,7 @@
     "links": []
   },
   {
+    "banner_img": "/images/banner/bbq-banner.webp",
     "category_id": 167,
     "parent_id": 0,
     "tree_id": 1,
@@ -1615,6 +1618,7 @@
     "url": "gas-logs"
   },
   {
+    "banner_img": "/images/banner/patio-heater-banner.webp",
     "category_id": 328,
     "parent_id": 292,
     "tree_id": 1,
