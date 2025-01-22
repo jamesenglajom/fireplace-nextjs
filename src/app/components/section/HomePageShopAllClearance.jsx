@@ -20,7 +20,7 @@ export default function HomePageShopAllClearance() {
 
                   <Image
                     src={"/images/home/elevate-your-fireplace.webp"}
-                    alt={`Elevate-Your-Fireplace-Img`}
+                    alt={`Modern-Fireplace-Designs-Img`}
                     className="object-contain"
                     fill
                   />
@@ -28,18 +28,17 @@ export default function HomePageShopAllClearance() {
               </div>
             </div>
             <div className="text-center text-xl md:text-3xl font-semibold font-bell">
-              Elevate Your Space with a Modern Fireplace
+              Modern Fireplace Designs
             </div>
             <div className="text-center  font-bell">
-              Discover the warmth and elegance a modern fireplace brings to your
-              home. Perfect for family gatherings or relaxing evenings, our
-              sleek design complement any living space. Shop now and save on
-              creating your favorite spot for comfort and style. Find the
-              fireplace that fits your home today!
+              A modern fireplace can elevate your home, providing both warmth
+              and a stylish focal point for family gatherings or quiet evenings.
+              We offer a wide selection of fireplaces including wood-burning,
+              gas, and electric.
             </div>
             <div className="text-center">
               <button className="border px-[20px] py-[8px] rounded-xl font-bell">
-                shop all fireplaces
+                Shop All Fireplaces
               </button>
             </div>
           </div>
@@ -59,7 +58,7 @@ export default function HomePageShopAllClearance() {
 
                   <Image
                     src={"/images/home/clearance.webp"}
-                    alt={`Clearance-Shopping-Img`}
+                    alt={`Outdoor-Kitchen-Deals-Img`}
                     className="object-contain"
                     fill
                   />
@@ -67,16 +66,16 @@ export default function HomePageShopAllClearance() {
               </div>
             </div>
             <div className="text-center text-xl md:text-3xl font-semibold font-bell">
-              Upgrade Your Backyard with Outdoor Kitchen Deals
+              Outdoor Kitchen Deals
             </div>
             <div className="text-center  font-bell">
-              Create the ultimate outdoor cooking space with our premium grills
-              and accessories. Shop now and save big on must-have products for
-              your dream backyard kitchen!
+              Create your dream backyard kitchen with top-of-the-line grills,
+              BBQ islands, and all the essential accessories, all while taking
+              advantage of great deals and savings.
             </div>
             <div className="text-center">
               <button className="border px-[20px] py-[8px] rounded-xl  font-bell">
-                shop all clearance
+                Shop All Outdoor Kitchen Deals
               </button>
             </div>
           </div>
