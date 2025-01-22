@@ -3,15 +3,20 @@
 import { useState, useEffect } from "react";
 import useFetchProducts from "../../hooks/useFetchProducts";
 import TuiFilterSort from "../template/tui_filter_sort";
-import { getCategoryIds } from "@/app/lib/helpers";
-import bccat_json from "../../data/bc_categories_20241213.json";
+import {
+  getCategoryIds,
+  getCategoryFilters,
+  filter_price_range,
+} from "@/app/lib/helpers";
+import { bc_categories, flatCategories } from "@/app/lib/category-helpers";
 import { useMediaQuery } from "react-responsive";
-import { flatCategories } from "@/app/lib/category-helpers";
 import { useSearchParams } from "next/navigation";
-import { filter_price_range } from "@/app/lib/helpers";
+const bccat_json = bc_categories;
 const ProductsSection = ({ category }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const searchParams = useSearchParams();
+  const filters = getCategoryFilters(category, flatCategories);
+  // console.log("FILTERS FROM CATEGORYVERSION", filters);
   const [onloadParams, setOnloadParams] = useState(() => {
     const params = {
       include: "images",
@@ -43,33 +48,12 @@ const ProductsSection = ({ category }) => {
     return params;
   });
 
-  // useEffect(() => {
-  //   const priceParams = searchParams.get("price");
-  //   if (priceParams && priceParams.split("-").length === 2) {
-  //     // check if price range values are valid
-  //     const tmp = priceParams.split("-");
-  //     if (
-  //       filter_price_range.filter(
-  //         (i) => i.min === parseInt(tmp[0]) && i.max === parseInt(tmp[1])
-  //       ).length > 0
-  //     ) {
-  //       console.log("ADD PRICE PARAMS TO FILTER");
-  //       setOnloadParams((prev) => {
-  //         prev["price:min"] = tmp[0];
-  //         prev["price:max"] = tmp[1];
-  //       });
-  //     }
-  //   }
-  // }, []);
-  // handle search Params
-  // handle price params
-
   const [productsParams, setProductsParams] = useState(onloadParams);
   const {
     products,
     loading: products_loading,
     pagination,
-    filters,
+    // filters,
     noResult,
     error: products_error,
     refetch: productsRefetch,
@@ -113,38 +97,47 @@ const ProductsSection = ({ category }) => {
   };
 
   const handleFilterChange = (e) => {
-    const filtersArray = transformObjectToArray(e);
-    const selectedFiltersArray = filtersArray.filter((i) => i.is_checked);
-    const filterObjParams = {};
-    if (selectedFiltersArray.length > 0) {
-      selectedFiltersArray.forEach((v, i) => {
-        const tmp = v.prop.split(":");
-        if (tmp.length > 1) {
-          if (tmp[0] === "price") {
-            const range = tmp[1].split("-");
-            filterObjParams["price:min"] = range[0];
-            filterObjParams["price:max"] = range[1];
-          }
-          if (tmp[0] === "brand") {
-            filterObjParams["brand_id"] = tmp[1];
-          }
-        } else {
-          // if root filter checkbox
-        }
-      });
-      setProductsParams((prev) => ({ ...prev, ...filterObjParams }));
-    } else {
-      // remove all filters
-      // remove price  filter
-      // console.log("REMOVE PRICE MIN AND MAX");
-      setProductsParams((prev) => {
-        const tmp = prev;
-        delete tmp["price:min"];
-        delete tmp["price:max"];
-        // console.log("TMP", tmp);
-        return { ...tmp };
-      });
-    }
+    setProductsParams((prev) => {
+      const filtersArray = transformObjectToArray(e);
+      console.log("onFilterChanges", filtersArray);
+      const filterObjParams = prev;
+      // price filtering
+      const price_filters = filtersArray.filter(({ prop }) =>
+        prop.includes("price:")
+      );
+      if (price_filters.filter(({ is_checked }) => is_checked).length > 0) {
+        // insert price and value to query
+        const filtered = price_filters.find(({ is_checked }) => is_checked); // single select only
+        const tmp = filtered.prop.split(":");
+        console.log("filtered_price", filtered);
+        const range = tmp[1].split("-");
+        filterObjParams["price:min"] = range[0];
+        filterObjParams["price:max"] = range[1];
+      } else {
+        // remove price from query
+        console.log("remove price from request");
+        delete filterObjParams["price:min"];
+        delete filterObjParams["price:max"];
+      }
+
+      // brand filtering
+      const brand_filters = filtersArray.filter(({ prop }) =>
+        prop.includes("brand:")
+      );
+      if (brand_filters.filter(({ is_checked }) => is_checked).length > 0) {
+        // insert brand and value to query
+        const filtered = brand_filters.filter(({ is_checked }) => is_checked); // multiselect
+        filterObjParams["brand_id:in"] = filtered
+          .map(({ prop }) => prop.split(":").pop())
+          .join(",");
+      } else {
+        // remove brand from query
+        console.log("remove brand from request");
+        delete filterObjParams["brand_id:in"];
+      }
+      console.log("newParams", filterObjParams);
+      return { ...filterObjParams };
+    });
   };
 
   const transformObjectToArray = (obj) => {

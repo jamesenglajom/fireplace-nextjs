@@ -17,22 +17,29 @@ export default function FilterSelectItem({ data, labelStyle, onChange }) {
   }, [data]);
   const handleChange = (e) => {
     const { value, checked } = e.target;
-    if (checked) {
-      const [key, val] = value.split(":");
-      updateUrlParams({ [key]: val });
-    }
+    const [key, val] = value.split(":");
+    updateUrlParams({ [key]: val }, checked);
     onChange(e);
   };
 
-  const updateUrlParams = (params = {}) => {
+  const updateUrlParams = (params = {}, is_checked) => {
+    let newParams = {};
     const urlParams = Object.fromEntries(searchParams.entries());
-    const updatedQuery = new URLSearchParams({ ...urlParams, ...params });
+    if (is_checked) {
+      newParams = { ...urlParams, ...params };
+    } else {
+      const key = Object.keys(params)[0];
+      console.log("key", key);
+      delete urlParams[key];
+      newParams = urlParams;
+    }
+    const updatedQuery = new URLSearchParams(newParams);
     const updatedUrl = `${BASE_URL}${pathname}?${updatedQuery.toString()}`;
     router.replace(updatedUrl, undefined, { shallow: true });
   };
   return (
     item && (
-      <div className="flex items-center  px-[20px]">
+      <div className="flex items-center  px-[10px]">
         <div className="flex h-5 w-5 shrink-0 items-center mr-5">
           <div className="group grid size-4 grid-cols-1  relative">
             <input
@@ -74,7 +81,9 @@ export default function FilterSelectItem({ data, labelStyle, onChange }) {
           <label
             htmlFor={item.prop}
             className={labelStyle ?? "text-sm text-gray-600"}>
-            {item.label}{" "}
+            {item.label}
+            {/* {` ${item.count ? `(${item.count})` : ""}`} */}
+            {` `}
             {["on sale", "quick ship"].includes(item.label.toLowerCase()) ? (
               <span className="text-[10px]">Soon</span>
             ) : (

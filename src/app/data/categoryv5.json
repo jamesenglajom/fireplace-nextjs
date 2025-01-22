@@ -24,7 +24,77 @@
     },
     "key_words": ["/fireplaces/"],
     "children": [],
-    "links": []
+    "links": [],
+    "filters": {
+      "price": {
+        "label": "Price",
+        "prop": "price",
+        "count": 0,
+        "is_checked": false,
+        "multi": false,
+        "options": [
+          {
+            "label": "$1.00 - $99.00",
+            "prop": "price:1-99",
+            "count": 0,
+            "is_checked": false
+          },
+          {
+            "label": "$100.00 - $499.00",
+            "prop": "price:100-499",
+            "count": 1,
+            "is_checked": false
+          },
+          {
+            "label": "$500.00 - $999.00",
+            "prop": "price:500-999",
+            "count": 0,
+            "is_checked": false
+          },
+          {
+            "label": "$1000.00 - $2499.00",
+            "prop": "price:1000-2499",
+            "count": 0,
+            "is_checked": false
+          },
+          {
+            "label": "$2500.00 - $4999.00",
+            "prop": "price:2500-4999",
+            "count": 3,
+            "is_checked": false
+          },
+          {
+            "label": "$5000.00 and UP",
+            "prop": "price:5000-100000",
+            "count": 0,
+            "is_checked": false
+          }
+        ]
+      },
+      "brand": {
+        "label": "Brands",
+        "prop": "brand",
+        "count": 0,
+        "is_checked": false,
+        "multi": true,
+        "options": [
+          {
+            "id": 46,
+            "label": "Blaze Outdoor Products",
+            "prop": "brand:46",
+            "count": 3,
+            "is_checked": false
+          },
+          {
+            "id": 68,
+            "label": "Peterson Gas Logs",
+            "prop": "brand:68",
+            "count": 1,
+            "is_checked": false
+          }
+        ]
+      }
+    }
   },
   {
     "banner_img": "/images/banner/firepit-banner.webp",

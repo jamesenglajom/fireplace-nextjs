@@ -5,7 +5,7 @@ export const filter_price_range = [
   { label: "$100 - $499", min: 100, max: 499 },
   { label: "$500 - $999", min: 500, max: 999 },
   { label: "$1000 - $2499", min: 1000, max: 2499 },
-  { label: "$2499 - $4999", min: 2499, max: 4999 },
+  { label: "$2500 - $4999", min: 2500, max: 4999 },
   { label: "$5000 and UP", min: 5000, max: 100000 },
 ];
 
@@ -21,13 +21,11 @@ export function createSlug(string, separator = "-") {
 }
 
 export function getFirstPathSegment(pathname) {
-  // Remove leading slash, split by "/", and return the first segment
+  // Remove leading slash , split by "/", and return the first segment
   return pathname.replace(/^\/+/, "").split("/")[0] || "";
 }
 
 export function getCategoryIds(category_slug, categories, bc_categories) {
-  // console.log("slug", category_slug);
-  // console.log("flat", categories);
   const category_keywords = categories.find(
     (i) => i.url === (category_slug === "all-products" ? "" : category_slug)
   )?.key_words;
@@ -49,6 +47,14 @@ export function getCategoryIds(category_slug, categories, bc_categories) {
     // );
     return [];
   }
+}
+
+export function getCategoryFilters(category_slug, categories) {
+  return (
+    categories.find(
+      (i) => i.url === (category_slug === "all-products" ? "" : category_slug)
+    )?.filters ?? {}
+  );
 }
 
 export function getCategoryNameById(id, bc_categories) {

@@ -172,21 +172,25 @@ export default function TuiFilterSort({
       setFilters((prev) => {
         const property = tmp[0];
         prev[property]["options"] = prev[property]["options"].map((i) => {
-          const checkValue = i.prop == value ? checked : false;
+          const checkValue = prev[property].multi
+            ? i.prop == value
+              ? checked
+              : i.is_checked
+            : i.prop == value
+            ? checked
+            : false;
           return {
             ...i,
             is_checked: checkValue,
           };
         });
         // console.log("prevValue", prev);
-        // onFilterChange(prev);
         filterValue = prev;
         return prev;
       });
     } else {
       setFilters((prev) => {
         prev[value]["is_checked"] = checked;
-        // onFilterChange(prev);
         filterValue = prev;
         return prev;
       });
@@ -248,15 +252,15 @@ export default function TuiFilterSort({
                     />
                   </div>
                 )}
-                {/* {filters?.brand && (
+                {filters?.brand && (
                   <div className="border-t py-5">
                     <FilterDrawer
                       data={filters.brand}
-                      multiSelect={false}
+                      multiSelect={true}
                       onFilterItemChange={handleFilterChange}
                     />
                   </div>
-                )} */}
+                )}
                 {filters?.price && (
                   <div className="border-t py-5">
                     <FilterDrawer
@@ -266,14 +270,14 @@ export default function TuiFilterSort({
                     />
                   </div>
                 )}
-                {/* {filters?.fuel_type && (
+                {filters?.fuel_type && (
                   <div className="border-t py-5">
                     <FilterDrawer
                       data={filters.fuel_type}
                       onFilterItemChange={handleFilterChange}
                     />
                   </div>
-                )} */}
+                )}
               </div>
             </DialogPanel>
           </div>
@@ -357,6 +361,13 @@ export default function TuiFilterSort({
                     onChange={handleFilterChange}
                   />
                 )}
+                {filters?.brand && (
+                  <FilterDropdownSelect
+                    data={filters.brand}
+                    multiSelect={false}
+                    onFilterItemChange={handleFilterChange}
+                  />
+                )}
                 {filters?.price && (
                   <FilterDropdownSelect
                     data={filters.price}
@@ -364,6 +375,13 @@ export default function TuiFilterSort({
                     onFilterItemChange={handleFilterChange}
                   />
                 )}
+                {/* {filters?.fuel_type && (
+                  <FilterDropdownSelect
+                    data={filters.fuel_type}
+                    multiSelect={false}
+                    onFilterItemChange={handleFilterChange}
+                  />
+                )} */}
               </div>
               {/* <div>
                 <div className="flex items-center gap-[5px] px-[7px] py-[3px] border-[3px] cursor-pointer rounded-md">
