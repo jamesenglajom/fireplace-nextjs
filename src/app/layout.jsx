@@ -15,9 +15,9 @@ const bell = Bellefair({
 });
 
 export const metadata = {
-  title: "Solana Fireplaces",
+  title: "Solana Fireplaces | Stylish Indoor & Outdoor Heating",
   description:
-    "Shop high-quality fireplaces, grills, gas stoves, and outdoor heating solutions. Enhance your home or patio with stylish and energy-efficient products. Free shipping and expert advice available!",
+    "Transform your home with Solana Fireplaces! Add warmth and style with our wood, gas, and electric designs. Shop now and create your perfect space!",
 };
 
 export default function RootLayout({ children }) {
