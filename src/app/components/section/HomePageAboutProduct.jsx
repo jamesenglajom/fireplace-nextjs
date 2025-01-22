@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ICRoundPhone } from "../icons/lib";
 export default function HomePageAboutProduct() {
   const img = "/images/banner/fireplace-banner.webp";
   return (
@@ -49,8 +50,11 @@ export default function HomePageAboutProduct() {
               </p>
             </div>
             <div className="flex justify-center md:justify-start">
-              <button className="bg-red-600 text-white py-[7px] px-[25px] rounded-md">
-                Call Now <span>888-667-4986</span>
+              <button className="bg-red-600 text-white py-[7px] px-[25px] rounded-md flex items-center gap-[10px]">
+                <ICRoundPhone />
+
+                <div>Call Now</div>
+                <div>888-667-4986</div>
               </button>
             </div>
           </div>
