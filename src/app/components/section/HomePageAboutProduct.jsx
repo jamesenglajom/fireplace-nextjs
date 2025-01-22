@@ -1,12 +1,14 @@
 import Image from "next/image";
 export default function HomePageAboutProduct() {
+  const img = "/images/banner/fireplace-banner.webp";
   return (
     <div className="w-full mt-5">
       <div className="container mx-auto bg-[#F6F6F6]">
         <div className="w-full flex flex-col md:flex-row">
           <div className="w-full md:w-[60%] p-[40px] flex flex-col gap-[30px]">
             <div className="text-xl md:text-3xl font-semibold font-bell">
-              About Blaze Grill Products
+              {/* About Blaze Grill Products */}
+              About Solana Fireplaces
             </div>
             <div className="relative w-full flex items-center justify-center md:hidden">
               {
@@ -16,7 +18,8 @@ export default function HomePageAboutProduct() {
                 //   className="w-full"
                 // />
                 <Image
-                  src="/images/home/about-blaze.webp"
+                  // src="/images/home/about-blaze.webp"
+                  src={img}
                   alt="About-Blaze-Image"
                   width={1000}
                   height={0}
@@ -25,21 +28,24 @@ export default function HomePageAboutProduct() {
             </div>
             <div className="text-sm md:text-base">
               <p className="text-left">
-                Blaze Outdoor Products brings quality, affordable outdoor
-                cooking to your backyard. With over 45 years of experience, we
-                design grills and outdoor kitchens that make grilling easy and
-                fun for everyone. Our products are build to last, providing a
-                perfect fit for any outdoor space and giving you the tools to
-                cook great meals for family and friends.
+                At Solana Fireplaces, we believe that the heart of a home
+                extends beyond its walls. We specialize in creating exceptional
+                outdoor living experiences through our expertly curated
+                selection of high-quality fireplaces, fire pits, and related
+                accessories. We are committed to providing you with products and
+                the knowledge and support you need to transform your outdoor
+                space into a warm, inviting haven.
               </p>
               <p className="text-left mt-[20px]">
-                At Blaze, everyone deserves a great outdoor cooking experience
-                without the high price tag. We're passionate about grilling and
-                creating spaces where people can gather and enjoy each other's
-                company. Every Blase product is made with care and comes with a
-                solid warranty, so you can feel confident it will last. From
-                casual BBQs to big get-togethers, Blaze makes it easy to enjoy
-                luxury, quality, and affordability right in your backyard.
+                Beyond fireplaces, Solana also caters to outdoor living
+                enthusiasts by offering a wide range of outdoor kitchen
+                products. Our selection includes top-of-the-line grills, BBQ
+                islands, and accessories to create the ultimate outdoor cooking
+                and entertainment area. With Solana Fireplaces, you can rely on
+                our expertise and dedication to quality, knowing that you are
+                choosing a partner committed to enhancing your home and
+                lifestyle with the best in both indoor and outdoor heating and
+                cooking solutions.
               </p>
             </div>
             <div className="flex justify-center md:justify-start">
@@ -57,7 +63,8 @@ export default function HomePageAboutProduct() {
                 //   className="w-full"
                 // />
                 <Image
-                  src="/images/home/about-blaze.webp"
+                  // src="/images/home/about-blaze.webp"
+                  src={img}
                   alt="About-Blaze-Image"
                   width={1000}
                   height={0}
