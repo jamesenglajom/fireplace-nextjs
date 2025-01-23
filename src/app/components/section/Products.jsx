@@ -15,8 +15,6 @@ const bccat_json = bc_categories;
 const ProductsSection = ({ category }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const searchParams = useSearchParams();
-  const filters = getCategoryFilters(category, flatCategories);
-  // console.log("FILTERS FROM CATEGORYVERSION", filters);
   const [onloadParams, setOnloadParams] = useState(() => {
     const params = {
       include: "images",
@@ -48,7 +46,12 @@ const ProductsSection = ({ category }) => {
     return params;
   });
 
+  const [filters, setFilters] = useState(
+    getCategoryFilters(category, flatCategories, {})
+  );
+
   const [productsParams, setProductsParams] = useState(onloadParams);
+
   const {
     products,
     loading: products_loading,
@@ -136,6 +139,7 @@ const ProductsSection = ({ category }) => {
         delete filterObjParams["brand_id:in"];
       }
       console.log("newParams", filterObjParams);
+      setFilters(getCategoryFilters(category, flatCategories, filterObjParams));
       return { ...filterObjParams };
     });
   };

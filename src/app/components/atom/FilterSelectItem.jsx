@@ -82,7 +82,7 @@ export default function FilterSelectItem({ data, labelStyle, onChange }) {
             htmlFor={item.prop}
             className={labelStyle ?? "text-sm text-gray-600"}>
             {item.label}
-            {/* {` ${item.count ? `(${item.count})` : ""}`} */}
+            {` ${item.count ? `(${item.count})` : ""}`}
             {` `}
             {["on sale", "quick ship"].includes(item.label.toLowerCase()) ? (
               <span className="text-[10px]">Soon</span>

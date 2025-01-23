@@ -1,3 +1,7 @@
+import brands_json from "@/app/data/filters/brands.json";
+import fireplaces_json from "@/app/data/filters/fireplaces.json";
+import firepits_json from "@/app/data/filters/firepits.json";
+
 export const onsale_category_ids = [294, 360, 361, 362, 363, 364, 365];
 export const filter_price_range = [
   { label: "Request A Quote", min: 0, max: 0 },
@@ -49,12 +53,133 @@ export function getCategoryIds(category_slug, categories, bc_categories) {
   }
 }
 
-export function getCategoryFilters(category_slug, categories) {
-  return (
-    categories.find(
-      (i) => i.url === (category_slug === "all-products" ? "" : category_slug)
-    )?.filters ?? {}
-  );
+export function getCategoryFilters(
+  category_slug,
+  categories,
+  active_filters = {}
+) {
+  let productsList = fireplaces_json;
+
+  switch (category_slug) {
+    case "fireplaces":
+      productsList = fireplaces_json;
+      break;
+    case "fire-pits":
+      productsList = firepits_json;
+      break;
+  }
+
+  console.log("category_slug ---s", category_slug);
+
+  console.log("active_filters", active_filters);
+
+  const active_brands = active_filters?.["brand_id:in"]
+    ? active_filters?.["brand_id:in"]
+        .split(",")
+        .map((value) => parseInt(value, 10))
+    : null;
+
+  const active_price_range =
+    active_filters?.["price:min"] && active_filters?.["price:min"]
+      ? `price:${active_filters["price:min"]}-${active_filters["price:max"]}`
+      : null;
+
+  const brandsList = brands_json;
+  // Step 1: Extract all unique brand IDs from productsList
+  const availableBrandIds = [
+    ...new Set(productsList.map((product) => product.brand_id)),
+  ];
+
+  if (active_brands !== null) {
+    productsList = productsList.filter((i) =>
+      active_brands.includes(i.brand_id)
+    );
+  }
+
+  if (active_price_range !== null) {
+    productsList = productsList.filter((i) => {
+      const tmp = active_price_range.split(":");
+      const price = tmp[1].split("-");
+      return i.price >= price[0] && i.price <= price[1];
+    });
+  }
+  // test if no active filter return all info
+  const filters = {
+    brand: {
+      label: "Brands",
+      prop: "price",
+      count: 0,
+      is_checked: false,
+      multi: true,
+      options: brandsList
+        .filter((brand) => availableBrandIds.includes(brand.id))
+        .map((i) => ({
+          ...i,
+          label: i.name,
+          prop: `brand:${i.id}`,
+          count: productsList.filter((i2) => i2.brand_id === i.id).length,
+          is_checked: active_brands ? active_brands.includes(i.id) : false,
+        })),
+    },
+    price: {
+      label: "Price",
+      prop: "price",
+      count: 0,
+      is_checked: false,
+      multi: false,
+      options: [
+        {
+          label: "$1.00 - $99.00",
+          prop: "price:1-99",
+          count: productsList.filter((i) => i.price > 0 && i.price < 100)
+            .length,
+          is_checked: active_price_range === "price:1-99",
+        },
+        {
+          label: "$100.00 - $499.00",
+          prop: "price:100-499",
+          count: productsList.filter((i) => i.price > 99 && i.price < 500)
+            .length,
+          is_checked: active_price_range === "price:100-499",
+        },
+        {
+          label: "$500.00 - $999.00",
+          prop: "price:500-999",
+          count: productsList.filter((i) => i.price > 499 && i.price < 1000)
+            .length,
+          is_checked: active_price_range === "price:500-999",
+        },
+        {
+          label: "$1000.00 - $2499.00",
+          prop: "price:1000-2499",
+          count: productsList.filter((i) => i.price > 999 && i.price < 2500)
+            .length,
+          is_checked: active_price_range === "price:1000-2499",
+        },
+        {
+          label: "$2500.00 - $4999.00",
+          prop: "price:2500-4999",
+          count: productsList.filter((i) => i.price > 2499 && i.price < 5000)
+            .length,
+          is_checked: active_price_range === "price:2500-4999",
+        },
+        {
+          label: "$5000.00 and UP",
+          prop: "price:5000-100000",
+          count: productsList.filter((i) => i.price > 4999 && i.price < 200000)
+            .length,
+          is_checked: active_price_range === "price:5000-100000",
+        },
+      ],
+    },
+  };
+
+  return filters;
+  // return (
+  //   categories.find(
+  //     (i) => i.url === (category_slug === "all-products" ? "" : category_slug)
+  //   )?.filters ?? {}
+  // );
 }
 
 export function getCategoryNameById(id, bc_categories) {
