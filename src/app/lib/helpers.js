@@ -1,6 +1,10 @@
 import brands_json from "@/app/data/filters/brands.json";
 import fireplaces_json from "@/app/data/filters/fireplaces.json";
 import firepits_json from "@/app/data/filters/firepits.json";
+import bbq_json from "@/app/data/filters/bbq.json";
+import gaslogs_json from "@/app/data/filters/gaslogs.json";
+import patio_heaters_json from "@/app/data/filters/patio_heaters.json";
+import on_sale_json from "@/app/data/filters/on_sale.json";
 
 export const onsale_category_ids = [294, 360, 361, 362, 363, 364, 365];
 export const filter_price_range = [
@@ -67,6 +71,21 @@ export function getCategoryFilters(
     case "fire-pits":
       productsList = firepits_json;
       break;
+    case "bbq-grills-and-smokers":
+      productsList = bbq_json;
+      break;
+    case "gas-logs":
+      productsList = gaslogs_json;
+      break;
+    case "outdoor-living-patio-heaters":
+      productsList = patio_heaters_json;
+      break;
+    case "sale":
+      productsList = on_sale_json;
+      break;
+    default:
+      productsList = [];
+      break;
   }
 
   console.log("category_slug ---s", category_slug);
@@ -119,7 +138,10 @@ export function getCategoryFilters(
           prop: `brand:${i.id}`,
           count: productsList.filter((i2) => i2.brand_id === i.id).length,
           is_checked: active_brands ? active_brands.includes(i.id) : false,
-        })),
+        }))
+        .sort((a, b) => {
+          return a.name.localeCompare(b.name);
+        }),
     },
     price: {
       label: "Price",

@@ -1,2 +1,0 @@
-fireplaces query then update fireplaces.json with the product list result
-http://localhost:3000/api/products?categories:in=70,148,150&include_fields=id,categories,brand_id,price
