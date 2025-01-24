@@ -6,12 +6,12 @@ export default function HomePageAboutProduct() {
     <div className="w-full mt-5">
       <div className="container mx-auto bg-[#F6F6F6]">
         <div className="w-full flex flex-col md:flex-row">
-          <div className="w-full md:w-[60%] p-[40px] flex flex-col gap-[30px]">
+          <div className="w-full xl:w-[60%] p-[40px] flex flex-col gap-[30px]">
             <div className="text-xl md:text-3xl font-semibold font-bell">
               {/* About Blaze Grill Products */}
               About Solana Fireplaces
             </div>
-            <div className="relative w-full flex items-center justify-center md:hidden">
+            <div className="relative w-full flex items-center justify-center xl:hidden">
               {
                 // <img
                 //   src="/images/home/about-blaze.webp"
@@ -50,16 +50,15 @@ export default function HomePageAboutProduct() {
               </p>
             </div>
             <div className="flex justify-center md:justify-start">
-              <button className="bg-red-600 text-white py-[7px] px-[25px] rounded-md flex items-center gap-[10px]">
+              <button className="bg-orange-400 hover:bg-orange-500 text-white py-[7px] px-[25px] rounded-md flex items-center gap-[10px]">
                 <ICRoundPhone />
-
                 <div>Call Now</div>
                 <div>888-667-4986</div>
               </button>
             </div>
           </div>
-          <div className="hidden md:block w-full md:w-[40%] p-[40px]">
-            <div className="relative w-full flex items-center justify-center">
+          <div className="hidden xl:flex w-full xl:w-[40%] p-[40px] items-center justify-center">
+            <div className="w-full ">
               {
                 // <img
                 //   src="/images/home/about-blaze.webp"
@@ -70,6 +69,7 @@ export default function HomePageAboutProduct() {
                   // src="/images/home/about-blaze.webp"
                   src={img}
                   alt="About-Blaze-Image"
+                  className="object-cover"
                   width={1000}
                   height={0}
                 />
