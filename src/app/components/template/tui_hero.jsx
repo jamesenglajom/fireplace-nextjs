@@ -203,11 +203,23 @@ export default function Hero({ data }) {
                 <div className="text-center flex justify-center">
                   {/* <div className="px-[20px] py-[7px] border-white bg-[rgba(0,0,0,.8)] border-4 max-w-[calc(100%-30px)]"> */}
                   <div className="px-[20px] py-[7px]">
-                    <div className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
-                      {data?.name === "All Products"
-                        ? "Design for Modern Living"
-                        : data?.name}
-                    </div>
+                    {data?.name === "All Products" ? (
+                      <div>
+                        <div className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
+                          Redefining Home Living
+                        </div>
+                        <div className="text-balance mt-1 tracking-wide text-white text-shadow-lg">
+                          Modern fireplaces and kitchen essentials designed to
+                          inspire
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <div className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
+                          {data?.name}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
