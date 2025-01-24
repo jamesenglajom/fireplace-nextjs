@@ -36,7 +36,7 @@ export default function HomePageReviews() {
     <div className="w-full mt-10">
       <div className="container mx-auto">
         <div className="flex-col md:flex-row flex gap-[50px] md:gap-[10px] items-center">
-          <div className="md:w-[30%] md:p-[20px] flex flex-col gap-[8px] justify-center text-center">
+          <div className="md:w-[30%] md:p-[20px] flex flex-col gap-[8px] justify-center text-center md:justify-normal md:text-left">
             <div className="font-bell text-xl md:text-3xl">
               Our customer reviews
             </div>
