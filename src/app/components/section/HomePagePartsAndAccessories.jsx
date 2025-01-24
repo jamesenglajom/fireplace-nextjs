@@ -79,7 +79,9 @@ export default function HomePagePartsAndAccessories() {
                   }
                 </div>
                 <div className="h-[49px]">
-                  <div className="font-bold text-base md:text-lg">{i.name}</div>
+                  <div className="font-bold text-base md:text-md text-center">
+                    {i.name}
+                  </div>
                 </div>
               </div>
             ))}
@@ -105,7 +107,9 @@ export default function HomePagePartsAndAccessories() {
                   }
                 </div>
                 <div className="h-[49px]">
-                  <div className="font-bold text-base md:text-lg">{i.name}</div>
+                  <div className="font-bold text-base md:text-md text-center">
+                    {i.name}
+                  </div>
                 </div>
               </div>
             ))}

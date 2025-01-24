@@ -140,7 +140,9 @@ export default function HomePageShopCategory() {
                         }
                       </div>
                       <div className="h-[49px]">
-                        <div className="font-bold">{i.name}</div>
+                        <div className="font-bold text-md text-center">
+                          {i.name}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -167,7 +169,9 @@ export default function HomePageShopCategory() {
                         }
                       </div>
                       <div className="h-[49px]">
-                        <div className="font-bold">{i.name}</div>
+                        <div className="font-bold text-sm text-center">
+                          {i.name}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -201,7 +205,9 @@ export default function HomePageShopCategory() {
                     }
                   </div>
                   <div className="h-[49px]">
-                    <div className="font-bold">{i.name}</div>
+                    <div className="font-bold text-sm text-center">
+                      {i.name}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -224,7 +230,9 @@ export default function HomePageShopCategory() {
                     }
                   </div>
                   <div className="h-[49px]">
-                    <div className="font-bold">{i.name}</div>
+                    <div className="font-bold text-sm text-center">
+                      {i.name}
+                    </div>
                   </div>
                 </div>
               ))}

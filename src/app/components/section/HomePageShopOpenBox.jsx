@@ -16,7 +16,7 @@ const products = [
   },
   {
     img: "/images/home/open-box/open-boxes-image-2.webp",
-    name: "Blaze Infrared Sear Burner BLZ-IR (New)",
+    name: "Blaze Infraorange Sear Burner BLZ-IR (New)",
     brand: "Blaze Outdoor Products",
     sale_price: 99.99,
     original_price: 109.99,
@@ -77,13 +77,13 @@ export default function HomePageShopOpenBox() {
                 key={`open-box-product-${idx}`}
                 className="aspect-1 border w-full bg-[#f8f8f8]">
                 <div className="relative">
-                  <div className="text-white bg-red-700 absolute left-0 rounded-sm px-[15px] py-[5px] z-[1]">
+                  <div className="text-white bg-orange-500 absolute left-0 rounded-sm px-[15px] py-[5px] z-[1]">
                     {"Open Box"}
                   </div>
                   <div
                     className={`${
                       i.sale_price < i.original_price ? "visible" : "invisible"
-                    } text-white bg-red-700 absolute left-[10px] bottom-[3px] rounded-sm px-[15px] py-[5px] z-[1]`}>
+                    } text-white bg-orange-500 absolute left-[10px] bottom-[3px] rounded-sm px-[15px] py-[5px] z-[1]`}>
                     {"SALE"}
                   </div>
                   <div className="relative aspect-1 flex justify-center">
@@ -99,16 +99,16 @@ export default function HomePageShopOpenBox() {
                   </div>
                 </div>
                 <div className="flex items-center justify-center py-[10px]">
-                  <div className="rounded-full border-[2px] border-stone-300 px-[15px] py-[3px] text-red-700 font-bold cursor-pointer">
+                  <div className="rounded-full border-[2px] border-orange-300 px-[15px] py-[3px] text-orange-600 font-bold cursor-pointer">
                     Quickview
                   </div>
                 </div>
                 <div className="flex flex-col gap-[5px] p-[10px]">
                   <div className="h-[45px]">
-                    <div className="line-clamp-2">{i.name}</div>
+                    <div className="line-clamp-2 font-bold">{i.name}</div>
                   </div>
                   <div
-                    className={`text-red-700 text-sm font-bold ${
+                    className={`text-orange-600 text-sm font-bold ${
                       i.free_shipping ? "visible" : "invisible"
                     }`}>
                     Free Shipping
@@ -139,7 +139,7 @@ export default function HomePageShopOpenBox() {
           </Carousel>
         </div>
         <div className="mt-5 text-center">
-          <button className="px-[20px] py-[7px] bg-red-600 text-white font-bold rounded-xl cursor-pointer">
+          <button className="px-[20px] py-[7px] bg-orange-400 hover:bg-orange-500 text-white font-bold rounded-xl cursor-pointer">
             Shop All Open Box Blaze Products
           </button>
         </div>
