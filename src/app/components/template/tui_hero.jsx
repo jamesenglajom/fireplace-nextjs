@@ -23,7 +23,7 @@ export default function Hero({ data }) {
       <div>
         <div className="container mx-auto flex flex-col md:flex-row">
           <div className="w-full  md:w-[calc(100%-370px)]">
-            <div className="w-full relative isolate px-6 lg:px-8 bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px] md:h-[510px]">
+            <div className="w-full relative isolate px-6 lg:px-8 bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px]  md:h-[calc(100vh-450px)]">
               {useBanner && (
                 <>
                   {
@@ -178,7 +178,7 @@ export default function Hero({ data }) {
   } else {
     return (
       <div className="w-full">
-        <div className="container mx-auto w-full relative isolate  bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px] md:h-[510px]">
+        <div className="container mx-auto w-full relative isolate  bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px] md:h-[calc(100vh-450px)]">
           {useBanner && (
             <>
               {

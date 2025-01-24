@@ -25,15 +25,15 @@ const items_per_break_point = [
 
 export default function HomePageFeatureCategories() {
   return (
-    <div className="w-full mt-5">
+    <div className="w-full mt-1">
       <div className="container mx-auto overflow-hidden">
         <Carousel breakpoints={items_per_break_point}>
           {items.map((v, idx) => (
             <div
               key={`feature-category-item-${idx}`}
-              className={`min-w-[180px] w-[180px] flex flex-col gap-[8px] group`}>
+              className={`min-w-[140px] w-[140px] flex flex-col gap-[8px] group`}>
               <div
-                className={`relative w-full h-[150px] flex items-center justify-center group-hover:border group-hover:bg-stone-100 rounded-md overflow-hidden transition-all duration-500`}>
+                className={`relative w-full h-[130px] flex items-center justify-center group-hover:border group-hover:bg-stone-100 rounded-md overflow-hidden transition-all duration-500`}>
                 {/* <div>image Here</div> */}
                 {
                   // <img
