@@ -177,7 +177,7 @@ export default function TuiNavbar() {
                     {/* <div className="text-white"><Icon icon={i.icon.name} /></div> */}
                     <Link
                       href={`${BASE_URL}/${i.menu.href}`}
-                      className={`${
+                      className={`text-sm ${
                         i.menu.href === ParentSlug
                           ? "font-semibold"
                           : "font-normal"
@@ -192,7 +192,7 @@ export default function TuiNavbar() {
                               {i.links.map((i1, index1) => (
                                 <div
                                   key={`${i.menu.href}-col-${index1}`}
-                                  className="flex flex-col gap-[20px]">
+                                  className="flex flex-col gap-[20px] text-xs">
                                   {i1.map((i2, index2) => (
                                     <div
                                       key={`${i.menu.href}-col-${index1}-content-${index2}`}>
@@ -207,21 +207,39 @@ export default function TuiNavbar() {
                                         </div>
                                       </Link>
                                       <div className="flex flex-col gap-[5px]">
-                                        {i2.children &&
-                                          i2.children.length > 0 &&
-                                          i2.children.map((i3, index3) => (
-                                            <Link
-                                              href={`${
-                                                i3?.url
-                                                  ? BASE_URL + "/" + i3.url
-                                                  : "#"
-                                              }`}
-                                              key={`${i.menu.href}-col-${index}-content-${index2}-child-${index3}`}>
-                                              <div className="text-black hover-text-pallete-orange cursor-pointer">
-                                                {i3.name}
-                                              </div>
-                                            </Link>
-                                          ))}
+                                        {i.name.toLowerCase() == "brands"
+                                          ? i2.children &&
+                                            i2.children.length > 0 &&
+                                            i2.children
+                                              .slice(0, 3)
+                                              .map((i3, index3) => (
+                                                <Link
+                                                  href={`${
+                                                    i3?.url
+                                                      ? BASE_URL + "/" + i3.url
+                                                      : "#"
+                                                  }`}
+                                                  key={`${i.menu.href}-col-${index}-content-${index2}-child-${index3}`}>
+                                                  <div className="text-black hover-text-pallete-orange cursor-pointer">
+                                                    {i3.name}
+                                                  </div>
+                                                </Link>
+                                              ))
+                                          : i2.children &&
+                                            i2.children.length > 0 &&
+                                            i2.children.map((i3, index3) => (
+                                              <Link
+                                                href={`${
+                                                  i3?.url
+                                                    ? BASE_URL + "/" + i3.url
+                                                    : "#"
+                                                }`}
+                                                key={`${i.menu.href}-col-${index}-content-${index2}-child-${index3}`}>
+                                                <div className="text-black hover-text-pallete-orange cursor-pointer">
+                                                  {i3.name}
+                                                </div>
+                                              </Link>
+                                            ))}
                                         <Link
                                           href={`${
                                             i2?.url
@@ -231,8 +249,8 @@ export default function TuiNavbar() {
                                           <div className="text-black hover-text-pallete-orange cursor-pointer flex gap-[10px] items-center">
                                             <Icon
                                               icon="teenyicons:arrow-solid"
-                                              width="16"
-                                              height="16"
+                                              width="12"
+                                              height="12"
                                             />
                                             <div>Shop All</div>
                                           </div>
