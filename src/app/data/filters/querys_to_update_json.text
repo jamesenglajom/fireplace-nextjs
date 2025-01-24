@@ -1,25 +1,6 @@
-brands query to update brands.json
+file:brands.json
 localhost:3000/api/brands
 
-fireplaces query then update fireplaces.json with the product list result
-file:fireplaces.json, url: /fireplaces  
-http://localhost:3000/api/products?categories:in=70,148,150&include_fields=id,categories,brand_id,price
-
-file:firepits.json, url: /fire-pits
-http://localhost:3000/api/products?categories:in=69,158,330,343,344,345&include_fields=id,categories,brand_id,price
-
-file: bbq.json, url: /bbq-grills-and-smokers
-http://localhost:3000/api/products?categories:in=167,168,169,197,198,199,200,201,202,203&include_fields=id,categories,brand_id,price&limit=250&page=1
-http://localhost:3000/api/products?categories:in=167,168,169,197,198,199,200,201,202,203&include_fields=id,categories,brand_id,price&limit=250&page=2
-http://localhost:3000/api/products?categories:in=167,168,169,197,198,199,200,201,202,203&include_fields=id,categories,brand_id,price&limit=250&page=3
-
-file:gaslogs.json, url: /gas-logs
-http://localhost:3000/api/products?categories:in=402,577,578,579,580&include_fields=id,categories,brand_id,price&limit=250&page=1
-
-
-file:patio_heaters.json url: /outdoor-living-patio-heaters
-http://localhost:3000/api/products?categories:in=328,335,336,337,338&include_fields=id,categories,brand_id,price&limit=250&page=1
-http://localhost:3000/api/products?categories:in=328,335,336,337,338&include_fields=id,categories,brand_id,price&limit=250&page=2
-
-file:on_sale.json url: /sale
-http://localhost:3000/api/products?categories:in=294,360,361,362,363,364,365,366,367,368,369,370,371&include_fields=id,categories,brand_id,price&limit=250&page=1
+file:products.json
+(query all pages and stack products on products.json)
+http://localhost:3000/api/products?include_fields=id,categories,brand_id,price&limit=250&page=1

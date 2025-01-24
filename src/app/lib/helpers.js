@@ -1,10 +1,5 @@
 import brands_json from "@/app/data/filters/brands.json";
-import fireplaces_json from "@/app/data/filters/fireplaces.json";
-import firepits_json from "@/app/data/filters/firepits.json";
-import bbq_json from "@/app/data/filters/bbq.json";
-import gaslogs_json from "@/app/data/filters/gaslogs.json";
-import patio_heaters_json from "@/app/data/filters/patio_heaters.json";
-import on_sale_json from "@/app/data/filters/on_sale.json";
+import products_json from "@/app/data/filters/products.json";
 
 export const onsale_category_ids = [294, 360, 361, 362, 363, 364, 365];
 export const filter_price_range = [
@@ -57,40 +52,22 @@ export function getCategoryIds(category_slug, categories, bc_categories) {
   }
 }
 
-export function getCategoryFilters(
-  category_slug,
-  categories,
-  active_filters = {}
-) {
-  let productsList = fireplaces_json;
+function hasEqualValue(array1, array2) {
+  return array1.some((value) => array2.includes(value));
+}
 
-  switch (category_slug) {
-    case "fireplaces":
-      productsList = fireplaces_json;
-      break;
-    case "fire-pits":
-      productsList = firepits_json;
-      break;
-    case "bbq-grills-and-smokers":
-      productsList = bbq_json;
-      break;
-    case "gas-logs":
-      productsList = gaslogs_json;
-      break;
-    case "outdoor-living-patio-heaters":
-      productsList = patio_heaters_json;
-      break;
-    case "sale":
-      productsList = on_sale_json;
-      break;
-    default:
-      productsList = [];
-      break;
-  }
+export function getCategoryFilters(active_filters = {}) {
+  const active_categories = active_filters?.["categories:in"]
+    ? active_filters["categories:in"]
+        .split(",")
+        .map((value) => parseInt(value, 10))
+    : [];
+  let productsList = products_json.filter((i) =>
+    hasEqualValue(i.categories, active_categories)
+  );
 
-  console.log("category_slug ---s", category_slug);
-
-  console.log("active_filters", active_filters);
+  // console.log("productLength", products_json.length);
+  // console.log("productLength CATFILTERED", productsList.length);
 
   const active_brands = active_filters?.["brand_id:in"]
     ? active_filters?.["brand_id:in"]
@@ -104,6 +81,7 @@ export function getCategoryFilters(
       : null;
 
   const brandsList = brands_json;
+  // console.log("brands.length", brandsList.length);
   // Step 1: Extract all unique brand IDs from productsList
   const availableBrandIds = [
     ...new Set(productsList.map((product) => product.brand_id)),
@@ -197,11 +175,6 @@ export function getCategoryFilters(
   };
 
   return filters;
-  // return (
-  //   categories.find(
-  //     (i) => i.url === (category_slug === "all-products" ? "" : category_slug)
-  //   )?.filters ?? {}
-  // );
 }
 
 export function getCategoryNameById(id, bc_categories) {

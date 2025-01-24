@@ -46,9 +46,7 @@ const ProductsSection = ({ category }) => {
     return params;
   });
 
-  const [filters, setFilters] = useState(
-    getCategoryFilters(category, flatCategories, {})
-  );
+  const [filters, setFilters] = useState(getCategoryFilters(onloadParams));
 
   const [productsParams, setProductsParams] = useState(onloadParams);
 
@@ -139,7 +137,7 @@ const ProductsSection = ({ category }) => {
         delete filterObjParams["brand_id:in"];
       }
       console.log("newParams", filterObjParams);
-      setFilters(getCategoryFilters(category, flatCategories, filterObjParams));
+      setFilters(getCategoryFilters(filterObjParams));
       return { ...filterObjParams };
     });
   };
