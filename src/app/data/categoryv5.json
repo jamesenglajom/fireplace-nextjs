@@ -1,5 +1,16 @@
 [
   {
+    "name": "Home",
+    "url": "",
+    "menu": {
+      "href": "",
+      "visible": true
+    },
+    "key_words": [],
+    "children": [],
+    "links": []
+  },
+  {
     "banner_img": "/images/banner/fireplace-banner.webp",
     "category_id": 70,
     "parent_id": 0,

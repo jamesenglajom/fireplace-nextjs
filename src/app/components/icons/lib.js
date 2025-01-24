@@ -13,6 +13,7 @@ import FluentChevronLeftIcon from "./FluentChevronLeftIcon";
 import ICRoundPhoneIcon from "./ICRoundPhoneIcon";
 import MingcuteDownLineIcon from "./MingcuteDownLineIcon";
 import MingcuteUpLineIcon from "./MingcuteUpLineIcon";
+import MingcuteHome7Icon from "./MingCuteHome7Icon";
 
 export const CartIcon = ({ color, width, height }) => {
   return <BXCartIcon color={color} width={width} height={height} />;
@@ -66,4 +67,8 @@ export const MingcuteDownLine = ({ color, width, height }) => {
 
 export const MingcuteUpLine = ({ color, width, height }) => {
   return <MingcuteUpLineIcon color={color} width={width} height={height} />;
+};
+
+export const MingcuteHome7 = ({ color, width, height }) => {
+  return <MingcuteHome7Icon color={color} width={width} height={height} />;
 };

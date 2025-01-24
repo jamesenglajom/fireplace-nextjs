@@ -14,7 +14,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 // icon
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { HeartIcon, CartIcon } from "@/app/components/icons/lib";
+import { HeartIcon, CartIcon, MingcuteHome7 } from "@/app/components/icons/lib";
 // components
 import HomeSearch from "../search/HomeSearch";
 // data
@@ -119,12 +119,14 @@ export default function TuiNavbar() {
                     //   src="/Logo.webp"
                     //   className="h-[60px] w-auto"
                     // />
-                    <Image
-                      alt="Bull Fireplace"
-                      src="/Logo.webp"
-                      fill
-                      className="object-contain"
-                    />
+                    <Link href={BASE_URL}>
+                      <Image
+                        alt="Bull Fireplace"
+                        src="/Logo.webp"
+                        fill
+                        className="object-contain"
+                      />
+                    </Link>
                   }
                 </div>
               </div>
@@ -169,7 +171,7 @@ export default function TuiNavbar() {
                 {navigation.map((i, index) => (
                   <div
                     key={`parent-nav-${index}`}
-                    className={`group py-[5px] px-[15px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center border-b hover:bg-orange-400 hover:text-white ${
+                    className={`group py-[5px] px-[10px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center border-b hover:bg-orange-400 hover:text-white ${
                       i.menu.href === ParentSlug
                         ? "text-white bg-pallete-orange"
                         : "text-pallete-dark"
@@ -177,12 +179,22 @@ export default function TuiNavbar() {
                     {/* <div className="text-white"><Icon icon={i.icon.name} /></div> */}
                     <Link
                       href={`${BASE_URL}/${i.menu.href}`}
-                      className={`text-sm ${
+                      className={`flex items-center gap-[8px] ${
                         i.menu.href === ParentSlug
                           ? "font-semibold"
                           : "font-normal"
                       }`}>
-                      {i.name}
+                      {i.name.toLowerCase() === "home" && <MingcuteHome7 />}
+                      {i.name.toLowerCase() !== "home" && (
+                        <div
+                          className={`text-xs ${
+                            i.menu.href === ParentSlug
+                              ? "font-semibold"
+                              : "font-normal"
+                          }`}>
+                          {i.name}
+                        </div>
+                      )}
                     </Link>
                     {i.links && i.links.length > 0 && (
                       <div className="bg-white absolute w-full left-0 top-[100%] z-[100] invisible group-hover:visible">
