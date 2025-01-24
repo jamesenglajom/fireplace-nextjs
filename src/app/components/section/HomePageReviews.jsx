@@ -35,32 +35,32 @@ export default function HomePageReviews() {
   return (
     <div className="w-full mt-10">
       <div className="container mx-auto">
-        <div className="flex-col md:flex-row flex gap-[50px] md:gap-[10px] items-center">
-          <div className="md:w-[30%] md:p-[20px] flex flex-col gap-[8px] justify-center text-center md:justify-normal md:text-left">
-            <div className="font-bell text-xl md:text-3xl">
+        <div className="flex-col lg:flex-row flex gap-[50px] lg:gap-[10px] items-center">
+          <div className="lg:w-[30%] lg:p-[20px] flex flex-col gap-[8px] justify-center text-center lg:justify-normal lg:text-left">
+            <div className="font-bell text-xl lg:text-3xl">
               Our customer reviews
             </div>
-            <div className="flex justify-center md:justify-start">
+            <div className="flex justify-center lg:justify-start">
               <Rating
                 readOnly
                 value={4.5}
                 fractions={2}
                 style={{ maxWidth: 150 }}></Rating>
             </div>
-            <div className="text-xs md:text-base">
+            <div className="text-xs lg:text-base">
               4.4 stars out of based from{" "}
               <span className="underline cursor-pointer">122 reviews</span>
             </div>
-            <div className="flex justify-center md:justify-start">
+            <div className="flex justify-center lg:justify-start">
               <div className="w-[250px] border  border-stone-500 bg-stone-200 h-[35px] rounded-lg overflow-hidden">
                 <div className="h-[35px] w-[90%] bg-amber-400 border-t border-t-white"></div>
               </div>
             </div>
-            <div className="text-xs md:text-sm underline text-stone-700 cursor-pointer">
+            <div className="text-xs lg:text-sm underline text-stone-700 cursor-pointer">
               Write a review
             </div>
           </div>
-          <div className="w-full lg:w-[70%] flex-col md:flex-row flex gap-[10px]">
+          <div className="w-full lg:w-[70%] flex-col lg:flex-row flex gap-[10px]">
             <Carousel breakpoints={carousel_breakpoints}>
               {reviews.map((i, idx) => (
                 <div key={`review-${idx}`} className="bg-white w-full p-[20px]">
@@ -72,10 +72,10 @@ export default function HomePageReviews() {
                         style={{ maxWidth: 150 }}
                       />
                     </div>
-                    <div className="font-extrabold text-sm md:text-base">
+                    <div className="font-extrabold text-sm lg:text-base">
                       {i.title}
                     </div>
-                    <div className="text-xs md:text-sm">{i.text}</div>
+                    <div className="text-xs lg:text-sm">{i.text}</div>
                     <div className="flex items-center justify-center">
                       <div className="relative w-[30px] h-[30px]">
                         {
