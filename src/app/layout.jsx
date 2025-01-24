@@ -1,4 +1,4 @@
-import { Inter, Bellefair } from "next/font/google";
+import { Inter, Bellefair, Montserrat } from "next/font/google";
 import "./globals.css";
 import FixedHeader from "./components/template/fixed_header";
 import TuiNavBar from "./components/template/tui_navbar";
@@ -14,6 +14,11 @@ const bell = Bellefair({
   weight: ["400"], // Specify weights as needed
 });
 
+const MontserratFont = Montserrat({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
+
 export const metadata = {
   title: "Solana Fireplaces | Stylish Indoor & Outdoor Heating",
   description:
@@ -23,7 +28,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${MontserratFont.className} antialiased`}>
         <FreeShippingBanner />
         <div className="hidden md:block bg-pallete-orange py-[8px] px-[30px] text-white">
           <div className="container mx-auto  flex items-center justify-between">
