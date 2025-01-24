@@ -156,9 +156,11 @@ export default function Footer() {
     <div className="bg-black text-white">
       <div className="container mx-auto pt-[60px] pb-[30px]">
         <div className="flex flex-col gap-[50px]">
-          <div className="flex flex-col md:flex-row gap-[20px] p-[20px] md:p-[0px]">
+          <div className="flex flex-col md:flex-row gap-[20px] p-[20px] md:p-[0px] md:flex-wrap lg:flex-nowrap">
             {footer.map((i, idx) => (
-              <div key={`footer-section-${idx}`} className="w-full">
+              <div
+                key={`footer-section-${idx}`}
+                className="w-full md:w-[calc(50%-10px)] lg:w-full">
                 <div className="text-sm md:text-lg font-semibold">{i.name}</div>
                 {i.name !== "Follow us" ? (
                   <div className="mt-[20px] flex flex-col gap-[8px]">
