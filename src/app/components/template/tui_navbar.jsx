@@ -171,9 +171,9 @@ export default function TuiNavbar() {
                 {navigation.map((i, index) => (
                   <div
                     key={`parent-nav-${index}`}
-                    className={`group py-[5px] px-[10px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center border-b hover:bg-orange-400 hover:text-white ${
+                    className={`group py-[5px] px-[10px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center border-b hover:bg-orange-500 hover:text-white ${
                       i.menu.href === ParentSlug
-                        ? "text-white bg-pallete-orange"
+                        ? "text-white bg-orange-400"
                         : "text-pallete-dark"
                     }`}>
                     {/* <div className="text-white"><Icon icon={i.icon.name} /></div> */}
