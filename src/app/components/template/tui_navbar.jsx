@@ -112,8 +112,8 @@ export default function TuiNavbar() {
               </div>
               <div className="flex items-center justify-center flex-1 sm:flex-initial sm:items-stretch sm:justify-start">
                 {/** flex-1 sm:items-stretch sm:justify-start */}
-                <div className="flex items-center relative w-[150px] aspect-2">
-                  <div className="absolute top-0 left-0 lg:top-[25px] lg:left-[25px]  w-[150px] aspect-2">
+                <div className="flex items-center relative w-[100px] md:w-[150px] aspect-2">
+                  <div className="absolute top-0 left-0 lg:top-[25px] lg:left-[25px]  w-[100px] md:w-[150px] aspect-2">
                     {
                       //   <img
                       //   alt="Bull Fireplace"
