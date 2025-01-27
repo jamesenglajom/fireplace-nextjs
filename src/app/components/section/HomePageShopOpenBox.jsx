@@ -139,7 +139,7 @@ export default function HomePageShopOpenBox() {
           </Carousel>
         </div>
         <div className="mt-5 text-center">
-          <button className="px-[20px] py-[7px] bg-orange-400 hover:bg-orange-500 text-white font-bold rounded-xl cursor-pointer">
+          <button className="text-sm md:text-base py-[4px] px-[10px] md:py-[7px] md:px-[25px] gap-[5px] md:gap-[10px] rounded-md bg-orange-400 hover:bg-orange-500 text-white font-medium cursor-pointer">
             Shop All Open Box Blaze Products
           </button>
         </div>

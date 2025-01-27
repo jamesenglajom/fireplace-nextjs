@@ -76,10 +76,11 @@ export default function HomePageAboutProduct() {
               </p>
             </div>
             <div className="flex justify-center md:justify-start">
-              <button className="bg-orange-400 hover:bg-orange-500 text-white py-[7px] px-[25px] rounded-md flex items-center gap-[10px]">
+              <button className="bg-orange-400 hover:bg-orange-500 text-white py-[4px] px-[10px] md:py-[7px] md:px-[25px] rounded-md flex items-center gap-[5px] md:gap-[10px]">
                 <ICRoundPhone />
-                <div>Call Now</div>
-                <div>888-667-4986</div>
+                <div className="text-sm md:text-base">
+                  Call Now 888-667-4986
+                </div>
               </button>
             </div>
           </div>
