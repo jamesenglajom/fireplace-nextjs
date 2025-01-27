@@ -121,7 +121,7 @@ function createAutoMenuFromBCCategories() {
     buildHierarchy(formatCategories)
       .map((i) => ({ ...i, links: i.children }))
       // .map((i) => ({ ...i, links: groupInPairs(i.links) }))
-      .map((i) => ({ ...i, links: groupInChunks(i.links, 8) }))
+      .map((i) => ({ ...i, links: groupInChunks(i.links, 2) }))
   );
 }
 // UNCOMMENT CODE BELOW TO CONSOLE LOG BC CATEGORIES HIERARCHY -- END
