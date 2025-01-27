@@ -1,7 +1,14 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 import { ICRoundPhone } from "../icons/lib";
 export default function HomePageAboutProduct() {
   const img = "/images/banner/fireplace-banner.webp";
+  const [expand, setExpand] = useState(false);
+
+  const handleExpandContent = () => {
+    setExpand((prev) => !prev);
+  };
   return (
     <div className="w-full mt-5">
       <div className="container mx-auto bg-[#F6F6F6]">
@@ -37,7 +44,26 @@ export default function HomePageAboutProduct() {
                 the knowledge and support you need to transform your outdoor
                 space into a warm, inviting haven.
               </p>
-              <p className="text-left mt-[20px]">
+              <p
+                className={`${
+                  expand ? "block" : "hidden"
+                } text-left mt-[20px] md:hidden`}>
+                Beyond fireplaces, Solana also caters to outdoor living
+                enthusiasts by offering a wide range of outdoor kitchen
+                products. Our selection includes top-of-the-line grills, BBQ
+                islands, and accessories to create the ultimate outdoor cooking
+                and entertainment area. With Solana Fireplaces, you can rely on
+                our expertise and dedication to quality, knowing that you are
+                choosing a partner committed to enhancing your home and
+                lifestyle with the best in both indoor and outdoor heating and
+                cooking solutions.
+              </p>
+              <button
+                onClick={handleExpandContent}
+                className="md:hidden py-[10px] underline italic">
+                {expand ? "Show Less..." : "Show More..."}
+              </button>
+              <p className="hidden md:block text-left mt-[20px]">
                 Beyond fireplaces, Solana also caters to outdoor living
                 enthusiasts by offering a wide range of outdoor kitchen
                 products. Our selection includes top-of-the-line grills, BBQ
