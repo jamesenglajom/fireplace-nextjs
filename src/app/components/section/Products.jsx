@@ -98,10 +98,27 @@ const ProductsSection = ({ category }) => {
   };
 
   const handleFilterChange = (e) => {
+    console.log("handleFilterChange", e);
     setProductsParams((prev) => {
-      const filtersArray = transformObjectToArray(e);
+      // insert root filter on filterArray
+      const filtersArray = [
+        e.onsale,
+        e.free_shipping,
+        ...transformObjectToArray(e),
+      ];
       console.log("onFilterChanges", filtersArray);
       const filterObjParams = prev;
+      // -----------------------------------------------------------------
+      // free shipping filtering
+      const free_shipping_filter = filtersArray.find(
+        ({ prop, is_checked }) => prop === "free_shipping" && is_checked
+      );
+      if (free_shipping_filter) {
+        filterObjParams["is_free_shipping"] = 1;
+      } else {
+        delete filterObjParams["is_free_shipping"];
+      }
+      // -----------------------------------------------------------------
       // price filtering
       const price_filters = filtersArray.filter(({ prop }) =>
         prop.includes("price:")
@@ -110,17 +127,17 @@ const ProductsSection = ({ category }) => {
         // insert price and value to query
         const filtered = price_filters.find(({ is_checked }) => is_checked); // single select only
         const tmp = filtered.prop.split(":");
-        console.log("filtered_price", filtered);
+        // console.log("filtered_price", filtered);
         const range = tmp[1].split("-");
         filterObjParams["price:min"] = range[0];
         filterObjParams["price:max"] = range[1];
       } else {
         // remove price from query
-        console.log("remove price from request");
+        // console.log("remove price from request");
         delete filterObjParams["price:min"];
         delete filterObjParams["price:max"];
       }
-
+      // -----------------------------------------------------------------
       // brand filtering
       const brand_filters = filtersArray.filter(({ prop }) =>
         prop.includes("brand:")
@@ -133,10 +150,12 @@ const ProductsSection = ({ category }) => {
           .join(",");
       } else {
         // remove brand from query
-        console.log("remove brand from request");
+        // console.log("remove brand from request");
         delete filterObjParams["brand_id:in"];
       }
-      console.log("newParams", filterObjParams);
+      // -----------------------------------------------------------------
+
+      // console.log("newParams", filterObjParams);
       setFilters(getCategoryFilters(filterObjParams));
       return { ...filterObjParams };
     });

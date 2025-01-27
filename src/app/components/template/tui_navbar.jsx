@@ -47,7 +47,6 @@ export default function TuiNavbar() {
 
   const ParentSlug =
     category_slug ?? findParentByUrl(cat_json, path.replace(/\//g, ""))?.url;
-  // console.log("ParentSlug", ParentSlug);
 
   const redirectToHome = (e) => {
     router.push("/");

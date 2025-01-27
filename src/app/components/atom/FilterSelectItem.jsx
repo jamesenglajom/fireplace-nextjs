@@ -16,27 +16,9 @@ export default function FilterSelectItem({ data, labelStyle, onChange }) {
     setItem(data);
   }, [data]);
   const handleChange = (e) => {
-    const { value, checked } = e.target;
-    const [key, val] = value.split(":");
-    updateUrlParams({ [key]: val }, checked);
     onChange(e);
   };
 
-  const updateUrlParams = (params = {}, is_checked) => {
-    let newParams = {};
-    const urlParams = Object.fromEntries(searchParams.entries());
-    if (is_checked) {
-      newParams = { ...urlParams, ...params };
-    } else {
-      const key = Object.keys(params)[0];
-      console.log("key", key);
-      delete urlParams[key];
-      newParams = urlParams;
-    }
-    const updatedQuery = new URLSearchParams(newParams);
-    const updatedUrl = `${BASE_URL}${pathname}?${updatedQuery.toString()}`;
-    router.replace(updatedUrl, undefined, { shallow: true });
-  };
   return (
     item && (
       <div className="flex items-center  px-[10px]">

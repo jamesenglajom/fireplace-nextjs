@@ -32,6 +32,8 @@ import FilterDropdownSelect from "@/app/components/atom/FilterDropdownSelect";
 
 import { useSearchParams } from "next/navigation";
 
+import FilterChipsWrapper from "@/app/components/section/FilterChipsWrapper";
+
 const sortOptions = [
   {
     name: "Most Popular",
@@ -56,43 +58,6 @@ const sortOptions = [
 ];
 
 const loaderArray = [1, 2, 3, 4, 5, 6, 7, 8];
-// const filters = [
-//   {
-//     id: "color",
-//     name: "Color",
-//     options: [
-//       { value: "white", label: "White", checked: false },
-//       { value: "beige", label: "Beige", checked: false },
-//       { value: "blue", label: "Blue", checked: true },
-//       { value: "brown", label: "Brown", checked: false },
-//       { value: "green", label: "Green", checked: false },
-//       { value: "purple", label: "Purple", checked: false },
-//     ],
-//   },
-//   {
-//     id: "category",
-//     name: "Category",
-//     options: [
-//       { value: "new-arrivals", label: "New Arrivals", checked: false },
-//       { value: "sale", label: "Sale", checked: false },
-//       { value: "travel", label: "Travel", checked: true },
-//       { value: "organization", label: "Organization", checked: false },
-//       { value: "accessories", label: "Accessories", checked: false },
-//     ],
-//   },
-//   {
-//     id: "size",
-//     name: "Size",
-//     options: [
-//       { value: "2l", label: "2L", checked: false },
-//       { value: "6l", label: "6L", checked: false },
-//       { value: "12l", label: "12L", checked: false },
-//       { value: "18l", label: "18L", checked: false },
-//       { value: "20l", label: "20L", checked: false },
-//       { value: "40l", label: "40L", checked: true },
-//     ],
-//   },
-// ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -165,7 +130,7 @@ export default function TuiFilterSort({
 
   const handleFilterChange = (e) => {
     const { value, checked } = e.target;
-    // console.log(`${value}: ${checked} (checked)`);
+    console.log(`${value}: ${checked} (checked)`);
     const tmp = value.split(":");
     let filterValue = null;
     if (tmp.length > 1) {
@@ -198,6 +163,16 @@ export default function TuiFilterSort({
 
     onFilterChange(filterValue);
     return filterValue;
+  };
+
+  const handleFilterChipClose = (e) => {
+    const tmp = {
+      target: {
+        value: e.prop,
+        is_checked: false,
+      },
+    };
+    handleFilterChange(tmp);
   };
 
   return (
@@ -234,7 +209,7 @@ export default function TuiFilterSort({
               {/* Filters */}
               <div className="relative">
                 <h3 className="sr-only">Categories</h3>
-                {filters?.onsale && (
+                {/* {filters?.onsale && (
                   <div className="border-t py-5">
                     <FilterSelectItem
                       data={filters.onsale}
@@ -260,7 +235,7 @@ export default function TuiFilterSort({
                       onFilterItemChange={handleFilterChange}
                     />
                   </div>
-                )}
+                )} */}
                 {filters?.price && (
                   <div className="border-t py-5">
                     <FilterDrawer
@@ -270,14 +245,14 @@ export default function TuiFilterSort({
                     />
                   </div>
                 )}
-                {filters?.fuel_type && (
+                {/* {filters?.fuel_type && (
                   <div className="border-t py-5">
                     <FilterDrawer
                       data={filters.fuel_type}
                       onFilterItemChange={handleFilterChange}
                     />
                   </div>
-                )}
+                )} */}
               </div>
             </DialogPanel>
           </div>
@@ -347,17 +322,21 @@ export default function TuiFilterSort({
             <div className="hidden lg:flex items-center justify-between mt-3">
               <div className="flex items-center gap-[4px]">
                 {/* FILTER HERE */}
-                {filters?.onsale && (
+                {/* {filters?.onsale && (
                   <FilterSelectItemV2
                     data={filters.onsale}
-                    labelStyle="font-semibold uppercase text-stone-600"
                     onChange={handleFilterChange}
                   />
                 )}
                 {filters?.quick_ship && (
                   <FilterSelectItemV2
                     data={filters.quick_ship}
-                    labelStyle="font-semibold uppercase text-stone-600"
+                    onChange={handleFilterChange}
+                  />
+                )}
+                {filters?.free_shipping && (
+                  <FilterSelectItemV2
+                    data={filters.free_shipping}
                     onChange={handleFilterChange}
                   />
                 )}
@@ -367,7 +346,7 @@ export default function TuiFilterSort({
                     multiSelect={false}
                     onFilterItemChange={handleFilterChange}
                   />
-                )}
+                )} */}
                 {filters?.price && (
                   <FilterDropdownSelect
                     data={filters.price}
@@ -375,21 +354,16 @@ export default function TuiFilterSort({
                     onFilterItemChange={handleFilterChange}
                   />
                 )}
-                {/* {filters?.fuel_type && (
-                  <FilterDropdownSelect
-                    data={filters.fuel_type}
-                    multiSelect={false}
-                    onFilterItemChange={handleFilterChange}
-                  />
-                )} */}
               </div>
-              {/* <div>
-                <div className="flex items-center gap-[5px] px-[7px] py-[3px] border-[3px] cursor-pointer rounded-md">
-                  <button>All Filters</button>
-                </div>
-              </div> */}
             </div>
           </div>
+
+          {
+            <FilterChipsWrapper
+              filters={filters}
+              onChipClose={handleFilterChipClose}
+            />
+          }
 
           <section aria-labelledby="products-heading" className="pb-24 sm:pt-6">
             <h2 id="products-heading" className="sr-only">

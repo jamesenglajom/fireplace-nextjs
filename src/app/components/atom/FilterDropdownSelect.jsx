@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { MingcuteDownLine } from "@/app/components/icons/lib";
 import FilterSelectItem from "@/app/components/atom/FilterSelectItem";
 export default function FilterDropdownSelect({
   data,
@@ -30,14 +31,17 @@ export default function FilterDropdownSelect({
     onFilterItemChange(e);
   };
   return (
-    <div className="flex items-center gap-[5px] px-[7px] py-[3px] border-[2px] cursor-pointer rounded-md border-stone-200 hover:border-orange-200 transition-colors duration-300 group">
+    <div className="shadow-sm flex items-center ">
       <Menu as="div" className="relative inline-block text-left">
         {({ open }) => (
           <>
             <MenuButton
               onClick={() => setIsOpen(open ? false : true)}
-              className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-              {data?.label}
+              className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900 items-center select-none gap-[5px] px-[7px] py-[3px] border-[0.5px] rounded-md border-stone-400 hover:border-orange-200 transition-colors duration-300">
+              <div>{data?.label}</div>
+              <div>
+                <MingcuteDownLine width={16} height={16} />
+              </div>
             </MenuButton>
             {isOpen && (
               <MenuItems

@@ -62,12 +62,12 @@ export function getCategoryFilters(active_filters = {}) {
         .split(",")
         .map((value) => parseInt(value, 10))
     : [];
+
   let productsList = products_json.filter((i) =>
     hasEqualValue(i.categories, active_categories)
   );
 
-  // console.log("productLength", products_json.length);
-  // console.log("productLength CATFILTERED", productsList.length);
+  const active_is_free_shipping = active_filters?.["is_free_shipping"];
 
   const active_brands = active_filters?.["brand_id:in"]
     ? active_filters?.["brand_id:in"]
@@ -102,9 +102,23 @@ export function getCategoryFilters(active_filters = {}) {
   }
   // test if no active filter return all info
   const filters = {
+    onsale: {
+      label: "On Sale",
+      prop: "onsale",
+      count: 0,
+      is_checked: false,
+      options: [],
+    },
+    free_shipping: {
+      label: "Free Shipping",
+      prop: "free_shipping",
+      count: 0,
+      is_checked: active_is_free_shipping ? true : false,
+      options: [],
+    },
     brand: {
       label: "Brands",
-      prop: "price",
+      prop: "brand",
       count: 0,
       is_checked: false,
       multi: true,
@@ -150,21 +164,21 @@ export function getCategoryFilters(active_filters = {}) {
           is_checked: active_price_range === "price:500-999",
         },
         {
-          label: "$1000.00 - $2499.00",
+          label: "$1,000.00 - $2,499.00",
           prop: "price:1000-2499",
           count: productsList.filter((i) => i.price > 999 && i.price < 2500)
             .length,
           is_checked: active_price_range === "price:1000-2499",
         },
         {
-          label: "$2500.00 - $4999.00",
+          label: "$2,500.00 - $4,999.00",
           prop: "price:2500-4999",
           count: productsList.filter((i) => i.price > 2499 && i.price < 5000)
             .length,
           is_checked: active_price_range === "price:2500-4999",
         },
         {
-          label: "$5000.00 and UP",
+          label: "$5,000.00 and UP",
           prop: "price:5000-100000",
           count: productsList.filter((i) => i.price > 4999 && i.price < 200000)
             .length,
