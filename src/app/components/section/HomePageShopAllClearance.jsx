@@ -27,7 +27,7 @@ export default function HomePageShopAllClearance() {
         "Create your dream backyard kitchen with top-of-the-line grills, BBQ islands, and all the essential accessories, all while taking advantage of great deals and savings.",
       button: {
         label: "Shop All Outdoor Kitchen Deals",
-        url: `${BASE_URL}`,
+        url: `${BASE_URL}/outdoor-kitchen`,
       },
     },
   ];
