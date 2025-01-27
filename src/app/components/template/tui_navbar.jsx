@@ -199,7 +199,7 @@ export default function TuiNavbar() {
                     </Link>
                     {i.links && i.links.length > 0 && (
                       <div className="bg-white absolute w-full left-0 top-[100%] z-[100] invisible group-hover:visible">
-                        <div className="container mx-auto py-5">
+                        <div className="container mx-auto py-5 px-[20px]">
                           <div className="flex justify-between">
                             <div className="w-full flex gap-[70px]">
                               {i.links.map((i1, index1) => (
@@ -274,7 +274,6 @@ export default function TuiNavbar() {
                                 </div>
                               ))}
                             </div>
-                            <div className="">extras</div>
                           </div>
                         </div>
                       </div>
