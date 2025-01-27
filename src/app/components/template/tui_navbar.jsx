@@ -96,9 +96,9 @@ export default function TuiNavbar() {
   };
   return (
     <>
-      <div className="relative">
-        <Disclosure as="nav" className="bg-white z-[9999]">
-          <div className="mx-auto container px-2 sm:px-6 lg:px-8">
+      <div className="relative ">
+        <Disclosure as="nav" className="bg-white z-[9999] ">
+          <div className="mx-auto container px-2 sm:px-6 lg:px-8 pt-[10px]">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -112,22 +112,24 @@ export default function TuiNavbar() {
               </div>
               <div className="flex items-center justify-center flex-1 sm:flex-initial sm:items-stretch sm:justify-start">
                 {/** flex-1 sm:items-stretch sm:justify-start */}
-                <div className="flex items-center relative w-[130px] aspect-2">
-                  {
-                    //   <img
-                    //   alt="Bull Fireplace"
-                    //   src="/Logo.webp"
-                    //   className="h-[60px] w-auto"
-                    // />
-                    <Link href={BASE_URL}>
-                      <Image
-                        alt="Bull Fireplace"
-                        src="/Logo.webp"
-                        fill
-                        className="object-contain"
-                      />
-                    </Link>
-                  }
+                <div className="flex items-center relative w-[150px] aspect-2">
+                  <div className="absolute top-0 left-0 lg:top-[25px] lg:left-[25px]  w-[150px] aspect-2">
+                    {
+                      //   <img
+                      //   alt="Bull Fireplace"
+                      //   src="/Logo.webp"
+                      //   className="h-[60px] w-auto"
+                      // />
+                      <Link href={BASE_URL}>
+                        <Image
+                          alt="Bull Fireplace"
+                          src="/Logo.webp"
+                          fill
+                          className="object-contain"
+                        />
+                      </Link>
+                    }
+                  </div>
                 </div>
               </div>
               <div className="hidden sm:block sm:w-[300px] md:w-[500px]">
