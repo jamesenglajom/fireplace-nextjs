@@ -53,7 +53,7 @@ const partsandaccessories2 = [
 export default function HomePagePartsAndAccessories() {
   return (
     <div className="w-full mt-10">
-      <div className="container mx-auto p-[10px] md:p-[0px]">
+      <div className="container mx-auto px-[10px] lg:px-[20px]">
         <div className="text-xl md:text-4xl font-semibold underline italic font-bell">
           Fireplace Parts & Accessories
         </div>

@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       container: {
-        padding: '15px', // Add padding
+        // padding: '15px', // Add padding
       },
       colors: {
         background: "var(--background)",

@@ -66,7 +66,7 @@ const carousel_breakpoints = [
 export default function HomePageShopOpenBox() {
   return (
     <div className="w-full mt-10">
-      <div className="container mx-auto p-[10px] md:p-[0px]">
+      <div className="container mx-auto px-[10px] lg:px-[20px]">
         <div className="text-xl md:text-4xl underline italic font-semibold font-bell">
           Shop Open Box Blaze Products
         </div>

@@ -94,7 +94,7 @@ const fireplacesStoves2 = [
 export default function HomePageShopCategory() {
   return (
     <div className="w-full mt-10">
-      <div className="container mx-auto p-[10px] md:p-[0px]">
+      <div className="container mx-auto px-[10px] lg:px-[20px]">
         {/* md desktop visible -- hides on lower screens */}
         <div className="hidden lg:block">
           <div className="text-4xl underline italic font-semibold  font-bell">

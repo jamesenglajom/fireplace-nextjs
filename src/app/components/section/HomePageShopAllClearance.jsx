@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function HomePageShopAllClearance() {
   return (
     <div className="w-full mt-5">
-      <div className="container mx-auto p-[10px] md:p-[0px]">
+      <div className="container mx-auto px-[10px] lg:px-[20px]">
         <div className="w-full flex flex-col md:flex-row gap-[50px]">
           <div className="w-full flex flex-col gap-[10px]">
             <div className="w-full aspect-2">
