@@ -37,7 +37,56 @@ const menu = [
 ];
 
 const fireplacesStovePlaceHolder = [0, 0, 0, 0, 0, 0];
-
+const fireplacesStoves = [
+  {
+    name: "Electric Fireplaces",
+    img: "/images/home/fireplaces_and_stoves/electric-fireplaces.webp",
+  },
+  {
+    name: "Gas Fireplaces",
+    img: "/images/home/fireplaces_and_stoves/gas-fireplaces.webp",
+  },
+  {
+    name: "Fireplace TV Stands",
+    img: "/images/home/fireplaces_and_stoves/fireplace-tv-stand.webp",
+  },
+  {
+    name: "Wall-Mounted Fireplaces",
+    img: "/images/home/fireplaces_and_stoves/wall-mounted-fireplace.webp",
+  },
+  {
+    name: "Smart Fireplaces",
+    img: "/images/home/fireplaces_and_stoves/smart-fireplace.webp",
+  },
+  {
+    name: "Freestanding Fireplaces",
+    img: "/images/home/fireplaces_and_stoves/freestanding-fireplace.webp",
+  },
+  {
+    name: "Fireplace Inserts",
+    img: "/images/home/fireplaces_and_stoves/fireplace-inserts.webp",
+  },
+  {
+    name: "Electric Stove Heaters",
+    img: "/images/home/fireplaces_and_stoves/electric-stove-heaters.webp",
+  },
+  {
+    name: "Wood-Burning Stoves",
+    img: "/images/home/fireplaces_and_stoves/wood-burning-stove.webp",
+  },
+  {
+    name: "Freestanding Stoves",
+    img: "/images/home/fireplaces_and_stoves/freestanding-stoves.webp",
+  },
+  {
+    name: "Freestanding Gas Stoves",
+    img: "/images/home/fireplaces_and_stoves/freestanding-gas-stoves.webp",
+  },
+  {
+    name: "Pellet Stoves",
+    img: "/images/home/fireplaces_and_stoves/pellet-stoves.webp",
+  },
+];
 const fireplacesStoves1 = [
   {
     name: "Electric Fireplaces",
@@ -101,7 +150,7 @@ export default function HomePageShopCategory() {
             Shop Fireplaces
           </div>
           <div className="flex-col md:flex-row flex gap-[10px] mt-5">
-            <div className="w-[25%]  flex flex-col gap-5">
+            <div className="w-[25%] min-w-[250px] flex flex-col gap-5">
               {menu.map((i, idx) => (
                 <div key={`menu-item-${idx}`} className="">
                   <div className="font-bold">{i.name}</div>
@@ -113,24 +162,18 @@ export default function HomePageShopCategory() {
                 </div>
               ))}
             </div>
-            <div className="border-l w-[85%]  p-[20px]">
+            <div className="border-l w-[calc(100%-250px)]  pl-[20px]">
               <div className="text-3xl italic font-semibold font-bell">
                 Fireplaces & Stove
               </div>
               <div className="flex flex-col gap-[30px] mt-5">
-                <div className=" w-full flex flex-col md:flex-row gap-5">
-                  {fireplacesStoves1.map((i, idx) => (
+                <div className=" w-full flex flex-col md:flex-row md:flex-wrap gap-[4px]">
+                  {fireplacesStoves.map((i, idx) => (
                     <div
                       key={`fireplace-stoves-1-${idx}`}
-                      className="border p-4 w-full flex flex-col gap-4 hover:shadow-lg transition-all duration-300">
+                      className="border p-4 w-full lg:w-[calc(25%-4px)] xl:w-[calc(16.6%-4px)] flex flex-col gap-[10px] hover:shadow-lg transition-all duration-300">
                       <div className="relative aspect-1 bg-stone-100 border">
                         {
-                          // <img
-                          //   src={i.img}
-                          //   alt={i.name}
-                          //   className="object-fill"
-                          // />
-
                           <Image
                             src={i.img}
                             alt={`${i.name}-image`}
@@ -139,37 +182,8 @@ export default function HomePageShopCategory() {
                           />
                         }
                       </div>
-                      <div className="h-[49px]">
-                        <div className="font-bold text-md text-center">
-                          {i.name}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className=" w-full flex flex-col md:flex-row gap-5">
-                  {fireplacesStoves2.map((i, idx) => (
-                    <div
-                      key={`fireplace-stoves-2-${idx}`}
-                      className="border p-4 w-full flex flex-col gap-4 hover:shadow-lg transition-all duration-300">
-                      <div className="relative aspect-1 bg-stone-100 border">
-                        {
-                          // <img
-                          //   src={i.img}
-                          //   alt={i.name}
-                          //   className="object-fill"
-                          // />
-
-                          <Image
-                            src={i.img}
-                            alt={`${i.name}-image`}
-                            className="object-contain"
-                            fill
-                          />
-                        }
-                      </div>
-                      <div className="h-[49px]">
-                        <div className="font-bold text-sm text-center">
+                      <div className="h-[72px] flex justify-center items-center">
+                        <div className="font-medium text-sm md:text-base text-center">
                           {i.name}
                         </div>
                       </div>
