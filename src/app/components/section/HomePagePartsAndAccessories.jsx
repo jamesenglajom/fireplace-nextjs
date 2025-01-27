@@ -158,7 +158,6 @@ export default function HomePagePartsAndAccessories() {
             ))}
           </div>
         </div>
-
         <div className="mt-[20px] flex items-center justify-center md:hidden">
           <button className="text-sm md:text-base font-medium bg-orange-400 hover:bg-orange-500 text-white py-[4px] px-[10px] md:py-[7px] md:px-[25px] rounded-md">
             Shop All Parts and Accessories
