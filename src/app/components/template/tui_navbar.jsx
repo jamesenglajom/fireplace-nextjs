@@ -281,39 +281,8 @@ export default function TuiNavbar() {
                   </div>
                 ))}
               </div>
-              {/* <div className="sm:flex sm:justify-center sm:w-full xl:w-auto sm:mt-4 xl:mt-0">
-              <div className="cursor-pointer font-semibold  flex">
-                <div>
-                  <Link href="/auth/signin">SignIn</Link>
-                </div>
-                <div className="border-l pl-[10px] ml-[10px] border-stone-900">
-                  <Link href="/auth/signup">SignUp</Link>
-                </div>
-              </div>
-            </div> */}
             </div>
           </div>
-          {/* <DisclosurePanel className="sm:hidden">
-          <div className="space-y-1 px-2 pb-3 pt-2">
-            {navigation.map((item) => (
-              <DisclosureButton
-                key={item.name}
-                as="a"
-                href={`${BASE_URL}/${item.menu.href}`}
-                aria-current={
-                  item.menu.href === category_slug ? "page" : undefined
-                }
-                className={classNames(
-                  item.menu.href === category_slug
-                    ? "bg-pallete-orange text-white"
-                    : "text-gray-800 hover:bg-gray-600 hover:text-white",
-                  "block rounded-md px-3 py-2 text-base font-medium"
-                )}>
-                {item.name}
-              </DisclosureButton>
-            ))}
-          </div>
-        </DisclosurePanel> */}
         </Disclosure>
       </div>
 
