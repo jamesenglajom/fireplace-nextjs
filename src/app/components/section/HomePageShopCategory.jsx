@@ -212,7 +212,14 @@ export default function HomePageShopCategory() {
                 </div>
               ))}
             </div>
-            <div className=" w-full flex flex-wrap gap-5">
+            <div className="flex justify-center">
+              <a href="">
+                <button className="text-sm md:text-base font-medium bg-orange-400 hover:bg-orange-500 text-white py-[4px] px-[10px] md:py-[7px] md:px-[25px] rounded-md">
+                  Shop Fireplaces & Stoves
+                </button>
+              </a>
+            </div>
+            {/* <div className=" w-full flex flex-wrap gap-5">
               {fireplacesStoves2.map((i, idx) => (
                 <div
                   key={`fireplace-stoves-2-${idx}`}
@@ -236,7 +243,7 @@ export default function HomePageShopCategory() {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
