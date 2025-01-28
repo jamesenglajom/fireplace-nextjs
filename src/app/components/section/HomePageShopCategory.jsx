@@ -178,8 +178,8 @@ export default function HomePageShopCategory() {
                             src={i.img}
                             alt={`${i.name}-image`}
                             className="w-full h-full object-cover"
-                            width={1000}
-                            height={500}
+                            width={300}
+                            height={300}
                             // loading="eager"
                             // priority={false}
                           />
@@ -217,8 +217,8 @@ export default function HomePageShopCategory() {
                         src={i.img}
                         alt={`${i.name}-image`}
                         className="w-full h-full object-contain"
-                        width={1000}
-                        height={500}
+                        width={300}
+                        height={300}
                         // loading="eager"
                         // priority={false}
                       />
