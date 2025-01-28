@@ -18,46 +18,41 @@ export default function Hero({ data }) {
   ];
   const useBanner = useBreakpointValue(breakpoints);
 
-  if (data.children && data.children.length > 0) {
+  if (data && data.children && data.children.length > 0) {
     return (
       <div>
         <div className="container mx-auto flex flex-col md:flex-row">
           <div className="w-full  md:w-[calc(100%-370px)]">
-            <div className="w-full relative isolate px-6 lg:px-8 bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px]  md:h-[calc(100vh-450px)]">
-              {useBanner && (
-                <>
-                  {
-                    // for lazy loading
-                    <Image
-                      src={useBanner}
-                      alt={`Banner`}
-                      className="w-full h-full object-cover"
-                      width={1000}
-                      height={500}
-                      loading="eager"
-                      priority={true}
-                    />
-                    // -----------------
-                  }
-                  {
-                    // <img
-                    //   src={useBanner}
-                    //   alt="Banner"
-                    //   className="object-cover  w-full h-full"
-                    // />
-                  }
-                  <div className="absolute z-[9999] inset-0 m-auto flex items-center justify-center">
-                    <div className="text-center flex justify-center">
-                      <div className="px-[20px] py-[7px] border-white bg-[rgba(0,0,0,.8)] border-4 ">
-                        <div className="text-balance text-xl font-semibold tracking-tight text-white sm:text-4xl">
-                          {data?.name ?? "Design for Modern Living"}
+            {useBanner && (
+              <div className="w-full relative isolate px-6 lg:px-8 bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px]  md:h-[calc(100vh-450px)]">
+                {
+                  <Image
+                    src={useBanner}
+                    alt={`Banner`}
+                    className="w-full h-full object-cover"
+                    fill
+                    // width={1000}
+                    // height={1000}
+                    loading="eager"
+                    priority={true}
+                  />
+                }
+                <div className="absolute z-[9999] inset-0 m-auto flex items-center justify-center">
+                  <div className="text-center flex justify-center">
+                    <div className="px-[20px] py-[7px]">
+                      <div>
+                        <div className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
+                          {data?.banner?.title}
+                        </div>
+                        <div className="text-balance mt-1 tracking-wide text-white text-shadow-lg">
+                          {data?.banner?.tag_line}
                         </div>
                       </div>
                     </div>
                   </div>
-                </>
-              )}
-            </div>
+                </div>
+              </div>
+            )}
             <div className="flex-col flex md:flex-row">
               <div className="w-full md:w-[calc(100%-250px)] p-[20px]">
                 <div className="flex flex-col gap-[20px]">
@@ -201,13 +196,6 @@ export default function Hero({ data }) {
                 />
                 // -----------------
               }
-              {
-                // <img
-                //   src={useBanner}
-                //   alt="Banner"
-                //   className="object-cover  w-full h-full"
-                // />
-              }
               <div className="absolute z-[9999] inset-0 m-auto flex items-center justify-center">
                 <div className="text-center flex justify-center">
                   {/* <div className="px-[20px] py-[7px] border-white bg-[rgba(0,0,0,.8)] border-4 max-w-[calc(100%-30px)]"> */}
@@ -215,17 +203,20 @@ export default function Hero({ data }) {
                     {data?.name === "All Products" ? (
                       <div>
                         <div className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
-                          Redefining Home Living
+                          Modern Fireplaces and Outdoor Living
                         </div>
                         <div className="text-balance mt-1 tracking-wide text-white text-shadow-lg">
-                          Modern fireplaces and kitchen essentials designed to
-                          inspire
+                          Transform Your Spaces with Elegant Designs Built for
+                          Comfort and Durability
                         </div>
                       </div>
                     ) : (
                       <div>
                         <div className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
-                          {data?.name}
+                          {data?.banner?.title}
+                        </div>
+                        <div className="text-balance mt-1 tracking-wide text-white text-shadow-lg">
+                          {data?.banner?.tag_line}
                         </div>
                       </div>
                     )}
