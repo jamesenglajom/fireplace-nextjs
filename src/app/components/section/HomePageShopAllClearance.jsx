@@ -48,6 +48,7 @@ export default function HomePageShopAllClearance() {
                       className="object-cover w-full"
                       width={1000}
                       height={0}
+                      loading="eager"
                     />
                   }
                 </div>
