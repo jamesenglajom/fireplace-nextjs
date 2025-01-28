@@ -19,29 +19,19 @@ export default function Hero({ data }) {
   ];
   const useBanner = useBreakpointValue(breakpoints);
 
-  const widthBreakpoints = [
+  const sizeBreakpoints = [
     {
       minWidth: 0,
-      value: 640,
+      value: 500,
     },
     {
       minWidth: 640,
       value: 980,
     },
   ];
-  const heightBreakpoints = [
-    {
-      minWidth: 0,
-      value: 480,
-    },
-    {
-      minWidth: 640,
-      value: 735,
-    },
-  ];
-  const useWidth = useBreakpointValue(widthBreakpoints);
-  const useHeight = useBreakpointValue(heightBreakpoints);
-  if (useWidth && useHeight && useBanner) {
+  const useSize = useBreakpointValue(sizeBreakpoints);
+  console.log("useSize", useSize);
+  if (useSize && useBanner) {
     if (data && data.children && data.children.length > 0) {
       return (
         <div>
@@ -215,8 +205,8 @@ export default function Hero({ data }) {
                     src={useBanner}
                     alt={`Banner`}
                     className="w-full h-full object-cover"
-                    width={useWidth}
-                    height={useHeight}
+                    width={useSize}
+                    height={useSize}
                     loading="eager"
                     priority={true}
                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
