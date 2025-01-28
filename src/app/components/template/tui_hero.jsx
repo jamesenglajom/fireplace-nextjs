@@ -189,9 +189,8 @@ export default function Hero({ data }) {
                   src={useBanner}
                   alt={`Banner`}
                   className="w-full h-full object-cover"
-                  quality={85}
-                  width={300}
-                  height={300}
+                  width={500}
+                  height={500}
                   loading="eager"
                   priority={true}
                 />
@@ -206,7 +205,7 @@ export default function Hero({ data }) {
                         <div className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
                           Modern Fireplaces and Outdoor Living
                         </div>
-                        <div className="text-balance mt-1 tracking-wide text-white text-shadow-lg">
+                        <div className="text-xs md:text-base text-balance mt-1 tracking-wide text-white text-shadow-lg">
                           Transform Your Spaces with Elegant Designs Built for
                           Comfort and Durability
                         </div>
