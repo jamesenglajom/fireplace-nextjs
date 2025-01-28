@@ -87,7 +87,7 @@ export default function HomePageAboutProduct() {
             </div>
           </div>
           <div className="hidden xl:flex w-full xl:w-[40%] p-[40px] items-center justify-center">
-            <div className="w-full ">
+            <div className="w-full relative">
               {
                 <img
                   src={img} // Replace with your image path
