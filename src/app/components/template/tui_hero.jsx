@@ -9,7 +9,8 @@ export default function Hero({ data }) {
   const breakpoints = [
     {
       minWidth: 0,
-      value: data?.banner?.img?.src ?? "/images/banner/solana-home-hero.webp",
+      value:
+        data?.banner?.img?.src ?? "/images/banner/solana-home-hero-mobile.webp",
     },
     {
       minWidth: 640,
@@ -192,6 +193,7 @@ export default function Hero({ data }) {
                   height={500}
                   loading="eager"
                   priority={true}
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, 50vw"
                 />
                 // -----------------
               }
