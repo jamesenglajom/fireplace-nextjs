@@ -2,6 +2,14 @@
   {
     "name": "Home",
     "url": "",
+    "banner": {
+      "img": {
+        "src": "",
+        "alt": "Home-Banner"
+      },
+      "title": "Modern Fireplaces and Outdoor Living",
+      "tag_line": "Transform Your Spaces with Elegant Designs Built for Comfort and Durability"
+    },
     "menu": {
       "href": "",
       "visible": true
@@ -12,6 +20,14 @@
   },
   {
     "banner_img": "/images/banner/fireplace-banner.webp",
+    "banner": {
+      "img": {
+        "src": "/images/banner/fireplace-banner.webp",
+        "alt": "Fireplaces-Banner"
+      },
+      "title": "Warmth, Style, and Comfort – Perfected.",
+      "tag_line": "Explore premium fireplaces that transform your home into a cozy retreat."
+    },
     "category_id": 70,
     "parent_id": 0,
     "tree_id": 1,
@@ -39,6 +55,14 @@
   },
   {
     "banner_img": "/images/banner/firepit-banner.webp",
+    "banner": {
+      "img": {
+        "src": "/images/banner/firepit-banner.webp",
+        "alt": "Fire-Pits-Banner"
+      },
+      "title": "Ignite Your Outdoor Experience.",
+      "tag_line": "Discover stylish fire pits that bring warmth and ambiance to your gatherings."
+    },
     "category_id": 69,
     "parent_id": 0,
     "tree_id": 1,
@@ -66,10 +90,18 @@
   },
   {
     "banner_img": "/images/banner/bbq-banner.webp",
+    "banner": {
+      "img": {
+        "src": "/images/banner/bbq-banner.webp",
+        "alt": "BBQ-Grill-Banner"
+      },
+      "title": "Savor the Flavor, Master the Grill.",
+      "tag_line": "Premium BBQ grills for unforgettable outdoor cooking experiences."
+    },
     "category_id": 167,
     "parent_id": 0,
     "tree_id": 1,
-    "name": "BBQ",
+    "name": "BBQ Grill",
     "description": "",
     "views": 0,
     "sort_order": 1,
@@ -1586,6 +1618,14 @@
   {
     "name": "Gas Logs",
     "banner_img": "/images/banner/gas-log-banner.webp",
+    "banner": {
+      "img": {
+        "src": "/images/banner/gas-log-banner.webp",
+        "alt": "Gas-Logs-Banner"
+      },
+      "title": "Effortless Warmth, Timeless Charm.",
+      "tag_line": "High-quality gas logs for a cozy and hassle-free fireplace experience."
+    },
     "key_words": ["gas log", "gas logs", "gas-log", "gas-logs"],
     "menu": {
       "href": "gas-logs",
@@ -1630,6 +1670,14 @@
   },
   {
     "banner_img": "/images/banner/patio-heater-banner.webp",
+    "banner": {
+      "img": {
+        "src": "/images/banner/patio-heater-banner.webp",
+        "alt": "Patio-Heaters-Banner"
+      },
+      "title": "Extend Your Outdoor Season.",
+      "tag_line": "Stylish patio heaters that keep you warm and comfortable all year long."
+    },
     "category_id": 328,
     "parent_id": 292,
     "tree_id": 1,
@@ -1820,6 +1868,14 @@
     ]
   },
   {
+    "banner": {
+      "img": {
+        "src": "/images/banner/patio-heater-banner.webp",
+        "alt": "Outdoor-Kitchen-Banner"
+      },
+      "title": "Design Your Dream Outdoor Kitchen",
+      "tag_line": "Where Function Meets Style in the Great Outdoors"
+    },
     "category_id": 196,
     "parent_id": 0,
     "tree_id": 1,
@@ -4082,6 +4138,14 @@
     ]
   },
   {
+    "banner": {
+      "img": {
+        "src": "/images/banner/patio-heater-banner.webp",
+        "alt": "Brands-Banner"
+      },
+      "title": "Top Brands, Endless Warmth.",
+      "tag_line": "Explore a wide selection of fireplaces, fire pits, grills, and heaters from the best names in the industry."
+    },
     "category_id": 295,
     "parent_id": 0,
     "tree_id": 1,
@@ -13669,6 +13733,14 @@
   },
   {
     "name": "New Arrivals",
+    "banner": {
+      "img": {
+        "src": "/images/banner/patio-heater-banner.webp",
+        "alt": "New-Arrival-Banner"
+      },
+      "title": "Fresh Finds, Endless Possibilities.",
+      "tag_line": "Discover the latest arrivals from top brands in fireplaces, fire pits, grills, and more."
+    },
     "key_words": [
       "new",
       "new-arrivals",
@@ -13691,6 +13763,14 @@
   },
   {
     "category_id": 294,
+    "banner": {
+      "img": {
+        "src": "/images/banner/patio-heater-banner.webp",
+        "alt": "On-Sale-Banner"
+      },
+      "title": "Hot Deals, Cozy Savings.",
+      "tag_line": "Shop top-brand fireplaces, grills, and outdoor essentials at unbeatable prices."
+    },
     "parent_id": 0,
     "tree_id": 1,
     "name": "On Sale",
