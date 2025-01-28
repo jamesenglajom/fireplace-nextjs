@@ -1868,9 +1868,10 @@
     ]
   },
   {
+    "banner_img": "/images/banner/outdoor-kitchen-banner.webp",
     "banner": {
       "img": {
-        "src": "/images/banner/patio-heater-banner.webp",
+        "src": "/images/banner/outdoor-kitchen-banner.webp",
         "alt": "Outdoor-Kitchen-Banner"
       },
       "title": "Design Your Dream Outdoor Kitchen",

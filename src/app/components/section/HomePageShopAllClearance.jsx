@@ -46,8 +46,8 @@ export default function HomePageShopAllClearance() {
                       src={item.image.src}
                       alt={item.image.alt}
                       className="w-full h-full object-cover"
-                      width={300}
-                      height={300}
+                      width={1000}
+                      height={1000}
                       // loading="eager"
                       // priority={false}
                     />

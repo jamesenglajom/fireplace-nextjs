@@ -9,11 +9,15 @@ export default function Hero({ data }) {
   const breakpoints = [
     {
       minWidth: 0,
-      value: data?.banner_img ?? "/images/banner/solana-home-hero.webp",
+      value:
+        data?.banner?.banner?.img?.src ??
+        "/images/banner/solana-home-hero.webp",
     },
     {
       minWidth: 640,
-      value: data?.banner_img ?? "/images/banner/solana-home-hero.webp",
+      value:
+        data?.banner?.banner?.img?.src ??
+        "/images/banner/solana-home-hero.webp",
     },
   ];
   const useBanner = useBreakpointValue(breakpoints);

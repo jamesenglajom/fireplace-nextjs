@@ -1,18 +1,44 @@
 "use client";
 import Carousel from "@/app/components/atom/Carousel";
 import Image from "next/image";
-
+import Link from "next/link";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const items = [
-  { label: "Fireplace", img: "/images/home/categories/Fireplace.webp" },
-  { label: "Fire Pits", img: "/images/home/categories/firepits.webp" },
-  { label: "BBQ Grills", img: "/images/home/categories/bbq_grills.webp" },
+  {
+    label: "Fireplaces",
+    img: "/images/home/categories/Fireplace.webp",
+    url: `${BASE_URL}/fireplaces`,
+  },
+  {
+    label: "Fire Pits",
+    img: "/images/home/categories/firepits.webp",
+    url: `${BASE_URL}/fire-pits`,
+  },
+  {
+    label: "BBQ Grills",
+    img: "/images/home/categories/bbq_grills.webp",
+    url: `${BASE_URL}/bbq-grills-and-smokers`,
+  },
   {
     label: "Outdoor Kitchen & Islands",
     img: "/images/home/categories/outdoor_kitchen.webp",
+    url: `${BASE_URL}/outdoor-kitchen`,
   },
-  { label: "Chimney", img: "/images/home/categories/chimney.webp" },
-  { label: "Gas Logs", img: "/images/home/categories/gas_logs.webp" },
-  { label: "Clearance", img: "/images/home/categories/clearance.webp" },
+  {
+    label: "Chimney",
+    img: "/images/home/categories/chimney.webp",
+    url: `${BASE_URL}/`,
+  },
+  {
+    label: "Gas Logs",
+    img: "/images/home/categories/gas_logs.webp",
+    url: `${BASE_URL}/gas-logs`,
+  },
+  {
+    label: "Clearance",
+    img: "/images/home/categories/clearance.webp",
+    url: `${BASE_URL}/sale-open-box-clearance-sale`,
+  },
 ];
 
 const items_per_break_point = [
@@ -32,30 +58,24 @@ export default function HomePageFeatureCategories() {
             <div
               key={`feature-category-item-${idx}`}
               className={`min-w-[140px] w-[140px] flex flex-col gap-[8px] group relative`}>
-              <div
-                className={`relative w-full h-[130px] flex items-center justify-center group-hover:border group-hover:bg-stone-100 rounded-md overflow-hidden transition-all duration-500`}>
-                {/* <div>image Here</div> */}
-                {
-                  // <img
-                  //   src={v.img}
-                  //   alt=""
-                  //   className="object-contain h-[150px]"
-                  // />
-                  <Image
-                    src={v.img}
-                    alt={`${v.label}-image`}
-                    className="w-full h-full object-contain"
-                    width={500}
-                    height={500}
-                    // loading="eager"
-                    // priority={false}
-                  />
-                }
-              </div>
-              <div
-                className={`flex items-center justify-center w-full h-[60px] overflow-hidden`}>
-                <div className="break-words text-center">{v.label}</div>
-              </div>
+              <Link href={v.url}>
+                <div
+                  className={`relative w-full h-[130px] flex items-center justify-center group-hover:border group-hover:bg-stone-100 rounded-md overflow-hidden transition-all duration-500`}>
+                  {
+                    <Image
+                      src={v.img}
+                      alt={`${v.label}-image`}
+                      className="w-full h-full object-contain"
+                      width={500}
+                      height={500}
+                    />
+                  }
+                </div>
+                <div
+                  className={`flex items-center justify-center w-full h-[60px] overflow-hidden`}>
+                  <div className="break-words text-center">{v.label}</div>
+                </div>
+              </Link>
             </div>
           ))}
         </Carousel>
