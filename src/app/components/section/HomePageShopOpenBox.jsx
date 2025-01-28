@@ -92,8 +92,10 @@ export default function HomePageShopOpenBox() {
                       <Image
                         src={i.img}
                         alt={`${i.name}-image`}
-                        fill
-                        className="object-contain"
+                        // fill
+                        width={1000}
+                        height={0}
+                        // className="object-contain"
                       />
                     }
                   </div>

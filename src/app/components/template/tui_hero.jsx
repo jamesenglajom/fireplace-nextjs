@@ -31,9 +31,12 @@ export default function Hero({ data }) {
                     <Image
                       src={useBanner}
                       alt={`Banner`}
-                      className="object-cover"
-                      layout="fill"
-                      priority
+                      layout="responsive"
+                      objectFit="cover" // Ensures the image covers the parent while maintaining aspect ratio
+                      objectPosition="center"
+                      width={1000}
+                      height={500}
+                      priority={true}
                     />
                     // -----------------
                   }
@@ -150,7 +153,10 @@ export default function Hero({ data }) {
                                 alt={`sub-category-${i.url}`}
                                 className="w-[80px] h-[80px] object-cover"
                                 layout="fill"
-                                objectFit="cover"
+                                objectFit="cover" // Ensures the image covers the parent while maintaining aspect ratio
+                                objectPosition="center"
+                                // width={1000}
+                                // height={0}
                               />
                             </div>
                             <div
@@ -186,8 +192,11 @@ export default function Hero({ data }) {
                 <Image
                   src={useBanner}
                   alt={`Banner`}
-                  className="object-cover"
-                  layout="fill"
+                  layout="responsive"
+                  objectFit="cover" // Ensures the image covers the parent while maintaining aspect ratio
+                  objectPosition="center"
+                  width={1000}
+                  height={500}
                   priority={true}
                 />
                 // -----------------

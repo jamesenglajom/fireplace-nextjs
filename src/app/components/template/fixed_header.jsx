@@ -27,7 +27,12 @@ export default function FixedHeader() {
       }`}>
       <div className="container mx-auto h-[50px] flex items-center justify-around">
         <div className="w-[40px] h-[40px] relative">
-          <Image src="/logo-s1.webp" alt="solana-icon" fill />
+          <Image
+            src="/logo-s1.webp"
+            alt="solana-icon"
+            width={1000}
+            height={0}
+          />
         </div>
         <div className="w-[180px] sm:w-[auto] md:w-[500px]">
           <HomeSearch />

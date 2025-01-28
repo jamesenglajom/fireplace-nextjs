@@ -80,7 +80,12 @@ export default function HomePageReviews() {
                       <div className="relative w-[30px] h-[30px]">
                         {
                           // <img src={i.img} alt={i.name} />
-                          <Image src={i.img} alt={`${i.name}-image`} fill />
+                          <Image
+                            src={i.img}
+                            alt={`${i.name}-image`}
+                            width={1000}
+                            height={0}
+                          />
                         }
                       </div>
                       <div className="text-xs text-stone-700">{i.name}</div>

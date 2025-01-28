@@ -120,7 +120,9 @@ export default function HomePagePartsAndAccessories() {
                       src={i.img}
                       alt={i.name}
                       className="object-cover"
-                      fill
+                      // fill
+                      width={1000}
+                      height={0}
                     />
                   }
                 </div>
@@ -145,7 +147,9 @@ export default function HomePagePartsAndAccessories() {
                       src={i.img}
                       alt={i.name}
                       className="object-cover"
-                      fill
+                      // fill
+                      width={1000}
+                      height={0}
                     />
                   }
                 </div>

@@ -178,7 +178,9 @@ export default function HomePageShopCategory() {
                             src={i.img}
                             alt={`${i.name}-image`}
                             className="object-contain"
-                            fill
+                            // fill
+                            width={1000}
+                            height={0}
                           />
                         }
                       </div>
@@ -214,7 +216,9 @@ export default function HomePageShopCategory() {
                         src={i.img}
                         alt={`${i.name}-image`}
                         className="object-contain"
-                        fill
+                        // fill
+                        width={1000}
+                        height={0}
                       />
                     }
                   </div>
@@ -233,31 +237,6 @@ export default function HomePageShopCategory() {
                 </button>
               </a>
             </div>
-            {/* <div className=" w-full flex flex-wrap gap-5">
-              {fireplacesStoves2.map((i, idx) => (
-                <div
-                  key={`fireplace-stoves-2-${idx}`}
-                  className="w-[calc(50%-10px)] border p-4 lg:w-full flex flex-col gap-4 hover:shadow-lg transition-all duration-300">
-                  <div className="relative aspect-1 bg-stone-100 border">
-                    {
-                      // <img src={i.img} alt={i.name} className="object-fill" />
-
-                      <Image
-                        src={i.img}
-                        alt={`${i.name}-image`}
-                        className="object-contain"
-                        fill
-                      />
-                    }
-                  </div>
-                  <div className="h-[49px]">
-                    <div className="font-bold text-sm text-center">
-                      {i.name}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div> */}
           </div>
         </div>
       </div>

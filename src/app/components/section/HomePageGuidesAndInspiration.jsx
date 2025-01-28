@@ -53,7 +53,9 @@ export default function HomePageGuidesAndInspiration() {
                       src={i.img}
                       alt={`${i.title}-image`}
                       className="object-cover group-hover:opacity-100 opacity-50 transition-opacity duration-500"
-                      fill
+                      // fill
+                      width={1000}
+                      height={0}
                     />
                   }
                 </div>
