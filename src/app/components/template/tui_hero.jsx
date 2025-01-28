@@ -206,7 +206,7 @@ export default function Hero({ data }) {
                     alt={`Banner`}
                     className="w-full h-full object-cover"
                     width={useSize}
-                    height={useSize}
+                    height={0}
                     loading="eager"
                     priority={true}
                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
