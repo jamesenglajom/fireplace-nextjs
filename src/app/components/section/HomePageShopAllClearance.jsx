@@ -56,7 +56,7 @@ export default function HomePageShopAllClearance() {
                         alt={item.image.alt}
                         className="w-full h-full object-cover"
                         width={useSize}
-                        height={useSize}
+                        height={0}
                         sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
 
                         // loading="eager"
