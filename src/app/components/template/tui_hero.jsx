@@ -26,7 +26,7 @@ export default function Hero({ data }) {
     },
     {
       minWidth: 640,
-      value: 1000,
+      value: 980,
     },
   ];
   const useSize = useBreakpointValue(sizeBreakpoints);

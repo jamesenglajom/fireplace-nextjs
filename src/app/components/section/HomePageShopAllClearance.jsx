@@ -6,7 +6,7 @@ export default function HomePageShopAllClearance() {
   const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
   const screenBreakPoints = [
     { minWidth: 0, value: 640 },
-    { minWidth: 640, value: 1200 },
+    { minWidth: 640, value: 980 },
   ];
 
   const useSize = useBreakpointValue(screenBreakPoints);
