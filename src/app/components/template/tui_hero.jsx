@@ -36,6 +36,7 @@ export default function Hero({ data }) {
                     // height={1000}
                     loading="eager"
                     priority={true}
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
                   />
                 }
                 <div className="absolute z-[9999] inset-0 m-auto flex items-center justify-center">
@@ -193,7 +194,7 @@ export default function Hero({ data }) {
                   height={500}
                   loading="eager"
                   priority={true}
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
                 />
                 // -----------------
               }
