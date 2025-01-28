@@ -36,7 +36,9 @@ export default function HomePageShopAllClearance() {
       <div className="container mx-auto px-[10px] lg:px-[20px]">
         <div className="w-full flex flex-col md:flex-row gap-[50px]">
           {contents.map((item, index) => (
-            <div className="w-full flex flex-col gap-[10px]">
+            <div
+              key={`shop-all-content-${index}`}
+              className="w-full flex flex-col gap-[10px]">
               <div className="w-full aspect-2">
                 <div className="w-full h-full flex items-center justify-center overflow-hidden rounded-[25px] relative">
                   {
