@@ -56,7 +56,8 @@ export default function HomePageGuidesAndInspiration() {
                       // fill
                       width={1000}
                       height={0}
-                      loading="eager"
+                      // loading="eager"
+                      // priority={false}
                     />
                   }
                 </div>

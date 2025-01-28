@@ -123,8 +123,11 @@ export default function TuiNavbar() {
                         <Image
                           alt="Bull Fireplace"
                           src="/Logo.webp"
-                          fill
-                          className="object-contain"
+                          className="w-full h-full object-cover"
+                          width={500}
+                          height={500}
+                          loading="eager"
+                          priority={false}
                         />
                       </Link>
                     }

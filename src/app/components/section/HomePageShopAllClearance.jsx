@@ -48,7 +48,8 @@ export default function HomePageShopAllClearance() {
                       className="w-full h-full object-cover"
                       width={500}
                       height={500}
-                      loading="eager"
+                      // loading="eager"
+                      // priority={false}
                     />
                   }
                 </div>

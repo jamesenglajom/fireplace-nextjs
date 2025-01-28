@@ -27,6 +27,7 @@ export default function HomePageAboutProduct() {
                   width={500}
                   height={500}
                   loading="eager"
+                  priority={false}
                 />
               }
             </div>
@@ -92,6 +93,7 @@ export default function HomePageAboutProduct() {
                   width={500}
                   height={500}
                   loading="eager"
+                  priority={false}
                 />
               }
             </div>

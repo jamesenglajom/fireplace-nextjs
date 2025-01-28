@@ -92,13 +92,11 @@ export default function HomePageShopOpenBox() {
                       <Image
                         src={i.img}
                         alt={`${i.name}-image`}
-                        // fill
-                        objectFit="contain"
-                        objectPosition="center"
-                        width={1000}
-                        height={0}
-                        loading="eager"
-                        // className="object-contain"
+                        className="w-full h-full object-contain"
+                        width={500}
+                        height={500}
+                        // loading="eager"
+                        priority={false}
                       />
                     }
                   </div>

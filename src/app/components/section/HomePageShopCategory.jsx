@@ -180,7 +180,8 @@ export default function HomePageShopCategory() {
                             className="w-full h-full object-cover"
                             width={1000}
                             height={500}
-                            loading="eager"
+                            // loading="eager"
+                            // priority={false}
                           />
                         }
                       </div>
@@ -218,7 +219,8 @@ export default function HomePageShopCategory() {
                         className="w-full h-full object-contain"
                         width={1000}
                         height={500}
-                        loading="eager"
+                        // loading="eager"
+                        // priority={false}
                       />
                     }
                   </div>

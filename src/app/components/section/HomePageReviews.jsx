@@ -83,9 +83,11 @@ export default function HomePageReviews() {
                           <Image
                             src={i.img}
                             alt={`${i.name}-image`}
-                            width={1000}
-                            height={0}
-                            loading="eager"
+                            className="w-full h-full object-cover"
+                            width={200}
+                            height={200}
+                            // loading="eager"
+                            // priority={false}
                           />
                         }
                       </div>

@@ -119,10 +119,11 @@ export default function HomePagePartsAndAccessories() {
                     <Image
                       src={i.img}
                       alt={i.name}
-                      className="object-cover"
-                      // fill
-                      width={1000}
-                      height={0}
+                      className="w-full h-full object-cover"
+                      width={500}
+                      height={500}
+                      // loading="eager"
+                      // priority={false}
                     />
                   }
                 </div>
@@ -146,10 +147,11 @@ export default function HomePagePartsAndAccessories() {
                     <Image
                       src={i.img}
                       alt={i.name}
-                      className="object-cover"
-                      // fill
-                      width={1000}
-                      height={0}
+                      className="w-full h-full object-cover"
+                      width={500}
+                      height={500}
+                      // loading="eager"
+                      // priority={false}
                     />
                   }
                 </div>

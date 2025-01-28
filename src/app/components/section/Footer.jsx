@@ -212,7 +212,13 @@ export default function Footer() {
                     //   alt={i.alt}
                     //   className="h-[30px] md:h-[auto]"
                     // />
-                    <Image src={i.img} alt={i.alt} width={300} height={0} />
+                    <Image
+                      src={i.img}
+                      alt={i.alt}
+                      width={300}
+                      height={0}
+                      priority={false}
+                    />
                   }
                 </div>
               ))}
