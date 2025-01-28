@@ -189,8 +189,9 @@ export default function Hero({ data }) {
                   src={useBanner}
                   alt={`Banner`}
                   className="w-full h-full object-cover"
-                  width={1000}
-                  height={500}
+                  quality={85}
+                  width={300}
+                  height={300}
                   loading="eager"
                   priority={true}
                 />
