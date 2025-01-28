@@ -33,7 +33,7 @@ export default function HomePageFeatureCategories() {
               key={`feature-category-item-${idx}`}
               className={`min-w-[140px] w-[140px] flex flex-col gap-[8px] group relative`}>
               <div
-                className={`relative w-full h-[130px] flex items-center justify-center group-hover:border group-hover:bg-stone-100 rounded-md overflow-hidden transition-all duration-500`}>
+                className={`relative bg-red-400 h-[130px] flex items-center justify-center group-hover:border group-hover:bg-stone-100 rounded-md overflow-hidden transition-all duration-500`}>
                 {/* <div>image Here</div> */}
                 {
                   // <img
@@ -44,7 +44,7 @@ export default function HomePageFeatureCategories() {
                   <Image
                     src={v.img}
                     alt={`${v.label}-image`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     width={500}
                     height={500}
                     // loading="eager"
