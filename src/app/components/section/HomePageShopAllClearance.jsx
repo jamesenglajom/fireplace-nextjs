@@ -1,8 +1,15 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-
+import { useBreakpointValue } from "@/app/hooks/useBreakPointValue";
 export default function HomePageShopAllClearance() {
   const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
+  const screenBreakPoints = [
+    { minWidth: 0, value: 640 },
+    { minWidth: 640, value: 1200 },
+  ];
+
+  const useSize = useBreakpointValue(screenBreakPoints);
   const contents = [
     {
       image: {
@@ -46,8 +53,10 @@ export default function HomePageShopAllClearance() {
                       src={item.image.src}
                       alt={item.image.alt}
                       className="w-full h-full object-cover"
-                      width={1000}
-                      height={1000}
+                      width={useSize}
+                      height={useSize}
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
+
                       // loading="eager"
                       // priority={false}
                     />
