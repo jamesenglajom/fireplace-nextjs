@@ -191,8 +191,8 @@ export default function Hero({ data }) {
                   className="w-full h-full object-cover"
                   width={500}
                   height={500}
-                  loading="eager"
-                  priority={true}
+                  loading="lazy"
+                  // priority={true}
                 />
                 // -----------------
               }
