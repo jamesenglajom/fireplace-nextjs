@@ -407,7 +407,11 @@ export default function TuiFilterSort({
                       Showing{" "}
                       {pagination.current_page === 1
                         ? "1"
-                        : `1 to ${pagination.current_page}`}{" "}
+                        : `1 to ${
+                            pagination?.current_page
+                              ? pagination?.current_page
+                              : "0"
+                          }`}{" "}
                       of {pagination.total_pages} Pages ({pagination.total}{" "}
                       total items)
                     </div>
