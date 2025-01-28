@@ -177,10 +177,9 @@ export default function HomePageShopCategory() {
                           <Image
                             src={i.img}
                             alt={`${i.name}-image`}
-                            className="object-contain"
-                            // fill
+                            className="w-full h-full object-cover"
                             width={1000}
-                            height={0}
+                            height={500}
                             loading="eager"
                           />
                         }
@@ -216,10 +215,9 @@ export default function HomePageShopCategory() {
                       <Image
                         src={i.img}
                         alt={`${i.name}-image`}
-                        className="object-contain"
-                        // fill
+                        className="w-full h-full object-contain"
                         width={1000}
-                        height={0}
+                        height={500}
                         loading="eager"
                       />
                     }

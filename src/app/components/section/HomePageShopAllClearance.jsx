@@ -45,9 +45,9 @@ export default function HomePageShopAllClearance() {
                     <Image
                       src={item.image.src}
                       alt={item.image.alt}
-                      className="object-cover w-full"
+                      className="w-full h-full object-cover"
                       width={1000}
-                      height={0}
+                      height={500}
                       loading="eager"
                     />
                   }

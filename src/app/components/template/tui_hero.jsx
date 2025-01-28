@@ -31,9 +31,7 @@ export default function Hero({ data }) {
                     <Image
                       src={useBanner}
                       alt={`Banner`}
-                      layout="responsive"
-                      objectFit="cover" // Ensures the image covers the parent while maintaining aspect ratio
-                      objectPosition="center"
+                      className="w-full h-full object-cover"
                       width={1000}
                       height={500}
                       priority={true}
@@ -192,9 +190,6 @@ export default function Hero({ data }) {
                 <Image
                   src={useBanner}
                   alt={`Banner`}
-                  // layout="responsive"
-                  // objectFit="cover" // Ensures the image covers the parent while maintaining aspect ratio
-                  // objectPosition="center"
                   className="w-full h-full object-cover"
                   width={1000}
                   height={500}

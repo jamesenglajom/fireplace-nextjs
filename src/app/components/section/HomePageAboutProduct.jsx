@@ -20,18 +20,14 @@ export default function HomePageAboutProduct() {
             </div>
             <div className="relative w-full flex items-center justify-center xl:hidden">
               {
-                // <img src={img} alt="About-Solana-Image" className="w-full" />
-                <img
-                  src={img} // Replace with your image path
-                  alt="About Solana Image"
+                <Image
+                  src={img}
+                  alt="About-Blaze-Image"
                   className="w-full h-full object-cover"
+                  width={1000}
+                  height={500}
+                  loading="eager"
                 />
-                // <Image
-                //   src={img}
-                //   alt="About-Blaze-Image"
-                //   width={1000}
-                //   height={0}
-                // />
               }
             </div>
             <div className="text-sm md:text-base">
@@ -89,19 +85,14 @@ export default function HomePageAboutProduct() {
           <div className="hidden xl:flex w-full xl:w-[40%] p-[40px] items-center justify-center">
             <div className="w-full relative">
               {
-                <img
-                  src={img} // Replace with your image path
-                  alt="About Solana Image"
+                <Image
+                  src={img}
+                  alt="About-Blaze-Image"
                   className="w-full h-full object-cover"
+                  width={1000}
+                  height={500}
+                  loading="eager"
                 />
-                // <Image
-                //   // src="/images/home/about-blaze.webp"
-                //   src={img}
-                //   alt="About-Silana-Image"
-                //   className="object-cover"
-                //   width={1000}
-                //   height={0}
-                // />
               }
             </div>
           </div>
