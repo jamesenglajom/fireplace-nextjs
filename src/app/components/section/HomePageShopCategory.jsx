@@ -181,6 +181,7 @@ export default function HomePageShopCategory() {
                             // fill
                             width={1000}
                             height={0}
+                            loading="eager"
                           />
                         }
                       </div>
@@ -219,6 +220,7 @@ export default function HomePageShopCategory() {
                         // fill
                         width={1000}
                         height={0}
+                        loading="eager"
                       />
                     }
                   </div>

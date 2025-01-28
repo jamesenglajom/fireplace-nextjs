@@ -93,8 +93,11 @@ export default function HomePageShopOpenBox() {
                         src={i.img}
                         alt={`${i.name}-image`}
                         // fill
+                        objectFit="contain"
+                        objectPosition="center"
                         width={1000}
                         height={0}
+                        loading="eager"
                         // className="object-contain"
                       />
                     }

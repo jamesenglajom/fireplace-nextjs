@@ -44,8 +44,11 @@ export default function HomePageFeatureCategories() {
                   <Image
                     src={v.img}
                     alt={`${v.label}-image`}
-                    className="object-contain"
-                    fill
+                    objectFit="contain"
+                    objectPosition="center"
+                    loading="eager"
+                    width={1000}
+                    height={0}
                   />
                 }
               </div>

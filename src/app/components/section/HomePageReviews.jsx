@@ -85,6 +85,7 @@ export default function HomePageReviews() {
                             alt={`${i.name}-image`}
                             width={1000}
                             height={0}
+                            loading="eager"
                           />
                         }
                       </div>
