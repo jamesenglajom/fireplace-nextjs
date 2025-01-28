@@ -44,7 +44,7 @@ export default function Hero({ data }) {
                         <div className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
                           {data?.banner?.title}
                         </div>
-                        <div className="text-balance mt-1 tracking-wide text-white text-shadow-lg">
+                        <div className="text-xs md:text-base text-balance mt-1 tracking-wide text-white text-shadow-lg">
                           {data?.banner?.tag_line}
                         </div>
                       </div>
@@ -215,7 +215,7 @@ export default function Hero({ data }) {
                         <div className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
                           {data?.banner?.title}
                         </div>
-                        <div className="text-balance mt-1 tracking-wide text-white text-shadow-lg">
+                        <div className="text-xs md:text-base text-balance mt-1 tracking-wide text-white text-shadow-lg">
                           {data?.banner?.tag_line}
                         </div>
                       </div>
