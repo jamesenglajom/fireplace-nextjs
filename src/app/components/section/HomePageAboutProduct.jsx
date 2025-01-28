@@ -24,7 +24,7 @@ export default function HomePageAboutProduct() {
                 <img
                   src={img} // Replace with your image path
                   alt="About Solana Image"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="w-full h-full object-cover"
                 />
                 // <Image
                 //   src={img}
@@ -92,7 +92,7 @@ export default function HomePageAboutProduct() {
                 <img
                   src={img} // Replace with your image path
                   alt="About Solana Image"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="w-full h-full object-cover"
                 />
                 // <Image
                 //   // src="/images/home/about-blaze.webp"
