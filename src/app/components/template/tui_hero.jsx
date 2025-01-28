@@ -149,8 +149,7 @@ export default function Hero({ data }) {
                                 layout="fill"
                                 objectFit="cover" // Ensures the image covers the parent while maintaining aspect ratio
                                 objectPosition="center"
-                                loading="eager"
-
+                                priority={true}
                                 // width={1000}
                                 // height={0}
                               />
