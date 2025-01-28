@@ -34,6 +34,7 @@ export default function Hero({ data }) {
                       className="w-full h-full object-cover"
                       width={1000}
                       height={500}
+                      loading="eager"
                       priority={true}
                     />
                     // -----------------
@@ -153,6 +154,8 @@ export default function Hero({ data }) {
                                 layout="fill"
                                 objectFit="cover" // Ensures the image covers the parent while maintaining aspect ratio
                                 objectPosition="center"
+                                loading="eager"
+
                                 // width={1000}
                                 // height={0}
                               />
@@ -193,6 +196,7 @@ export default function Hero({ data }) {
                   className="w-full h-full object-cover"
                   width={1000}
                   height={500}
+                  loading="eager"
                   priority={true}
                 />
                 // -----------------

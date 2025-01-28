@@ -24,7 +24,7 @@ export default function HomePageAboutProduct() {
                   src={img}
                   alt="About-Blaze-Image"
                   className="w-full h-full object-cover"
-                  width={1000}
+                  width={500}
                   height={500}
                   loading="eager"
                 />
@@ -89,7 +89,7 @@ export default function HomePageAboutProduct() {
                   src={img}
                   alt="About-Blaze-Image"
                   className="w-full h-full object-cover"
-                  width={1000}
+                  width={500}
                   height={500}
                   loading="eager"
                 />
