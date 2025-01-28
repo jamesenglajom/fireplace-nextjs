@@ -10,6 +10,7 @@ export default function HomePageShopAllClearance() {
   ];
 
   const useSize = useBreakpointValue(screenBreakPoints);
+  console.log("shopallclearance:useSize", useSize);
   const contents = [
     {
       image: {
@@ -49,7 +50,7 @@ export default function HomePageShopAllClearance() {
                 className="w-full flex flex-col gap-[10px]">
                 <div className="w-full aspect-2">
                   <div className="w-full h-full flex items-center justify-center overflow-hidden rounded-[25px] relative">
-                    {
+                    {useSize && (
                       <Image
                         src={item.image.src}
                         alt={item.image.alt}
@@ -61,7 +62,7 @@ export default function HomePageShopAllClearance() {
                         // loading="eager"
                         // priority={false}
                       />
-                    }
+                    )}
                   </div>
                 </div>
                 <div className="text-center text-xl md:text-3xl font-semibold font-bell">
