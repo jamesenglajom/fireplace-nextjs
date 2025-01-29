@@ -5,18 +5,19 @@ import TuiNavBar from "./components/template/tui_navbar";
 import FreeShippingBanner from "@/app/components/molecule/FreeShippingBanner";
 import Footer from "@/app/components/section/Footer";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], // Specify weights as needed
-});
-const bell = Bellefair({
-  subsets: ["latin"],
-  weight: ["400"], // Specify weights as needed
-});
+// const inter = Inter({
+//   subsets: ["latin"],
+//   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], // Specify weights as needed
+// });
+// const bell = Bellefair({
+//   subsets: ["latin"],
+//   weight: ["400"], // Specify weights as needed
+// });
 
 const MontserratFont = Montserrat({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
 });
 
 export const metadata = {
