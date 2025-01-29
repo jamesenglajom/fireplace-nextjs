@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import plugin from 'tailwindcss/plugin';
+const { fontFamily } = require('tailwindcss/defaultTheme');
 export default {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -21,6 +22,7 @@ export default {
         lg: '3px 3px 6px rgba(0, 0, 0, 0.3)',
       },
       fontFamily:{
+        sans: ['var(--font-montserrat)', "serif"],
         bell: ["Bell MT", "serif"]
       }
     },
