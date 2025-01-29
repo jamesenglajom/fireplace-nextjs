@@ -126,8 +126,8 @@ export default function TuiNavbar() {
                           className="w-full h-full object-cover"
                           width={500}
                           height={500}
-                          loading="eager"
-                          priority={false}
+                          // loading="eager"
+                          // priority={false}
                         />
                       </Link>
                     }

@@ -33,8 +33,8 @@ export default function FixedHeader() {
             className="w-full h-full object-cover"
             width={500}
             height={500}
-            loading="eager"
-            priority={false}
+            // loading="eager"
+            // priority={false}
           />
         </div>
         <div className="w-[180px] sm:w-[auto] md:w-[500px]">
