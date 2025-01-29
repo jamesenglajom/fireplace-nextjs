@@ -217,8 +217,8 @@ export default function HomePageShopCategory() {
                         src={i.img}
                         alt={`${i.name}-image`}
                         className="w-full h-full object-contain"
-                        width={300}
-                        height={300}
+                        width={100}
+                        height={100}
                         // loading="eager"
                         // priority={false}
                       />
