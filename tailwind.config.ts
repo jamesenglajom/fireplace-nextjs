@@ -1,6 +1,5 @@
 import type { Config } from "tailwindcss";
 import plugin from 'tailwindcss/plugin';
-const { fontFamily } = require('tailwindcss/defaultTheme');
 export default {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
