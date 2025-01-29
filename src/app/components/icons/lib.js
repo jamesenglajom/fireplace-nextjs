@@ -15,6 +15,9 @@ import MingcuteDownLineIcon from "./MingcuteDownLineIcon";
 import MingcuteUpLineIcon from "./MingcuteUpLineIcon";
 import MingcuteHome7Icon from "./MingCuteHome7Icon";
 
+import MDIPropaneTankIcon from "./MDIPropaneTankIcon";
+import MDIBaselineGasMeterIcon from "./MDIBaselineGasMeterIcon";
+
 export const CartIcon = ({ color, width, height }) => {
   return <BXCartIcon color={color} width={width} height={height} />;
 };
@@ -71,4 +74,14 @@ export const MingcuteUpLine = ({ color, width, height }) => {
 
 export const MingcuteHome7 = ({ color, width, height }) => {
   return <MingcuteHome7Icon color={color} width={width} height={height} />;
+};
+
+export const MDIPropaneTank = ({ color, width, height }) => {
+  return <MDIPropaneTankIcon color={color} width={width} height={height} />;
+};
+
+export const MDIBaselineGasMeter = ({ color, width, height }) => {
+  return (
+    <MDIBaselineGasMeterIcon color={color} width={width} height={height} />
+  );
 };
