@@ -41,19 +41,19 @@ export default function HomePageShopAllClearance() {
               className="w-full flex flex-col gap-[10px]">
               <div className="w-full aspect-2">
                 <div className="w-full h-full flex items-center justify-center overflow-hidden rounded-[25px] relative">
-                  {useSize && (
+                  {
                     <Image
                       src={item.image.src}
                       alt={item.image.alt}
                       className="w-full h-full object-cover"
-                      width={useSize}
+                      width={1200}
                       height={0}
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
 
                       // loading="eager"
                       // priority={false}
                     />
-                  )}
+                  }
                 </div>
               </div>
               <div className="text-center text-xl md:text-3xl font-semibold font-bell">
