@@ -3,6 +3,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Link from "next/link";
 import Image from "next/image";
+import RenderBanner from "@/app/components/atom/RenderBanner";
 
 export default function Hero({ data }) {
   const useBanner =
@@ -165,18 +166,19 @@ export default function Hero({ data }) {
   } else {
     return (
       <div className="container mx-auto w-full relative isolate  bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px] md:h-[calc(100vh-450px)]">
+        <RenderBanner img={useBanner} />
         {
           // for lazy loading
-          <Image
-            src={useBanner}
-            alt={`Banner`}
-            className="w-full h-full object-cover"
-            width={980}
-            height={0}
-            loading="eager"
-            priority={true}
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
-          />
+          // <Image
+          //   src={useBanner}
+          //   alt={`Banner`}
+          //   className="w-full h-full object-cover"
+          //   width={980}
+          //   height={0}
+          //   loading="eager"
+          //   priority={true}
+          //   sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
+          // />
           // -----------------
         }
         <div className="absolute z-[9999] inset-0 m-auto flex items-center justify-center">
