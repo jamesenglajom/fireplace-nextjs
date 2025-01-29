@@ -1,7 +1,11 @@
 "use client";
+import dynamic from "next/dynamic";
+// import Carousel from "@/app/components/atom/Carousel";
+const Carousel = dynamic(() => import("@/app/components/atom/Carousel"), {
+  ssr: false,
+});
 import { Rating } from "@smastrom/react-rating";
 import ItemPrice from "@/app/components/atom/openBoxItemPrice";
-import Carousel from "@/app/components/atom/Carousel";
 import Image from "next/image";
 const products = [
   {

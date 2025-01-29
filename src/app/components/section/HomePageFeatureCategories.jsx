@@ -1,5 +1,9 @@
 "use client";
-import Carousel from "@/app/components/atom/Carousel";
+import dynamic from "next/dynamic";
+// import Carousel from "@/app/components/atom/Carousel";
+const Carousel = dynamic(() => import("@/app/components/atom/Carousel"), {
+  ssr: false,
+});
 import Image from "next/image";
 import Link from "next/link";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
