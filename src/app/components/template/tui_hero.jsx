@@ -6,18 +6,20 @@ import Image from "next/image";
 import { useBreakpointValue } from "@/app/hooks/useBreakPointValue";
 
 export default function Hero({ data }) {
-  const breakpoints = [
-    {
-      minWidth: 0,
-      value:
-        data?.banner?.img?.src ?? "/images/banner/solana-home-hero-mobile.webp",
-    },
-    {
-      minWidth: 640,
-      value: data?.banner?.img?.src ?? "/images/banner/solana-home-hero.webp",
-    },
-  ];
-  const useBanner = useBreakpointValue(breakpoints);
+  const useBanner =
+    data?.banner?.img?.src ?? "/images/banner/solana-home-hero.webp";
+  // const breakpoints = [
+  //   {
+  //     minWidth: 0,
+  //     value:
+  //       data?.banner?.img?.src ?? "/images/banner/solana-home-hero-mobile.webp",
+  //   },
+  //   {
+  //     minWidth: 640,
+  //     value: data?.banner?.img?.src ?? "/images/banner/solana-home-hero.webp",
+  //   },
+  // ];
+  // const useBanner = useBreakpointValue(breakpoints);
 
   // const sizeBreakpoints = [
   //   {
