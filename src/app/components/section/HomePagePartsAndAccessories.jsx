@@ -120,8 +120,8 @@ export default function HomePagePartsAndAccessories() {
                       src={i.img}
                       alt={i.name}
                       className="w-full h-full object-cover"
-                      width={500}
-                      height={500}
+                      width={100}
+                      height={100}
                       // loading="eager"
                       // priority={false}
                     />
@@ -148,8 +148,8 @@ export default function HomePagePartsAndAccessories() {
                       src={i.img}
                       alt={i.name}
                       className="w-full h-full object-cover"
-                      width={500}
-                      height={500}
+                      width={100}
+                      height={100}
                       // loading="eager"
                       // priority={false}
                     />
