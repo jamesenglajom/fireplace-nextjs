@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useBreakpointValue } from "@/app/hooks/useBreakPointValue";
 export default function RenderBanner({ img }) {
   const breakPoints = [
-    { minWidth: 0, value: 320 },
+    { minWidth: 0, value: 50 },
     { minWidth: 640, value: 980 },
   ];
   const useWidth = useBreakpointValue(breakPoints);
