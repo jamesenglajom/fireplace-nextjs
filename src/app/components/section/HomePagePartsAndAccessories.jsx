@@ -1,4 +1,5 @@
 import Image from "next/image";
+import SectionHeader from "../atom/sectionHeader";
 
 const partsandaccessories = [
   { name: "Firewood", img: "/images/home/parts_and_accessories/firewood.webp" },
@@ -49,64 +50,11 @@ const partsandaccessories = [
   },
 ];
 
-const partsandaccessories1 = [
-  { name: "Firewood", img: "/images/home/parts_and_accessories/firewood.webp" },
-  {
-    name: "Fireplace Mantels",
-    img: "/images/home/parts_and_accessories/fireplace-mantels.webp",
-  },
-  {
-    name: "Fireplace Tools",
-    img: "/images/home/parts_and_accessories/fireplace-tools.webp",
-  },
-  {
-    name: "Fireplace Doors",
-    img: "/images/home/parts_and_accessories/fireplace-doors.webp",
-  },
-  {
-    name: "Fireplace Grates",
-    img: "/images/home/parts_and_accessories/fireplace-grates.webp",
-  },
-  {
-    name: "Fireplace Screens",
-    img: "/images/home/parts_and_accessories/fireplace-screens.webp",
-  },
-];
-
-const partsandaccessories2 = [
-  {
-    name: "Fireplace Logs",
-    img: "/images/home/parts_and_accessories/fireplace-logs.webp",
-  },
-  {
-    name: "Firewood Racks",
-    img: "/images/home/parts_and_accessories/firewood-racks.webp",
-  },
-  {
-    name: "Fireplace Starters",
-    img: "/images/home/parts_and_accessories/fireplace-starters.webp",
-  },
-  {
-    name: "Chimney Pipes",
-    img: "/images/home/parts_and_accessories/chimney-pipes.webp",
-  },
-  {
-    name: "Shop All Parts",
-    img: "/images/home/parts_and_accessories/shop-all-parts.webp",
-  },
-  {
-    name: "Shop All Accessories",
-    img: "/images/home/parts_and_accessories/shop-all-accessories.webp",
-  },
-];
-
 export default function HomePagePartsAndAccessories() {
   return (
     <div className="w-full mt-10">
       <div className="container mx-auto px-[10px] lg:px-[20px]">
-        <div className="text-xl md:text-4xl font-semibold underline italic font-bell">
-          Fireplace Parts & Accessories
-        </div>
+        <SectionHeader text="Fireplace Parts & Accessories" />
         {/* update */}
         <div className="flex md:hidden flex-col gap-[10px] mt-5">
           <div className=" w-full flex flex-wrap md:flex-row gap-[10px] justify-center">

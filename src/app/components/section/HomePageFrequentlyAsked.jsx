@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { MingcuteDownLine, MingcuteUpLine } from "../icons/lib";
+import SectionHeader from "@/app/components/atom/sectionHeader";
 
 const static_questions = [
   {
@@ -56,9 +57,7 @@ export default function HomePageFrequentlyAsked() {
   return (
     <div className="w-full mt-10">
       <div className="container mx-auto px-[10px] lg:px-[20px]">
-        <div className="text-xl md:text-4xl font-semibold underline italic  font-bell">
-          Frequently Asked Questions
-        </div>
+        <SectionHeader text="Frequently Asked Questions" />
         <div className="flex flex-col gap-[10px] mt-5">
           {questions.map((i, idx) => (
             <div

@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import SectionHeader from "../atom/sectionHeader";
 const blogs = [
   {
     title: "Fireplace Ideas",
@@ -31,9 +31,7 @@ export default function HomePageGuidesAndInspiration() {
   return (
     <div className="w-full mt-10">
       <div className="container mx-auto px-[10px] lg:px-[20px]">
-        <div className="text-xl md:text-4xl underline italic font-semibold font-bell">
-          Fireplaces How-To Guides & Inspiration
-        </div>
+        <SectionHeader text="Fireplaces How-To Guides & Inspiration" />
         <div className="flex flex-col lg:flex-row gap-[20px] mt-5">
           {blogs.map((i, idx) => (
             <div key={`blog-${idx}`} className="w-full group hover:shadow">

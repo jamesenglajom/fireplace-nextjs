@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 const Carousel = dynamic(() => import("@/app/components/atom/Carousel"), {
   ssr: false,
 });
+import SectionHeader from "../atom/sectionHeader";
 import { Rating } from "@smastrom/react-rating";
 import ItemPrice from "@/app/components/atom/openBoxItemPrice";
 import Image from "next/image";
@@ -71,9 +72,8 @@ export default function HomePageShopOpenBox() {
   return (
     <div className="w-full mt-10">
       <div className="container mx-auto px-[10px] lg:px-[20px]">
-        <div className="text-xl md:text-4xl underline italic font-semibold font-bell">
-          Shop Open Box Blaze Products
-        </div>
+        <SectionHeader text="Shop Open Box Blaze Products" />
+        <div className="text-xl md:text-4xl underline italic font-semibold font-bell"></div>
         <div className="flex flex-col md:flex-row gap-[10px] mt-5">
           <Carousel breakpoints={carousel_breakpoints}>
             {products.map((i, idx) => (

@@ -20,10 +20,9 @@ export default {
         DEFAULT: '2px 2px 4px rgba(0, 0, 0, 0.4)',
         lg: '3px 3px 6px rgba(0, 0, 0, 0.3)',
       },
-      // fontFamily:{
-      //   sans: ['var(--font-montserrat)', "serif"],
-      //   bell: ["Bell MT", "serif"]
-      // }
+      fontFamily:{
+        bell: "var(--font-bell)"
+      }
     },
   },
   plugins: [
