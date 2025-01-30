@@ -27,6 +27,7 @@ export default function HomePageAboutProduct() {
                 height={200}
                 loading="eager"
                 priority={false}
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
               />
             }
           </div>
@@ -91,6 +92,7 @@ export default function HomePageAboutProduct() {
                 height={200}
                 loading="eager"
                 priority={false}
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
               />
             }
           </div>
