@@ -12,8 +12,7 @@ export default function RenderBanner({ img }) {
       src={img}
       alt={`Banner`}
       className="w-full h-full object-cover"
-      width={useWidth ?? 1200}
-      height={0}
+      fill
       loading="eager"
       priority={true}
       sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"

@@ -19,8 +19,6 @@ export default function Hero({ data }) {
                 alt={`Banner`}
                 className="w-full h-full object-cover"
                 fill
-                // width={1000}
-                // height={1000}
                 loading="eager"
                 priority={true}
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
@@ -167,23 +165,8 @@ export default function Hero({ data }) {
     return (
       <div className="container mx-auto w-full relative isolate  bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px] md:h-[calc(100vh-450px)]">
         <RenderBanner img={useBanner} />
-        {
-          // for lazy loading
-          // <Image
-          //   src={useBanner}
-          //   alt={`Banner`}
-          //   className="w-full h-full object-cover"
-          //   width={980}
-          //   height={0}
-          //   loading="eager"
-          //   priority={true}
-          //   sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
-          // />
-          // -----------------
-        }
         <div className="absolute z-[9999] inset-0 m-auto flex items-center justify-center">
           <div className="text-center flex justify-center">
-            {/* <div className="px-[20px] py-[7px] border-white bg-[rgba(0,0,0,.8)] border-4 max-w-[calc(100%-30px)]"> */}
             <div className="px-[20px] py-[7px]">
               {data?.name === "All Products" ? (
                 <div>
