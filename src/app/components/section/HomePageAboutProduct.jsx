@@ -23,11 +23,11 @@ export default function HomePageAboutProduct() {
                 src={img}
                 alt="About-Blaze-Image"
                 className="w-full h-full object-cover"
-                width={100}
-                height={100}
+                width={500}
+                height={500}
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
                 loading="eager"
                 priority={false}
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
               />
             }
           </div>
@@ -72,7 +72,7 @@ export default function HomePageAboutProduct() {
           </div>
           <div className="flex justify-center md:justify-start">
             <a href="tel:(888)%20977-9085">
-              <button className="bg-orange-400 hover:bg-orange-200 text-white py-[4px] px-[10px] md:py-[7px] md:px-[25px] rounded-md flex items-center gap-[5px] md:gap-[10px]">
+              <button className="bg-orange-400 hover:bg-orange-500 text-white py-[4px] px-[10px] md:py-[7px] md:px-[25px] rounded-md flex items-center gap-[5px] md:gap-[10px]">
                 <ICRoundPhone />
                 <div className="text-sm md:text-base">
                   Call Now 888-667-4986
@@ -88,11 +88,11 @@ export default function HomePageAboutProduct() {
                 src={img}
                 alt="About-Blaze-Image"
                 className="w-full h-full object-cover"
-                width={200}
-                height={200}
+                width={500}
+                height={500}
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
                 loading="eager"
                 priority={false}
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
               />
             }
           </div>
