@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${MontserratFont.variable} ${Bell.variable} antialiased font-montserrat`}>
+        className={`antialiased font-montserrat ${MontserratFont.variable} ${Bell.variable} `}>
         <FreeShippingBanner />
         <div className="hidden lg:block bg-pallete-orange py-[8px] px-[30px] text-white">
           <div className="container mx-auto  flex items-center justify-between">
