@@ -124,8 +124,9 @@ export default function HomePageShopCategory() {
                             src={i.img}
                             alt={`${i.name}-image`}
                             className="w-full h-full object-cover"
-                            width={100}
-                            height={100}
+                            // width={100}
+                            // height={100}
+                            fill
                             sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
 
                             // loading="eager"
@@ -162,8 +163,9 @@ export default function HomePageShopCategory() {
                         src={i.img}
                         alt={`${i.name}-image`}
                         className="w-full h-full object-contain"
-                        width={100}
-                        height={100}
+                        // width={100}
+                        // height={100}
+                        fill
                         sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
 
                         // loading="eager"
