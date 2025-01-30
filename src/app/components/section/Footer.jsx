@@ -215,8 +215,8 @@ export default function Footer() {
                     <Image
                       src={i.img}
                       alt={i.alt}
-                      width={300}
-                      height={0}
+                      width={100}
+                      height={100}
                       priority={false}
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
                     />
