@@ -48,7 +48,7 @@ export default function HomePageShopAllClearance() {
                       className="w-full h-full object-cover"
                       width={640}
                       height={0}
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                       // loading="eager"
                       // priority={false}
