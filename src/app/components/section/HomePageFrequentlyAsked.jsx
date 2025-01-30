@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { MingcuteDownLine, MingcuteUpLine } from "../icons/lib";
-import SectionHeader from "@/app/components/atom/sectionHeader";
+import SectionHeader from "@/app/components/atom/SectionHeader";
 
 const static_questions = [
   {

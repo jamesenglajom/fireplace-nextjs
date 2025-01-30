@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 const Carousel = dynamic(() => import("@/app/components/atom/Carousel"), {
   ssr: false,
 });
-import SectionHeader from "../atom/sectionHeader";
+import SectionHeader from "../atom/SectionHeader";
 import { Rating } from "@smastrom/react-rating";
 import ItemPrice from "@/app/components/atom/openBoxItemPrice";
 import Image from "next/image";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import SectionHeader from "../atom/sectionHeader";
+import SectionHeader from "../atom/SectionHeader";
 
 const partsandaccessories = [
   { name: "Firewood", img: "/images/home/parts_and_accessories/firewood.webp" },

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import SectionHeader from "../atom/sectionHeader";
+import SectionHeader from "../atom/SectionHeader";
 const blogs = [
   {
     title: "Fireplace Ideas",
