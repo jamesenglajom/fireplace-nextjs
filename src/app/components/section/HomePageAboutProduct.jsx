@@ -23,8 +23,8 @@ export default function HomePageAboutProduct() {
                 src={img}
                 alt="About-Blaze-Image"
                 className="w-full h-full object-cover"
-                width={200}
-                height={200}
+                width={100}
+                height={100}
                 loading="eager"
                 priority={false}
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
