@@ -44,7 +44,7 @@ export default function HomePageWrapper({ data }) {
       <MobileLoader />
       <TuiHero data={data} />
       <FeatureCategoriesSection />
-      <ShopAllClearanceSection />
+      {/* <ShopAllClearanceSection /> */}
       <AboutProductSection />
       <ReviewsSection />
       <ShopCategorySection />
