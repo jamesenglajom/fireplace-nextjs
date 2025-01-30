@@ -218,6 +218,7 @@ export default function Footer() {
                       width={300}
                       height={0}
                       priority={false}
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
                     />
                   }
                 </div>

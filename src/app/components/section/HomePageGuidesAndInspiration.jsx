@@ -54,6 +54,8 @@ export default function HomePageGuidesAndInspiration() {
                       // fill
                       width={1000}
                       height={0}
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
+
                       // loading="eager"
                       // priority={false}
                     />

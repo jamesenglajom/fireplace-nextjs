@@ -70,6 +70,8 @@ export default function HomePagePartsAndAccessories() {
                       className="w-full h-full object-cover"
                       width={100}
                       height={100}
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
+
                       // loading="eager"
                       // priority={false}
                     />
@@ -98,6 +100,8 @@ export default function HomePagePartsAndAccessories() {
                       className="w-full h-full object-cover"
                       width={100}
                       height={100}
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
+
                       // loading="eager"
                       // priority={false}
                     />

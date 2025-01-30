@@ -52,13 +52,13 @@ export default function HomePageWrapper({ data }) {
       <FeatureCategoriesSection />
       <ShopAllClearanceSection />
       <AboutProductSection />
-      {/* <ReviewsSection />
+      <ReviewsSection />
       <ShopCategorySection />
       <GuidesAndInspirationSection />
       <ShopOpenBoxSection />
       <PartsAndAccessoriesSection />
       <FrequentlyAskedSection />
-      <NewsLetterSection /> */}
+      <NewsLetterSection />
     </div>
   );
 }
