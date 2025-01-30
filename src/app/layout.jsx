@@ -17,6 +17,7 @@ const Bell = localFont({
   src: "./fonts/bell-mt-italic.ttf",
   weight: "100 900",
   variable: "--font-bell",
+  display: "swap",
 });
 
 export const metadata = {
