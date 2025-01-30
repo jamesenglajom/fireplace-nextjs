@@ -27,25 +27,18 @@ const ProductSection = ({ product, loading }) => {
   useEffect(() => {
     if (productMetaFields && productMetaFields.length > 0) {
       setProductOptions(
-        productMetaFields[0].value.map((i) => ({
-          ...i,
-          values: i.values
-            .map((i2, idx2) => ({
-              ...i2,
-              is_checked: i2.sku.value === product?.sku,
-            }))
-            .sort((a, b) => a.option_label.localeCompare(b.option_label)),
-        }))
-      );
-      console.log(
-        "options",
-        productMetaFields[0].value.map((i) => ({
-          ...i,
-          values: i.values.map((i2, idx2) => ({
-            ...i2,
-            is_checked: i2.sku.value === product?.sku,
-          })),
-        }))
+        productMetaFields[0].value
+          .filter((i) => i.option !== "") // remove data with empty string
+          .map((i) => ({
+            ...i,
+            values: i.values
+              .filter((i) => i2.option_label !== "") // remove data with empty string
+              .map((i2, idx2) => ({
+                ...i2,
+                is_checked: i2.sku.value === product?.sku,
+              }))
+              .sort((a, b) => a.option_label.localeCompare(b.option_label)),
+          }))
       );
     }
   }, [productMetaFields]);
