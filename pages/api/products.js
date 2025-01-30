@@ -20,6 +20,7 @@ export default async function handler(req, res) {
     cachedData["fromRedis"] = true;
     return res.status(200).json(cachedData);
   }
+
   try {
     const response = await fetch(API_URL, {
       method: "GET",
@@ -37,9 +38,9 @@ export default async function handler(req, res) {
 
     // save to redis
     await redis.set(cacheKey, data, { ex: 3600 });
-
     data["redisKey"] = cacheKey;
     data["fromRedis"] = false;
+
     res.status(200).json(data);
   } catch (error) {
     console.error("Error fetching products:", error);
