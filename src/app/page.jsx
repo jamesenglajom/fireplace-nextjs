@@ -12,7 +12,7 @@ import PartsAndAccessoriesSection from "@/app/components/section/HomePagePartsAn
 import FrequentlyAskedSection from "@/app/components/section/HomePageFrequentlyAsked";
 import NewsLetterSection from "@/app/components/section/NewsLetter";
 
-import HomePageWrapper from "@/app/components/template/HomaPage";
+// import HomePageWrapper from "@/app/components/template/HomaPage";
 export default async function HomePage({ params }) {
   const page_data = {
     name: "All Products",
@@ -20,20 +20,20 @@ export default async function HomePage({ params }) {
     banner_img: null,
   };
   return (
-    <HomePageWrapper data={page_data} />
-    // <div>
-    //   <MobileLoader />
-    //   <TuiHero data={page_data} />
-    //   <FeatureCategoriesSection />
-    //   <ShopAllClearanceSection />
-    //   <AboutProductSection />
-    //   <ReviewsSection />
-    //   <ShopCategorySection />
-    //   <GuidesAndInspirationSection />
-    //   <ShopOpenBoxSection />
-    //   <PartsAndAccessoriesSection />
-    //   <FrequentlyAskedSection />
-    //   <NewsLetterSection />
-    // </div>
+    // <HomePageWrapper data={page_data} />
+    <div>
+      <MobileLoader />
+      <TuiHero data={page_data} />
+      <FeatureCategoriesSection />
+      <ShopAllClearanceSection />
+      <AboutProductSection />
+      <ReviewsSection />
+      <ShopCategorySection />
+      <GuidesAndInspirationSection />
+      <ShopOpenBoxSection />
+      <PartsAndAccessoriesSection />
+      <FrequentlyAskedSection />
+      <NewsLetterSection />
+    </div>
   );
 }
