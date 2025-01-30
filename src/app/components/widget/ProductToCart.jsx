@@ -158,130 +158,91 @@ const ProductToCart = ({ product, loading }) => {
           </div>
         </div>
       </Dialog>
-      <div className="flex flex-col gap-[15px] w-full">
-        <div className="flex gap-[5px] flex-wrap">
-          {product &&
-            filteredCategoryIds.map((v, i) => (
-              <div
-                key={`category-tag-${i}`}
-                className="text-[12px] py-[4px] px-[8px] bg-stone-300 text-stone-600 font-semibold rounded-full">
-                {getCategoryNameById(v, bccat_json)}
-              </div>
-            ))}
-        </div>
-        <div className="">
+      <div className="flex flex-col gap-[10px] w-full relative">
+        <div className="relative">
           {product && <OnsaleTag categories={product?.categories} />}
         </div>
         <div className="">
-          <div className="font-bold text-[24px] md:text-3xl">
+          <div className="font-bold text-sm md:text-lg">
             {productData?.name}
           </div>
-          <div className="font-light text-stone-400 text-[12px] md:[16px]">
+          <div className="text-stone-400 text-xs md:text-sm">
             {productData?.sku}
           </div>
         </div>
         <div className="">
-          <div className="text-[14px] md:text-[20px] font-bold">
+          <div className="text-sm md:text-base">
             Ships Within 1 to 2 Business Days
           </div>
         </div>
-        <div className="">
-          {/* <div className="flex items-center gap-[20px]">
-                    <div className="text-[2.625em] font-extrabold text-pallete-green">
-                        ${
-                            productData?.price
-                        }
-                    </div>
-                    <div className="product-add-to-cart-quantity-input">
-                        <button onClick={() => handleQuantityButtons('dec')}>
-                            <Icon icon="icons8:minus" className="text-[32px] text-pallete-gray" />
-                        </button>
-                        <input type="number" value={quantity} onChange={handleQuantityChange} />
-                        <button onClick={() => handleQuantityButtons('inc')}>
-                            <Icon icon="icons8:plus" className="text-[32px] text-pallete-gray" />
-                        </button>
-                    </div>
-                </div> */}
-          <div className="flex items-center gap-[10px] mt-[7px] md:mt-[10px]">
-            <div className="font-bold text-white">
-              <button
-                className="flex items-cencer gap-[5px] bg-pallete-green rounded-full py-[5px] px-[25px] md:py-[9px] md:px-[35px]"
-                onClick={handleAddToCart}>
-                <div>
-                  <Icon
-                    icon="ph:shopping-cart-simple-bold"
-                    className="text-[24px] md:text-[30px]"
-                  />
-                </div>
-                <div className="font-bold uppercase text-[18px] md:text-[1.5em]">
-                  add to cart
-                </div>
-              </button>
+        <div className="font-bold text-white">
+          <button
+            className="flex items-cencer gap-[5px] bg-pallete-green rounded-full py-[5px] px-[20px]"
+            onClick={handleAddToCart}>
+            <div>
+              <Icon
+                icon="ph:shopping-cart-simple-bold"
+                className="text-[22px]"
+              />
             </div>
-            {/* <div>
-                        <button onClick={handleHeartToggle} className={`flex justify-center items-center w-[54px] h-[54px] rounded-full ${productData?.like ? 'bg-pallete-orange' : 'bg-stone-400'}`}>
-                            <Icon icon="teenyicons:heart-outline" className="text-white text-[30px]" />
-                        </button>
-                    </div> */}
-          </div>
+            <div className="font-bold uppercase text-sm md:text-base">
+              add to cart
+            </div>
+          </button>
         </div>
-        <div className="mt-[10px] md:mt-[30px] flex flex-col gap-[10px]">
-          <div className="flex items-center">
-            <Rating
-              value={productData?.reviews_rating_sum}
-              style={{ maxWidth: 100 }}></Rating>
-            <div>({productData?.reviews_count})</div>
-          </div>
-          <div className="flex  flex-col md:flex-row md:items-center gap-[10px] md:gap-[25px]">
-            <div className="flex items-center font-bold gap-[8px]">
-              <div>
-                <Icon
-                  icon="lucide:circle-check-big"
-                  className={`${
-                    productData?.is_free_shipping
-                      ? "text-pallete-green"
-                      : "text-stone-400"
-                  }`}
-                />
-              </div>
-              <div
-                className={`text-[14px] md:text-[20px] ${
+        <div className="flex items-center">
+          <Rating
+            value={productData?.reviews_rating_sum}
+            style={{ maxWidth: 100 }}></Rating>
+          <div>({productData?.reviews_count})</div>
+        </div>
+        <div className="flex  flex-col md:flex-row md:items-center gap-[10px] md:gap-[25px]">
+          <div className="flex items-center font-bold gap-[8px]">
+            <div>
+              <Icon
+                icon="lucide:circle-check-big"
+                className={`${
                   productData?.is_free_shipping
-                    ? ""
-                    : "line-through text-stone-400"
+                    ? "text-pallete-green"
+                    : "text-stone-400"
+                }`}
+              />
+            </div>
+            <div
+              className={`text-xs md:text-sm ${
+                productData?.is_free_shipping
+                  ? ""
+                  : "line-through text-stone-400"
+              }`}>
+              <span
+                className={`${
+                  productData?.is_free_shipping
+                    ? "text-pallete-green"
+                    : "text-stone-400"
                 }`}>
-                <span
-                  className={`${
-                    productData?.is_free_shipping
-                      ? "text-pallete-green"
-                      : "text-stone-400"
-                  }`}>
-                  FREE
-                </span>{" "}
-                Shipping
-              </div>
+                FREE
+              </span>{" "}
+              Shipping
             </div>
-            <div className="flex items-center font-bold gap-[8px]">
-              <div>
-                <Icon
-                  icon="lucide:circle-check-big"
-                  className="text-pallete-green"
-                />
-              </div>
-              <div className="text-[14px] md:text-[20px]">
-                Quick Ship Available
-              </div>
+          </div>
+          <div className="flex items-center font-bold gap-[8px]">
+            <div>
+              <Icon
+                icon="lucide:circle-check-big"
+                className="text-pallete-green"
+              />
             </div>
-            <div className="py-[5px] px-[15px] md:py-[6.5px] md:px-[25px] w-fit gap-[5px] flex items-center rounded-full bg-pallete-lightgray">
-              <div>
-                <Icon
-                  icon="material-symbols:info-outline"
-                  className="text-pallete-dark text-[18px] mdtext-[25px]"
-                />
-              </div>
-              <div className="text-[14px] md:text-[20px] text-pallete-dark font-semibold">
-                Learn More
-              </div>
+            <div className="text-xs md:text-sm">Quick Ship Available</div>
+          </div>
+          <div className="py-[5px] px-[15px] md:py-[6.5px] md:px-[25px] w-fit gap-[5px] flex items-center rounded-full bg-pallete-lightgray">
+            <div>
+              <Icon
+                icon="material-symbols:info-outline"
+                className="text-pallete-dark text-[18px]"
+              />
+            </div>
+            <div className="text-xs md:text-sm text-pallete-dark font-semibold">
+              Learn More
             </div>
           </div>
         </div>

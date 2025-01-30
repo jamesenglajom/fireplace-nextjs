@@ -6,6 +6,7 @@ import ProductToCart from "@/app/components/widget/ProductToCart";
 import BackButton from "@/app/components/atom/BackButton";
 import useFetchProductMetaFields from "@/app/hooks/useFetchProductMetaFields";
 import ProductOption from "@/app/components/atom/productOption";
+import CategoryChips from "@/app/components/atom/SingleProductCategoryChips";
 import { useState, useEffect } from "react";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const ProductSection = ({ product, loading }) => {
@@ -52,12 +53,15 @@ const ProductSection = ({ product, loading }) => {
   return (
     <>
       <div className="p-4">
-        <div className="container mx-auto flex flex-col">
+        <div className="container mx-auto flex flex-col gap-[10px]">
           <div>
             <BackButton />
           </div>
+          <div>
+            <CategoryChips categories={product?.categories} />
+          </div>
         </div>
-        <div className="container mx-auto flex flex-col sm:flex-row gap-[10px] py-[60px]">
+        <div className="container mx-auto flex flex-col sm:flex-row gap-[10px] py-[20px]">
           <div className="flex-1">
             <MediaGallery mediaItems={mediaItems} loading={loading} />
           </div>
