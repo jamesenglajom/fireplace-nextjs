@@ -17,7 +17,13 @@ const ShopAllClearanceSection = dynamic(
     ssr: false,
   }
 );
-import AboutProductSection from "@/app/components/section/HomePageAboutProduct";
+// import AboutProductSection from "@/app/components/section/HomePageAboutProduct";
+const AboutProductSection = dynamic(
+  () => import("@/app/components/section/HomePageAboutProduct"),
+  {
+    ssr: false,
+  }
+);
 // import ReviewsSection from "@/app/components/section/HomePageReviews";
 const ReviewsSection = dynamic(
   () => import("@/app/components/section/HomePageReviews"),
@@ -44,15 +50,15 @@ export default function HomePageWrapper({ data }) {
       <MobileLoader />
       <TuiHero data={data} />
       <FeatureCategoriesSection />
-      {/* <ShopAllClearanceSection /> */}
+      <ShopAllClearanceSection />
       <AboutProductSection />
-      <ReviewsSection />
+      {/* <ReviewsSection />
       <ShopCategorySection />
       <GuidesAndInspirationSection />
       <ShopOpenBoxSection />
       <PartsAndAccessoriesSection />
       <FrequentlyAskedSection />
-      <NewsLetterSection />
+      <NewsLetterSection /> */}
     </div>
   );
 }
