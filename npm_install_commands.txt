@@ -13,3 +13,7 @@ npm install @tailwindcss/aspect-ratio --legacy-peer-deps
 React Slick
 npm install react-slick --save --legacy-peer-deps
 npm install slick-carousel --save --legacy-peer-deps
+
+BrainTree
+npm install braintree --legacy-peer-deps
+npm install braintree-web-drop-in
