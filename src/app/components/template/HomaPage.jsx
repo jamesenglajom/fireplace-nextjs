@@ -1,6 +1,7 @@
-import MobileLoader from "./components/molecule/MobileLoader";
+"use client";
+import MobileLoader from "@/app/components/molecule/MobileLoader";
 // home page section import in order
-import TuiHero from "./components/template/tui_hero";
+import TuiHero from "@/app/components/template/tui_hero";
 import FeatureCategoriesSection from "@/app/components/section/HomePageFeatureCategories";
 import ShopAllClearanceSection from "@/app/components/section/HomePageShopAllClearance";
 import AboutProductSection from "@/app/components/section/HomePageAboutProduct";
@@ -12,28 +13,21 @@ import PartsAndAccessoriesSection from "@/app/components/section/HomePagePartsAn
 import FrequentlyAskedSection from "@/app/components/section/HomePageFrequentlyAsked";
 import NewsLetterSection from "@/app/components/section/NewsLetter";
 
-import HomePageWrapper from "@/app/components/template/HomaPage";
-export default async function HomePage({ params }) {
-  const page_data = {
-    name: "All Products",
-    children: [],
-    banner_img: null,
-  };
+export default function HomePageWrapper({ data }) {
   return (
-    <HomePageWrapper data={page_data} />
-    // <div>
-    //   <MobileLoader />
-    //   <TuiHero data={page_data} />
-    //   <FeatureCategoriesSection />
-    //   <ShopAllClearanceSection />
-    //   <AboutProductSection />
-    //   <ReviewsSection />
-    //   <ShopCategorySection />
-    //   <GuidesAndInspirationSection />
-    //   <ShopOpenBoxSection />
-    //   <PartsAndAccessoriesSection />
-    //   <FrequentlyAskedSection />
-    //   <NewsLetterSection />
-    // </div>
+    <div>
+      <MobileLoader />
+      <TuiHero data={data} />
+      {/* <FeatureCategoriesSection /> */}
+      <ShopAllClearanceSection />
+      <AboutProductSection />
+      {/* <ReviewsSection /> */}
+      <ShopCategorySection />
+      <GuidesAndInspirationSection />
+      {/* <ShopOpenBoxSection /> */}
+      <PartsAndAccessoriesSection />
+      <FrequentlyAskedSection />
+      <NewsLetterSection />
+    </div>
   );
 }
