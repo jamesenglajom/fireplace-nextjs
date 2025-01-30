@@ -32,7 +32,7 @@ const ProductSection = ({ product, loading }) => {
           .map((i) => ({
             ...i,
             values: i.values
-              .filter((i) => i2.option_label !== "") // remove data with empty string
+              .filter((i2) => i2.option_label !== "") // remove data with empty string
               .map((i2, idx2) => ({
                 ...i2,
                 is_checked: i2.sku.value === product?.sku,
