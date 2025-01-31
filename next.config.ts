@@ -16,6 +16,9 @@
 
 
 module.exports = {
+  serverRuntimeConfig: {
+      PROJECT_ROOT: 'fireplace-nextjs'
+  },
   async headers() {
     return [
       {
