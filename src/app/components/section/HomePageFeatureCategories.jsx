@@ -55,7 +55,7 @@ const items_per_break_point = [
 
 export default function HomePageFeatureCategories() {
   return (
-    <div className="container mx-auto overflow-hidden">
+    <div className="container mx-auto overflow-hidden min-h-[220px]">
       <Carousel breakpoints={items_per_break_point}>
         {items.map((v, idx) => (
           <Link

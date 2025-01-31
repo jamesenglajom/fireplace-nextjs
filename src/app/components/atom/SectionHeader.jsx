@@ -1,7 +1,7 @@
 export default function SectionHeader({ text }) {
   return (
-    <div
-      className={`text-xl md:text-4xl font-semibold underline italic font-bell`}>
+    //  font-bell
+    <div className={`text-xl md:text-4xl font-semibold underline italic`}>
       {text}
     </div>
   );

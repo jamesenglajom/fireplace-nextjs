@@ -21,8 +21,8 @@ export default {
         lg: '3px 3px 6px rgba(0, 0, 0, 0.3)',
       },
       fontFamily:{
-        montserrat: "var(--font-montserrat)",
-        bell: "var(--font-bell)",
+        // montserrat: "var(--font-montserrat)",
+        // bell: "var(--font-bell)",
       }
     },
   },

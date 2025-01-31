@@ -21,7 +21,7 @@ export default async function HomePage({ params }) {
   };
   return (
     // <HomePageWrapper data={page_data} />
-    <div>
+    <>
       <MobileLoader />
       <TuiHero data={page_data} />
       <FeatureCategoriesSection />
@@ -34,6 +34,6 @@ export default async function HomePage({ params }) {
       <PartsAndAccessoriesSection />
       <FrequentlyAskedSection />
       <NewsLetterSection />
-    </div>
+    </>
   );
 }

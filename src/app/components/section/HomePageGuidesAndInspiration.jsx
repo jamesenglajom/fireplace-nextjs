@@ -5,7 +5,7 @@ const blogs = [
     title: "Fireplace Ideas",
     img: "/images/home/blogs/fireplace-ideas.webp",
     tag: "Inspiration Guide",
-    tag_bg: "bg-orange-500",
+    tag_bg: "bg-orange-600",
     content:
       "Explore the most popular fireplace design styles and features to help you choose the perfect one for your home.",
   },
@@ -13,7 +13,7 @@ const blogs = [
     title: "How to Choose a Fireplace TV Stand",
     img: "/images/home/blogs/fireplace-tv-stand.webp",
     tag: "Buying Guide",
-    tag_bg: "bg-green-500",
+    tag_bg: "bg-green-600",
     content:
       "Learn how to choose a fireplace TV stand, where to place it and make it fit seamlessly into your current decor.",
   },
@@ -21,7 +21,7 @@ const blogs = [
     title: "Types of Fireplaces & Mantels",
     img: "/images/home/blogs/types-of-fireplaces.webp",
     tag: "Buying Guide",
-    tag_bg: "bg-green-500",
+    tag_bg: "bg-green-600",
     content:
       "Ready for a new fireplace? We show you types of fireplaces, based on fuel. Plus, what you need to know about mantels.",
   },
@@ -37,7 +37,7 @@ export default function HomePageGuidesAndInspiration() {
             <div key={`blog-${idx}`} className="w-full group hover:shadow">
               <div className="relative bg-green-400">
                 <div
-                  className={`text-sm md:text-base z-[1] absolute bottom-[20px] right-[0px] h-[auto] w-[content] text-white px-[25px] py-[5px] shadow-md ${i.tag_bg}`}>
+                  className={`font-medium text-sm md:text-base z-[1] absolute bottom-[20px] right-[0px] h-[auto] w-[content] text-white px-[25px] py-[5px] shadow-md ${i.tag_bg}`}>
                   {i.tag}
                 </div>
                 <div className="aspect-w-3 aspect-h-2 bg-stone-800">

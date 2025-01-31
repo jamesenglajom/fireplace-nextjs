@@ -185,7 +185,7 @@ export default function HomePageShopCategory() {
             </div>
             <div className="flex justify-center">
               <a href="">
-                <button className="text-sm md:text-base font-medium bg-orange-400 hover:bg-orange-500 text-white py-[4px] px-[10px] md:py-[7px] md:px-[25px] rounded-md">
+                <button className="text-sm md:text-base font-bold bg-orange-600 hover:bg-orange-500 text-white py-[4px] px-[10px] md:py-[7px] md:px-[25px] rounded-md">
                   Shop Fireplaces & Stoves
                 </button>
               </a>

@@ -13,11 +13,12 @@ export default function HomePageAboutProduct() {
     <div className="container mx-auto bg-[#F6F6F6] mt-5">
       <div className="w-full flex flex-col md:flex-row">
         <div className="w-full xl:w-[60%] p-[40px] flex flex-col gap-[30px]">
-          <div className="text-xl md:text-3xl font-semibold font-bell">
+          <div className="text-xl md:text-3xl font-semibold">
+            {/* font-bell */}
             {/* About Blaze Grill Products */}
             About Solana Fireplaces
           </div>
-          <div className="relative w-full flex items-center justify-center xl:hidden">
+          <div className="relative w-full flex items-center justify-center xl:hidden aspect-2">
             {
               <Image
                 src={img}
@@ -32,7 +33,7 @@ export default function HomePageAboutProduct() {
               />
             }
           </div>
-          <div className="text-sm md:text-base">
+          <div className="text-sm md:text-base font-medium">
             <p className="text-left">
               At Solana Fireplaces, we believe that the heart of a home extends
               beyond its walls. We specialize in creating exceptional outdoor
@@ -73,7 +74,7 @@ export default function HomePageAboutProduct() {
           </div>
           <div className="flex justify-center md:justify-start">
             <a href="tel:(888)%20977-9085">
-              <button className="bg-orange-400 hover:bg-orange-500 text-white py-[4px] px-[10px] md:py-[7px] md:px-[25px] rounded-md flex items-center gap-[5px] md:gap-[10px]">
+              <button className="font-bold bg-orange-600 hover:bg-orange-500 text-white py-[4px] px-[10px] md:py-[7px] md:px-[25px] rounded-md flex items-center gap-[5px] md:gap-[10px]">
                 <ICRoundPhone />
                 <div className="text-sm md:text-base">
                   Call Now 888-667-4986
@@ -83,7 +84,7 @@ export default function HomePageAboutProduct() {
           </div>
         </div>
         <div className="hidden xl:flex w-full xl:w-[40%] p-[40px] items-center justify-center">
-          <div className="w-full relative">
+          <div className="w-full relative aspect-2">
             {
               <Image
                 src={img}
