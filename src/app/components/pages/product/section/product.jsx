@@ -15,7 +15,7 @@ const ProductSection = ({ product, loading }) => {
   const { productMetaFields, loading: metaFieldsLoading } =
     useFetchProductMetaFields({ id: product.id });
 
-  console.log("product_id", product.id);
+  // console.log("product_id", product.id);
   useEffect(() => {
     if (product) {
       if (Object.keys(product).length > 0) {
