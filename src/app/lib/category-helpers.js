@@ -57,8 +57,8 @@ export const flatCategories = [
 //         children: [],
 //       }))
 //   )
-  // .map((i) => i.key_words[0])
-);
+// .map((i) => i.key_words[0])
+// );
 
 function filterBCCatById(id) {
   return bc_categories.find(({ category_id }) => category_id === id);
