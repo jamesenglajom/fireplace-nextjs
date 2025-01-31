@@ -22,7 +22,7 @@ export default function useFetchProducts(initialParams = {}) {
         const res = await fetch(url, {
           signal,
           cache: "force-cache",
-          next: { revalidate: 3600 },
+          next: { revalidate: 1 },
         }); // Pass the signal to fetch
         if (!res.ok) {
           throw new Error("Failed to fetch products");

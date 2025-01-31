@@ -1,4 +1,3 @@
-import { redis } from "@/app/lib/redis";
 import CryptoJS from "crypto-js";
 
 export default async function handler(req, res) {
@@ -17,7 +16,7 @@ export default async function handler(req, res) {
 
     const cachedData = await redis.get(cacheKey);
     if (cachedData) {
-      cachedData["redisKey"] = cacheKey;
+      cachedData["redisKey"] = cacheKey + "update-test";
       cachedData["fromRedis"] = true;
       return res.status(200).json(cachedData);
     }
@@ -38,7 +37,7 @@ export default async function handler(req, res) {
 
     // // save to redis
     await redis.set(cacheKey, data, { ex: 3600 });
-    data["redisKey"] = cacheKey;
+    data["redisKey"] = cacheKey + "update-test";
     data["fromRedis"] = false;
 
     res.status(200).json(data);
