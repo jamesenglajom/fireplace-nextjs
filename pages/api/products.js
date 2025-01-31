@@ -1,4 +1,4 @@
-import { redis } from "@/app/lib/redis";
+import { redis } from "app/lib/redis";
 import CryptoJS from "crypto-js";
 
 export default async function handler(req, res) {
