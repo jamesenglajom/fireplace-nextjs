@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     CryptoJS.enc.Hex
   )}`;
 
-  // const cachedData = await redis.get(cacheKey);
+  const cachedData = await redis.get(cacheKey);
   if (cachedData) {
     cachedData["redisKey"] = cacheKey;
     cachedData["fromRedis"] = true;
