@@ -11,9 +11,9 @@ export default async function handler(req, res) {
   try {
     // redis
     // Generate a unique cache key using crypto-js SHA256
-    // const cacheKey = `bigcommerce:${CryptoJS.SHA256(API_URL).toString(
-    //   CryptoJS.enc.Hex
-    // )}`;
+    const cacheKey = `bigcommerce:${CryptoJS.SHA256(API_URL).toString(
+      CryptoJS.enc.Hex
+    )}`;
 
     // const cachedData = await redis.get(cacheKey);
     // if (cachedData) {
