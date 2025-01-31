@@ -178,6 +178,7 @@ export default function TuiNavbar() {
                     {/* <div className="text-white"><Icon icon={i.icon.name} /></div> */}
                     <Link
                       href={`${BASE_URL}/${i.menu.href}`}
+                      prefetch={false}
                       className={`flex items-center gap-[8px] ${
                         i.menu.href === ParentSlug
                           ? "font-semibold"
@@ -208,6 +209,7 @@ export default function TuiNavbar() {
                                     <div
                                       key={`${i.menu.href}-col-${index1}-content-${index2}`}>
                                       <Link
+                                        prefetch={false}
                                         href={`${
                                           i2?.url
                                             ? BASE_URL + "/" + i2.url
@@ -225,6 +227,7 @@ export default function TuiNavbar() {
                                               .slice(0, 3)
                                               .map((i3, index3) => (
                                                 <Link
+                                                  prefetch={false}
                                                   href={`${
                                                     i3?.url
                                                       ? BASE_URL + "/" + i3.url
@@ -240,6 +243,7 @@ export default function TuiNavbar() {
                                             i2.children.length > 0 &&
                                             i2.children.map((i3, index3) => (
                                               <Link
+                                                prefetch={false}
                                                 href={`${
                                                   i3?.url
                                                     ? BASE_URL + "/" + i3.url
@@ -252,6 +256,7 @@ export default function TuiNavbar() {
                                               </Link>
                                             ))}
                                         <Link
+                                          prefetch={false}
                                           href={`${
                                             i2?.url
                                               ? BASE_URL + "/" + i2.url
@@ -310,6 +315,7 @@ export default function TuiNavbar() {
                     />
                   </button>
                   <Link
+                    prefetch={false}
                     href={`${BASE_URL}`}
                     className="flex bg-stone-300 rounded gap-[8px] items-center p-1"
                     onClick={() => redirectToHome()}>
@@ -332,6 +338,7 @@ export default function TuiNavbar() {
                     <div>
                       {overviewUrl && (
                         <Link
+                          prefetch={false}
                           href={overviewUrl}
                           onClick={handleMenuLinkItemClick}>
                           {selected[selected.length - 1]}
@@ -360,6 +367,7 @@ export default function TuiNavbar() {
                         </div>
                       ) : (
                         <Link
+                          prefetch={false}
                           href={`${BASE_URL}/${i?.url}`}
                           onClick={handleMenuLinkItemClick}
                           className=" flex justify-between items-center">
