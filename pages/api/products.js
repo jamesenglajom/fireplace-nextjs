@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       CryptoJS.enc.Hex
     )}`;
 
-    // const cachedData = await redis.get(cacheKey);
+    const cachedData = await redis.get(cacheKey);
     // if (cachedData) {
     //   cachedData["redisKey"] = cacheKey;
     //   cachedData["fromRedis"] = true;
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
     // await redis.set(cacheKey, data, { ex: 3600 });
     // data["redisKey"] = cacheKey;
     // data["fromRedis"] = false;
-
+    data["cacheData"] = cachedData;
     res.status(200).json(data);
   } catch (error) {
     console.error("Error fetching products:", error);
