@@ -23,10 +23,11 @@ export default function HomePageAboutProduct() {
                 src={img}
                 alt="About-Blaze-Image"
                 className="w-full h-full object-cover"
-                width={500}
-                height={500}
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
-                loading="eager"
+                // width={500}
+                // height={500}
+                fill
+                sizes="100vw"
+                loading="lazy"
                 priority={false}
               />
             }
@@ -88,10 +89,11 @@ export default function HomePageAboutProduct() {
                 src={img}
                 alt="About-Blaze-Image"
                 className="w-full h-full object-cover"
-                width={500}
-                height={500}
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
-                loading="eager"
+                // width={500}
+                // height={500}
+                fill
+                sizes="100vw"
+                loading="lazy"
                 priority={false}
               />
             }
