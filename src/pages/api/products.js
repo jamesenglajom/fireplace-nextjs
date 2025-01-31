@@ -8,20 +8,20 @@ export default async function handler(req, res) {
   }/catalog/products?${params.toString()}`;
   const API_TOKEN = process.env.NEXT_PUBLIC_BC_ACCESS_TOKEN; // Replace with your BigCommerce API token
 
-  // redis
-  // Generate a unique cache key using crypto-js SHA256
-  const cacheKey = `bigcommerce:${CryptoJS.SHA256(API_URL).toString(
-    CryptoJS.enc.Hex
-  )}`;
-
-  const cachedData = await redis.get(cacheKey);
-  if (cachedData) {
-    cachedData["redisKey"] = cacheKey;
-    cachedData["fromRedis"] = true;
-    return res.status(200).json(cachedData);
-  }
-
   try {
+    // redis
+    // Generate a unique cache key using crypto-js SHA256
+    const cacheKey = `bigcommerce:${CryptoJS.SHA256(API_URL).toString(
+      CryptoJS.enc.Hex
+    )}`;
+
+    const cachedData = await redis.get(cacheKey);
+    if (cachedData) {
+      cachedData["redisKey"] = cacheKey;
+      cachedData["fromRedis"] = true;
+      return res.status(200).json(cachedData);
+    }
+
     const response = await fetch(API_URL, {
       method: "GET",
       headers: {
