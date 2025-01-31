@@ -50,9 +50,6 @@ const ProductSection = ({ product, loading }) => {
           <div>
             <BackButton />
           </div>
-          <div>
-            <CategoryChips categories={product?.categories} />
-          </div>
         </div>
         <div className="container mx-auto flex flex-col sm:flex-row gap-[10px] py-[20px]">
           <div className="flex-1">
@@ -82,6 +79,12 @@ const ProductSection = ({ product, loading }) => {
                     </div>
                   </div>
                 ))}
+            </div>
+            <div>
+              <div className="font-medium text-xs lg:text-sm mb-[15px]">
+                Category
+              </div>
+              <CategoryChips categories={product?.categories} />
             </div>
           </div>
         </div>

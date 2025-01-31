@@ -3,7 +3,7 @@ import { bc_categories as bccat_json } from "../../lib/category-helpers";
 
 export default function SingleProductCategoryChips({ categories = [] }) {
   return (
-    <div className="flex gap-[5px] flex-wrap justify-center px-[20px]">
+    <div className="flex gap-[5px] flex-wrap">
       {categories &&
         categories.length > 0 &&
         categories.map((v, i) => (
