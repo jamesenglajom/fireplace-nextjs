@@ -99,7 +99,7 @@ export default function TuiNavbar() {
         <Disclosure as="nav" className="bg-white z-[9999] ">
           <div className="mx-auto container px-2 pt-[10px]">
             <div className="relative flex h-16 items-center justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+              <div className="flex items-center sm:hidden">
                 {/* Mobile menu button*/}
                 <DisclosureButton
                   onClick={() => setMobileMenuDialog(true)}
@@ -112,7 +112,7 @@ export default function TuiNavbar() {
               <div className="flex items-center justify-center flex-1 sm:flex-initial sm:items-stretch sm:justify-start">
                 {/** flex-1 sm:items-stretch sm:justify-start */}
                 <div className="flex items-center relative w-[88px] aspect-2">
-                  <div className="absolute top-0 left-[5px] w-[100px] xl:w-[200px]">
+                  <div className="absolute top-0 left-0 md:left-[5px] w-[100px] xl:w-[200px]">
                     {
                       <Link href={BASE_URL}>
                         <Image
@@ -132,7 +132,7 @@ export default function TuiNavbar() {
               <div className="hidden sm:block sm:w-[300px] md:w-[500px]">
                 <HomeSearch />
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <ul className="flex space-x-4">
                   <li className="relative">
                     <div className="absolute text-[7px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">
