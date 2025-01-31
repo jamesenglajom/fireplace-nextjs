@@ -1,5 +1,5 @@
-// import { redis } from "../../src/app/lib/redis";
-// import CryptoJS from "crypto-js";
+import { redis } from "app/lib/redis";
+import CryptoJS from "crypto-js";
 
 export default async function handler(req, res) {
   let params = new URLSearchParams(req.query);
@@ -10,16 +10,16 @@ export default async function handler(req, res) {
   const API_TOKEN = process.env.NEXT_PUBLIC_BC_ACCESS_TOKEN; // Replace with your BigCommerce API token
 
   // redis
-  // const cacheKey = `bigcommerce:${CryptoJS.SHA256(API_URL).toString(
-  //   CryptoJS.enc.Hex
-  // )}`;
+  const cacheKey = `bigcommerce:${CryptoJS.SHA256(API_URL).toString(
+    CryptoJS.enc.Hex
+  )}`;
 
-  // const cachedData = await redis.get(cacheKey);
-  // if (cachedData) {
-  //   cachedData["redisKey"] = cacheKey;
-  //   cachedData["fromRedis"] = true;
-  //   return res.status(200).json(cachedData);
-  // }
+  const cachedData = await redis.get(cacheKey);
+  if (cachedData) {
+    cachedData["redisKey"] = cacheKey;
+    cachedData["fromRedis"] = true;
+    return res.status(200).json(cachedData);
+  }
 
   try {
     const response = await fetch(API_URL, {
@@ -37,9 +37,9 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     // save to redis
-    // await redis.set(cacheKey, data, { ex: 3600 });
-    // data["redisKey"] = cacheKey;
-    // data["fromRedis"] = false;
+    await redis.set(cacheKey, data, { ex: 3600 });
+    data["redisKey"] = cacheKey;
+    data["fromRedis"] = false;
 
     res.status(200).json(data);
   } catch (error) {

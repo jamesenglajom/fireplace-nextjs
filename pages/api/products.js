@@ -16,11 +16,11 @@ export default async function handler(req, res) {
     )}`;
 
     const cachedData = await redis.get(cacheKey);
-    // if (cachedData) {
-    //   cachedData["redisKey"] = cacheKey;
-    //   cachedData["fromRedis"] = true;
-    //   return res.status(200).json(cachedData);
-    // }
+    if (cachedData) {
+      cachedData["redisKey"] = cacheKey;
+      cachedData["fromRedis"] = true;
+      return res.status(200).json(cachedData);
+    }
 
     const response = await fetch(API_URL, {
       method: "GET",
@@ -37,9 +37,9 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     // // save to redis
-    // await redis.set(cacheKey, data, { ex: 3600 });
-    // data["redisKey"] = cacheKey;
-    // data["fromRedis"] = false;
+    await redis.set(cacheKey, data, { ex: 3600 });
+    data["redisKey"] = cacheKey;
+    data["fromRedis"] = false;
     data["cacheData"] = cachedData;
     res.status(200).json(data);
   } catch (error) {
