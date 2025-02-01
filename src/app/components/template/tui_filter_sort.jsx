@@ -130,7 +130,7 @@ export default function TuiFilterSort({
 
   const handleFilterChange = (e) => {
     const { value, checked } = e.target;
-    console.log(`${value}: ${checked} (checked)`);
+    // console.log(`${value}: ${checked} (checked)`);
     const tmp = value.split(":");
     let filterValue = null;
     if (tmp.length > 1) {

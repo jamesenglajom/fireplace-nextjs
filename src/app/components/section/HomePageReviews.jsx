@@ -64,7 +64,7 @@ export default function HomePageReviews() {
               Write a review
             </div>
           </div>
-          <div className="w-full lg:w-[70%] flex-col lg:flex-row flex gap-[10px]">
+          <div className="w-full lg:w-[70%] flex-col lg:flex-row flex gap-[10px] min-h-[227px]">
             <Carousel breakpoints={carousel_breakpoints}>
               {reviews.map((i, idx) => (
                 <div key={`review-${idx}`} className="bg-white w-full p-[20px]">

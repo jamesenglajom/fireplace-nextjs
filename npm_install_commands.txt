@@ -17,3 +17,12 @@ npm install slick-carousel --save --legacy-peer-deps
 BrainTree
 npm install braintree --legacy-peer-deps
 npm install braintree-web-drop-in
+
+REDIS
+npm install @upstash/redis --legacy-peer-deps
+
+CRYPTO-JS
+npm i crypto-js --legacy-peer-deps
+
+LOCALFORAGE
+npm install localforage --legacy-peer-deps
