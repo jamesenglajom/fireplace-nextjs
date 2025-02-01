@@ -19,3 +19,6 @@ npm install @upstash/redis --legacy-peer-deps
 
 CRYPTO-JS
 npm i crypto-js --legacy-peer-deps
+
+LOCALFORAGE
+npm install localforage --legacy-peer-deps

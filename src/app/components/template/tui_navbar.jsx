@@ -14,9 +14,10 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 // icon
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { HeartIcon, CartIcon, MingcuteHome7 } from "@/app/components/icons/lib";
+import { HeartIcon, MingcuteHome7 } from "@/app/components/icons/lib";
 // components
 import HomeSearch from "../search/HomeSearch";
+import CartButton from "@/app/components/atom/CartButton";
 // data
 import { solana_categories as cat_json } from "@/app/lib/category-helpers";
 
@@ -135,17 +136,7 @@ export default function TuiNavbar() {
               <div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <ul className="flex space-x-4">
                   <li className="relative">
-                    <div className="absolute text-[7px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">
-                      Soon
-                    </div>
-                    <a
-                      href="#"
-                      className="text-gray-700 hover:text-blue-500 relative">
-                      <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
-                        <div className="text-[10px]">26</div>
-                      </div>
-                      <CartIcon color="black" width="24" height="24" />
-                    </a>
+                    <CartButton />
                   </li>
                   <li className="relative">
                     <div className="absolute text-[7px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">

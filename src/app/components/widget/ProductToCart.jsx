@@ -5,19 +5,26 @@ import { Rating } from "@smastrom/react-rating";
 import { useState, useEffect } from "react";
 import { bc_categories as bccat_json } from "../../lib/category-helpers";
 import { getCategoryNameById } from "@/app/lib/helpers";
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  DialogTitle,
-} from "@headlessui/react";
-import { PhoneIcon } from "@heroicons/react/24/outline";
 import OnsaleTag from "@/app/components/atom/SingleProductOnsaleTag";
+
+import { saveCart, getCart } from "@/app/lib/cartStorage";
 
 const ProductToCart = ({ product, loading }) => {
   const [quantity, setQuantity] = useState(1);
   const [open, setOpen] = useState(false);
   const [filteredCategoryIds, setFilteredCategoryIds] = useState([]);
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    // On mount, load the cart from localForage
+    const loadCart = async () => {
+      const savedCart = await getCart();
+      setCart(savedCart);
+      console.log("cartIsLoaded", savedCart);
+    };
+
+    loadCart();
+  }, []); // Empty array to run only once when the component mounts
 
   useEffect(() => {
     if (product?.categories.length > 0) {
@@ -74,8 +81,13 @@ const ProductToCart = ({ product, loading }) => {
     setProductData((prev) => ({ ...prev, like: !prev.like }));
   };
 
-  const handleAddToCart = (e) => {
-    setOpen(true);
+  const handleAddToCart = (item) => {
+    // setOpen(true);
+    setCart((prev) => {
+      const updatedCart = [...prev, item];
+      saveCart(updatedCart);
+      return updatedCart;
+    });
   };
 
   if (loading) {
@@ -105,7 +117,7 @@ const ProductToCart = ({ product, loading }) => {
 
   return (
     <>
-      <Dialog open={open} onClose={setOpen} className="relative z-10">
+      {/* <Dialog open={open} onClose={setOpen} className="relative z-10">
         <DialogBackdrop
           transition
           className="fixed inset-0 bg-gray-500/75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
@@ -157,7 +169,7 @@ const ProductToCart = ({ product, loading }) => {
             </DialogPanel>
           </div>
         </div>
-      </Dialog>
+      </Dialog> */}
       <div className="flex flex-col gap-[10px] w-full relative">
         <div className="relative">
           {product && <OnsaleTag categories={product?.categories} />}
@@ -178,7 +190,7 @@ const ProductToCart = ({ product, loading }) => {
         <div className="font-bold text-white">
           <button
             className="flex items-cencer gap-[5px] bg-pallete-green rounded-full py-[5px] px-[20px]"
-            onClick={handleAddToCart}>
+            onClick={() => handleAddToCart(productData)}>
             <div>
               <Icon
                 icon="ph:shopping-cart-simple-bold"
