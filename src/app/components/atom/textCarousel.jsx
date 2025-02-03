@@ -35,7 +35,7 @@ function SamplePrevArrow(props) {
 
 class Slider extends Component {
   state = {
-    isServer: true,
+    isServer: false,
   };
 
   componentDidMount() {
@@ -45,7 +45,7 @@ class Slider extends Component {
   render() {
     const { settings, breakpoints, children } = this.props;
     const SliderRendered = dynamic(import("react-slick"), {
-      ssr: this.state.isServer,
+      ssr: false,
     });
     // const breakpoint_value = useBreakpointValue(breakpoints);
 
