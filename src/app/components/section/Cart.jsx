@@ -1,24 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import CartListItem from "@/app/components/atom/CartListItem";
-
-import { getCart } from "@/app/lib/cartStorage";
-
+import { useCart } from "@/app/context/cart";
 export default function CartSection() {
-  const [cart, setCart] = useState(0);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // On mount, load the cart from localForage
-    const loadCart = async () => {
-      const savedCart = await getCart();
-      setCart(savedCart);
-      setLoading((prev) => !prev);
-    };
-
-    loadCart();
-  }, []); // Empty array to run only once when the component mounts
-
+  const {cartItems, clearCartItems, loadingCartItems } = useCart();
   return (
     <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
@@ -29,13 +14,13 @@ export default function CartSection() {
         <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
           <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
             <div className="space-y-6">
-              {cart && cart.length > 0 ? (
-                cart.map((item, idx) => (
+              {cartItems && cartItems.length > 0 ? (
+                cartItems.map((item, idx) => (
                   <CartListItem key={`cart-list-item-${idx}`} item={item} />
                 ))
               ) : (
                 <div className="min-h-[190px] font-bold text-stone-500 text-lg flex items-center justify-center">
-                  <div>{loading ? "Loading..." : "Nothing to display"}</div>
+                  <div>{loadingCartItems ? "Loading..." : "Nothing to display"}</div>
                 </div>
               )}
             </div>
