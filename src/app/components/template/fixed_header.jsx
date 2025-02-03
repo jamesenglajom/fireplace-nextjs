@@ -46,7 +46,7 @@ export default function FixedHeader() {
             <li>
               <CartButton className="text-white hover:text-orange-500"/>
             </li>
-            <li>
+            {/* <li>
               <a href="#about" className="text-gray-700 relative">
                 <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
                   <div className="text-[10px]">739</div>
@@ -57,7 +57,7 @@ export default function FixedHeader() {
                   Soon
                 </div>
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

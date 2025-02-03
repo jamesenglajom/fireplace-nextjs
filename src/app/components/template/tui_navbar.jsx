@@ -138,7 +138,7 @@ export default function TuiNavbar() {
                   <li className="relative">
                     <CartButton className="text-gray-700 hover:text-orange-500"/>
                   </li>
-                  <li className="relative">
+                  {/* <li className="relative">
                     <div className="absolute text-[7px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">
                       Soon
                     </div>
@@ -150,7 +150,7 @@ export default function TuiNavbar() {
                       </div>
                       <HeartIcon color="black" width="24" height="24" />
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
