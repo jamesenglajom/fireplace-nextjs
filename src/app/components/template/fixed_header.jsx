@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import HomeSearch from "../search/HomeSearch";
-import { HeartIcon, CartIcon } from "../icons/lib";
+import { HeartIcon } from "../icons/lib";
+import CartButton from "@/app/components/atom/CartButton";
 import Image from "next/image";
 export default function FixedHeader() {
   const [isVisible, setIsVisible] = useState(false);
@@ -43,16 +44,7 @@ export default function FixedHeader() {
         <div>
           <ul className="flex space-x-4">
             <li>
-              <a href="#home" className="text-gray-700 relative">
-                <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
-                  <div className="text-[10px]">26</div>
-                </div>
-                <CartIcon width="24" height="24" color="white" />
-
-                <div className="absolute text-[7px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">
-                  Soon
-                </div>
-              </a>
+              <CartButton className="text-white hover:text-orange-500"/>
             </li>
             <li>
               <a href="#about" className="text-gray-700 relative">

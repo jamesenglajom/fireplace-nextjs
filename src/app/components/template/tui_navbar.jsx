@@ -8,7 +8,7 @@ import {
   DialogPanel,
   DialogBackdrop,
 } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -136,7 +136,7 @@ export default function TuiNavbar() {
               <div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <ul className="flex space-x-4">
                   <li className="relative">
-                    <CartButton />
+                    <CartButton className="text-gray-700 hover:text-orange-500"/>
                   </li>
                   <li className="relative">
                     <div className="absolute text-[7px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">

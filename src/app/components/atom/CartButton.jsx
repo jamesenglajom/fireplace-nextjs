@@ -7,7 +7,7 @@ import { CartIcon } from "@/app/components/icons/lib";
 
 import { getCart } from "@/app/lib/cartStorage";
 
-export default function CartButton() {
+export default function CartButton({className}) {
   const [cartItemsCount, setCartItemsCount] = useState(0);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function CartButton() {
     <Link
       href={`${BASE_URL}/cart`}
       prefetch={false}
-      className="text-gray-700 hover:text-orange-500 relative">
+      className={`relative ${className}`}>
       {cartItemsCount > 0 && (
         <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
           <div className="text-[10px]">{cartItemsCount}</div>
