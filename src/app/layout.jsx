@@ -5,7 +5,7 @@ import FixedHeader from "./components/template/fixed_header";
 import TuiNavBar from "./components/template/tui_navbar";
 import FreeShippingBanner from "@/app/components/molecule/FreeShippingBanner";
 import Footer from "@/app/components/section/Footer";
-
+import { CartProvider } from "@/app/context/cart";
 const MontserratFont = Montserrat({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -44,9 +44,11 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </div>
-        <TuiNavBar />
-        <FixedHeader></FixedHeader>
-        {children}
+        <CartProvider>
+          <TuiNavBar />
+          <FixedHeader />
+          {children}
+        </CartProvider>
         <Footer />
       </body>
     </html>

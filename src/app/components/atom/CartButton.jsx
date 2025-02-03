@@ -5,21 +5,16 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { CartIcon } from "@/app/components/icons/lib";
 
-import { getCart } from "@/app/lib/cartStorage";
+import { useCart } from '@/app/context/cart';
 
 export default function CartButton({className}) {
-  const [cartItemsCount, setCartItemsCount] = useState(0);
+  const { cartItems,cartItemsCount } = useCart();
 
-  useEffect(() => {
-    // On mount, load the cart from localForage
-    const loadCart = async () => {
-      const savedCart = await getCart();
-      setCartItemsCount(savedCart.length);
-    };
-
-    loadCart();
-  }, []); // Empty array to run only once when the component mounts
-
+  useEffect(()=>{
+    console.log("check if reactive:cartItems", cartItems);
+    console.log("check if reactive:cartItemsCount", cartItemsCount);
+  },[cartItems, cartItemsCount]);
+  
   return (
     <Link
       href={`${BASE_URL}/cart`}

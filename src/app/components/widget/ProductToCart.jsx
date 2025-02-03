@@ -7,24 +7,13 @@ import { bc_categories as bccat_json } from "../../lib/category-helpers";
 import { getCategoryNameById } from "@/app/lib/helpers";
 import OnsaleTag from "@/app/components/atom/SingleProductOnsaleTag";
 
-import { saveCart, getCart } from "@/app/lib/cartStorage";
+import { useCart } from "@/app/context/cart";
 
 const ProductToCart = ({ product, loading }) => {
+  const {cartItems, addToCart} = useCart();
   const [quantity, setQuantity] = useState(1);
   const [open, setOpen] = useState(false);
   const [filteredCategoryIds, setFilteredCategoryIds] = useState([]);
-  const [cart, setCart] = useState([]);
-
-  useEffect(() => {
-    // On mount, load the cart from localForage
-    const loadCart = async () => {
-      const savedCart = await getCart();
-      setCart(savedCart);
-      console.log("cartIsLoaded", savedCart);
-    };
-
-    loadCart();
-  }, []); // Empty array to run only once when the component mounts
 
   useEffect(() => {
     if (product?.categories.length > 0) {
@@ -82,12 +71,7 @@ const ProductToCart = ({ product, loading }) => {
   };
 
   const handleAddToCart = (item) => {
-    // setOpen(true);
-    setCart((prev) => {
-      const updatedCart = [...prev, item];
-      saveCart(updatedCart);
-      return updatedCart;
-    });
+      addToCart(item);
   };
 
   if (loading) {

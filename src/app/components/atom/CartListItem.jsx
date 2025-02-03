@@ -50,6 +50,7 @@ export default function CartListItem({ item }) {
               </svg>
             </button>
             <input
+            readOnly
               type="text"
               id="counter-input"
               data-input-counter
@@ -94,7 +95,7 @@ export default function CartListItem({ item }) {
           </a>
 
           <div className="flex items-center gap-4">
-            <button
+            {/* <button
               type="button"
               className="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 hover:underline dark:text-gray-400 dark:hover:text-white">
               <svg
@@ -114,7 +115,7 @@ export default function CartListItem({ item }) {
                 />
               </svg>
               Add to Favorites
-            </button>
+            </button> */}
 
             <button
               type="button"
