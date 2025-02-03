@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useCart } from "@/app/context/cart";
-export default function CartListItem({ item }) {
+import { formatPrice } from "@/app/lib/helpers";
+export default function CartListItem({ item, onItemCountUpdate }) {
   const { addToCart, removeCartItem } = useCart();
   const [thumbnail, setThumbnail] = useState(null);
 
@@ -27,6 +28,11 @@ export default function CartListItem({ item }) {
     }
   };
 
+  const handleCount = (item, increment) => {
+    onItemCountUpdate({product:item, increment:increment})
+  }
+
+  
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
       <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
@@ -46,6 +52,7 @@ export default function CartListItem({ item }) {
         <div className="flex items-center justify-between md:order-3 md:justify-end">
           <div className="flex items-center">
             <button
+              onClick={()=> handleCount(item, false)}
               type="button"
               id="decrement-button"
               data-input-counter-decrement="counter-input"
@@ -69,15 +76,17 @@ export default function CartListItem({ item }) {
             </button>
             <input
               readOnly
+              min={1}
               type="text"
               id="counter-input"
               data-input-counter
               className="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
               placeholder=""
-              value="2"
+              value={item?.count}
               required
             />
             <button
+              onClick={()=> handleCount(item,true)}
               type="button"
               id="increment-button"
               data-input-counter-increment="counter-input"
@@ -102,7 +111,7 @@ export default function CartListItem({ item }) {
           </div>
           <div className="text-end md:order-4 md:w-32">
             <p className="text-base font-bold text-gray-900 dark:text-white">
-              ${item?.price}
+              ${formatPrice(item?.price * item?.count)}
             </p>
           </div>
         </div>

@@ -15,20 +15,23 @@ export const CartProvider = ({ children }) => {
   const [loadingCartItems, setLoadingCartItems] = useState(true);
 
   // Load the initial cart count from localforage on mount
+  const loadCart = async () => {
+    const cartItems = await getCart();
+    setCartItems(cartItems);
+    setCartItemsCount(cartItems.length);
+    setLoadingCartItems(false);
+  };
+
   useEffect(() => {
-    const loadCart = async () => {
-      const cartItems = await getCart();
-      setCartItems(cartItems);
-      setCartItemsCount(cartItems.length);
-      setLoadingCartItems(false);
-    };
     loadCart();
   }, []);
 
   // Function to add to cart and update cart count
   const addToCart = async (item) => {
+    // getCart everytime we add or remove items
+    const items = await getCart();
     setCartItems((prev) => {
-      const updatedItems = [...prev, item];
+      const updatedItems = [...items, item];
       saveCart(updatedItems);
       setCartItemsCount(updatedItems.length);
       return [...updatedItems];
@@ -36,13 +39,21 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeCartItem = async (item) => {
+    // getCart everytime we add or remove items
+    const items = await getCart();
     setCartItems((prev) => {
-      const updatedItems = prev.filter((i) => i.id !== item.id);
+      const updatedItems = items.filter((i) => i.id !== item.id);
       saveCart(updatedItems);
       setCartItemsCount(updatedItems.length);
       return [...updatedItems];
     });
   };
+
+  const updateCart = (items) => {
+    saveCart([...items]);
+    setCartItemsCount(items.length);
+    setCartItems([...items]);
+  }
 
   const clearCartItems = async () => {
     setCartItems((prev) => {
@@ -62,6 +73,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeCartItem,
         clearCartItems,
+        updateCart
       }}
     >
       {children}

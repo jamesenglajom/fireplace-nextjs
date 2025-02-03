@@ -9,11 +9,6 @@ import { useCart } from '@/app/context/cart';
 
 export default function CartButton({className}) {
   const { cartItems,cartItemsCount } = useCart();
-
-  useEffect(()=>{
-    console.log("check if reactive:cartItems", cartItems);
-    console.log("check if reactive:cartItemsCount", cartItemsCount);
-  },[cartItems, cartItemsCount]);
   
   return (
     <Link
