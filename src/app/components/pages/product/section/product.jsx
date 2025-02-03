@@ -12,14 +12,15 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const ProductSection = ({ product, loading }) => {
   const [mediaItems, setMediaItems] = useState([]);
   const [productOptions, setProductOptions] = useState([]);
-  const { productMetaFields, loading: metaFieldsLoading } =
-    useFetchProductMetaFields({ id: product.id });
+  const [metafieldParam, setMetafieldParam] = useState(null);
+  const { productMetaFields, loading: metaFieldsLoading } = useFetchProductMetaFields(metafieldParam);
 
   // console.log("product_id", product.id);
   useEffect(() => {
     if (product) {
       if (Object.keys(product).length > 0) {
         setMediaItems(product.images);
+        setMetafieldParam({id:product.id})
       }
     }
   }, [product]);
@@ -59,7 +60,7 @@ const ProductSection = ({ product, loading }) => {
             <ProductToCart product={product} loading={loading} />
             {/* product options */}
             <div className="py-[30px] flex flex-col gap-[15px]">
-              {productOptions.length > 0 &&
+              { productOptions && productOptions.length > 0 &&
                 productOptions.map((item, idx) => (
                   <div
                     key={`product-option-${idx}`}
