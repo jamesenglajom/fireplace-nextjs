@@ -47,8 +47,8 @@ export default function RootLayout({ children }) {
         <CartProvider>
           <TuiNavBar />
           <FixedHeader />
-        </CartProvider>
           {children}
+        </CartProvider>
         <Footer />
       </body>
     </html>

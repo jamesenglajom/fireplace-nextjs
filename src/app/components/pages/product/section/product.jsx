@@ -7,20 +7,22 @@ import BackButton from "@/app/components/atom/BackButton";
 import useFetchProductMetaFields from "@/app/hooks/useFetchProductMetaFields";
 import ProductOption from "@/app/components/atom/productOption";
 import CategoryChips from "@/app/components/atom/SingleProductCategoryChips";
+
 import { useState, useEffect } from "react";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const ProductSection = ({ product, loading }) => {
   const [mediaItems, setMediaItems] = useState([]);
   const [productOptions, setProductOptions] = useState([]);
   const [metafieldParam, setMetafieldParam] = useState(null);
-  const { productMetaFields, loading: metaFieldsLoading } = useFetchProductMetaFields(metafieldParam);
+  const { productMetaFields, loading: metaFieldsLoading } =
+    useFetchProductMetaFields(metafieldParam);
 
   // console.log("product_id", product.id);
   useEffect(() => {
     if (product) {
       if (Object.keys(product).length > 0) {
         setMediaItems(product.images);
-        setMetafieldParam({id:product.id})
+        setMetafieldParam({ id: product.id });
       }
     }
   }, [product]);
@@ -46,56 +48,59 @@ const ProductSection = ({ product, loading }) => {
 
   return (
     <>
-      <div className="p-4">
-        <div className="container mx-auto flex flex-col gap-[10px]">
-          <div>
-            <BackButton />
-          </div>
-        </div>
-        <div className="container mx-auto flex flex-col sm:flex-row gap-[10px] py-[20px]">
-          <div className="flex-1">
-            <MediaGallery mediaItems={mediaItems} loading={loading} />
-          </div>
-          <div className="flex-1">
-            <ProductToCart product={product} loading={loading} />
-            {/* product options */}
-            <div className="py-[30px] flex flex-col gap-[15px]">
-              { productOptions && productOptions.length > 0 &&
-                productOptions.map((item, idx) => (
-                  <div
-                    key={`product-option-${idx}`}
-                    className="flex flex-col gap-[10px]">
-                    <div className="font-medium text-xs lg:text-sm">
-                      {item.option}
-                    </div>
-                    <div className="flex items-center gap-[10px]">
-                      {item?.values &&
-                        item.values.map((item2, idx2) => (
-                          <Link
-                            key={`product-option-${idx}-value-${idx2}`}
-                            href={`${BASE_URL}/product/${item2.sku.link}`}>
-                            <ProductOption option={item2} />
-                          </Link>
-                        ))}
-                    </div>
-                  </div>
-                ))}
-            </div>
+        <div className="p-4">
+          <div className="container mx-auto flex flex-col gap-[10px]">
             <div>
-              <div className="font-medium text-xs lg:text-sm mb-[15px]">
-                Category
+              <BackButton />
+            </div>
+          </div>
+          <div className="container mx-auto flex flex-col sm:flex-row gap-[10px] py-[20px]">
+            <div className="flex-1">
+              <MediaGallery mediaItems={mediaItems} loading={loading} />
+            </div>
+            <div className="flex-1">
+              <ProductToCart product={product} loading={loading} />
+              {/* product options */}
+              <div className="py-[30px] flex flex-col gap-[15px]">
+                {productOptions &&
+                  productOptions.length > 0 &&
+                  productOptions.map((item, idx) => (
+                    <div
+                      key={`product-option-${idx}`}
+                      className="flex flex-col gap-[10px]"
+                    >
+                      <div className="font-medium text-xs lg:text-sm">
+                        {item.option}
+                      </div>
+                      <div className="flex items-center gap-[10px]">
+                        {item?.values &&
+                          item.values.map((item2, idx2) => (
+                            <Link
+                              key={`product-option-${idx}-value-${idx2}`}
+                              href={`${BASE_URL}/product/${item2.sku.link}`}
+                            >
+                              <ProductOption option={item2} />
+                            </Link>
+                          ))}
+                      </div>
+                    </div>
+                  ))}
               </div>
-              <CategoryChips categories={product?.categories} />
+              <div>
+                <div className="font-medium text-xs lg:text-sm mb-[15px]">
+                  Category
+                </div>
+                <CategoryChips categories={product?.categories} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="p-4">
-        <div className="container mx-auto">
-          <ProductMetaTabs product={product} />
+        <div className="p-4">
+          <div className="container mx-auto">
+            <ProductMetaTabs product={product} />
+          </div>
         </div>
-      </div>
-      {/* <div className="p-4">
+        {/* <div className="p-4">
       <div className="container mx-auto">
         <RelatedProducts product={product}/>
       </div>

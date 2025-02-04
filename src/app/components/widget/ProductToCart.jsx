@@ -1,5 +1,4 @@
 "use client";
-
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Rating } from "@smastrom/react-rating";
 import { useState, useEffect } from "react";
@@ -7,10 +6,10 @@ import { bc_categories as bccat_json } from "../../lib/category-helpers";
 import { getCategoryNameById } from "@/app/lib/helpers";
 import OnsaleTag from "@/app/components/atom/SingleProductOnsaleTag";
 
-// import { useCart } from "@/app/context/cart";
+import { useCart } from "@/app/context/cart";
 
 const ProductToCart = ({ product, loading }) => {
-  // const { cartItems, addToCart } = useCart();
+  const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [open, setOpen] = useState(false);
   const [filteredCategoryIds, setFilteredCategoryIds] = useState([]);
@@ -125,26 +124,6 @@ const ProductToCart = ({ product, loading }) => {
           <div className="text-2xl md:text-3xl font-extrabold text-pallete-green">
             ${productData?.price}
           </div>
-          {/* <div className="product-add-to-cart-quantity-input">
-            <button onClick={() => handleQuantityButtons("dec")}>
-              <Icon
-                icon="icons8:minus"
-                className="text-[32px] text-pallete-gray"
-              />
-            </button>
-            <input
-              type="number"
-              value={quantity}
-              onChange={handleQuantityChange}
-            />
-            <button onClick={() => handleQuantityButtons("inc")}>
-              <Icon
-                icon="icons8:plus"
-                className="text-[32px] text-pallete-gray"
-              />
-            </button>
-          </div> */}
-
           <div className="flex items-center">
             <button
               onClick={() => handleQuantityButtons("dec")}
