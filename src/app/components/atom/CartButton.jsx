@@ -8,7 +8,7 @@ import { CartIcon } from "@/app/components/icons/lib";
 import { useCart } from '@/app/context/cart';
 
 export default function CartButton({className}) {
-  const { cartItems,cartItemsCount } = useCart();
+  const { cartItemsCount } = useCart();
   
   return (
     <Link
