@@ -1,6 +1,5 @@
 "use client";
 import React, { createContext, useState, useContext, useEffect } from "react";
-import { getCart, saveCart } from "@/app/lib/cartStorage";
 
 const CartContext = createContext();
 
