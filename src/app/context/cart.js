@@ -15,28 +15,29 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     // Dynamically import the cartStorage module only on the client-side
-    if (typeof window !== 'undefined') {
-      import('@/app/lib/cartStorage')
+    if (typeof window !== "undefined") {
+      import("@/app/lib/cartStorage")
         .then((module) => {
           setCartStorage(module);
         })
         .catch((error) => {
-          console.error('Error loading cartStorage module:', error);
+          console.error("Error loading cartStorage module:", error);
         });
     }
   }, []);
 
-  // Load the initial cart count from localforage on mount
-  const loadCart = async () => {
-    const cartItems = await cartStorage.getCart();
-    setCartItems(cartItems);
-    setCartItemsCount(cartItems.length);
-    setLoadingCartItems(false);
-  };
-
   useEffect(() => {
-    loadCart();
-  }, []);
+    // Load the initial cart count from localforage on mount
+    const loadCart = async () => {
+      const cartItems = await cartStorage.getCart();
+      setCartItems(cartItems);
+      setCartItemsCount(cartItems.length);
+      setLoadingCartItems(false);
+    };
+    if (cartStorage) {
+      loadCart();
+    }
+  }, [cartStorage]);
 
   // Function to add to cart and update cart count
   // item param must be an array
@@ -66,7 +67,7 @@ export const CartProvider = ({ children }) => {
     cartStorage.saveCart([...items]);
     setCartItemsCount(items.length);
     setCartItems([...items]);
-  }
+  };
 
   const clearCartItems = async () => {
     setCartItems((prev) => {
@@ -86,7 +87,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeCartItem,
         clearCartItems,
-        updateCart
+        updateCart,
       }}
     >
       {children}
