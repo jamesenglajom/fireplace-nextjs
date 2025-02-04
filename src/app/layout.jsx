@@ -44,11 +44,11 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </div>
-        <CartProvider>
+        {/* <CartProvider> */}
           <TuiNavBar />
           <FixedHeader />
           {children}
-        </CartProvider>
+        {/* </CartProvider> */}
         <Footer />
       </body>
     </html>

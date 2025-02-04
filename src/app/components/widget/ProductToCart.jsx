@@ -7,10 +7,10 @@ import { bc_categories as bccat_json } from "../../lib/category-helpers";
 import { getCategoryNameById } from "@/app/lib/helpers";
 import OnsaleTag from "@/app/components/atom/SingleProductOnsaleTag";
 
-import { useCart } from "@/app/context/cart";
+// import { useCart } from "@/app/context/cart";
 
 const ProductToCart = ({ product, loading }) => {
-  const { cartItems, addToCart } = useCart();
+  // const { cartItems, addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [open, setOpen] = useState(false);
   const [filteredCategoryIds, setFilteredCategoryIds] = useState([]);
