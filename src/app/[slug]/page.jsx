@@ -7,25 +7,27 @@ import { notFound } from "next/navigation";
 import MobileLoader from "../components/molecule/MobileLoader";
 
 import * as React from 'react'
-
+import {useState, useEffect} from "react";
 
 export default function GenericCategoryPage({ params }) {
-  // const [slug, setSlug] = useState(null);
   const {slug} = React.use(params);
-  console.log("TEST:SLUG:",slug);
+  const [pageData, setPageData] = useState(null);
+  useEffect(()=>{
+    setPageData(getPageData(slug, flatCategories))
+  },[slug]);
 
-  const page_data = getPageData(slug, flatCategories);
-  if (page_data === undefined) {
+  if (pageData === undefined) {
     notFound();
+  }else{
+    return (
+      <div>
+        <MobileLoader />
+        <TuiHero data={pageData} />
+        <ProductsSection
+          // category={main_cat_array.includes(slug) ? slug : "all-products"}
+          category={slug}
+        />
+      </div>
+    );
   }
-  return (
-    <div>
-      <MobileLoader />
-      <TuiHero data={page_data} />
-      <ProductsSection
-        // category={main_cat_array.includes(slug) ? slug : "all-products"}
-        category={slug}
-      />
-    </div>
-  );
 }
