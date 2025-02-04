@@ -1,7 +1,6 @@
 "use client";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { CartIcon } from "@/app/components/icons/lib";
 
