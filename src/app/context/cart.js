@@ -27,11 +27,12 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   // Function to add to cart and update cart count
-  const addToCart = async (item) => {
+  // item param must be an array
+  const addToCart = async (items) => {
     // getCart everytime we add or remove items
-    const items = await getCart();
+    const savedItems = await getCart();
     setCartItems((prev) => {
-      const updatedItems = [...items, item];
+      const updatedItems = [...savedItems, ...items];
       saveCart(updatedItems);
       setCartItemsCount(updatedItems.length);
       return [...updatedItems];

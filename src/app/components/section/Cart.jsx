@@ -31,7 +31,7 @@ export default function CartSection() {
   const handleItemCountUpdate=(value)=>{
     const {increment, product} = value;
     if(increment){
-      addToCart(product)
+      addToCart([product])
     }else{
       const tmpCartItems = cartItems;
       const idToFindAndPop = product.id;
