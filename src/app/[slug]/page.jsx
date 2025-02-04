@@ -10,17 +10,10 @@ import * as React from 'react'
 
 
 export default function GenericCategoryPage({ params }) {
-  console.log("TEST");
   // const [slug, setSlug] = useState(null);
   const {slug} = React.use(params);
-  // const getSlug = async(params) =>{
-  //   const slug = (await params)?.slug;
-  //   setSlug(slug)
-  // }
-  
-  // useEffect(()=>{
-  //   getSlug(params);
-  // },[params])
+  console.log("TEST:SLUG:",slug);
+
   const page_data = getPageData(slug, flatCategories);
   if (page_data === undefined) {
     notFound();
