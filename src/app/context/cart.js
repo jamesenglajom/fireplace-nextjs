@@ -1,6 +1,5 @@
 "use client";
 import React, { createContext, useState, useContext, useEffect } from "react";
-import localforage from "localforage";
 import { getCart, saveCart } from "@/app/lib/cartStorage";
 
 const CartContext = createContext();
@@ -10,13 +9,27 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
+  const [cartStorage, setCartStorage] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const [loadingCartItems, setLoadingCartItems] = useState(true);
 
+  useEffect(() => {
+    // Dynamically import the cartStorage module only on the client-side
+    if (typeof window !== 'undefined') {
+      import('@/app/lib/cartStorage')
+        .then((module) => {
+          setCartStorage(module);
+        })
+        .catch((error) => {
+          console.error('Error loading cartStorage module:', error);
+        });
+    }
+  }, []);
+
   // Load the initial cart count from localforage on mount
   const loadCart = async () => {
-    const cartItems = await getCart();
+    const cartItems = await cartStorage.getCart();
     setCartItems(cartItems);
     setCartItemsCount(cartItems.length);
     setLoadingCartItems(false);
@@ -30,10 +43,10 @@ export const CartProvider = ({ children }) => {
   // item param must be an array
   const addToCart = async (items) => {
     // getCart everytime we add or remove items
-    const savedItems = await getCart();
+    const savedItems = await cartStorage.getCart();
     setCartItems((prev) => {
       const updatedItems = [...savedItems, ...items];
-      saveCart(updatedItems);
+      cartStorage.saveCart(updatedItems);
       setCartItemsCount(updatedItems.length);
       return [...updatedItems];
     });
@@ -41,17 +54,17 @@ export const CartProvider = ({ children }) => {
 
   const removeCartItem = async (item) => {
     // getCart everytime we add or remove items
-    const items = await getCart();
+    const items = await cartStorage.getCart();
     setCartItems((prev) => {
       const updatedItems = items.filter((i) => i.id !== item.id);
-      saveCart(updatedItems);
+      cartStorage.saveCart(updatedItems);
       setCartItemsCount(updatedItems.length);
       return [...updatedItems];
     });
   };
 
   const updateCart = (items) => {
-    saveCart([...items]);
+    cartStorage.saveCart([...items]);
     setCartItemsCount(items.length);
     setCartItems([...items]);
   }
@@ -59,7 +72,7 @@ export const CartProvider = ({ children }) => {
   const clearCartItems = async () => {
     setCartItems((prev) => {
       const updatedItems = [];
-      saveCart(updatedItems);
+      cartStorage.saveCart(updatedItems);
       setCartItemsCount(updatedItems.length);
       return [...updatedItems];
     });

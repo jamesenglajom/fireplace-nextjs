@@ -1,4 +1,3 @@
-'use client'
 // lib/localForage.js
 import localForage from "localforage";
 
