@@ -6,11 +6,11 @@ import { flatCategories } from "../lib/category-helpers";
 import { notFound } from "next/navigation";
 import MobileLoader from "../components/molecule/MobileLoader";
 
-
 import * as React from 'react'
 
 
 export default function GenericCategoryPage({ params }) {
+  console.log("TEST");
   // const [slug, setSlug] = useState(null);
   const {slug} = React.use(params);
   // const getSlug = async(params) =>{
