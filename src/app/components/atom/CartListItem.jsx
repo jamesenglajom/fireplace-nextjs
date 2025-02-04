@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useCart } from "@/app/context/cart";
 import { formatPrice } from "@/app/lib/helpers";
 export default function CartListItem({ item, onItemCountUpdate }) {
-  const { addToCart, removeCartItem } = useCart();
+  const { removeCartItem } = useCart();
   const [thumbnail, setThumbnail] = useState(null);
 
   useEffect(() => {
