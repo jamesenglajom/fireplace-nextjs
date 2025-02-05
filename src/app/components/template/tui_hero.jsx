@@ -78,35 +78,17 @@ export default function Hero({ data }) {
               </div>
             </div>
             <div className="w-full p-[30px] bg-stone-100 flex flex-col gap-[20px] relative lg:w-[250px] h-[360px]">
-              <Image
-                src="/images/banner/sub-banner-image.webp"
-                alt={`Sub Banner Image`}
-                className="object-contain"
-                layout="fill"
-                objectFit="contain"
-                objectPosition="center"
-                sizes="100vw"
-              />
-              {/* <div>
-                <div className="text-white text-3xl font-bold">LEARNING</div>
-                <div className="text-white text-3xl">CENTER</div>
-              </div>
-              <div className="text-xs text-white">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consectetur debitis reiciendis quibusdam eos error quaerat natus
-                incidunt modi laudantium! Incidunt.
-              </div>
-              <div className="text-white text-[0.780rem] font-bold flex items-center group cursor-pointer">
-                <div className="text-white group-hover:text-orange-400">
-                  START LEARNING NOW
-                </div>
-                <Icon
-                  icon="icon-park-twotone:right-c"
-                  className="text-white ml-[10px] group-hover:text-orange-400"
-                  width="20"
-                  height="20"
+              <Link href={`tel:(888)%20575-9720`} prefetch={false}>
+                <Image
+                  src="/images/banner/sub-banner-image.webp"
+                  alt={`Sub Banner Image`}
+                  className="object-contain"
+                  layout="fill"
+                  objectFit="contain"
+                  objectPosition="center"
+                  sizes="100vw"
                 />
-              </div> */}
+              </Link>
             </div>
           </div>
         </div>
