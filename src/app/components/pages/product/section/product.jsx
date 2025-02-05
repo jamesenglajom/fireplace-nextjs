@@ -13,7 +13,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const ProductSection = ({ product, loading }) => {
   const [mediaItems, setMediaItems] = useState([]);
   const [productOptions, setProductOptions] = useState([]);
-  const [metafieldParam, setMetafieldParam] = useState(null);
+  const [metafieldParam, setMetafieldParam] = useState({ id: product?.id });
   const { productMetaFields, loading: metaFieldsLoading } =
     useFetchProductMetaFields(metafieldParam);
 
@@ -87,7 +87,7 @@ const ProductSection = ({ product, loading }) => {
                   ))}
               </div>
               <div>
-                <div className="font-medium text-xs lg:text-sm mb-[15px]">
+                <div className="font-bold text-sm lg:text-lg mb-[15px]">
                   Category
                 </div>
                 <CategoryChips categories={product?.categories} />

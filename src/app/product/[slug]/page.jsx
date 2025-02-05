@@ -3,6 +3,7 @@ import ProductSection from "@/app/components/pages/product/section/product";
 import React, { useState, useEffect } from "react";
 import useFetchProducts from "@/app/hooks/useFetchProducts";
 import { notFound } from "next/navigation";
+import ProductPlaceholder from "@/app/components/atom/SingleProductPlaceholder"
 export default function Product({ params }) {
   const [product, setProduct] = useState(null);
   const { slug } = React.use(params);
@@ -23,5 +24,9 @@ export default function Product({ params }) {
     }
   }, [loading, products, error]);
 
-  return <ProductSection product={product} loading={loading} />;
+  if(!product && loading){
+    return <ProductPlaceholder />
+  }
+
+  return product && <ProductSection product={product} loading={loading} />;
 }
