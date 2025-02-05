@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import LoaderIcon from "../atom/LoaderIcon";
 import OnsaleTag from "@/app/components/atom/productCardOnsaleTag";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onQuickView }) => {
   const router = useRouter();
   const [thumbnail, setThumbnail] = useState(null);
   useEffect(() => {
@@ -35,6 +35,14 @@ const ProductCard = ({ product }) => {
       alert("no url");
     }
   };
+
+  const handleQuickViewClick = (e,item) => {
+    e.stopPropagation();
+    e.preventDefault();
+    onQuickView(item);
+  }
+
+
   return (
     <Link
       href={`${BASE_URL}/product/${product.custom_url.url}`}
@@ -58,15 +66,13 @@ const ProductCard = ({ product }) => {
           <OnsaleTag categories={product?.categories} />
           <div className="absolute bottom-0 left-0 bg-pallete-orange text-white text-[12px] py-[5px] md:py-[7px] md:px-[15px] flex items-center w-full justify-center gap-[5px] invisible group-hover:visible">
             <div className="flex justify-center">
-              <div className="font-semibold text-[0.775rem] inline-block text-center">
+              <div onClick={(e)=>handleQuickViewClick(e,product)} className="font-semibold text-[0.775rem] inline-block text-center">
                 <Icon
                   icon="mi:shopping-cart-add"
                   className="text-lg font-thin inline-block mr-[5px]"
                 />
-                {/* <div className="inline-block"> */}
                 {/* CUSTOMIZE TO PURCHASE */}
-                SHOP NOW
-                {/* </div> */}
+                QUICK VIEW
               </div>
             </div>
           </div>

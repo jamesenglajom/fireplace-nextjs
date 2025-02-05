@@ -61,13 +61,12 @@ const ProductSection = ({ product, loading }) => {
           <div className="flex-1">
             <ProductToCart product={product} loading={loading} />
             {/* product options */}
-            <div className="py-[30px] flex flex-col gap-[15px]">
-              <div className="font-bold text-sm lg:text-lg mt-1 md:mt-3">
-                Options
-              </div>
-              {productOptions &&
-                productOptions.length > 0 &&
-                productOptions.map((item, idx) => (
+            {productOptions && productOptions.length > 0 && (
+              <div className="py-[30px] flex flex-col gap-[15px]">
+                <div className="font-bold text-sm lg:text-lg mt-1 md:mt-3">
+                  Options
+                </div>
+                {productOptions.map((item, idx) => (
                   <div
                     key={`product-option-${idx}`}
                     className="flex flex-col gap-[10px]"
@@ -88,7 +87,8 @@ const ProductSection = ({ product, loading }) => {
                     </div>
                   </div>
                 ))}
-            </div>
+              </div>
+            )}
             <div>
               <div className="font-bold text-sm lg:text-lg mb-[15px]">
                 Category
