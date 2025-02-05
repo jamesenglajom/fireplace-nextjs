@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { bc_categories as bccat_json } from "../../lib/category-helpers";
 import { formatPrice, getCategoryNameById } from "@/app/lib/helpers";
 import OnsaleTag from "@/app/components/atom/SingleProductOnsaleTag";
-
+import Link from "next/link";
 import { useCart } from "@/app/context/cart";
 
 const ProductToCart = ({ product, loading }) => {
@@ -87,10 +87,17 @@ const ProductToCart = ({ product, loading }) => {
           {productData?.sku}
         </div>
       </div>
-      <div className="">
-        <div className="text-sm md:text-base">
-          Ships Within 1 to 2 Business Days
-        </div>
+      <div className="text-sm md:text-base">
+        Ships Within 1 to 2 Business Days
+      </div>
+      <div className="text-sm my-[5px]">
+        Found It Cheaper?{" "}
+        <Link
+          href="tel:(888)%205759720"
+          className="text-orange-600 hover:text-orange-500"
+        >
+          Call for Best Price (888) 575-9720
+        </Link>
       </div>
       <div className="flex items-center gap-[20px]">
         <div className="text-2xl md:text-3xl font-extrabold text-pallete-green">

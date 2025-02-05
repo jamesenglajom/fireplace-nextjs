@@ -42,9 +42,16 @@ const ProductCard = ({ product, onQuickView }) => {
     onQuickView(item);
   }
 
+  const triggerCall = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.location.href = "tel:(888)%205759720";
+  }
+
 
   return (
     <Link
+      prefetch={false}
       href={`${BASE_URL}/product/${product.custom_url.url}`}
       // onClick={handleProductItemClick}
       className="flex w-full h-full bg-white overflow-hidden rounded-md border duration-500  hover:shadow-xl pb-[8px] hover:border-stone-700 group">
@@ -157,6 +164,10 @@ const ProductCard = ({ product, onQuickView }) => {
               </div>
               {/* )} */}
             </div>
+          </div>
+          
+          <div className="text-xs my-[5px]">
+            Found It Cheaper? <div onClick={triggerCall} className="text-orange-600 hover:text-orange-500">Call for Best Price (888) 575-9720</div>
           </div>
         </div>
       </div>
