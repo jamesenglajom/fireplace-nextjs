@@ -188,7 +188,7 @@ export default function TuiNavbar() {
                       )}
                     </Link>
                     {i.links && i.links.length > 0 && (
-                      <div className="bg-white absolute w-full left-0 top-[100%] z-[100] invisible group-hover:visible">
+                      <div className="bg-white absolute w-full left-0 top-[100%] z-[100] invisible group-hover:visible shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]">
                         <div className="container mx-auto py-5 px-[20px]">
                           <div className="flex justify-between">
                             <div className="w-full flex gap-[70px]">
