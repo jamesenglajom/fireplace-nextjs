@@ -17,7 +17,7 @@ function ProductQuickView({ data, onClose }) {
   const [toggle, setToggle] = useState(false);
   const [image, setImage] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const [disableATCButton, setDisableATCButton] = useState(false)
+  const [disableATCButton, setDisableATCButton] = useState(false);
   useEffect(() => {
     if (data) {
       const thumbnail =
@@ -37,7 +37,7 @@ function ProductQuickView({ data, onClose }) {
   }, [toggle]);
 
   const handleQuantityChange = (value) => {
-    setQuantity(value)
+    setQuantity(value);
   };
 
   const createItemsArray = (item, quantity) => {
@@ -50,8 +50,6 @@ function ProductQuickView({ data, onClose }) {
     addToCart(items);
     setDisableATCButton(false);
   };
-
-
 
   return (
     <Dialog open={toggle} onClose={setToggle} className="relative z-10">
@@ -106,24 +104,33 @@ function ProductQuickView({ data, onClose }) {
                           View Product and Options &gt;
                         </Link>
                       </div>
-                      <div className="flex gap-[5px] items-end">
-                        <div className="line-through">
-                          ${formatPrice(data.price)}
+                      {data.sale_price < data.price && (
+                        <div className="flex gap-[5px] items-end">
+                          <div className="line-through">
+                            ${formatPrice(data.price)}
+                          </div>
+                          <div className="text-2xl font-semibold text-orange-600">
+                            ${formatPrice(data.sale_price)}
+                          </div>
+                          <div className="bg-green-400 px-2 font-bold">
+                            <small>SAVED</small>
+                            {` $` + formatPrice(data.price - data.sale_price)}
+                          </div>
                         </div>
-                        <div className="text-2xl font-semibold text-orange-600">
-                          ${formatPrice(data.sale_price)}
-                        </div>
-                        <div className="bg-green-400 px-2 font-bold">
-                          <small>SAVED</small>
-                          {` $` + formatPrice(data.price - data.sale_price)}
-                        </div>
-                      </div>
+                      )}
                     </div>
                     <div className="flex items-center">
                       <div className="mr-10">
-                        <Quantity quantity={quantity} onQuantityChange={handleQuantityChange} />
+                        <Quantity
+                          quantity={quantity}
+                          onQuantityChange={handleQuantityChange}
+                        />
                       </div>
-                      <button onClick={()=> handleAddToCart(data)} className="bg-orange-600 hover:bg-orange-500 text-white py-1 px-3 rounded w-full font-medium" disabled={disableATCButton}>
+                      <button
+                        onClick={() => handleAddToCart(data)}
+                        className="bg-orange-600 hover:bg-orange-500 text-white py-1 px-3 rounded w-full font-medium"
+                        disabled={disableATCButton}
+                      >
                         Add to Cart
                       </button>
                     </div>
