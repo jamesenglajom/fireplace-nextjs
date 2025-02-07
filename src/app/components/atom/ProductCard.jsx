@@ -7,6 +7,7 @@ import { formatPrice } from "@/app/lib/helpers";
 import { useRouter } from "next/navigation";
 import LoaderIcon from "../atom/LoaderIcon";
 import OnsaleTag from "@/app/components/atom/productCardOnsaleTag";
+import { ICRoundPhone } from "../icons/lib";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const ProductCard = ({ product, onQuickView }) => {
   const router = useRouter();
@@ -71,9 +72,9 @@ const ProductCard = ({ product, onQuickView }) => {
             <LoaderIcon dark={false} />
           </div>
           <OnsaleTag categories={product?.categories} />
-          <div className="absolute bottom-0 left-0 bg-pallete-orange text-white text-[12px] py-[5px] md:py-[7px] md:px-[15px] flex items-center w-full justify-center gap-[5px] invisible group-hover:visible">
+          <div onClick={(e)=>handleQuickViewClick(e,product)} className="absolute bottom-0 left-0 bg-pallete-orange text-white text-[12px] py-[5px] md:py-[7px] md:px-[15px] flex items-center w-full justify-center gap-[5px] invisible group-hover:visible">
             <div className="flex justify-center">
-              <div onClick={(e)=>handleQuickViewClick(e,product)} className="font-semibold text-[0.775rem] inline-block text-center">
+              <div  className="font-semibold text-[0.775rem] inline-block text-center">
                 <Icon
                   icon="mi:shopping-cart-add"
                   className="text-lg font-thin inline-block mr-[5px]"
@@ -166,8 +167,8 @@ const ProductCard = ({ product, onQuickView }) => {
             </div>
           </div>
           
-          <div className="text-xs my-[5px]">
-            Found It Cheaper? <div onClick={triggerCall} className="text-orange-600 hover:text-orange-500">Call for Best Price (888) 575-9720</div>
+          <div className="text-xs my-[5px] text-blue-500 flex items-center cursor-default gap-[7px] flex-wrap">
+            Found It Cheaper? <div onClick={triggerCall} className="hover:underline flex items-center gap-[3px] cursor-pointer"><ICRoundPhone width={16} height={16} /> <div>(888) 575-9720</div></div>
           </div>
         </div>
       </div>
