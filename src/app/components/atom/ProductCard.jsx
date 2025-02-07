@@ -120,7 +120,7 @@ const ProductCard = ({ product, onQuickView }) => {
           </div>
           {/* bg-green-300  */}
           <div className="flex  h-[48px] items-center">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-[5px]">
+            <div className=" flex-wrap flex flex-col md:flex-row md:items-center justify-between gap-[5px]">
               {
                 // product.is_free_shipping && (
                 <div className="flex items-center font-bold gap-[3px]">

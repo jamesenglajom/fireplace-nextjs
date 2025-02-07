@@ -7,6 +7,7 @@ import { formatPrice, getCategoryNameById } from "@/app/lib/helpers";
 import OnsaleTag from "@/app/components/atom/SingleProductOnsaleTag";
 import Link from "next/link";
 import { useCart } from "@/app/context/cart";
+import { ICRoundPhone, AkarIconsShippingV1 } from "../icons/lib";
 
 const ProductToCart = ({ product, loading }) => {
   const { addToCart } = useCart();
@@ -87,22 +88,22 @@ const ProductToCart = ({ product, loading }) => {
           {productData?.sku}
         </div>
       </div>
-      <div className="text-sm md:text-base">
-        Ships Within 1 to 2 Business Days
+      <div className="flex items-center">
+        <Rating
+          value={productData?.reviews_rating_sum}
+          style={{ maxWidth: 100 }}
+        ></Rating>
+        <div>({productData?.reviews_count})</div>
       </div>
-      <div className="text-sm my-[5px]">
-        Found It Cheaper?{" "}
-        <Link
-          href="tel:(888)%205759720"
-          className="text-orange-600 hover:text-orange-500"
-        >
-          Call for Best Price (888) 575-9720
-        </Link>
+      <div className="text-sm md:text-base flex items-center gap-[8px]">
+        <AkarIconsShippingV1 width={24} height={24}/>
+        Ships Within 1 to 2 Business Days
       </div>
       <div className="flex items-center gap-[20px]">
         <div className="text-2xl md:text-3xl font-extrabold text-pallete-green">
           ${formatPrice(productData?.price)}
         </div>
+        <div className="font-bold">QTY</div>
         <div className="flex items-center">
           <button
             onClick={() => handleQuantityButtons("dec")}
@@ -177,12 +178,15 @@ const ProductToCart = ({ product, loading }) => {
           </div>
         </button>
       </div>
-      <div className="flex items-center">
-        <Rating
-          value={productData?.reviews_rating_sum}
-          style={{ maxWidth: 100 }}
-        ></Rating>
-        <div>({productData?.reviews_count})</div>
+      
+      <div className="text-blue-500 text-sm my-[5px] flex items-center gap-[7px]">
+        Found It Cheaper?{" "}
+        <Link
+          href="tel:(888)%205759720"
+          className="hover:underline flex gap-[3px]"
+        >
+          <ICRoundPhone width={20} height={20}/> (888) 575-9720
+        </Link>
       </div>
       <div className="flex  flex-col md:flex-row md:items-center gap-[10px] md:gap-[25px]">
         <div className="flex items-center font-bold gap-[8px]">
@@ -222,7 +226,7 @@ const ProductToCart = ({ product, loading }) => {
           </div>
           <div className="text-xs md:text-sm">Quick Ship Available</div>
         </div>
-        <div className="py-[5px] px-[15px] md:py-[6.5px] md:px-[25px] w-fit gap-[5px] flex items-center rounded-full bg-pallete-lightgray">
+        {/* <div className="py-[5px] px-[15px] md:py-[6.5px] md:px-[25px] w-fit gap-[5px] flex items-center rounded-full bg-pallete-lightgray">
           <div>
             <Icon
               icon="material-symbols:info-outline"
@@ -232,7 +236,7 @@ const ProductToCart = ({ product, loading }) => {
           <div className="text-xs md:text-sm text-pallete-dark font-semibold">
             Learn More
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

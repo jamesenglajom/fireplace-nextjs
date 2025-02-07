@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Rating } from "@smastrom/react-rating";
 import { formatPrice } from "@/app/lib/helpers";
+import { MaterialSymbolsClose } from "../icons/lib";
 
 import { useCart } from "@/app/context/cart";
 
@@ -65,6 +66,9 @@ function ProductQuickView({ data, onClose }) {
               transition
               className="w-full relative transform overflow-hidden bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-[800px] data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95 overflow-y-auto rounded-lg"
             >
+              <div className="absolute right-0 top-0 rounded-bl-lg z-10">
+                <div onClick={()=>setToggle(false)} className="cursor-pointer p-1"><MaterialSymbolsClose width={24} height={24}/></div>
+              </div>
               {data && (
                 <div className="flex flex-col lg:flex-row relative">
                   <div className="top-[10px] left-0 absolute z-[1]">
@@ -84,7 +88,7 @@ function ProductQuickView({ data, onClose }) {
                   </div>
                   <div className="w-full lg:w-[50%] p-[10px]">
                     <div className="flex flex-col gap-[15px] lg:min-h-[340px] mb-5">
-                      <div className="font-bold text-lg">{data?.name}</div>
+                      <div className="font-bold text-lg mt-[20px]">{data?.name}</div>
                       <div className="flex items-center gap-[3px]">
                         <Rating
                           readOnly
@@ -95,13 +99,13 @@ function ProductQuickView({ data, onClose }) {
                         <div>{`(${data.reviews_count})`}</div>
                       </div>
                       <div className="font-semibold text-base md:text-2xl">
-                        {formatPrice(data.price)}
+                        ${formatPrice(data.price)}
                       </div>
-                      <div className="hover:underline text-stone-600 font-medium">
+                      <div className="hover:underline text-stone-600 font-medium text-xs">
                         <Link
                           href={`${BASE_URL}/product/${data.custom_url.url}`}
                         >
-                          View Product and Options &gt;
+                          View Product and Options
                         </Link>
                       </div>
                       {data.sale_price < data.price && (
