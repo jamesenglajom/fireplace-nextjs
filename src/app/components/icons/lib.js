@@ -18,6 +18,19 @@ import MingcuteHome7Icon from "./MingCuteHome7Icon";
 import MDIPropaneTankIcon from "./MDIPropaneTankIcon";
 import MDIBaselineGasMeterIcon from "./MDIBaselineGasMeterIcon";
 
+import AkarIconsShippingV1Icon from "./AkarIconsShippingV1Icon";
+import MaterialSymbolsCloseIcon from "./MaterialSymbolsCloseIcon";
+
+
+
+export const MaterialSymbolsClose = ({ color, width, height }) => {
+  return <MaterialSymbolsCloseIcon color={color} width={width} height={height} />;
+};
+
+export const AkarIconsShippingV1 = ({ color, width, height }) => {
+  return <AkarIconsShippingV1Icon color={color} width={width} height={height} />;
+};
+
 export const CartIcon = ({ color, width, height }) => {
   return <BXCartIcon color={color} width={width} height={height} />;
 };
