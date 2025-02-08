@@ -2,12 +2,10 @@
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 import Link from "next/link";
 import { CartIcon } from "@/app/components/icons/lib";
-
 import { useCart } from '@/app/context/cart';
 
 export default function CartButton({className}) {
   const { cartItemsCount } = useCart();
-  
   return (
     <Link
       href={`${BASE_URL}/cart`}
