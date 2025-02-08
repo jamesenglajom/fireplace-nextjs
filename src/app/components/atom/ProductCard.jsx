@@ -8,9 +8,10 @@ import { useRouter } from "next/navigation";
 import LoaderIcon from "../atom/LoaderIcon";
 import OnsaleTag from "@/app/components/atom/productCardOnsaleTag";
 import { ICRoundPhone } from "../icons/lib";
+import { useQuickView } from "@/app/context/quickview";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
-const ProductCard = ({ product, onQuickView }) => {
-  const router = useRouter();
+const ProductCard = ({ product }) => {
+  const { viewItem } = useQuickView();
   const [thumbnail, setThumbnail] = useState(null);
   useEffect(() => {
     if (product) {
@@ -40,7 +41,7 @@ const ProductCard = ({ product, onQuickView }) => {
   const handleQuickViewClick = (e,item) => {
     e.stopPropagation();
     e.preventDefault();
-    onQuickView(item);
+    viewItem(item);
   }
 
   const triggerCall = (e) => {

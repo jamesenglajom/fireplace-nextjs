@@ -177,18 +177,8 @@ export default function TuiFilterSort({
     handleFilterChange(tmp);
   };
 
-  const handleQuickview = (value) => {
-    console.log("quickviewitem", value)
-    setQuickview(value)
-  }
-
-  const handleCloseQuickview = () => {
-    console.log("closedQV");
-    setQuickview(null)
-  }
   return (
     <div className="bg-white">
-      { products && <QuickView data={quickview} onClose={handleCloseQuickview}/>}
       <div className="relative">
         {/* Mobile filter dialog */}
         <Dialog
@@ -406,7 +396,7 @@ export default function TuiFilterSort({
                           <div
                             key={`product-display-${i}-${v.id}`}
                             onClick={() => handleProductItemClick(v.id)}>
-                            <ProductCard product={v} onQuickView={handleQuickview}/>
+                            <ProductCard product={v} />
                           </div>
                         ))}
                       </div>
