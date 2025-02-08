@@ -131,7 +131,7 @@ export default function TuiNavbar() {
                 </div>
               </div>
               <div className="hidden sm:block sm:w-[300px] md:w-[500px]">
-                <HomeSearch />
+                <HomeSearch controlled_height={false} main={true}/>
               </div>
               <div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <ul className="flex space-x-4">

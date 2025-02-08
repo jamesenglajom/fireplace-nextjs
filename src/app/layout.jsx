@@ -7,26 +7,24 @@ import FreeShippingBanner from "@/app/components/molecule/FreeShippingBanner";
 import Footer from "@/app/components/section/Footer";
 import { CartProvider } from "@/app/context/cart";
 import { QuickViewProvider } from "@/app/context/quickview";
+import { SearchProvider } from "@/app/context/search";
 const MontserratFont = Montserrat({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
   variable: "--font-montserrat", // Optional for Tailwind usage
 });
-
 // const Bell = localFont({
 //   src: "./fonts/bell-mt-italic.ttf",
 //   weight: "100 900",
 //   variable: "--font-bell",
 //   display: "swap",
 // });
-
 export const metadata = {
   title: "Solana Fireplaces | Stylish Indoor & Outdoor Heating",
   description:
     "Transform your home with Solana Fireplaces! Add warmth and style with our wood, gas, and electric designs. Shop now and create your perfect space!",
 };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -45,13 +43,13 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </div>
-          <CartProvider>
+        <CartProvider>
+          <SearchProvider>
             <TuiNavBar />
             <FixedHeader />
-            <QuickViewProvider>
-            {children}
-            </QuickViewProvider>
-          </CartProvider>
+          </SearchProvider>
+          <QuickViewProvider>{children}</QuickViewProvider>
+        </CartProvider>
         <Footer />
       </body>
     </html>
