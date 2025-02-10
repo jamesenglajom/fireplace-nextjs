@@ -28,19 +28,19 @@ export default function YouMayAlsoLike({displayItems}) {
   }
   
   return (
-    <div className="hidden xl:mt-8 xl:block">
+    <div className="xl:mt-8">
       <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
         You May Also Like
       </h3>
-      <div className={`mt-6 grid gap-4 sm:mt-8  ${displayItems ? `grid-cols-${displayItems}`:"grid-cols-3"}`}>
+      <div className={`mt-6 gap-4 sm:mt-8 flex flex-wrap`}>
         {loading
           ? makeArray(displayItems ?? 3).map((item, idx) => (
-              <div key={`product-placeholder-${idx}`} className="space-y-6 overflow-hidden">
+              <div key={`product-placeholder-${idx}`} className={`space-y-6 overflow-hidden ${displayItems===4 && "w-[calc(50%-10px)] md:w-[calc(33%-10px)] lg:w-[calc(25%-12px)]"} ${(displayItems=== undefined || displayItems===3) && "w-[calc(50%-10px)] lg:w-[calc(33%-10px)]"}`}>
                 <ProductCardLoader />
               </div>
             ))
           : products.map((item, idx) => (
-              <div key={`product-card-${idx}`}  className="space-y-6 overflow-hidden">
+              <div key={`product-card-${idx}`}  className={`space-y-6 overflow-hidden ${displayItems===4 && "w-[calc(50%-10px)] md:w-[calc(33%-10px)] lg:w-[calc(25%-12px)]"} ${(displayItems=== undefined || displayItems===3) && "w-[calc(50%-10px)] lg:w-[calc(33%-10px)]"}`}>
                 <ProductCard product={item}/>
               </div>
             ))}
