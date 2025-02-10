@@ -7,6 +7,7 @@ import BackButton from "@/app/components/atom/BackButton";
 import useFetchProductMetaFields from "@/app/hooks/useFetchProductMetaFields";
 import ProductOption from "@/app/components/atom/productOption";
 import CategoryChips from "@/app/components/atom/SingleProductCategoryChips";
+import YouMayAlsoLike from "@/app/components/molecule/YouMayAlsoLike";
 
 import { useState, useEffect } from "react";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
@@ -64,32 +65,29 @@ const ProductSection = ({ product, loading }) => {
               {/* product options */}
               {productOptions && productOptions.length > 0 && (
                 <div className="flex flex-col gap-[15px]">
-                  <div className="font-bold text-sm lg:text-lg">
-                    Options
-                  </div>
+                  <div className="font-bold text-sm lg:text-lg">Options</div>
                   <div className="border">
-                    
-                  {productOptions.map((item, idx) => (
-                    <div
-                      key={`product-option-${idx}`}
-                      className="flex flex-col gap-[10px]"
-                    >
-                      <div className="font-medium text-xs lg:text-sm px-4 py-1 bg-stone-300 text-black">
-                        {item.option}
+                    {productOptions.map((item, idx) => (
+                      <div
+                        key={`product-option-${idx}`}
+                        className="flex flex-col gap-[10px]"
+                      >
+                        <div className="font-medium text-xs lg:text-sm px-4 py-1 bg-stone-300 text-black">
+                          {item.option}
+                        </div>
+                        <div className="flex items-center gap-[10px] p-1 pb-3">
+                          {item?.values &&
+                            item.values.map((item2, idx2) => (
+                              <Link
+                                key={`product-option-${idx}-value-${idx2}`}
+                                href={`${BASE_URL}/product/${item2.sku.link}`}
+                              >
+                                <ProductOption option={item2} />
+                              </Link>
+                            ))}
+                        </div>
                       </div>
-                      <div className="flex items-center gap-[10px] p-1 pb-3">
-                        {item?.values &&
-                          item.values.map((item2, idx2) => (
-                            <Link
-                              key={`product-option-${idx}-value-${idx2}`}
-                              href={`${BASE_URL}/product/${item2.sku.link}`}
-                            >
-                              <ProductOption option={item2} />
-                            </Link>
-                          ))}
-                      </div>
-                    </div>
-                  ))}
+                    ))}
                   </div>
                 </div>
               )}
@@ -109,11 +107,11 @@ const ProductSection = ({ product, loading }) => {
           <ProductMetaTabs product={product} />
         </div>
       </div>
-      {/* <div className="p-4">
-      <div className="container max-w-7xl px-[20px] mx-auto">
-        <RelatedProducts product={product}/>
+      <div className="p-4">
+        <div className="container max-w-7xl px-[20px] mx-auto">
+          <YouMayAlsoLike displayItems={4} />
+        </div>
       </div>
-    </div> */}
     </>
   );
 };
