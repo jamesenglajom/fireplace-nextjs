@@ -49,62 +49,68 @@ const ProductSection = ({ product, loading }) => {
   return (
     <>
       <div className="p-4">
-        <div className="container mx-auto flex flex-col gap-[10px]">
+        <div className="container max-w-7xl px-[20px] mx-auto flex flex-col gap-[10px]">
           <div>
             <BackButton />
           </div>
         </div>
-        <div className="container mx-auto flex flex-col sm:flex-row gap-[10px] py-[20px]">
-          <div className="flex-1">
+        <div className="container max-w-7xl px-[20px] mx-auto flex flex-col lg:flex-row gap-[0px] lg:gap-[40px] py-[20px]">
+          <div className="w-full relative">
             <MediaGallery mediaItems={mediaItems} loading={loading} />
           </div>
-          <div className="flex-1">
+          <div className="w-full">
             <ProductToCart product={product} loading={loading} />
-            {/* product options */}
-            {productOptions && productOptions.length > 0 && (
-              <div className="py-[30px] flex flex-col gap-[15px]">
-                <div className="font-bold text-sm lg:text-lg mt-1 md:mt-3">
-                  Options
-                </div>
-                {productOptions.map((item, idx) => (
-                  <div
-                    key={`product-option-${idx}`}
-                    className="flex flex-col gap-[10px]"
-                  >
-                    <div className="font-medium text-xs lg:text-sm">
-                      {item.option}
-                    </div>
-                    <div className="flex items-center gap-[10px]">
-                      {item?.values &&
-                        item.values.map((item2, idx2) => (
-                          <Link
-                            key={`product-option-${idx}-value-${idx2}`}
-                            href={`${BASE_URL}/product/${item2.sku.link}`}
-                          >
-                            <ProductOption option={item2} />
-                          </Link>
-                        ))}
-                    </div>
+            <div className="py-[30px] flex flex-col gap-[15px]">
+              {/* product options */}
+              {productOptions && productOptions.length > 0 && (
+                <div className="flex flex-col gap-[15px]">
+                  <div className="font-bold text-sm lg:text-lg">
+                    Options
                   </div>
-                ))}
+                  <div className="border">
+                    
+                  {productOptions.map((item, idx) => (
+                    <div
+                      key={`product-option-${idx}`}
+                      className="flex flex-col gap-[10px]"
+                    >
+                      <div className="font-medium text-xs lg:text-sm px-4 py-1 bg-stone-300 text-black">
+                        {item.option}
+                      </div>
+                      <div className="flex items-center gap-[10px] p-1 pb-3">
+                        {item?.values &&
+                          item.values.map((item2, idx2) => (
+                            <Link
+                              key={`product-option-${idx}-value-${idx2}`}
+                              href={`${BASE_URL}/product/${item2.sku.link}`}
+                            >
+                              <ProductOption option={item2} />
+                            </Link>
+                          ))}
+                      </div>
+                    </div>
+                  ))}
+                  </div>
+                </div>
+              )}
+              {/* Category */}
+              <div>
+                <div className="font-bold text-sm lg:text-lg mb-[15px]">
+                  Category
+                </div>
+                <CategoryChips categories={product?.categories} />
               </div>
-            )}
-            <div>
-              <div className="font-bold text-sm lg:text-lg mb-[15px]">
-                Category
-              </div>
-              <CategoryChips categories={product?.categories} />
             </div>
           </div>
         </div>
       </div>
       <div className="p-4">
-        <div className="container mx-auto">
+        <div className="container max-w-7xl px-[20px] mx-auto">
           <ProductMetaTabs product={product} />
         </div>
       </div>
       {/* <div className="p-4">
-      <div className="container mx-auto">
+      <div className="container max-w-7xl px-[20px] mx-auto">
         <RelatedProducts product={product}/>
       </div>
     </div> */}

@@ -95,7 +95,7 @@ const ProductToCart = ({ product, loading }) => {
         ></Rating>
         <div>({productData?.reviews_count})</div>
       </div>
-      <div className="text-sm md:text-base flex items-center gap-[8px]">
+      <div className="text-sm md:text-base flex items-center gap-[8px] text-stone-500">
         <AkarIconsShippingV1 width={24} height={24}/>
         Ships Within 1 to 2 Business Days
       </div>
