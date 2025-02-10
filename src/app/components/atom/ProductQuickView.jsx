@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Rating } from "@smastrom/react-rating";
 import { formatPrice } from "@/app/lib/helpers";
-import { MaterialSymbolsClose } from "../icons/lib";
+import { Eos3DotsLoading, MaterialSymbolsClose } from "../icons/lib";
 import { useRouter } from "next/navigation";
 
 import { useCart } from "@/app/context/cart";
@@ -16,7 +16,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 function ProductQuickView({ data, onClose }) {
   const router = useRouter();
-  const { addToCart } = useCart();
+  const { addToCart, addToCartLoading } = useCart();
   const [toggle, setToggle] = useState(false);
   const [image, setImage] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -142,10 +142,10 @@ function ProductQuickView({ data, onClose }) {
                       </div>
                       <button
                         onClick={() => handleAddToCart(data)}
-                        className="bg-orange-600 hover:bg-orange-500 text-white py-1 px-3 rounded w-full font-medium"
+                        className={`bg-orange-600 flex justify-center hover:bg-orange-500 text-white h-[32px] items-center rounded w-full font-medium ${addToCartLoading?"pointer-events-none": "pointer-events-auto"}`}
                         disabled={disableATCButton}
                       >
-                        Add to Cart
+                        {addToCartLoading ? <Eos3DotsLoading width={52} height={52}/>:"Add to cart" }
                       </button>
                     </div>
                   </div>
