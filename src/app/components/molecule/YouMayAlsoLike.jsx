@@ -4,7 +4,7 @@ import useFetchProducts from "@/app/hooks/useFetchProducts";
 import ProductCard from "@/app/components/atom/ProductCard";
 import ProductCardLoader from "@/app/components/atom/ProductCardLoader";
 
-export default function YouMayAlsoLike() {
+export default function YouMayAlsoLike({displayItems}) {
   const category_ids = solana_categories
     .map(({ category_id }) => category_id)
     .filter((i) => i !== undefined);
@@ -12,7 +12,7 @@ export default function YouMayAlsoLike() {
   const pickPage = getRandomNumber(100);
   const { products, loading } = useFetchProducts({
     include: "images",
-    limit: 3,
+    limit: displayItems ?? 3,
     page: pickPage,
     "categories:in": 167,
     sort: "date_modified",
@@ -23,14 +23,18 @@ export default function YouMayAlsoLike() {
     // console.log("fromYouMayAlsoLike:solana_categories", solana_categories);
     // console.log("fromYouMayAlsoLike:category_ids", category_ids);
   }, [products]);
+  const  makeArray = (n) => {
+    return Array.from({ length: n }, (_, i) => i);
+  }
+  
   return (
     <div className="hidden xl:mt-8 xl:block">
       <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
         You May Also Like
       </h3>
-      <div className="mt-6 grid grid-cols-3 gap-4 sm:mt-8">
+      <div className={`mt-6 grid gap-4 sm:mt-8  ${displayItems ? `grid-cols-${displayItems}`:"grid-cols-3"}`}>
         {loading
-          ? [0, 0, 0, 0].map((item, idx) => (
+          ? makeArray(displayItems ?? 3).map((item, idx) => (
               <div key={`product-placeholder-${idx}`} className="space-y-6 overflow-hidden">
                 <ProductCardLoader />
               </div>
