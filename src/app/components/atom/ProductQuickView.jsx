@@ -8,12 +8,14 @@ import Link from "next/link";
 import { Rating } from "@smastrom/react-rating";
 import { formatPrice } from "@/app/lib/helpers";
 import { MaterialSymbolsClose } from "../icons/lib";
+import { useRouter } from "next/navigation";
 
 import { useCart } from "@/app/context/cart";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 function ProductQuickView({ data, onClose }) {
+  const router = useRouter();
   const { addToCart } = useCart();
   const [toggle, setToggle] = useState(false);
   const [image, setImage] = useState(null);
@@ -51,6 +53,13 @@ function ProductQuickView({ data, onClose }) {
     addToCart(items);
     setDisableATCButton(false);
   };
+
+  const handleViewProductClick = (e) => {
+    const {href} = e.target;
+    e.preventDefault();
+    setToggle(false);
+    router.push(href);    
+  }
 
   return (
     <Dialog open={toggle} onClose={setToggle} className="relative z-10">
@@ -104,6 +113,7 @@ function ProductQuickView({ data, onClose }) {
                       <div className="hover:underline text-stone-600 font-medium text-xs">
                         <Link
                           href={`${BASE_URL}/product/${data.custom_url.url}`}
+                          onClick={handleViewProductClick}
                         >
                           View Product and Options
                         </Link>
