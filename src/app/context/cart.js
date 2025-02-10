@@ -1,5 +1,6 @@
 "use client";
 import React, { createContext, useState, useContext, useEffect } from "react";
+import AddedToCartDialog from "@/app/components/atom/AddedToCartDialog"
 
 const CartContext = createContext();
 
@@ -12,6 +13,7 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const [loadingCartItems, setLoadingCartItems] = useState(true);
+  const [addedToCart, setAddedToCart] = useState(null);
 
   useEffect(() => {
     // Dynamically import the cartStorage module only on the client-side
@@ -41,15 +43,23 @@ export const CartProvider = ({ children }) => {
 
   // Function to add to cart and update cart count
   // item param must be an array
-  const addToCart = async (items) => {
+  const addToCart = async (items, triggerAddedToCartModal) => {
     // getCart everytime we add or remove items
-    const savedItems = await cartStorage.getCart();
-    setCartItems((prev) => {
-      const updatedItems = [...savedItems, ...items];
-      cartStorage.saveCart(updatedItems);
-      setCartItemsCount(updatedItems.length);
-      return [...updatedItems];
-    });
+    try{
+      const savedItems = await cartStorage.getCart();
+      setCartItems((prev) => {
+        const updatedItems = [...savedItems, ...items];
+        cartStorage.saveCart(updatedItems);
+        setCartItemsCount(updatedItems.length);
+        return [...updatedItems];
+      });
+      // triggerAddedToCart
+      if(triggerAddedToCartModal){
+        setAddedToCart(items);
+      }
+    }catch(error){
+      // triggerErrorNotAddedToCart
+    }
   };
 
   const removeCartItem = async (item) => {
@@ -78,6 +88,10 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const handleCloseAddedToCart = () =>{
+    setAddedToCart(null);
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -91,6 +105,7 @@ export const CartProvider = ({ children }) => {
       }}
     >
       {children}
+      <AddedToCartDialog data={addedToCart} onClose={handleCloseAddedToCart}/>
     </CartContext.Provider>
   );
 };

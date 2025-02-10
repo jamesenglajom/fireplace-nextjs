@@ -1,7 +1,6 @@
 "use client";
 import React, { createContext, useState, useContext, useEffect } from "react";
 import QuickView from "@/app/components/atom/ProductQuickView"
-import ProductQuickView from "../components/atom/ProductQuickView";
 const QuickViewContext = createContext();
 export const useQuickView = () => {
   return useContext(QuickViewContext);

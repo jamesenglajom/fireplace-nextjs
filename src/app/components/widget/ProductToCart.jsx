@@ -74,9 +74,10 @@ const ProductToCart = ({ product, loading }) => {
   };
   const handleAddToCart = (item) => {
     const items = createItemsArray(item, quantity);
-    addToCart(items);
+    addToCart(items, true);
   };
 
+  
   return (
     <div className="flex flex-col gap-[10px] w-full relative">
       <div className="relative">
