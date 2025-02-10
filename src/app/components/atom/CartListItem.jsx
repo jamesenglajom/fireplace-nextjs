@@ -2,9 +2,11 @@
 import { useState, useEffect } from "react";
 import { useCart } from "@/app/context/cart";
 import { formatPrice } from "@/app/lib/helpers";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 export default function CartListItem({ item, onItemCountUpdate }) {
   const { removeCartItem } = useCart();
   const [thumbnail, setThumbnail] = useState(null);
+  console.log("cartlistitem", item)
 
   useEffect(() => {
     if (item) {
@@ -36,7 +38,7 @@ export default function CartListItem({ item, onItemCountUpdate }) {
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
       <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-        <a href="#" className="shrink-0 md:order-1">
+        <a href={`${BASE_URL}/product${item.custom_url.url}`} className="shrink-0 md:order-1">
           {thumbnail && (
             <img
               className="h-20 w-20 dark:hidden"
@@ -118,7 +120,7 @@ export default function CartListItem({ item, onItemCountUpdate }) {
 
         <div className="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
           <a
-            href="#"
+            href={`${BASE_URL}/product${item.custom_url.url}`}
             className="text-base font-medium text-gray-900 hover:underline dark:text-white"
           >
             {item?.name}
