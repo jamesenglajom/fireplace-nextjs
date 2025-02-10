@@ -21,7 +21,11 @@ import MDIBaselineGasMeterIcon from "./MDIBaselineGasMeterIcon";
 import AkarIconsShippingV1Icon from "./AkarIconsShippingV1Icon";
 import MaterialSymbolsCloseIcon from "./MaterialSymbolsCloseIcon";
 
+import Eos3DotsLoadingIcon from "./Eos3DotsLoadingIcon"
 
+export const Eos3DotsLoading = ({ color, width, height }) => {
+  return <Eos3DotsLoadingIcon color={color} width={width} height={height} />;
+};
 
 export const MaterialSymbolsClose = ({ color, width, height }) => {
   return <MaterialSymbolsCloseIcon color={color} width={width} height={height} />;

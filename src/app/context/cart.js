@@ -14,6 +14,7 @@ export const CartProvider = ({ children }) => {
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const [loadingCartItems, setLoadingCartItems] = useState(true);
   const [addedToCart, setAddedToCart] = useState(null);
+  const [addToCartLoading, setAddToCartLoading] = useState(false);
 
   useEffect(() => {
     // Dynamically import the cartStorage module only on the client-side
@@ -41,9 +42,17 @@ export const CartProvider = ({ children }) => {
     }
   }, [cartStorage]);
 
+  
+  const fakeLoadingDelay = () => {
+    setTimeout(() => {
+      setAddToCartLoading(false); // Hide loader after 2 seconds
+    }, 2000);
+  };
+
   // Function to add to cart and update cart count
   // item param must be an array
   const addToCart = async (items, triggerAddedToCartModal) => {
+    setAddToCartLoading(true);
     // getCart everytime we add or remove items
     try{
       const savedItems = await cartStorage.getCart();
@@ -57,8 +66,11 @@ export const CartProvider = ({ children }) => {
       if(triggerAddedToCartModal){
         setAddedToCart(items);
       }
+      fakeLoadingDelay();
     }catch(error){
       // triggerErrorNotAddedToCart
+      fakeLoadingDelay();
+ 
     }
   };
 
@@ -92,6 +104,8 @@ export const CartProvider = ({ children }) => {
     setAddedToCart(null);
   }
 
+
+
   return (
     <CartContext.Provider
       value={{
@@ -102,6 +116,7 @@ export const CartProvider = ({ children }) => {
         removeCartItem,
         clearCartItems,
         updateCart,
+        addToCartLoading
       }}
     >
       {children}
