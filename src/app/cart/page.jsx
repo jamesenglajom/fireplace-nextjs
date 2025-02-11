@@ -76,10 +76,11 @@ export default function CartPage() {
                 </div>
               )}
             </div>
-            {/* People Also Bought Section */}
-            <YouMayAlsoLike />
           </div>
           <CartOrderSummary />
+        </div>
+        <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
+            <YouMayAlsoLike displayItems={4}/>
         </div>
       </div>
     </section>
