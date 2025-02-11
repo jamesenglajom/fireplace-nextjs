@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
-function searchResultSection({ section }) {
+function SearchResultSection({ section }) {
   const [sectionData, setSectionData] = useState([]);
   const [expanded, setExpanded] = useState(false);
   useEffect(() => {
@@ -129,4 +129,4 @@ function searchResultSection({ section }) {
   }
 }
 
-export default searchResultSection;
+export default SearchResultSection;
