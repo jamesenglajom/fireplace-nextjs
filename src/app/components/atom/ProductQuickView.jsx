@@ -28,9 +28,11 @@ function ProductQuickView({ data, onClose }) {
   
   useEffect(() => {
     if (data) {
+      console.log("data",data);
       const thumbnail =
         data?.images?.find(({ is_thumbnail }) => is_thumbnail)?.url_standard ??
         null;
+
       setImage(thumbnail);
       setToggle(true);
     } else {
@@ -109,7 +111,7 @@ function ProductQuickView({ data, onClose }) {
                           value={data.reviews_rating_sum}
                           fractions={2}
                           style={{ maxWidth: 110 }}
-                        ></Rating>
+                        />
                         <div>{`(${data.reviews_count})`}</div>
                       </div>
                       <div className="font-semibold text-base md:text-2xl">
