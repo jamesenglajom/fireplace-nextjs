@@ -51,6 +51,7 @@ function AddedToCartDialog({ data, onClose }) {
 
   const handleGoToCartClick = (e) => {
     e.preventDefault();
+    handleClose();
     router.push(cartPageUrl);
   };
 
