@@ -13,6 +13,7 @@ import { useMediaQuery } from "react-responsive";
 import { useSearchParams } from "next/navigation";
 const bccat_json = bc_categories;
 const ProductsSection = ({ category }) => {
+  console.log("productSection", category)
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const searchParams = useSearchParams();
   const [onloadParams, setOnloadParams] = useState(() => {

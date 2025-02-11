@@ -8,7 +8,7 @@ import useFetchProductMetaFields from "@/app/hooks/useFetchProductMetaFields";
 import ProductOption from "@/app/components/atom/productOption";
 import CategoryChips from "@/app/components/atom/SingleProductCategoryChips";
 import YouMayAlsoLike from "@/app/components/molecule/YouMayAlsoLike";
-
+import BreadCrumbs from "@/app/components/atom/SingleProductBreadCrumbs"
 import { useState, useEffect } from "react";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const ProductSection = ({ product, loading }) => {
@@ -49,12 +49,15 @@ const ProductSection = ({ product, loading }) => {
 
   return (
     <>
-      <div className="p-4">
-        <div className="container max-w-7xl px-[20px] mx-auto flex flex-col gap-[10px]">
+    <div className="p-2 bg-orange-300">
+    <div className="container max-w-7xl px-[20px] mx-auto flex flex-col gap-[10px]">
           <div>
-            <BackButton />
+            {/* <BackButton /> */}
+            <BreadCrumbs product={product} />
           </div>
         </div>
+    </div>
+      <div className="p-4">
         <div className="container max-w-7xl px-[20px] mx-auto flex flex-col lg:flex-row gap-[0px] lg:gap-[40px] py-[20px]">
           <div className="w-full relative">
             <MediaGallery mediaItems={mediaItems} loading={loading} />
