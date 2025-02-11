@@ -31,7 +31,7 @@ function BreadCrumbs({ category }) {
     const tmp = findBreadcrumbs(solana_categories, category)
     .filter((i) => i.url !== category);
     return tmp.length > 1 ?tmp.filter((i) => !solana_categories.map((i1) => i1.url).includes(i.url)): tmp;
-  }, [category]);
+  }, [category, findBreadcrumbs]);
 
   if (!isMainCategory) {
     return (
