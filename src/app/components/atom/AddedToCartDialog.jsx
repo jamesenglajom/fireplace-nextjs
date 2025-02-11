@@ -4,6 +4,7 @@ import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { Eos3DotsLoading } from "../icons/lib";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const cartPageUrl = `${BASE_URL}/cart`;
 function AddedToCartDialog({ data, onClose }) { 
@@ -48,7 +49,6 @@ function AddedToCartDialog({ data, onClose }) {
       onClose();
     }
   }, [toggle]);
-
 
   const handleGoToCartClick = (e) => {
     e.preventDefault();
@@ -101,10 +101,15 @@ function AddedToCartDialog({ data, onClose }) {
                     />
                   )}
                 </div>
-                <div className="w-[calc(100%-100px)] text-stone-700 flex flex-col gap-[10px]">
+                <div className={`w-[calc(100%-100px)] text-stone-700 flex gap-[10px] ${data ? "flex-col":"justify-center items-center h-[100px]"}`}>
+                  {
+                    data ? <>
                   <div className="font-bold text-sm lg:text-xl">{addedToCartItems?.name}</div>
                   <div className="font-medium text-sm">{`$${addedToCartItems?.price}x${addedToCartItems?.count}`}</div>
                   <div className="font-extrabold text-orange-600 text-lg lg:text-2xl text-right">{`$${addedToCartItems?.count * addedToCartItems?.price}`}</div>
+                  </>:
+                  <Eos3DotsLoading />
+                  }
                 </div>
               </div>
               <div className="flex items-center justify-center h-[100px]">

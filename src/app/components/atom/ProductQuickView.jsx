@@ -20,7 +20,6 @@ function ProductQuickView({ data, onClose }) {
   const [toggle, setToggle] = useState(false);
   const [image, setImage] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const [disableATCButton, setDisableATCButton] = useState(false);
   useEffect(() => {
     if (data) {
       const thumbnail =
@@ -47,11 +46,15 @@ function ProductQuickView({ data, onClose }) {
     return new Array(quantity).fill(item);
   };
 
-  const handleAddToCart = (item) => {
-    setDisableATCButton(true);
+  const handleAddToCart = async(item) => {
     const items = createItemsArray(item, quantity);
-    addToCart(items);
-    setDisableATCButton(false);
+    const response = await addToCart(items);
+    const {code, message} = response;
+    if(code === 200){
+        setToggle(false); 
+    }else{  
+      console.log("handleAddToCart:Error", message)
+    }
   };
 
   const handleViewProductClick = (e) => {
@@ -143,7 +146,7 @@ function ProductQuickView({ data, onClose }) {
                       <button
                         onClick={() => handleAddToCart(data)}
                         className={`bg-orange-600 flex justify-center hover:bg-orange-500 text-white h-[32px] items-center rounded w-full font-medium ${addToCartLoading?"pointer-events-none": "pointer-events-auto"}`}
-                        disabled={disableATCButton}
+                        disabled={addToCartLoading}
                       >
                         {addToCartLoading ? <Eos3DotsLoading width={52} height={52}/>:"Add to cart" }
                       </button>
