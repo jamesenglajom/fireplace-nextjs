@@ -20,6 +20,12 @@ function ProductQuickView({ data, onClose }) {
   const [toggle, setToggle] = useState(false);
   const [image, setImage] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  
+  const handleClose = () =>  {
+    setToggle(false);
+    onClose();
+  }
+  
   useEffect(() => {
     if (data) {
       const thumbnail =
@@ -32,11 +38,6 @@ function ProductQuickView({ data, onClose }) {
     }
   }, [data]);
 
-  useEffect(() => {
-    if (!toggle) {
-      onClose();
-    }
-  }, [toggle]);
 
   const handleQuantityChange = (value) => {
     setQuantity(value);
@@ -51,7 +52,7 @@ function ProductQuickView({ data, onClose }) {
     const response = await addToCart(items);
     const {code, message} = response;
     if(code === 200){
-        setToggle(false); 
+        handleClose();
     }else{  
       console.log("handleAddToCart:Error", message)
     }
@@ -60,9 +61,10 @@ function ProductQuickView({ data, onClose }) {
   const handleViewProductClick = (e) => {
     const {href} = e.target;
     e.preventDefault();
-    setToggle(false);
+    handleClose();
     router.push(href);    
   }
+
 
   return (
     <Dialog open={toggle} onClose={setToggle} className="relative z-10">
@@ -79,7 +81,7 @@ function ProductQuickView({ data, onClose }) {
               className="w-full relative transform overflow-hidden bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-[800px] data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95 overflow-y-auto rounded-lg"
             >
               <div className="absolute right-0 top-0 rounded-bl-lg z-10">
-                <div onClick={()=>setToggle(false)} className="cursor-pointer p-1"><MaterialSymbolsClose width={24} height={24}/></div>
+                <div onClick={handleClose} className="cursor-pointer p-1"><MaterialSymbolsClose width={24} height={24}/></div>
               </div>
               {data && (
                 <div className="flex flex-col lg:flex-row relative">
