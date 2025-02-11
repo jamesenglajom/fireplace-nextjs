@@ -9,24 +9,22 @@ export default function CartPage() {
   const { cartItems, loadingCartItems, clearCartItems, addToCart, updateCart } = useCart();
   const [formattedCartItems, setFormattedCartItems] = useState([]);
 
-  const formatCartItems = () => {
-    if (cartItems.length === 0) {
-      return [];
-    }
-
-    return Object.values(
-      cartItems.reduce((acc, item) => {
-        if (!acc[item.id]) {
-          acc[item.id] = { ...item, count: 0 };
-        }
-        acc[item.id].count += 1;
-        return acc;
-      }, {})
-    );
-  };
-
   useEffect(() => {
-    setFormattedCartItems(formatCartItems());
+    setFormattedCartItems((prev)=>{
+      if (cartItems.length === 0) {
+        return [];
+      }
+  
+      return Object.values(
+        cartItems.reduce((acc, item) => {
+          if (!acc[item.id]) {
+            acc[item.id] = { ...item, count: 0 };
+          }
+          acc[item.id].count += 1;
+          return acc;
+        }, {})
+      );
+    });
   }, [cartItems]);
 
   const handleItemCountUpdate=(value)=>{
