@@ -11,24 +11,24 @@ function BreadCrumbs({ category }) {
     return solana_categories.find(({ url }) => url === category) !== undefined;
   }, [category]);
 
-  const findBreadcrumbs = (categories, targetUrl, path = []) => {
-    for (const category of categories) {
-      const newPath = [
-        ...path,
-        { name: category.name, url: category.url || "#" },
-      ];
-      if (category.url === targetUrl) {
-        return newPath;
-      }
-      if (category.children) {
-        const result = findBreadcrumbs(category.children, targetUrl, newPath);
-        if (result) return result;
-      }
-    }
-    return null;
-  };
-
   useEffect(() => {
+    const findBreadcrumbs = (categories, targetUrl, path = []) => {
+      for (const category of categories) {
+        const newPath = [
+          ...path,
+          { name: category.name, url: category.url || "#" },
+        ];
+        if (category.url === targetUrl) {
+          return newPath;
+        }
+        if (category.children) {
+          const result = findBreadcrumbs(category.children, targetUrl, newPath);
+          if (result) return result;
+        }
+      }
+      return null;
+    };
+
     setCrumbs((prev) => {
       const tmp = findBreadcrumbs(solana_categories, category).filter(
         (i) => i.url !== category
