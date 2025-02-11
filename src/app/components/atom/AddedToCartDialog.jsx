@@ -4,7 +4,6 @@ import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const cartPageUrl = `${BASE_URL}/cart`;
 function AddedToCartDialog({ data, onClose }) { 
