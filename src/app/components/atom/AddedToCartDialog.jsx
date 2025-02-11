@@ -44,11 +44,10 @@ function AddedToCartDialog({ data, onClose }) {
     }
   }, [addedToCartItems]);
 
-  useEffect(() => {
-    if (!toggle) {
-      onClose();
-    }
-  }, [toggle]);
+  const handleClose = () => {
+    setToggle(false);
+    onClose();
+  }
 
   const handleGoToCartClick = (e) => {
     e.preventDefault();
@@ -121,7 +120,7 @@ function AddedToCartDialog({ data, onClose }) {
               {/* action buttons */}
               <div className="flex justify-between items-center p-[10px] border-t ">
                 <button
-                  onClick={() => setToggle(false)}
+                  onClick={handleClose}
                   className="border border-stone-300 rounded-md py-1 px-2 hover:bg-stone-50 text-sm font-medium"
                 >
                   Continue Shopping
