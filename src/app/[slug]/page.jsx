@@ -24,7 +24,6 @@ export default function GenericCategoryPage({ params }) {
         <MobileLoader />
         <TuiHero data={pageData} />
         <ProductsSection
-          // category={main_cat_array.includes(slug) ? slug : "all-products"}
           category={slug}
         />
       </div>

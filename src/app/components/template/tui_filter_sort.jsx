@@ -1,5 +1,10 @@
 "use client";
 
+import dynamic from "next/dynamic";
+// import BreadCrumbs from "@/app/components/atom/BreadCrumbs"
+const BreadCrumbs = dynamic(() => import("@/app/components/atom/BreadCrumbs"), {
+  ssr: false,
+});
 import { useState, useEffect } from "react";
 // import Link from "next/link";
 import {
@@ -34,6 +39,7 @@ import FilterDropdownSelect from "@/app/components/atom/FilterDropdownSelect";
 import { useSearchParams } from "next/navigation";
 
 import FilterChipsWrapper from "@/app/components/section/FilterChipsWrapper";
+
 
 const sortOptions = [
   {
@@ -77,7 +83,6 @@ export default function TuiFilterSort({
   onFilterChange,
 }) {
   const searchParams = useSearchParams();
-  const [quickview, setQuickview] = useState(null);
   const [sort, setSort] = useState(sortOptions);
   const [displayProducts, setDisplayProducts] = useState([]);
   const [filters, setFilters] = useState({});
@@ -263,17 +268,19 @@ export default function TuiFilterSort({
         <main className="px-2 sm:px-4 relative bg-white">
           <div className="border-b border-gray-200 pb-2 pt-6 sticky top-[40px] bg-white z-[5]">
             <div className="flex items-baseline justify-between ">
-              <h1 className="text-sm md:text-4xl font-bold tracking-tight text-gray-900">
-                {`${activeCategoryName(category)}`}{" "}
-                <span className="font-normal text-sm md:text-2xl">{`${
-                  pagination &&
-                  pagination.total !== 0 &&
-                  pagination.total !== undefined
-                    ? `(${pagination?.total})`
-                    : ""
-                }`}</span>
-              </h1>
-
+              <div>
+                <h1 className="text-sm md:text-4xl font-bold tracking-tight text-gray-900">
+                  {`${activeCategoryName(category)}`}{" "}
+                  <span className="font-normal text-sm md:text-2xl">{`${
+                    pagination &&
+                    pagination.total !== 0 &&
+                    pagination.total !== undefined
+                      ? `(${pagination?.total})`
+                      : ""
+                  }`}</span>
+                </h1>
+                <BreadCrumbs category={category}/>
+              </div>
               <div className="flex items-center">
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
