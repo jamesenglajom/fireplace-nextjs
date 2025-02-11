@@ -1,11 +1,12 @@
 "use client";
-import { useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { solana_categories } from "@/app/lib/category-helpers";
 import Link from "next/link";
 import { FluentChevronLeft } from "@/app/components/icons/lib";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 function BreadCrumbs({ category }) {
+  const [crumbs, setCrumbs] = useState([]);
   const isMainCategory = useMemo(() => {
     return solana_categories.find(({ url }) => url === category) !== undefined;
   }, [category]);
@@ -27,11 +28,18 @@ function BreadCrumbs({ category }) {
     return null;
   };
 
-  const crumbs = useMemo(() => {
-    const tmp = findBreadcrumbs(solana_categories, category)
-    .filter((i) => i.url !== category);
-    return tmp.length > 1 ?tmp.filter((i) => !solana_categories.map((i1) => i1.url).includes(i.url)): tmp;
-  }, [category, findBreadcrumbs]);
+  useEffect(() => {
+    setCrumbs((prev) => {
+      const tmp = findBreadcrumbs(solana_categories, category).filter(
+        (i) => i.url !== category
+      );
+      return tmp.length > 1
+        ? tmp.filter(
+            (i) => !solana_categories.map((i1) => i1.url).includes(i.url)
+          )
+        : tmp;
+    });
+  }, [category]);
 
   if (!isMainCategory) {
     return (
