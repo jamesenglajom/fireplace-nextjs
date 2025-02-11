@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useCart } from "@/app/context/cart";
 import { formatPrice } from "@/app/lib/helpers";
 function CartOrderSummary() {
@@ -9,27 +9,25 @@ function CartOrderSummary() {
   const [savings, setSavings] = useState(0);
   const [deliveryOption, setDeliveryOption] = useState(0);
   const [tax, setTax] = useState(0);
-  const [cartTotal, setCartTotal] = useState(0);
 
-  useEffect(() => {
-    if (cartItems.length === 0) {
-      setOriginalPrice(0);
-    } else {
-      setCartTotal((prev) => {
-        const _originalPrice = getSum(cartItems, "price");
-        const _salePrice = getSum(cartItems, "sale_price");
-        const _savings = _originalPrice - _salePrice;
-        const _deliveryOption = 0;
-        const _tax = 0;
-        setOriginalPrice(_originalPrice);
-        setSalePrice(_salePrice);
-        setSavings(_savings);
-        setDeliveryOption(_deliveryOption);
-        setTax(_tax);
-        return _salePrice + deliveryOption + _tax;
-      });
+  const cartTotal = useMemo(()=>{
+    if(cartItems.length > 0){
+      const _originalPrice = getSum(cartItems, "price");
+      const _salePrice = getSum(cartItems, "sale_price");
+      const _savings = _originalPrice - _salePrice;
+      const _deliveryOption = 0;
+      const _tax = 0;
+      setOriginalPrice(_originalPrice);
+      setSalePrice(_salePrice);
+      setSavings(_savings);
+      setDeliveryOption(_deliveryOption);
+      setTax(_tax);
+      return _salePrice + _deliveryOption + _tax;
+    }else{
+      return 0;
     }
-  }, [cartItems]);
+  },[cartItems])
+
 
   function getSum(array, prop) {
     return array.reduce((sum, item) => sum + item?.[prop], 0);
