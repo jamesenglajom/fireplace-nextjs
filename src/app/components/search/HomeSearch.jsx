@@ -12,7 +12,9 @@ const HomeSearch = ({ main, controlled_height }) => {
     searchResults,
     loading,
     mainIsActive,
-    setMainIsActive } =
+    setMainIsActive,
+    redirectToSearchPage
+  } =
     useSearch();
   const searchRef = useRef(null);
   const [openSearch, setOpenSearch] = useState(false);
@@ -41,6 +43,24 @@ const HomeSearch = ({ main, controlled_height }) => {
     setMainIsActive(mainActive);
   }, [openSearch]);
 
+  const handleRedirectToSearchPage = () => {
+    setOpenSearch(false)
+    redirectToSearchPage()
+  }
+
+  const handleSearchEnterKey = (e) => {
+    if (e.key === "Enter" && searchQuery !== "") {
+      handleRedirectToSearchPage()
+    }
+  }
+
+  const handleSearchButtonClick = () => {
+    if(searchQuery !== ""){
+      handleRedirectToSearchPage()
+    }
+  }
+
+
   return (
     <div className="flex w-full relative z-10" ref={searchRef}>
       <input
@@ -48,6 +68,7 @@ const HomeSearch = ({ main, controlled_height }) => {
         placeholder="Search..."
         className="w-full text-sm font-normal px-[20px] py-[10px] border border-orange-400 rounded-tl-full rounded-bl-full"
         onClick={() => setOpenSearch(true)}
+        onKeyDown={handleSearchEnterKey}
         value={searchQuery}
         onChange={handleSearch}
       />

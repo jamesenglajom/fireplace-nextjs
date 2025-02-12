@@ -9,6 +9,9 @@ import React, {
 } from "react";
 import useFetchProducts from "@/app/hooks/useFetchProducts";
 import { solana_categories } from "../lib/category-helpers";
+import { useRouter } from "next/navigation";
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 const main_categories = solana_categories
   .filter((i) => i.searchable === true)
@@ -36,6 +39,7 @@ export const useSearch = () => {
 };
 
 export const SearchProvider = ({ children }) => {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [mainIsActive, setMainIsActive] = useState(false);
   const oldSearchResults = useRef([
@@ -183,6 +187,10 @@ export const SearchProvider = ({ children }) => {
     });
   };
 
+  const redirectToSearchPage = () => {
+    router.push(`${BASE_URL}/search?query=${searchQuery}`)
+  }
+
   const searchResults = useMemo(() => {
     if (!loading) {
       const newSearchResults = [
@@ -220,7 +228,7 @@ export const SearchProvider = ({ children }) => {
     } else {
       return oldSearchResults.current;
     }
-  }, [recentResults, productResults, categoryResults, brandResults, loading]);
+  }, [recentResults, productResults, categoryResults, brandResults, loading, redirectToSearchPage]);
   return (
     <SearchContext.Provider
       value={{
