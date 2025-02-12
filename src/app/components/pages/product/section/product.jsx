@@ -50,7 +50,7 @@ const ProductSection = ({ product, loading }) => {
   return (
     <>
     <div className="p-2 bg-orange-300">
-    <div className="container max-w-7xl px-[20px] mx-auto flex flex-col gap-[10px]">
+    <div className="container max-w-7xl px-[0px] sm:px-[20px] mx-auto flex flex-col gap-[10px]">
           <div>
             {/* <BackButton /> */}
             <BreadCrumbs product={product} />
@@ -58,7 +58,7 @@ const ProductSection = ({ product, loading }) => {
         </div>
     </div>
       <div className="p-4">
-        <div className="container max-w-7xl px-[20px] mx-auto flex flex-col lg:flex-row gap-[0px] lg:gap-[40px] py-[20px]">
+        <div className="container max-w-7xl px-[0px] sm:px-[20px] mx-auto flex flex-col lg:flex-row gap-[0px] lg:gap-[40px] py-[20px]">
           <div className="w-full relative">
             <MediaGallery mediaItems={mediaItems} loading={loading} />
           </div>
@@ -106,12 +106,12 @@ const ProductSection = ({ product, loading }) => {
         </div>
       </div>
       <div className="p-4">
-        <div className="container max-w-7xl px-[20px] mx-auto">
+        <div className="container max-w-7xl px-[0px] sm:px-[20px] mx-auto">
           <ProductMetaTabs product={product} />
         </div>
       </div>
       <div className="p-4">
-        <div className="container max-w-7xl px-[20px] mx-auto">
+        <div className="container max-w-7xl px-[0px] sm:px-[20px] mx-auto">
           <YouMayAlsoLike displayItems={4} />
         </div>
       </div>

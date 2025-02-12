@@ -100,7 +100,7 @@ export default function TuiNavbar() {
         <Disclosure as="nav" className="bg-white z-[9999] ">
           <div className="mx-auto container px-2 pt-[10px]">
             <div className="relative flex h-16 items-center justify-between">
-              <div className="flex items-center sm:hidden">
+              <div className="flex items-center lg:hidden">
                 {/* Mobile menu button*/}
                 <DisclosureButton
                   onClick={() => setMobileMenuDialog(true)}
@@ -130,7 +130,7 @@ export default function TuiNavbar() {
                   </div>
                 </div>
               </div>
-              <div className="hidden sm:block sm:w-[300px] md:w-[500px]">
+              <div className="hidden lg:block lg:w-[500px]">
                 <HomeSearch controlled_height={false} main={true}/>
               </div>
               <div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -155,7 +155,7 @@ export default function TuiNavbar() {
               </div>
             </div>
           </div>
-          <div className="hidden sm:block mx-auto container px-2 sm:px-6 lg:px-8">
+          <div className="hidden lg:block mx-auto container px-2 sm:px-6 lg:px-8">
             <div className="flex items-center justify-center mt-[20px] sm:flex-wrap">
               <div className="flex sm:flex-wrap justify-center gap-y-4">
                 {navigation.map((i, index) => (
@@ -286,14 +286,14 @@ export default function TuiNavbar() {
         className="relative z-10">
         <DialogBackdrop
           transition
-          className="fixed inset-0 bg-gray-500/75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in md:hidden"
+          className="fixed inset-0 bg-gray-500/75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in lg:hidden"
         />
 
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center md:p-4 text-center sm:items-center sm:p-0">
+          <div className="flex min-h-full items-end justify-center text-center lg:items-center lg:p-0">
             <DialogPanel
               transition
-              className=" md:hidden w-full h-screen relative transform overflow-hidden bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-lg data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95 overflow-y-auto pb-[30px]">
+              className="lg:hidden w-full h-screen relative transform overflow-hidden bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in lg:my-8 lg:w-full lg:max-w-lg data-[closed]:lg:translate-y-0 data-[closed]:lg:scale-95 overflow-y-auto pb-[30px]">
               <div className="">
                 <div className="bg-slate-800 flex justify-between p-[10px]">
                   <button
