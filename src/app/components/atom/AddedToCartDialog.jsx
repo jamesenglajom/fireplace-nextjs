@@ -36,7 +36,6 @@ function AddedToCartDialog({ data, onClose }) {
       const thumbnail =
       addedToCartItems?.images?.find(({ is_thumbnail }) => is_thumbnail)?.url_standard ??
         null;
-      console.log("thumbnail", thumbnail);
       setImage(thumbnail);
       setToggle(true);
     } else {

@@ -28,7 +28,7 @@ const brands = solana_categories
     if (a.name > b.name) return 1;
     return 0;
   });
-  console.log("brands", brands);
+  // console.log("brands", brands);
 
 const SearchContext = createContext();
 export const useSearch = () => {
@@ -116,7 +116,7 @@ export const SearchProvider = ({ children }) => {
   };
 
   const setSearch = (search_string) => {
-    console.log("setSearchFromContext", search_string);
+    // console.log("setSearchFromContext", search_string);
     setSearchQuery(search_string);
     refetchProducts((prev) => {
       if (search_string === "") {
