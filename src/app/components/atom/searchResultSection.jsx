@@ -54,7 +54,7 @@ function SearchResultSection({ section }) {
               <Link
                 // onClick={handleOptionClick}
                 // onContextMenu={handleOptionClick}
-                key={`product-result-${index}`}
+                key={`product-result-${product.custom_url.url}`}
                 href={`${BASE_URL}/product${product.custom_url.url}`}
               >
                 <div className="flex items-center group hover:bg-stone-50 px-2 py-[5px]">
@@ -89,7 +89,7 @@ function SearchResultSection({ section }) {
           {section.prop === "category" &&
             sectionData.map((category, index) => (
               <Link
-                key={`cat-result-${index}`}
+                key={`cat-result-${category.url}`}
                 href={`${BASE_URL}/${category.url}`}
                 onClick={handleOptionClick}
                 onContextMenu={handleOptionClick}
@@ -109,8 +109,8 @@ function SearchResultSection({ section }) {
               <Link
                 onClick={handleOptionClick}
                 onContextMenu={handleOptionClick}
-                key={`brand-result-${index}`}
-                href={`#`}
+                key={`brand-result-${brand.url}`}
+                href={`${BASE_URL}/${brand.url}`}
               >
                 <div className="w-full group hover:bg-stone-200 px-2 py-[5px]">
                   <div className="text-[14px] group-hover:text-orange-600">

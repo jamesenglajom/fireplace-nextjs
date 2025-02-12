@@ -8,30 +8,13 @@ import React, {
   useRef,
 } from "react";
 import useFetchProducts from "@/app/hooks/useFetchProducts";
-import { solana_categories } from "../lib/category-helpers";
+import { solana_categories, solana_brands, flatCategories, bc_categories } from "../lib/category-helpers";
 import { useRouter } from "next/navigation";
-
+import { getCategoryIds } from "@/app/lib/helpers";
+// useful console that logs keywords for all main categories
+console.log("solanaCategories", solana_categories.flatMap(i=> i.key_words))
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
-const main_categories = solana_categories
-  .filter((i) => i.searchable === true)
-  .map((i) => ({ ...i, name: i.name, url: i.menu.href }));
-const sub_categories = main_categories
-  .reduce((acc, cur) => [...acc, ...cur.links], [])
-  .reduce((acc, cur) => [...acc, ...cur], []);
-const children_categories = sub_categories.flatMap((i) => i.children);
-const brands = solana_categories
-  .filter((i) => i.name.toLowerCase() === "brands")
-  .map((i) => ({ ...i, name: i.name, url: i.menu.href }))
-  .reduce((acc, cur) => [...acc, ...cur.links], [])
-  .reduce((acc, cur) => [...acc, ...cur], [])
-  .flatMap((i) => i.children)
-  .sort((a, b) => {
-    if (a.name < b.name) return -1;
-    if (a.name > b.name) return 1;
-    return 0;
-  });
-  // console.log("brands", brands);
 
 const SearchContext = createContext();
 export const useSearch = () => {
@@ -44,6 +27,7 @@ export const SearchProvider = ({ children }) => {
   const [mainIsActive, setMainIsActive] = useState(false);
   const oldSearchResults = useRef([
     {
+      total:0,
       prop: "recent",
       label: "Recent",
       visible: true,
@@ -52,6 +36,7 @@ export const SearchProvider = ({ children }) => {
       expanded: false,
     },
     {
+      total:0,
       prop: "product",
       label: "Product",
       visible: true,
@@ -60,14 +45,16 @@ export const SearchProvider = ({ children }) => {
       expanded: false,
     },
     {
+      total:0,
       prop: "category",
-      label: "Catagory",
+      label: "Category",
       visible: true,
       data: [],
       showExpand: false,
       expanded: false,
     },
     {
+      total:0,
       prop: "brand",
       label: "Brand",
       visible: true,
@@ -97,10 +84,11 @@ export const SearchProvider = ({ children }) => {
       .filter((i) => i.searchable === true)
       .map((i) => ({ name: i.name, url: i.menu.href }));
   });
-  const [brandResults, setBrandResults] = useState(brands);
+  const [brandResults, setBrandResults] = useState(solana_brands);
   const {
     products: productResults,
     loading,
+    pagination:productPagination,
     refetch: refetchProducts,
   } = useFetchProducts({
     include: "images",
@@ -121,12 +109,17 @@ export const SearchProvider = ({ children }) => {
 
   const setSearch = (search_string) => {
     // console.log("setSearchFromContext", search_string);
+    const categoryIds = getCategoryIds(
+            "search",
+            flatCategories,
+            bc_categories
+          ).join(",");
     setSearchQuery(search_string);
     refetchProducts((prev) => {
       if (search_string === "") {
-        return { include: "images" };
+        return { include: "images", "categories:in": categoryIds};
       } else {
-        return { keyword: search_string, include: "images" };
+        return { keyword: search_string, include: "images", "categories:in": categoryIds};
       }
     });
     getSearchResults(search_string);
@@ -165,9 +158,7 @@ export const SearchProvider = ({ children }) => {
           });
       } else {
         const all_categories = [
-          ...main_categories,
-          ...sub_categories,
-          ...children_categories,
+          ...flatCategories,
         ].map((i) => ({ name: i.name, url: i.url ?? "#" }));
         return all_categories
           .filter((i) => i.name.toLowerCase().includes(query.toLowerCase()))
@@ -180,9 +171,17 @@ export const SearchProvider = ({ children }) => {
     });
     setBrandResults((prev) => {
       if (query === "") {
-        return brands;
+        return solana_brands.sort((a, b) => {
+          if (a.name < b.name) return -1;
+          if (a.name > b.name) return 1;
+          return 0;
+        });
       } else {
-        return brands.filter((i) => i.name.toLowerCase().includes(query));
+        return solana_brands.filter((i) => i.name.toLowerCase().includes(query)).sort((a, b) => {
+          if (a.name < b.name) return -1;
+          if (a.name > b.name) return 1;
+          return 0;
+        });;
       }
     });
   };
@@ -195,6 +194,7 @@ export const SearchProvider = ({ children }) => {
     if (!loading) {
       const newSearchResults = [
         {
+          total:recentResults.length,
           prop: "recent",
           label: "Recent",
           visible: true,
@@ -202,6 +202,7 @@ export const SearchProvider = ({ children }) => {
           showExpand: recentResults.length > 3,
         },
         {
+          total:productPagination?.total ?? 0,
           prop: "product",
           label: "Product",
           visible: true,
@@ -209,13 +210,15 @@ export const SearchProvider = ({ children }) => {
           showExpand: productResults.length > 0,
         },
         {
+          total:categoryResults.length,
           prop: "category",
-          label: "Catagory",
+          label: "Category",
           visible: true,
           data: categoryResults,
           showExpand: categoryResults.length > 0,
         },
         {
+          total:brandResults.length,
           prop: "brand",
           label: "Brand",
           visible: true,

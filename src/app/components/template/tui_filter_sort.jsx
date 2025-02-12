@@ -1,12 +1,10 @@
 "use client";
 
 import dynamic from "next/dynamic";
-// import BreadCrumbs from "@/app/components/atom/BreadCrumbs"
 const BreadCrumbs = dynamic(() => import("@/app/components/atom/BreadCrumbs"), {
   ssr: false,
 });
 import { useState, useEffect } from "react";
-// import Link from "next/link";
 import {
   Dialog,
   DialogBackdrop,
@@ -20,13 +18,9 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
   FunnelIcon,
-  // MinusIcon,
-  // PlusIcon,
-  // Squares2X2Icon,
 } from "@heroicons/react/20/solid";
 import ProductCard from "../atom/ProductCard";
 import ProductCardLoader from "../atom/ProductCardLoader";
-import QuickView from "@/app/components/atom/ProductQuickView"
 import { getPageData } from "@/app/lib/helpers";
 import { flatCategories } from "@/app/lib/category-helpers";
 
@@ -96,6 +90,8 @@ export default function TuiFilterSort({
   const activeCategoryName = (category) => {
     if (category === "all-products") {
       return "All Products";
+    }else if(category === "search"){
+      return "Search";
     } else {
       return getPageData(category, flatCategories)?.name;
     }
@@ -129,7 +125,6 @@ export default function TuiFilterSort({
   };
 
   const handleProductItemClick = (id) => {
-    // alert(`Product ID (${id}) is Clicked`);
     setDisplayProducts((prev) => {
       return prev.map((i) => ({ ...i, isSelected: i.id === id }));
     });
@@ -137,7 +132,6 @@ export default function TuiFilterSort({
 
   const handleFilterChange = (e) => {
     const { value, checked } = e.target;
-    // console.log(`${value}: ${checked} (checked)`);
     const tmp = value.split(":");
     let filterValue = null;
     if (tmp.length > 1) {
@@ -271,13 +265,16 @@ export default function TuiFilterSort({
               <div>
                 <h1 className="text-sm md:text-4xl font-bold tracking-tight text-gray-900">
                   {`${activeCategoryName(category)}`}{" "}
-                  <span className="font-normal text-sm md:text-2xl">{`${
-                    pagination &&
-                    pagination.total !== 0 &&
-                    pagination.total !== undefined
-                      ? `(${pagination?.total})`
-                      : ""
-                  }`}</span>
+                  {
+                    category !== "search" && 
+                    <span className="font-normal text-sm md:text-2xl">{`${
+                      pagination &&
+                      pagination.total !== 0 &&
+                      pagination.total !== undefined
+                        ? `(${pagination?.total})`
+                        : ""
+                    }`}</span>
+                  }
                 </h1>
                 <BreadCrumbs category={category}/>
               </div>

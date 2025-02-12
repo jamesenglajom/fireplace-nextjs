@@ -12,8 +12,12 @@ import { bc_categories, flatCategories } from "@/app/lib/category-helpers";
 import { useMediaQuery } from "react-responsive";
 import { useSearchParams } from "next/navigation";
 const bccat_json = bc_categories;
-const ProductsSection = ({ category }) => {
-  console.log("productSection", category)
+
+
+
+
+const ProductsSection = ({ category, keyword }) => {
+  console.log("keyword", keyword);
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const searchParams = useSearchParams();
   const [onloadParams, setOnloadParams] = useState(() => {
@@ -51,11 +55,19 @@ const ProductsSection = ({ category }) => {
 
   const [productsParams, setProductsParams] = useState(onloadParams);
 
+  useEffect(()=>{
+    if(category==="search"){
+      setProductsParams(prev=>{
+        return {...prev, keyword:keyword}
+      })
+    }
+  },[category, keyword])
+
+  
   const {
     products,
     loading: products_loading,
     pagination,
-    // filters,
     noResult,
     error: products_error,
     refetch: productsRefetch,

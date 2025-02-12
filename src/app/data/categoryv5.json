@@ -4145,6 +4145,7 @@
     ]
   },
   {
+    "searchable": true,
     "banner": {
       "img": {
         "src": "/images/banner/patio-heater-banner.webp",
@@ -14414,5 +14415,36 @@
         }
       ]
     ]
+  },
+  {
+    "searchable": false,
+    "name": "Search",
+    "url": "search",
+    "image_url": "",
+    "path": "/search/",
+    "menu": {
+      "href": "search",
+      "visible": false
+    },
+    "key_words": [
+      "/fireplaces/",
+      "/fire-pits/",
+      "/bbq-grills-and-smokers/",
+      "gas log",
+      "gas logs",
+      "gas-log",
+      "gas-logs",
+      "/outdoor-living/patio-heaters/",
+      "/outdoor-kitchen/",
+      "/brands/",
+      "new",
+      "new-arrivals",
+      "new-arrival",
+      "new arrivals",
+      "new arrival",
+      "/sale/"
+  ],
+    "children": [],
+    "links": []
   }
 ]

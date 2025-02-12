@@ -61,7 +61,6 @@ const HomeSearch = ({ main, controlled_height }) => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollHeight = 200; // Change this value as needed
-      console.log("scroll listener: scrollY:", window.scrollY)
       if ((window.scrollY < scrollHeight)) {
         if(!main) setOpenSearch(false);
       }

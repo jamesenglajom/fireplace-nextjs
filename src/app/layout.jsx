@@ -47,10 +47,10 @@ export default function RootLayout({ children }) {
           <SearchProvider>
             <TuiNavBar />
             <FixedHeader />
-          </SearchProvider>
           <QuickViewProvider>
             {children}
           </QuickViewProvider>
+          </SearchProvider>
         </CartProvider>
         <Footer />
       </body>
