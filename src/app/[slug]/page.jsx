@@ -20,7 +20,7 @@ export default function GenericCategoryPage({ params }) {
     notFound();
   }else{
     return (
-      <div>
+      <div className="min-h-screen">
         <MobileLoader />
         <TuiHero data={pageData} />
         <ProductsSection
