@@ -112,7 +112,7 @@ function SearchResultSection({ section }) {
               </Link>
             ))}
         </div>
-        {section.showExpand && (
+        {/* {section.showExpand && (
           <div className={`flex justify-center p-1`}>
             <button
               onClick={() => handleSeeMoreClick(section)}
@@ -123,7 +123,7 @@ function SearchResultSection({ section }) {
                 : `See More ${section.label}`}
             </button>
           </div>
-        )}
+        )} */}
       </div>
     );
   }
