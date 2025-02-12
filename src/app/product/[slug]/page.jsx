@@ -28,5 +28,9 @@ export default function Product({ params }) {
     return <ProductPlaceholder />
   }
 
-  return product && <ProductSection product={product} loading={loading} />;
+  return <div className="min-h-screen">
+    {
+      product && <ProductSection product={product} loading={loading} />
+    }
+  </div>;
 }
