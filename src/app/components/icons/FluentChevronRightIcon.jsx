@@ -1,3 +1,4 @@
+// fluent:chevron-right-16-filled
 export default function FluentChevronRightIcon({ color, width, height }) {
   return (
     <svg

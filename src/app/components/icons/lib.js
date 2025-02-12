@@ -9,6 +9,7 @@ import PinterestCircleIcon from "./PinterestCircleIcon";
 
 import FluentChevronRightIcon from "./FluentChevronRightIcon";
 import FluentChevronLeftIcon from "./FluentChevronLeftIcon";
+import FluentChevronUpIcon from "./FluentChevronUpIcon";
 
 import ICRoundPhoneIcon from "./ICRoundPhoneIcon";
 import MingcuteDownLineIcon from "./MingcuteDownLineIcon";
@@ -76,6 +77,12 @@ export const FluentChevronLeft = ({ color, width, height }) => {
 export const FluentChevronRight = ({ color, width, height }) => {
   return <FluentChevronRightIcon color={color} width={width} height={height} />;
 };
+
+
+export const FluentChevronUp = ({ color, width, height }) => {
+  return <FluentChevronUpIcon color={color} width={width} height={height} />;
+};
+
 
 export const ICRoundPhone = ({ color, width, height }) => {
   return <ICRoundPhoneIcon color={color} width={width} height={height} />;
