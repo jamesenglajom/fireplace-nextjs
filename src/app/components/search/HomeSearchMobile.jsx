@@ -70,6 +70,9 @@ const HomeSearchMobile = ({ main, controlled_height }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleOptionSelect = () => {
+    setOpenSearch(false);
+  }
 
   return (
     <div className="flex w-full relative z-10" ref={searchRef}>
@@ -99,7 +102,7 @@ const HomeSearchMobile = ({ main, controlled_height }) => {
             <div
               className={`p-1 ${
                 controlled_height
-                  ? "overflow-y-auto max-h-[calc(100vh-200px)] h-full"
+                  ? "overflow-y-auto max-h-[calc(100vh-110px)] h-full"
                   : ""
               }  ${
                 loading
@@ -108,7 +111,7 @@ const HomeSearchMobile = ({ main, controlled_height }) => {
               }`}
             >
               {searchResults.map((i) => (
-                <SearchSection key={`search-section-${i.prop}`} section={i} />
+                <SearchSection key={`search-section-${i.prop}`} section={i} onOptionSelect={handleOptionSelect}/>
               ))}
             </div>
           </div>

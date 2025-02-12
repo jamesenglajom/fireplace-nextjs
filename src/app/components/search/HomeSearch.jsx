@@ -70,7 +70,9 @@ const HomeSearch = ({ main, controlled_height }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
+  const handleOptionSelect = () => {
+    setOpenSearch(false);
+  }
   return (
     <div className="flex w-full relative z-10" ref={searchRef}>
       <input
@@ -108,7 +110,7 @@ const HomeSearch = ({ main, controlled_height }) => {
               }`}
             >
               {searchResults.map((i) => (
-                <SearchSection key={`search-section-${i.prop}`} section={i} />
+                <SearchSection key={`search-section-${i.prop}`} section={i} onOptionSelect={handleOptionSelect} />
               ))}
             </div>
           </div>

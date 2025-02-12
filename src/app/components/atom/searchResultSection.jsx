@@ -2,18 +2,20 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 import { useSearch } from "@/app/context/search";
 
-function SearchResultSection({ section }) {
+function SearchResultSection({ section, onOptionSelect }) {
+  const router = useRouter();
   const { setSearch } = useSearch();
   const [sectionData, setSectionData] = useState([]);
   const [expanded, setExpanded] = useState(false);
 
   const handleSetSearch = (query) => {
-    setSearch(query)
-  }
+    setSearch(query);
+  };
 
   useEffect(() => {
     console.log("sectionComponennt:", section);
@@ -24,10 +26,12 @@ function SearchResultSection({ section }) {
     }
   }, [section, expanded]);
 
-  const handleSeeMoreClick = () => {
-    setExpanded((prev) => !prev);
+  const handleOptionClick = (e) => {
+    e.preventDefault();
+    const { href } = e.target;
+    onOptionSelect();
+    router.push(href);
   };
-  const handleOptionClick = (e) => {};
 
   if (sectionData.length > 0) {
     return (
@@ -52,8 +56,8 @@ function SearchResultSection({ section }) {
           {section.prop === "product" &&
             sectionData.map((product, index) => (
               <Link
-                // onClick={handleOptionClick}
-                // onContextMenu={handleOptionClick}
+                prefetch={false}
+                onClick={handleOptionClick}
                 key={`product-result-${product.custom_url.url}`}
                 href={`${BASE_URL}/product${product.custom_url.url}`}
               >
@@ -89,10 +93,10 @@ function SearchResultSection({ section }) {
           {section.prop === "category" &&
             sectionData.map((category, index) => (
               <Link
+                prefetch={false}
+                onClick={handleOptionClick}
                 key={`cat-result-${category.url}`}
                 href={`${BASE_URL}/${category.url}`}
-                onClick={handleOptionClick}
-                onContextMenu={handleOptionClick}
               >
                 <div className="group hover:bg-stone-200 px-2 py-[5px]">
                   <div className="text-[14px] group-hover:text-orange-600">
@@ -107,8 +111,8 @@ function SearchResultSection({ section }) {
           {section.prop === "brand" &&
             sectionData.map((brand, index) => (
               <Link
+                prefetch={false}
                 onClick={handleOptionClick}
-                onContextMenu={handleOptionClick}
                 key={`brand-result-${brand.url}`}
                 href={`${BASE_URL}/${brand.url}`}
               >
@@ -123,18 +127,6 @@ function SearchResultSection({ section }) {
               </Link>
             ))}
         </div>
-        {/* {section.showExpand && (
-          <div className={`flex justify-center p-1`}>
-            <button
-              onClick={() => handleSeeMoreClick(section)}
-              className="border w-full text-sm p-2 font-semibold hover:bg-stone-300 hover:border-stone-500"
-            >
-              {expanded
-                ? `See Lesser ${section.label}`
-                : `See More ${section.label}`}
-            </button>
-          </div>
-        )} */}
       </div>
     );
   }
