@@ -50,7 +50,10 @@ function SingleProductBreadCrumbs({ product }) {
   };
 
   const crumbs = useMemo(()=>{
-    return findBreadcrumbs(solana_categories.filter(i=> i.name.toLowerCase() !== "brands").map(i=> ({
+    const tmp1 = findBreadcrumbs(solana_categories
+      .filter(i=> i.name.toLowerCase() !== "brands")
+      .filter(i=> i.name.toLowerCase() !== "search")
+      .map(i=> ({
       name:i.name,
       url:i.url,
       category_ids: i?.url ? getCategoryIds(i.url,flattenCategories(solana_categories), bc_categories):[],
@@ -67,7 +70,28 @@ function SingleProductBreadCrumbs({ product }) {
           children: i3.children
         }))
       }))
-    })), product.categories)
+    })), product.categories);
+    const tmp2 = findBreadcrumbs(solana_categories
+      .filter(i=> i.name.toLowerCase() !== "search")
+      .map(i=> ({
+      name:i.name,
+      url:i.url,
+      category_ids: i?.url ? getCategoryIds(i.url,flattenCategories(solana_categories), bc_categories):[],
+      children: i.children
+      .map(i2=> ({
+        name:i2.name,
+        url:i2.url,
+        category_ids: i2?.url ? getCategoryIds(i2.url,flattenCategories(solana_categories), bc_categories):[],
+        children: i2.children
+        .map(i3=> ({
+          name:i3.name,
+          url:i3.url,
+          category_ids: i3?.url ? getCategoryIds(i3.url,flattenCategories(solana_categories), bc_categories):[],
+          children: i3.children
+        }))
+      }))
+    })), product.categories);
+    return tmp1.length > 0 ? tmp1: tmp2;
   },[product])
 
     return (
