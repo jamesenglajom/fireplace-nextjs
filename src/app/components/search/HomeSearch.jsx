@@ -58,6 +58,20 @@ const HomeSearch = ({ main, controlled_height }) => {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollHeight = 200; // Change this value as needed
+      console.log("scroll listener: scrollY:", window.scrollY)
+      if ((window.scrollY < scrollHeight)) {
+        if(!main) setOpenSearch(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+
   return (
     <div className="flex w-full relative z-10" ref={searchRef}>
       <input
