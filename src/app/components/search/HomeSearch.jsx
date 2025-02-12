@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import SearchSection from "@/app/components/atom/searchResultSection";
 import { useSearch } from "@/app/context/search";
 
-
 const HomeSearch = ({ main, controlled_height }) => {
   const {
     searchQuery,
@@ -13,9 +12,8 @@ const HomeSearch = ({ main, controlled_height }) => {
     loading,
     mainIsActive,
     setMainIsActive,
-    redirectToSearchPage
-  } =
-    useSearch();
+    redirectToSearchPage,
+  } = useSearch();
   const searchRef = useRef(null);
   const [openSearch, setOpenSearch] = useState(false);
   const handleSearch = (e) => {
@@ -44,22 +42,21 @@ const HomeSearch = ({ main, controlled_height }) => {
   }, [openSearch]);
 
   const handleRedirectToSearchPage = () => {
-    setOpenSearch(false)
-    redirectToSearchPage()
-  }
+    setOpenSearch(false);
+    redirectToSearchPage();
+  };
 
   const handleSearchEnterKey = (e) => {
     if (e.key === "Enter" && searchQuery !== "") {
-      handleRedirectToSearchPage()
+      handleRedirectToSearchPage();
     }
-  }
+  };
 
   const handleSearchButtonClick = () => {
-    if(searchQuery !== ""){
-      handleRedirectToSearchPage()
+    if (searchQuery !== "") {
+      handleRedirectToSearchPage();
     }
-  }
-
+  };
 
   return (
     <div className="flex w-full relative z-10" ref={searchRef}>
@@ -75,7 +72,7 @@ const HomeSearch = ({ main, controlled_height }) => {
       <button
         className="rounded-tr-full rounded-br-full bg-pallete-orange text-white font-normal text-sm px-[20px] py-[10px]"
         aria-label="search-button"
-        // onClick={() => setOpenSearch(true)}
+        onClick={handleSearchButtonClick}
       >
         <SearchIcon color="white" />
       </button>

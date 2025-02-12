@@ -228,7 +228,7 @@ export const SearchProvider = ({ children }) => {
     } else {
       return oldSearchResults.current;
     }
-  }, [recentResults, productResults, categoryResults, brandResults, loading, redirectToSearchPage]);
+  }, [recentResults, productResults, categoryResults, brandResults, loading]);
   return (
     <SearchContext.Provider
       value={{
@@ -238,6 +238,7 @@ export const SearchProvider = ({ children }) => {
         mainIsActive,
         searchResults,
         setMainIsActive,
+        redirectToSearchPage
       }}
     >
       {children}

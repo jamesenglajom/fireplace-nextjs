@@ -4,23 +4,32 @@ import Link from "next/link";
 import Image from "next/image";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
+import { useSearch } from "@/app/context/search";
+
 function SearchResultSection({ section }) {
+  const { setSearch } = useSearch();
   const [sectionData, setSectionData] = useState([]);
   const [expanded, setExpanded] = useState(false);
+
+  const handleSetSearch = (query) => {
+    setSearch(query)
+  }
+
   useEffect(() => {
-    console.log("sectionComponennt:",section)
+    console.log("sectionComponennt:", section);
     if (section) {
-      setSectionData(expanded ? section.data.slice(0,10):section.data.slice(0,3));
+      setSectionData(
+        expanded ? section.data.slice(0, 10) : section.data.slice(0, 3)
+      );
     }
-  }, [section,expanded]);
+  }, [section, expanded]);
 
   const handleSeeMoreClick = () => {
-    setExpanded(prev => !prev);
+    setExpanded((prev) => !prev);
   };
-  const handleOptionClick = (e) => {
-  };
+  const handleOptionClick = (e) => {};
 
-  if(sectionData.length > 0){
+  if (sectionData.length > 0) {
     return (
       <div>
         <div className="bg-stone-200 font-bold text-sm py-1 px-3">
@@ -32,14 +41,14 @@ function SearchResultSection({ section }) {
               <div
                 key={`recent-search-${index}`}
                 className="group hover:bg-stone-50 px-2 py-[5px]"
-                onClick={() => setSearch(recent)}
+                onClick={() => handleSetSearch(recent)}
               >
                 <div className="text-[14px] group-hover:text-orange-600">
                   {recent}
                 </div>
               </div>
             ))}
-  
+
           {section.prop === "product" &&
             sectionData.map((product, index) => (
               <Link
@@ -51,7 +60,9 @@ function SearchResultSection({ section }) {
                 <div className="flex items-center group hover:bg-stone-50 px-2 py-[5px]">
                   <div className="w-[75px] h-[75px] overflow-hidden bg-white mr-[10px] flex items-center rounded relative">
                     {product?.images &&
-                      product.images.find(({ is_thumbnail }) => is_thumbnail) && (
+                      product.images.find(
+                        ({ is_thumbnail }) => is_thumbnail
+                      ) && (
                         <Image
                           src={
                             product.images.find(
