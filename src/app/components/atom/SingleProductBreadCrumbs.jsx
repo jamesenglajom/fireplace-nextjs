@@ -95,7 +95,7 @@ function SingleProductBreadCrumbs({ product }) {
   },[product])
 
     return (
-      <div className="flex items-center gap-[5px]">
+      <div className="flex gap-[5px] flex-wrap text-xs">
         {crumbs &&
           crumbs.length > 0 &&
           crumbs.map((i, idx) => (
@@ -105,7 +105,7 @@ function SingleProductBreadCrumbs({ product }) {
               className=""
             >
               <div className="flex items-center text-orange-400">
-                <div className="text-sm text-orange-800 hover:underline whitespace-nowrap">{i.name}</div>
+                <div className="text-orange-800 hover:underline whitespace-nowrap">{i.name}</div>
                 <FluentChevronRight width={20} height={20} />
               </div>
             </Link>
@@ -113,7 +113,7 @@ function SingleProductBreadCrumbs({ product }) {
           
           
           <div className="flex items-center">
-            <div className="text-sm text-orange-800 underline line-clamp-1">{product.name}</div>
+            <div className="text-orange-800 underline line-clamp-1">{product.name}</div>
           </div>
       </div>
     );
