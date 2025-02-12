@@ -124,7 +124,7 @@ const ProductCard = ({ product }) => {
             <div className=" flex-wrap flex flex-col md:flex-row md:items-center justify-between gap-[5px]">
               {
                 // product.is_free_shipping && (
-                <div className="flex items-center font-bold gap-[3px]">
+                <div className="flex text-[0.7rem] sm:text-base items-center font-bold gap-[3px]">
                   <div>
                     <Icon
                       icon="lucide:circle-check-big"
@@ -136,7 +136,7 @@ const ProductCard = ({ product }) => {
                     />
                   </div>
                   <div
-                    className={`text-[0.875rem] relative ${
+                    className={`text-[0.7rem] sm:text-[0.875rem] relative ${
                       product.is_free_shipping
                         ? "text-black"
                         : "text-pallete-gray line-through"
@@ -155,14 +155,14 @@ const ProductCard = ({ product }) => {
                 // )
               }
               {/* {product?.custom_fields?.quick_ship && ( */}
-              <div className="flex items-center font-bold gap-[3px]">
+              <div className="flex text-[0.7rem] sm:text-base items-center font-bold gap-[3px]">
                 <div>
                   <Icon
                     icon="lucide:circle-check-big"
                     className="text-pallete-green"
                   />
                 </div>
-                <div className="text-[0.875rem]">Quick Ship Available</div>
+                <div className="text-[0.7rem] sm:text-[0.875rem]">Quick Ship Available</div>
               </div>
               {/* )} */}
             </div>
