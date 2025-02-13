@@ -4,6 +4,7 @@ import ProductsSection from "../components/section/Products";
 import MobileLoader from "../components/molecule/MobileLoader";
 import { useState, useEffect, use } from "react";
 import { useSearch } from "@/app/context/search";
+import NoSearchResultFound from "@/app/components/template/NoSearchResultFound"
 
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
@@ -12,12 +13,19 @@ export default function SearchPage(props) {
   const searchParams = use(props.searchParams);
   const [tab, setTab] = useState("product");
   const { query } = searchParams;
-  const { searchQuery, setSearch, searchResults } = useSearch();
+  const { searchQuery, setSearch, searchResults, noResults } = useSearch();
   useEffect(()=>{
-    setSearch(query ?? "");
+    if(query){
+      setSearch(query);
+    }
   },[])
   const handleTabChange= (tab) => {
     setTab(tab);
+  }
+
+
+  if(!query || noResults){
+    return <NoSearchResultFound query={query}/>
   }
     
   return (

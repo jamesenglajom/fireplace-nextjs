@@ -25,6 +25,7 @@ export const SearchProvider = ({ children }) => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [mainIsActive, setMainIsActive] = useState(false);
+  const [noResults, setNoResults] = useState(false);
   const oldSearchResults = useRef([
     {
       total:0,
@@ -227,8 +228,14 @@ export const SearchProvider = ({ children }) => {
         },
       ];
       oldSearchResults.current = newSearchResults;
+      setNoResults(prev=>{
+        return productResults.length === 0 && categoryResults.length === 0 &&  brandResults.length === 0;
+      })
       return newSearchResults;
     } else {
+      setNoResults(prev=>{
+        return productResults.length === 0 && categoryResults.length === 0 &&  brandResults.length === 0;
+      })
       return oldSearchResults.current;
     }
   }, [recentResults, productResults, categoryResults, brandResults, loading]);
@@ -236,10 +243,11 @@ export const SearchProvider = ({ children }) => {
     <SearchContext.Provider
       value={{
         searchQuery,
-        setSearch,
         loading,
         mainIsActive,
         searchResults,
+        noResults,
+        setSearch,
         setMainIsActive,
         redirectToSearchPage
       }}
