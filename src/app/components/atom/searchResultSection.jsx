@@ -18,7 +18,7 @@ function SearchResultSection({ section, onOptionSelect }) {
   };
 
   useEffect(() => {
-    console.log("sectionComponennt:", section);
+    // console.log("sectionComponennt:", section);
     if (section) {
       setSectionData(
         expanded ? section.data.slice(0, 10) : section.data.slice(0, 3)
@@ -28,9 +28,13 @@ function SearchResultSection({ section, onOptionSelect }) {
 
   const handleOptionClick = (e) => {
     e.preventDefault();
-    const { href } = e.target;
-    onOptionSelect();
-    router.push(href);
+    const linkElement = e.target.closest("a");
+    if(linkElement){
+      const href = linkElement.getAttribute("href");
+      // console.log("hrefs", href)
+      onOptionSelect();
+      router.push(href);
+    }
   };
 
   if (sectionData.length > 0) {

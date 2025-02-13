@@ -17,7 +17,7 @@ const bccat_json = bc_categories;
 
 
 const ProductsSection = ({ category, keyword }) => {
-  console.log("keyword", keyword);
+  // console.log("keyword", keyword);
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const searchParams = useSearchParams();
   const [onloadParams, setOnloadParams] = useState(() => {
