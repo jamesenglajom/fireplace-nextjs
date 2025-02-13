@@ -14,7 +14,7 @@ export default function SearchPage(props) {
   const { query } = searchParams;
   const { searchQuery, setSearch, searchResults } = useSearch();
   useEffect(()=>{
-    setSearch(query);
+    setSearch(query ?? "");
   },[])
   const handleTabChange= (tab) => {
     setTab(tab);
