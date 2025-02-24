@@ -1,6 +1,12 @@
 import brands_json from "@/app/data/filters/brands.json";
 import products_json from "@/app/data/filters/products.json";
 
+
+
+export function getSum(array, prop) {
+  return array.reduce((sum, item) => sum + item?.[prop], 0);
+}
+
 export const onsale_category_ids = [294, 360, 361, 362, 363, 364, 365];
 export const filter_price_range = [
   { label: "Request A Quote", min: 0, max: 0 },

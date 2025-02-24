@@ -1,7 +1,11 @@
 "use client";
 import { useState, useMemo } from "react";
 import { useCart } from "@/app/context/cart";
-import { formatPrice } from "@/app/lib/helpers";
+import { formatPrice, getSum } from "@/app/lib/helpers";
+import Link from "next/link";
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
+
 function CartOrderSummary() {
   const { cartItems } = useCart();
   const [originalPrice, setOriginalPrice] = useState(0);
@@ -29,9 +33,6 @@ function CartOrderSummary() {
   },[cartItems])
 
 
-  function getSum(array, prop) {
-    return array.reduce((sum, item) => sum + item?.[prop], 0);
-  }
   return (
     <div className="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
       <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
@@ -88,20 +89,22 @@ function CartOrderSummary() {
           </dl>
         </div>
 
-        <a
-          href="#"
+        <Link
+          href={`${BASE_URL}/checkout`}
+          prefetch={false}
           className="flex bg-orange-600  hover:bg-orange-500 focus:outline-orange-500 focus:outline-[3px] w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
         >
           Proceed to Checkout
-        </a>
+        </Link>
 
         <div className="flex items-center justify-center gap-2">
           <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
             {" "}
             or{" "}
           </span>
-          <a
-            href="#"
+          <Link
+            href={`${BASE_URL}/fireplaces`}
+            prefetch={false}
             title=""
             className="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500"
           >
@@ -121,7 +124,7 @@ function CartOrderSummary() {
                 d="M19 12H5m14 0-4 4m4-4-4-4"
               />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
       {/* Voucher or giftcard seciton */}

@@ -24,9 +24,17 @@ import MaterialSymbolsCloseIcon from "./MaterialSymbolsCloseIcon";
 
 import Eos3DotsLoadingIcon from "./Eos3DotsLoadingIcon"
 
+import UIMCheckCircleIcon from "./UIMCheckCircleIcon"
+
+export const UIMCheckCircle = ({ color, width, height }) => {
+  return <UIMCheckCircleIcon color={color} width={width} height={height} />;
+};
+
+
 export const Eos3DotsLoading = ({ color, width, height }) => {
   return <Eos3DotsLoadingIcon color={color} width={width} height={height} />;
 };
+
 
 export const MaterialSymbolsClose = ({ color, width, height }) => {
   return <MaterialSymbolsCloseIcon color={color} width={width} height={height} />;
