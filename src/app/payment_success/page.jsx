@@ -1,6 +1,9 @@
 'use client'
 import { UIMCheckCircle } from "../components/icons/lib";
+import { notFound } from "next/navigation";
 function SuccessPaymentPage() {
+  return notFound();
+
   return (
     <div className="container mx-auto h-[calc(100vh-210px)]">
         <div className="h-[100%] flex items-center justify-center">

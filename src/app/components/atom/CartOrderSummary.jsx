@@ -4,6 +4,8 @@ import { useCart } from "@/app/context/cart";
 import { formatPrice, getSum } from "@/app/lib/helpers";
 import Link from "next/link";
 
+import CallWrapper from "@/app/components/atom/CallWrapper";
+
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 function CartOrderSummary() {
@@ -88,14 +90,20 @@ function CartOrderSummary() {
             </dd>
           </dl>
         </div>
-
-        <Link
+        <CallWrapper>
+          <button
+            className="flex bg-orange-600  hover:bg-orange-500 focus:outline-orange-500 focus:outline-[3px] w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          >
+            Proceed to Checkout
+          </button>
+        </CallWrapper>
+        {/* <Link
           href={`${BASE_URL}/checkout`}
           prefetch={false}
           className="flex bg-orange-600  hover:bg-orange-500 focus:outline-orange-500 focus:outline-[3px] w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
         >
           Proceed to Checkout
-        </Link>
+        </Link> */}
 
         <div className="flex items-center justify-center gap-2">
           <span className="text-sm font-normal text-gray-500 dark:text-gray-400">

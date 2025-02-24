@@ -2,11 +2,13 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import CheckoutOrderSummary from "@/app/components/atom/CheckoutOrderSummary"
+import { notFound } from 'next/navigation';
 // import BraintreeForm from "@/app/components/template/BraintreeForm"
 const BraintreeForm = dynamic(() => import("@/app/components/template/BraintreeForm"), {
   ssr: false,
 });
 function CheckoutPage() {
+  return notFound();
   return (
     <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
