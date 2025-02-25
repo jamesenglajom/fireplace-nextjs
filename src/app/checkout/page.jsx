@@ -1,14 +1,30 @@
 'use client';
-import React from 'react'
+import React, {useEffect} from 'react'
 import dynamic from 'next/dynamic'
 import CheckoutOrderSummary from "@/app/components/atom/CheckoutOrderSummary"
+import { useCart } from "@/app/context/cart";
+import { useRouter } from 'next/navigation';
 import { notFound } from 'next/navigation';
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
+
 // import BraintreeForm from "@/app/components/template/BraintreeForm"
 const BraintreeForm = dynamic(() => import("@/app/components/template/BraintreeForm"), {
   ssr: false,
 });
+
+
 function CheckoutPage() {
-  // return notFound();
+  const router = useRouter();
+  const { cartItems } = useCart();
+  console.log("cartItems",cartItems);
+
+  useEffect(()=>{
+    if(cartItems.length === 0){
+      router.push(`${BASE_URL}/cart`);
+    }
+  },[])
+
   return (
     <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
