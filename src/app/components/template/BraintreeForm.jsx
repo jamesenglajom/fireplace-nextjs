@@ -91,7 +91,6 @@ export default function BraintreeForm() {
       });
 
       const result = await response.json();
-      console.log("braintree success payment response", result);
       if (result.success) {
         instance.teardown();
         setInstance(null);
