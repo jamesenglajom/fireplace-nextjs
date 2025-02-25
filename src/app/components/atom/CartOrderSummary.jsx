@@ -4,7 +4,7 @@ import { useCart } from "@/app/context/cart";
 import { formatPrice, getSum } from "@/app/lib/helpers";
 import Link from "next/link";
 
-import CallWrapper from "@/app/components/atom/CallWrapper";
+// import CallWrapper from "@/app/components/atom/CallWrapper";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 

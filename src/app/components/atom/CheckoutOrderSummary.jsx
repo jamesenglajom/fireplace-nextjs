@@ -2,6 +2,11 @@
 import { useState, useEffect, useMemo } from "react";
 import { useCart } from "@/app/context/cart";
 import { formatPrice } from "@/app/lib/helpers";
+import Link from "next/link";
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
+
+
 function CheckoutOrderSummary() {
   const { cartItems } = useCart();
   const [originalPrice, setOriginalPrice] = useState(0);
@@ -91,8 +96,9 @@ function CheckoutOrderSummary() {
         </div>
 
         <div className="flex items-center justify-center gap-2 mt-5">
-          <a
-            href="#"
+          <Link
+            href={`${BASE_URL}/fireplaces`}
+            prefetch={false}
             title=""
             className="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500"
           >
@@ -112,7 +118,7 @@ function CheckoutOrderSummary() {
                 d="M19 12H5m14 0-4 4m4-4-4-4"
               />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
