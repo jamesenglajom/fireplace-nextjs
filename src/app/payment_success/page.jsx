@@ -2,7 +2,7 @@
 import { UIMCheckCircle } from "../components/icons/lib";
 import { notFound } from "next/navigation";
 function SuccessPaymentPage() {
-  return notFound();
+  // return notFound();
 
   return (
     <div className="container mx-auto h-[calc(100vh-210px)]">
