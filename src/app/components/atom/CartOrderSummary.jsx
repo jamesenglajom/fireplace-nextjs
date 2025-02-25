@@ -3,12 +3,14 @@ import { useState, useMemo } from "react";
 import { useCart } from "@/app/context/cart";
 import { formatPrice, getSum } from "@/app/lib/helpers";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // import CallWrapper from "@/app/components/atom/CallWrapper";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 function CartOrderSummary() {
+  const router = useRouter();
   const { cartItems } = useCart();
   const [originalPrice, setOriginalPrice] = useState(0);
   const [salePrice, setSalePrice] = useState(0);
@@ -34,6 +36,14 @@ function CartOrderSummary() {
     }
   },[cartItems])
 
+  const handleCheckout = (e) => {
+    e.preventDefault();
+    if(cartTotal===0){
+      alert("You don't have items to your cart yet.");
+    }else{
+      router.push(`${BASE_URL}/checkout`)
+    }
+  }
 
   return (
     <div className="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
@@ -100,6 +110,7 @@ function CartOrderSummary() {
         <Link
           href={`${BASE_URL}/checkout`}
           prefetch={false}
+          onClick={handleCheckout}
           className="flex bg-orange-600  hover:bg-orange-500 focus:outline-orange-500 focus:outline-[3px] w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
         >
           Proceed to Checkout
