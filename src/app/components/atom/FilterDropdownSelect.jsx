@@ -62,6 +62,7 @@ export default function FilterDropdownSelect({
                             "block px-[0px] py-2 text-sm data-[focus]:bg-gray-100 data-[focus]:outline-none cursor-default")
                           }`}>
                           <FilterSelectItem
+                            multiSelect={multiSelect}
                             data={option}
                             onChange={handleFilterChange}
                           />

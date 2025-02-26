@@ -6,7 +6,6 @@ import { useState, useEffect, use } from "react";
 import { useSearch } from "@/app/context/search";
 import NoSearchResultFound from "@/app/components/template/NoSearchResultFound"
 
-
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export default function SearchPage(props) {
@@ -22,7 +21,6 @@ export default function SearchPage(props) {
   const handleTabChange= (tab) => {
     setTab(tab);
   }
-
 
   if(!query || noResults){
     return <NoSearchResultFound query={query}/>

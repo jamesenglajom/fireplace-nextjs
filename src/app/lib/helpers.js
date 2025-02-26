@@ -113,6 +113,7 @@ export function getCategoryFilters(active_filters = {}) {
       prop: "onsale",
       count: 0,
       is_checked: false,
+      multi: false,
       options: [],
     },
     free_shipping: {
@@ -120,6 +121,7 @@ export function getCategoryFilters(active_filters = {}) {
       prop: "free_shipping",
       count: 0,
       is_checked: active_is_free_shipping ? true : false,
+      multi: false,
       options: [],
     },
     brand: {

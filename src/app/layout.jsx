@@ -8,6 +8,7 @@ import Footer from "@/app/components/section/Footer";
 import { CartProvider } from "@/app/context/cart";
 import { QuickViewProvider } from "@/app/context/quickview";
 import { SearchProvider } from "@/app/context/search";
+import { FilterProvider } from "@/app/context/filter";
 const MontserratFont = Montserrat({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -44,6 +45,7 @@ export default function RootLayout({ children }) {
           </div>
         </div>
         <CartProvider>
+          <FilterProvider>
           <SearchProvider>
             <TuiNavBar />
             <FixedHeader />
@@ -51,6 +53,7 @@ export default function RootLayout({ children }) {
             {children}
           </QuickViewProvider>
           </SearchProvider>
+          </FilterProvider>
         </CartProvider>
         <Footer />
       </body>

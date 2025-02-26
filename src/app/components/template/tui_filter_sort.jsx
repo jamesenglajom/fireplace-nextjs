@@ -237,11 +237,30 @@ export default function TuiFilterSort({
                     />
                   </div>
                 )} */}
+                {filters?.free_shipping && (
+                  <div className="border-t py-5">
+                    <FilterSelectItem
+                      multiSelect={filters.free_shipping.multi}
+                      data={filters.free_shipping}
+                      labelStyle="font-semibold uppercase text-stone-600"
+                      onChange={handleFilterChange}
+                    />
+                  </div>
+                )}
+                {filters?.brand && (
+                  <div className="border-t py-5">
+                    <FilterDrawer
+                      data={filters.brand}
+                      multiSelect={filters.brand.multi}
+                      onFilterItemChange={handleFilterChange}
+                    />
+                  </div>
+                )}
                 {filters?.price && (
                   <div className="border-t py-5">
                     <FilterDrawer
                       data={filters.price}
-                      multiSelect={false}
+                      multiSelect={filters.price.multi}
                       onFilterItemChange={handleFilterChange}
                     />
                   </div>
@@ -340,23 +359,25 @@ export default function TuiFilterSort({
                     onChange={handleFilterChange}
                   />
                 )}
+                 */}
                 {filters?.free_shipping && (
                   <FilterSelectItemV2
                     data={filters.free_shipping}
+                    multiSelect={filters.free_shipping.multi}
                     onChange={handleFilterChange}
                   />
                 )}
                 {filters?.brand && (
                   <FilterDropdownSelect
                     data={filters.brand}
-                    multiSelect={false}
+                    multiSelect={filters.brand.multi}
                     onFilterItemChange={handleFilterChange}
                   />
-                )} */}
+                )}
                 {filters?.price && (
                   <FilterDropdownSelect
                     data={filters.price}
-                    multiSelect={false}
+                    multiSelect={filters.price.multi}
                     onFilterItemChange={handleFilterChange}
                   />
                 )}

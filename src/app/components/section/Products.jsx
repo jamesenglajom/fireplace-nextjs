@@ -11,12 +11,14 @@ import {
 import { bc_categories, flatCategories } from "@/app/lib/category-helpers";
 import { useMediaQuery } from "react-responsive";
 import { useSearchParams } from "next/navigation";
+import {useFilter} from "@/app/context/filter";
 const bccat_json = bc_categories;
 
 
 
 
 const ProductsSection = ({ category, keyword }) => {
+  const {setBaseQuery} = useFilter();
   // console.log("keyword", keyword);
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const searchParams = useSearchParams();
@@ -47,7 +49,6 @@ const ProductsSection = ({ category, keyword }) => {
         params["price:max"] = tmp[1];
       }
     }
-
     return params;
   });
 
@@ -85,6 +86,7 @@ const ProductsSection = ({ category, keyword }) => {
   }, [isMobile]);
 
   useEffect(() => {
+    setBaseQuery(productsParams)
     productsRefetch(productsParams);
   }, [productsParams, productsRefetch]);
 
