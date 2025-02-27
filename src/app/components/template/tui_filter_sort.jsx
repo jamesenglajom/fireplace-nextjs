@@ -237,7 +237,7 @@ export default function TuiFilterSort({
                     />
                   </div>
                 )} */}
-                {filters?.free_shipping && (
+                {/* {filters?.free_shipping && (
                   <div className="border-t py-5">
                     <FilterSelectItem
                       multiSelect={filters.free_shipping.multi}
@@ -255,7 +255,7 @@ export default function TuiFilterSort({
                       onFilterItemChange={handleFilterChange}
                     />
                   </div>
-                )}
+                )} */}
                 {filters?.price && (
                   <div className="border-t py-5">
                     <FilterDrawer
@@ -360,7 +360,7 @@ export default function TuiFilterSort({
                   />
                 )}
                  */}
-                {filters?.free_shipping && (
+                {/* {filters?.free_shipping && (
                   <FilterSelectItemV2
                     data={filters.free_shipping}
                     multiSelect={filters.free_shipping.multi}
@@ -373,7 +373,7 @@ export default function TuiFilterSort({
                     multiSelect={filters.brand.multi}
                     onFilterItemChange={handleFilterChange}
                   />
-                )}
+                )} */}
                 {filters?.price && (
                   <FilterDropdownSelect
                     data={filters.price}
