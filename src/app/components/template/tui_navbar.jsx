@@ -36,7 +36,7 @@ const mobile_navigation = cat_json
     children: i.links.flatMap((i2) => i2),
   }));
 
-export default function TuiNavbar() {
+export default function TuiNavbar({logo}) {
   const [mobileMenuDialog, setMobileMenuDialog] = useState(false);
   const [activeMenu, setActiveMenu] = useState(mobile_navigation);
   const [selected, setSelected] = useState([]);
@@ -116,12 +116,12 @@ export default function TuiNavbar() {
                 <div className="flex items-center justify-center flex-1 sm:flex-initial sm:items-stretch sm:justify-start">
                   {/** flex-1 sm:items-stretch sm:justify-start */}
                   <div className="flex items-center relative w-[88px] aspect-2">
-                    <div className="absolute top-0 left-0 md:left-[5px] w-[100px] xl:w-[200px]">
+                    <div className="absolute top-0 left-0 md:left-[5px] w-[100px] xl:w-[200px] bg-stone-100">
                       {
                         <Link href={BASE_URL}>
                           <Image
-                            alt="Bull Fireplace"
-                            src="/Logo.webp"
+                            alt="Logo"
+                            src={logo ?? "/Logo.webp"}
                             className="w-full h-full object-cover"
                             width={500}
                             height={500}

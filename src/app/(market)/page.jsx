@@ -1,6 +1,6 @@
-import MobileLoader from "./components/molecule/MobileLoader";
+import MobileLoader from "@/app/components/molecule/MobileLoader";
 // home page section import in order
-import TuiHero from "./components/template/tui_hero";
+import TuiHero from "@/app/components/template/tui_hero";
 import FeatureCategoriesSection from "@/app/components/section/HomePageFeatureCategories";
 import ShopAllClearanceSection from "@/app/components/section/HomePageShopAllClearance";
 import AboutProductSection from "@/app/components/section/HomePageAboutProduct";

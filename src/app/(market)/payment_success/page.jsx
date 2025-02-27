@@ -1,5 +1,5 @@
 'use client'
-import { UIMCheckCircle } from "../components/icons/lib";
+import { UIMCheckCircle } from "@/app/components/icons/lib";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 

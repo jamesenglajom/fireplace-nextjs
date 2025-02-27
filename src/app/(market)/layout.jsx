@@ -1,8 +1,9 @@
-import "./globals.css";
+import "@/app/globals.css";
+import {redis} from "@/app/lib/redis";
 import { Montserrat } from "next/font/google";
 // import localFont from "next/font/local";
-import FixedHeader from "./components/template/fixed_header";
-import TuiNavBar from "./components/template/tui_navbar";
+import FixedHeader from "@/app/components/template/fixed_header";
+import TuiNavBar from "@/app/components/template/tui_navbar";
 import FreeShippingBanner from "@/app/components/molecule/FreeShippingBanner";
 import Footer from "@/app/components/section/Footer";
 import { CartProvider } from "@/app/context/cart";
@@ -26,7 +27,10 @@ export const metadata = {
   description:
     "Transform your home with Solana Fireplaces! Add warmth and style with our wood, gas, and electric designs. Shop now and create your perfect space!",
 };
-export default function RootLayout({ children }) {
+export default async function MarketLayout({ children }) {
+  const redisLogoKey = "admin_solana_market_logo";
+  const redisLogo = await redis.get(redisLogoKey);
+
   return (
     <html lang="en">
       <body className={`antialiased ${MontserratFont.className}`}>
@@ -47,7 +51,7 @@ export default function RootLayout({ children }) {
         <CartProvider>
           <FilterProvider>
           <SearchProvider>
-            <TuiNavBar />
+            <TuiNavBar logo={redisLogo}/>
             <FixedHeader />
           <QuickViewProvider>
             {children}

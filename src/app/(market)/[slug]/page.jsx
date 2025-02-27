@@ -1,10 +1,10 @@
 'use client'
-import TuiHero from "../components/template/tui_hero";
-import ProductsSection from "../components/section/Products";
-import { getPageData } from "../lib/helpers";
-import { flatCategories } from "../lib/category-helpers";
+import TuiHero from "@/app/components/template/tui_hero";
+import ProductsSection from "@/app/components/section/Products";
+import { getPageData } from "@/app/lib/helpers";
+import { flatCategories } from "@/app/lib/category-helpers";
 import { notFound } from "next/navigation";
-import MobileLoader from "../components/molecule/MobileLoader";
+import MobileLoader from "@/app/components/molecule/MobileLoader";
 
 import * as React from 'react'
 import {useState, useEffect} from "react";

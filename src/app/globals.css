@@ -167,44 +167,7 @@ button:disabled {
 }
 
 
-/* Enlarge the checkbox */
-input[type="checkbox"] {
-  width: 20px;
-  /* Increase size */
-  height: 20px;
-  appearance: none;
-  /* Remove default styling */
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  /* Optional: rounded corners */
-  background-color: #f0f0f0;
-  /* Default background color */
-  cursor: pointer;
-  transition: all 0.3s ease;
-  /* Smooth transition */
-}
 
-/* Checkbox hover effect */
-input[type="checkbox"]:hover {
-  border-color: #888;
-}
-
-/* Change background when checked */
-input[type="checkbox"]:checked {
-  background-color: #FF6B14;
-  border-color: #FF6B14;
-}
-
-
-
-input[type="checkbox"]:checked::before {
-  content: '';
-  display: block;
-  font-size: 10px;
-  color: white;
-  text-align: center;
-  line-height: 15px;
-}
 
 
 

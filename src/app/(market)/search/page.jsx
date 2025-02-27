@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
-import ProductsSection from "../components/section/Products";
-import MobileLoader from "../components/molecule/MobileLoader";
+import ProductsSection from "@/app/components/section/Products";
+import MobileLoader from "@/app/components/molecule/MobileLoader";
 import { useState, useEffect, use } from "react";
 import { useSearch } from "@/app/context/search";
 import NoSearchResultFound from "@/app/components/template/NoSearchResultFound"
