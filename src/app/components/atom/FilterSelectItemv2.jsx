@@ -37,6 +37,7 @@ export default function FilterSelectItemV2({ data, labelStyle, multiSelect, onCh
             id={item.prop}
             name={item.prop}
             type="checkbox"
+            className="market"
           />
           <div
             className={`absolute top-[3px] left-[3px] ${
