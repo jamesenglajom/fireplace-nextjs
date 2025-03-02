@@ -1,5 +1,5 @@
 import "@/app/globals.css";
-import {redis} from "@/app/lib/redis";
+import {redis, keys, redisGet} from "@/app/lib/redis";
 import { Montserrat } from "next/font/google";
 // import localFont from "next/font/local";
 import FixedHeader from "@/app/components/template/fixed_header";
@@ -29,8 +29,13 @@ export const metadata = {
 };
 export default async function MarketLayout({ children }) {
   const redisLogoKey = "admin_solana_market_logo";
-  const redisLogo = await redis.get(redisLogoKey);
-
+  // const redisLogo = await redis.get(redisLogoKey);
+  const menuKey = keys.active_menu.value;
+  const mgetKeys = [menuKey, redisLogoKey];
+  const [active_menu, redisLogo] = await redis.mget(mgetKeys);
+  const menu = await redis.get(active_menu);
+  console.log("active_menu", active_menu);
+  console.log("menuuuuuuuuuuuuuuuuuuuuuussssss", menu)
   return (
     <html lang="en">
       <body className={`antialiased ${MontserratFont.className}`}>
@@ -51,7 +56,7 @@ export default async function MarketLayout({ children }) {
         <CartProvider>
           <FilterProvider>
           <SearchProvider>
-            <TuiNavBar logo={redisLogo}/>
+            <TuiNavBar logo={redisLogo} menu={menu}/>
             <FixedHeader />
           <QuickViewProvider>
             {children}

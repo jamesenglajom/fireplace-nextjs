@@ -258,3 +258,8 @@ export function findParentByUrl(categories, url) {
 export function isProductOnSale(categories) {
   return categories.filter((i) => onsale_category_ids.includes(i)).length > 0;
 }
+
+
+export const generateId = () => {
+  return Math.random().toString(36).substring(2, 11);
+};

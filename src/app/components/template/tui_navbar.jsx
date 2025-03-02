@@ -22,21 +22,20 @@ import CartButton from "@/app/components/atom/CartButton";
 // data
 import { solana_categories as cat_json } from "@/app/lib/category-helpers";
 
-const navigation = cat_json
-  .filter((i) => i.menu.visible === true)
-  .sort((a, b) => a.menu.order - b.menu.order);
-
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
-const mobile_navigation = cat_json
-  .filter((i) => i.menu.visible === true)
-  .sort((a, b) => a.menu.order - b.menu.order)
-  .map((i) => ({
-    name: i.name,
-    url: i.menu.href,
-    children: i.links.flatMap((i2) => i2),
-  }));
 
-export default function TuiNavbar({logo}) {
+export default function TuiNavbar({ logo, menu }) {
+  const navigation = menu
+    .filter((i) => i.menu.visible === true)
+    .sort((a, b) => a.menu.order - b.menu.order);
+  const mobile_navigation = menu
+    .filter((i) => i.menu.visible === true)
+    .sort((a, b) => a.menu.order - b.menu.order)
+    .map((i) => ({
+      name: i.name,
+      url: i.menu.href,
+      children: i?.links?.flatMap((i2) => i2) ?? [],
+    }));
   const [mobileMenuDialog, setMobileMenuDialog] = useState(false);
   const [activeMenu, setActiveMenu] = useState(mobile_navigation);
   const [selected, setSelected] = useState([]);
