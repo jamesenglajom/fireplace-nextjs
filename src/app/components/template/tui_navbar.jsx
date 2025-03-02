@@ -25,17 +25,52 @@ import { solana_categories as cat_json } from "@/app/lib/category-helpers";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export default function TuiNavbar({ logo, menu }) {
-  const navigation = menu
-    .filter((i) => i.menu.visible === true)
-    .sort((a, b) => a.menu.order - b.menu.order);
-  const mobile_navigation = menu
-    .filter((i) => i.menu.visible === true)
-    .sort((a, b) => a.menu.order - b.menu.order)
-    .map((i) => ({
-      name: i.name,
-      url: i.menu.href,
-      children: i?.links?.flatMap((i2) => i2) ?? [],
+  const [navigation, setNavigation] = useState(null);
+  const [mobile_navigation, setMobileNavigation] = useState(null);
+  // const navigation = menu
+  //   .filter((i) => i.menu.visible === true)
+  //   .sort((a, b) => a.menu.order - b.menu.order);
+  // const mobile_navigation = menu
+  //   .filter((i) => i.menu.visible === true)
+  //   .sort((a, b) => a.menu.order - b.menu.order)
+  //   .map((i) => ({
+  //     name: i.name,
+  //     url: i.menu.href,
+  //     children: i?.links?.flatMap((i2) => i2) ?? [],
+  //   }));
+
+  const groupChildren = (children, size = 2) => {
+    const grouped = [];
+    for (let i = 0; i < children.length; i += size) {
+      grouped.push(children.slice(i, i + size));
+    }
+    return grouped;
+  };
+
+  const addLinksProperty = (menu) => {
+    return menu.map((item) => ({
+      ...item,
+      links: groupChildren(item.children || [], (item.origin_name==="Brands"? 8:2)), // Group children into pairs
+      children: item.children ? addLinksProperty(item.children) : [], // Recursively process children
     }));
+  };
+
+  useEffect(() => {
+    if (menu) {
+      // add links to menu
+      const injectedMenu = addLinksProperty(menu);
+      setNavigation(
+        injectedMenu
+          .filter((i) => i.menu.visible === true)
+          .sort((a, b) => a.menu.order - b.menu.order)
+      );
+      setMobileNavigation(
+        injectedMenu
+          .filter((i) => i.menu.visible === true)
+          .sort((a, b) => a.menu.order - b.menu.order)
+      );
+    }
+  }, [menu]);
   const [mobileMenuDialog, setMobileMenuDialog] = useState(false);
   const [activeMenu, setActiveMenu] = useState(mobile_navigation);
   const [selected, setSelected] = useState([]);
@@ -160,7 +195,7 @@ export default function TuiNavbar({ logo, menu }) {
             <div className="hidden lg:block mx-auto container px-2 sm:px-6 lg:px-8">
               <div className="flex items-center justify-center mt-[20px] sm:flex-wrap">
                 <div className="flex sm:flex-wrap justify-center gap-y-4">
-                  {navigation.map((i, index) => (
+                  {navigation && navigation.map((i, index) => (
                     <div
                       key={`parent-nav-${index}`}
                       className={`group py-[5px] px-[10px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center border-b hover:bg-orange-500 hover:text-white ${
@@ -362,7 +397,7 @@ export default function TuiNavbar({ logo, menu }) {
                   </div>
                 )}
                 <div className="">
-                  {activeMenu.map((i, index) => (
+                  {activeMenu && activeMenu.map((i, index) => (
                     <div
                       key={`menu-${createSlug(i.name)}`}
                       className="border-b p-[10px]"

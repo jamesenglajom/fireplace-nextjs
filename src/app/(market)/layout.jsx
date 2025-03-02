@@ -34,8 +34,8 @@ export default async function MarketLayout({ children }) {
   const mgetKeys = [menuKey, redisLogoKey];
   const [active_menu, redisLogo] = await redis.mget(mgetKeys);
   const menu = await redis.get(active_menu);
-  console.log("active_menu", active_menu);
-  console.log("menuuuuuuuuuuuuuuuuuuuuuussssss", menu)
+  // console.log("active_menu", active_menu);
+  // console.log("menuuuuuuuuuuuuuuuuuuuuuussssss", menu)
   return (
     <html lang="en">
       <body className={`antialiased ${MontserratFont.className}`}>

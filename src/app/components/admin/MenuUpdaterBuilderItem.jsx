@@ -112,9 +112,14 @@ function MenuUpdaterBuilderItem({ item, itemList, onChange }) {
     if (item) {
       setParent(item?.parent_id);
       setOrder(item?.order);
-      setLocalItem(item);
     }
   }, [item]);
+
+  useEffect(()=>{
+    if(item){
+      setLocalItem(item);
+    }
+  },[])
   return (
     <div>
       <div className="w-full text-left p-2 border-l border-b flex items-center justify-between">
@@ -252,7 +257,7 @@ function MenuUpdaterBuilderItem({ item, itemList, onChange }) {
                   Number
                 </label>
                 <input
-                  value={localItem?.banner?.page_contact_number ?? ""}
+                  value={localItem?.page_contact_number ?? ""}
                   onChange={(e) => handleInputChange("page_contact", e)}
                   type="text"
                   className="block w-full p-2 text-gray-900 border border-gray-300 bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

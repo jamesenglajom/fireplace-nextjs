@@ -403,7 +403,7 @@ function MenuUpdater() {
     const search = solana_categories.find(({name})=> name === "Search")
     // console.log("Append this search", search);
     const merged = [...menu, search];
-    // console.log("merged", merged)
+    console.log("merged", merged)
     redisSet(selectedMenu, merged).then(response=>{
       console.log("redisSet", response)
       if(response.success){

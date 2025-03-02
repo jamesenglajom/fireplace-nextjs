@@ -5,9 +5,15 @@ import Link from "next/link";
 import Image from "next/image";
 import RenderBanner from "@/app/components/atom/RenderBanner";
 
+const default_contact = "(888) 575-9720";
+
 export default function Hero({ data }) {
   const useBanner =
     data?.banner?.img?.src ?? "/images/banner/solana-home-hero.webp";
+
+  const contact = data?.page_contact_number ?? default_contact;
+
+  console.log("FROMTUIHERO", data);
   if (data && data.children && data.children.length > 0) {
     return (
       <div className="container mx-auto flex flex-col md:flex-row">
@@ -62,7 +68,7 @@ export default function Hero({ data }) {
                       Further Questions? ASK AN EXPERT!
                     </div>
                     <Link
-                      href={`tel:(888)%20575-9720`}
+                      href={`tel:${contact}`}
                       className="flex md:ml-[8px] text-orange-500 font-bold"
                     >
                       <Icon
@@ -71,14 +77,14 @@ export default function Hero({ data }) {
                         width="15"
                         height="15"
                       />
-                      (888) 575-9720
+                      {contact}
                     </Link>
                   </div>
                 </div>
               </div>
             </div>
             <div className="w-full p-[30px] bg-stone-100 flex flex-col gap-[20px] relative lg:w-[250px] h-[360px]">
-              <Link href={`tel:(888)%20575-9720`} prefetch={false}>
+              <Link href={`tel:${contact}`} prefetch={false}>
                 <Image
                   src="/images/banner/sub-banner-image.webp"
                   alt={`Sub Banner Image`}
