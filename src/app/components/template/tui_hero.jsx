@@ -128,7 +128,7 @@ export default function Hero({ data }) {
                       />
                     </div>
                     <div className="w-[calc(100%-40px)]">
-                      {/* <Link href={i.url ?? "#"}> */}
+                      <Link href={i.url ?? "#"}>
                       <div className="flex items-center shadow-md rounded overflow-hidden gap-[10px] w-full group">
                         <div className="w-[80px] h-[80px] flex justify-center items-center relative">
                           <Image
@@ -152,7 +152,7 @@ export default function Hero({ data }) {
                           <Icon icon="icon-park:right" width="30" height="30" />
                         </div>
                       </div>
-                      {/* </Link> */}
+                      </Link>
                     </div>
                   </div>
                 ))}
