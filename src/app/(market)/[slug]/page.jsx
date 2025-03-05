@@ -35,8 +35,11 @@ export default function GenericCategoryPage({ params }) {
 
   useEffect(() => {
     getMenu().then((data) => {
+      console.log("redisGetMenu", data);
       const flatData = flattenNav(data);
-      setPageData(getPageData(slug, flatData));
+      const _pageData =getPageData(slug, flatData);
+      console.log("_pageData", _pageData);
+      setPageData(_pageData);
     });
   }, [slug]);
 
