@@ -150,10 +150,10 @@ export function FilterProvider({ children }) {
   };
 
   const createFiltersObject = (_filterOrder = []) => {
-    console.log("createFilterObject_filterOrder", _filterOrder);
+    // console.log("createFilterObject_filterOrder", _filterOrder);
     const defaultFilterOrder = ["free_shipping", "brand", "price"];
     const filledFilterOrder = [...new Set([..._filterOrder, ...defaultFilterOrder])];
-    console.log("filledFilterOrder", filledFilterOrder)
+    // console.log("filledFilterOrder", filledFilterOrder)
     let _baseProducts = baseProducts;
     let _filters = {
       free_shipping: {
@@ -242,8 +242,8 @@ export function FilterProvider({ children }) {
     //  loop through filter order
     filledFilterOrder.forEach((item,index)=>{
       if(item==="brand"){
-        console.log("baseBrands", baseBrands);
-        console.log("brands", brands.filter((brand) => baseBrands.map(i=> parseInt(i.id)).includes(brand.id)))
+        // console.log("baseBrands", baseBrands);
+        // console.log("brands", brands.filter((brand) => baseBrands.map(i=> parseInt(i.id)).includes(brand.id)))
         _filters["brand"]["options"] = brands
         .filter((brand) => baseBrands.map(i=> parseInt(i.id)).includes(brand.id))
         .map((i) => ({
@@ -260,7 +260,7 @@ export function FilterProvider({ children }) {
         }else{
           _baseProducts = _baseProducts;
         }
-        console.log("_filters",_filters);
+        // console.log("_filters",_filters);
       }
       if(item==="price"){
         if(activePriceRange.length > 0){
@@ -273,7 +273,7 @@ export function FilterProvider({ children }) {
         }
       }
 
-      console.log(`item:${item}:`, _baseProducts);
+      // console.log(`item:${item}:`, _baseProducts);
     });
 
   }
@@ -293,7 +293,7 @@ export function FilterProvider({ children }) {
       const _baseProducts = products_json.filter((i) =>
         hasCommonValue(i.categories, baseCategories)
       );
-      console.log("_baseProducts", _baseProducts);
+      // console.log("_baseProducts", _baseProducts);
       setBaseProducts(_baseProducts);
       // set a variable for base brands based on _baseProducts
       const brandsList = [
@@ -302,7 +302,7 @@ export function FilterProvider({ children }) {
       const _baseBrands = brands.filter((brand) =>
         brandsList.includes(brand.id)
       );
-      console.log("_baseBrands", _baseBrands);
+      // console.log("_baseBrands", _baseBrands);
       setBaseBrands(_baseBrands);
     }
 
@@ -327,7 +327,7 @@ export function FilterProvider({ children }) {
         removeValues.push("free_shipping");
       const newOrder = mergedOrder.filter((i) => !removeValues.includes(i));
       createFiltersObject(newOrder)
-      console.log("newOrder", newOrder);
+      // console.log("newOrder", newOrder);
       return newOrder;
     });
   }, [activeFilters,baseQuery]);

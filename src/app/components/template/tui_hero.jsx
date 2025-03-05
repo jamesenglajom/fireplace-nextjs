@@ -3,17 +3,20 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Link from "next/link";
 import Image from "next/image";
-import RenderBanner from "@/app/components/atom/RenderBanner";
+// import RenderBanner from "@/app/components/atom/RenderBanner";
 
 const default_contact = "(888) 575-9720";
 
 export default function Hero({ data }) {
+  console.log("data", data);
   const useBanner =
-    data?.banner?.img?.src ?? "/images/banner/solana-home-hero.webp";
+    !data?.banner?.img?.src || data?.banner?.img?.src ===""? "/images/banner/solana-home-hero.webp": data?.banner?.img?.src;
 
-  const contact = data?.page_contact_number ?? default_contact;
+  const contact =
+    !data?.page_contact_number || data?.page_contact_number === ""
+      ? default_contact
+      : data?.page_contact_number;
 
-  console.log("FROMTUIHERO", data);
   if (data && data.children && data.children.length > 0) {
     return (
       <div className="container mx-auto flex flex-col md:flex-row">
@@ -22,7 +25,7 @@ export default function Hero({ data }) {
             {
               <Image
                 src={useBanner}
-                alt={`Banner`}
+                alt={data?.banner?.img?.alt ?? "Banner"}
                 className="w-full h-full object-cover"
                 fill
                 loading="eager"
@@ -30,6 +33,7 @@ export default function Hero({ data }) {
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
               />
             }
+            {/* <RenderBanner img={useBanner} /> */}
             <div className="absolute z-[9999] inset-0 m-auto flex items-center justify-center">
               <div className="text-center flex justify-center">
                 <div className="px-[20px] py-[7px]">
@@ -124,35 +128,31 @@ export default function Hero({ data }) {
                       />
                     </div>
                     <div className="w-[calc(100%-40px)]">
-                      <Link href={i.url ?? "#"}>
-                        <div className="flex items-center shadow-md rounded overflow-hidden gap-[10px] w-full group">
-                          <div className="w-[80px] h-[80px] flex justify-center items-center relative">
-                            <Image
-                              src="/images/banner/firepit-banner.webp"
-                              alt={`sub-category-${i.url}`}
-                              className="w-[80px] h-[80px] object-cover"
-                              layout="fill"
-                              objectFit="cover" // Ensures the image covers the parent while maintaining aspect ratio
-                              objectPosition="center"
-                              // priority={true}
-                              // width={1000}
-                              // height={0}
-                            />
-                          </div>
-                          <div
-                            className={`text-sm uppercase text-stone-600 font-bold w-[calc(100%-95px)] group-hover:text-orange-500`}
-                          >
-                            {i.name}
-                          </div>
-                          <div className="text-stone-600 group-hover:text-orange-500">
-                            <Icon
-                              icon="icon-park:right"
-                              width="30"
-                              height="30"
-                            />
-                          </div>
+                      {/* <Link href={i.url ?? "#"}> */}
+                      <div className="flex items-center shadow-md rounded overflow-hidden gap-[10px] w-full group">
+                        <div className="w-[80px] h-[80px] flex justify-center items-center relative">
+                          <Image
+                            src="/images/banner/firepit-banner.webp"
+                            alt={`sub-category-${i.url}`}
+                            className="w-[80px] h-[80px] object-cover"
+                            layout="fill"
+                            objectFit="cover" // Ensures the image covers the parent while maintaining aspect ratio
+                            objectPosition="center"
+                            // priority={true}
+                            // width={1000}
+                            // height={0}
+                          />
                         </div>
-                      </Link>
+                        <div
+                          className={`text-sm uppercase text-stone-600 font-bold w-[calc(100%-95px)] group-hover:text-orange-500`}
+                        >
+                          {i.name}
+                        </div>
+                        <div className="text-stone-600 group-hover:text-orange-500">
+                          <Icon icon="icon-park:right" width="30" height="30" />
+                        </div>
+                      </div>
+                      {/* </Link> */}
                     </div>
                   </div>
                 ))}
@@ -164,21 +164,23 @@ export default function Hero({ data }) {
   } else {
     return (
       <div className="container mx-auto w-full relative isolate  bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px] md:h-[calc(100vh-450px)]">
-        <RenderBanner img={useBanner} />
-        <div className="absolute z-[9999] inset-0 m-auto flex items-center justify-center">
-          <div className="text-center flex justify-center">
-            <div className="px-[20px] py-[7px]">
-              {data?.name === "All Products" ? (
-                <div>
-                  <div className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
-                    Modern Fireplaces and Outdoor Living
-                  </div>
-                  <div className="text-xs md:text-base text-balance mt-1 tracking-wide text-white text-shadow-lg">
-                    Transform Your Spaces with Elegant Designs Built for Comfort
-                    and Durability
-                  </div>
-                </div>
-              ) : (
+        {/* <RenderBanner img={useBanner} /> */}
+        <div className="w-full relative isolate px-6 lg:px-8 bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px]  md:h-[calc(100vh-450px)]">
+          {
+            <Image
+              src={useBanner}
+              alt={data?.banner?.img?.alt ?? "Banner"}
+              className="w-full h-full object-cover"
+              fill
+              loading="eager"
+              priority={true}
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
+            />
+          }
+          {/* <RenderBanner img={useBanner} /> */}
+          <div className="absolute z-[9999] inset-0 m-auto flex items-center justify-center">
+            <div className="text-center flex justify-center">
+              <div className="px-[20px] py-[7px]">
                 <div>
                   <div className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
                     {data?.banner?.title}
@@ -187,7 +189,7 @@ export default function Hero({ data }) {
                     {data?.banner?.tag_line}
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </div>

@@ -1,3 +1,5 @@
+'use client'
+import { useState, useEffect } from "react";
 import MobileLoader from "@/app/components/molecule/MobileLoader";
 // home page section import in order
 import TuiHero from "@/app/components/template/tui_hero";
@@ -11,19 +13,53 @@ import ShopOpenBoxSection from "@/app/components/section/HomePageShopOpenBox";
 import PartsAndAccessoriesSection from "@/app/components/section/HomePagePartsAndAccessories";
 import FrequentlyAskedSection from "@/app/components/section/HomePageFrequentlyAsked";
 import NewsLetterSection from "@/app/components/section/NewsLetter";
-
+import { getPageData } from "@/app/lib/helpers";
+import { keys, redisGet } from "@/app/lib/redis";
+const defaultMenuKey = keys.default_menu.value;
+const slug ="";
 // import HomePageWrapper from "@/app/components/template/HomaPage";
-export default async function HomePage({ params }) {
+export default function HomePage({ params }) {
+    const [pageData, setPageData] = useState(null);
+  
+    const getMenu = async () => {
+      return await redisGet(defaultMenuKey);
+    };
+  
+    const flattenNav = (navItems) => {
+      let result = [];
+  
+      const extractLinks = (items) => {
+        items.forEach(({ children = [], ...rest }) => {
+          result.push({ ...rest, children }); // Keep the children property
+          extractLinks(children); // Recursively process children
+        });
+      };
+  
+      extractLinks(navItems);
+  
+      return result;
+    };
+  
+    useEffect(() => {
+      getMenu().then((data) => {
+        const flatData = flattenNav(data);
+        const _pageData = getPageData(slug, flatData);
+        console.log("_pageData", _pageData)
+        setPageData(_pageData);
+      });
+    }, [slug]);
+
   const page_data = {
     name: "All Products",
     children: [],
     banner_img: null,
   };
+
   return (
     // <HomePageWrapper data={page_data} />
     <>
       <MobileLoader />
-      <TuiHero data={page_data} />
+      <TuiHero data={pageData} />
       <FeatureCategoriesSection />
       <ShopAllClearanceSection />
       <AboutProductSection />

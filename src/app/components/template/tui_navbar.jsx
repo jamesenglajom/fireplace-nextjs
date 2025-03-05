@@ -26,18 +26,8 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export default function TuiNavbar({ logo, menu }) {
   const [navigation, setNavigation] = useState(null);
-  const [mobile_navigation, setMobileNavigation] = useState(null);
-  // const navigation = menu
-  //   .filter((i) => i.menu.visible === true)
-  //   .sort((a, b) => a.menu.order - b.menu.order);
-  // const mobile_navigation = menu
-  //   .filter((i) => i.menu.visible === true)
-  //   .sort((a, b) => a.menu.order - b.menu.order)
-  //   .map((i) => ({
-  //     name: i.name,
-  //     url: i.menu.href,
-  //     children: i?.links?.flatMap((i2) => i2) ?? [],
-  //   }));
+  const [activeMenu, setActiveMenu] = useState(null);
+  // const [navigation, setMobileNavigation] = useState(null);
 
   const groupChildren = (children, size = 2) => {
     const grouped = [];
@@ -50,29 +40,15 @@ export default function TuiNavbar({ logo, menu }) {
   const addLinksProperty = (menu) => {
     return menu.map((item) => ({
       ...item,
-      links: groupChildren(item.children || [], (item.origin_name==="Brands"? 8:2)), // Group children into pairs
+      links: groupChildren(
+        item.children || [],
+        item.origin_name === "Brands" ? 8 : 2
+      ), // Group children into pairs
       children: item.children ? addLinksProperty(item.children) : [], // Recursively process children
     }));
   };
 
-  useEffect(() => {
-    if (menu) {
-      // add links to menu
-      const injectedMenu = addLinksProperty(menu);
-      setNavigation(
-        injectedMenu
-          .filter((i) => i.menu.visible === true)
-          .sort((a, b) => a.menu.order - b.menu.order)
-      );
-      setMobileNavigation(
-        injectedMenu
-          .filter((i) => i.menu.visible === true)
-          .sort((a, b) => a.menu.order - b.menu.order)
-      );
-    }
-  }, [menu]);
   const [mobileMenuDialog, setMobileMenuDialog] = useState(false);
-  const [activeMenu, setActiveMenu] = useState(mobile_navigation);
   const [selected, setSelected] = useState([]);
   const [overviewUrl, setOverviewUrl] = useState(null);
   const router = useRouter();
@@ -92,7 +68,6 @@ export default function TuiNavbar({ logo, menu }) {
   const handleMenuLinkItemClick = (e) => {
     e.preventDefault();
     const url = e.target.closest("a").getAttribute("href");
-    // console.log(url);
     if (url) {
       router.push(url);
       setMobileMenuDialog(false);
@@ -107,19 +82,18 @@ export default function TuiNavbar({ logo, menu }) {
 
   useEffect(() => {
     if (selected.length === 0) {
-      setActiveMenu(mobile_navigation);
+      setActiveMenu(navigation);
     } else if (selected.length === 1) {
-      const filtered = mobile_navigation.find((i) => i.name === selected[0]);
+      const filtered = navigation.find((i) => i.name === selected[0]);
       setActiveMenu(filtered.children);
       setOverviewUrl(filtered.url);
     } else if (selected.length === 2) {
-      const filtered = mobile_navigation
+      const filtered = navigation
         .find((i) => i.name === selected[0])
         .children.find((i) => i.name === selected[1]);
       setActiveMenu(filtered.children);
       setOverviewUrl(filtered.url);
     }
-    // console.log("selected", selected);
   }, [selected]);
 
   const handleMobileBackClick = (e) => {
@@ -129,6 +103,14 @@ export default function TuiNavbar({ logo, menu }) {
       }
     });
   };
+  useEffect(() => {
+    const injectedMenu = addLinksProperty(menu)
+      .filter((i) => i.menu.visible === true)
+      .sort((a, b) => a.menu.order - b.menu.order);
+    setNavigation(injectedMenu);
+    setActiveMenu(injectedMenu);
+  }, [menu]);
+
   return (
     <>
       <div className="relative shadow">
@@ -195,104 +177,53 @@ export default function TuiNavbar({ logo, menu }) {
             <div className="hidden lg:block mx-auto container px-2 sm:px-6 lg:px-8">
               <div className="flex items-center justify-center mt-[20px] sm:flex-wrap">
                 <div className="flex sm:flex-wrap justify-center gap-y-4">
-                  {navigation && navigation.map((i, index) => (
-                    <div
-                      key={`parent-nav-${index}`}
-                      className={`group py-[5px] px-[10px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center border-b hover:bg-orange-500 hover:text-white ${
-                        i.menu.href === ParentSlug
-                          ? "text-white bg-orange-400"
-                          : "text-pallete-dark"
-                      }`}
-                    >
-                      {/* <div className="text-white"><Icon icon={i.icon.name} /></div> */}
-                      <Link
-                        href={`${BASE_URL}/${i.menu.href}`}
-                        prefetch={false}
-                        className={`flex items-center gap-[8px] ${
+                  {navigation &&
+                    navigation.map((i, index) => (
+                      <div
+                        key={`parent-nav-${index}`}
+                        className={`group py-[5px] px-[10px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center border-b hover:bg-orange-500 hover:text-white ${
                           i.menu.href === ParentSlug
-                            ? "font-semibold"
-                            : "font-normal"
+                            ? "text-white bg-orange-400"
+                            : "text-pallete-dark"
                         }`}
                       >
-                        {i.name.toLowerCase() === "home" && <MingcuteHome7 />}
-                        {i.name.toLowerCase() !== "home" && (
-                          <div
-                            className={`text-xs ${
-                              i.menu.href === ParentSlug
-                                ? "font-semibold"
-                                : "font-normal"
-                            }`}
-                          >
-                            {i.name}
-                          </div>
-                        )}
-                      </Link>
-                      {i.links && i.links.length > 0 && (
-                        <div className="bg-white absolute w-full left-0 top-[100%] z-[100] invisible group-hover:visible shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]">
-                          <div className="container mx-auto py-5 px-[20px]">
-                            <div className="flex justify-between">
-                              <div className="w-full flex gap-[70px]">
-                                {i.links.map((i1, index1) => (
-                                  <div
-                                    key={`${i.menu.href}-col-${index1}`}
-                                    className="flex flex-col gap-[20px] text-xs"
-                                  >
-                                    {i1.map((i2, index2) => (
-                                      <div
-                                        key={`${i.menu.href}-col-${index1}-content-${index2}`}
-                                      >
-                                        <Link
-                                          prefetch={false}
-                                          href={`${
-                                            i2?.url
-                                              ? BASE_URL + "/" + i2.url
-                                              : "#"
-                                          }`}
+                        {/* <div className="text-white"><Icon icon={i.icon.name} /></div> */}
+                        <Link
+                          href={`${BASE_URL}/${i.menu.href}`}
+                          prefetch={false}
+                          className={`flex items-center gap-[8px] ${
+                            i.menu.href === ParentSlug
+                              ? "font-semibold"
+                              : "font-normal"
+                          }`}
+                        >
+                          {i.name.toLowerCase() === "home" && <MingcuteHome7 />}
+                          {i.name.toLowerCase() !== "home" && (
+                            <div
+                              className={`text-xs ${
+                                i.menu.href === ParentSlug
+                                  ? "font-semibold"
+                                  : "font-normal"
+                              }`}
+                            >
+                              {i.name}
+                            </div>
+                          )}
+                        </Link>
+                        {i.links && i.links.length > 0 && (
+                          <div className="bg-white absolute w-full left-0 top-[100%] z-[100] invisible group-hover:visible shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]">
+                            <div className="container mx-auto py-5 px-[20px]">
+                              <div className="flex justify-between">
+                                <div className="w-full flex gap-[70px]">
+                                  {i.links.map((i1, index1) => (
+                                    <div
+                                      key={`${i.menu.href}-col-${index1}`}
+                                      className="flex flex-col gap-[20px] text-xs"
+                                    >
+                                      {i1.map((i2, index2) => (
+                                        <div
+                                          key={`${i.menu.href}-col-${index1}-content-${index2}`}
                                         >
-                                          <div className="text-black font-bold mb-[10px] hover-text-pallete-orange cursor-pointer">
-                                            {i2.name}
-                                          </div>
-                                        </Link>
-                                        <div className="flex flex-col gap-[5px]">
-                                          {i.name.toLowerCase() == "brands"
-                                            ? i2.children &&
-                                              i2.children.length > 0 &&
-                                              i2.children
-                                                .slice(0, 3)
-                                                .map((i3, index3) => (
-                                                  <Link
-                                                    prefetch={false}
-                                                    href={`${
-                                                      i3?.url
-                                                        ? BASE_URL +
-                                                          "/" +
-                                                          i3.url
-                                                        : "#"
-                                                    }`}
-                                                    key={`${i.menu.href}-col-${index}-content-${index2}-child-${index3}`}
-                                                  >
-                                                    <div className="text-black hover-text-pallete-orange cursor-pointer">
-                                                      {i3.name}
-                                                    </div>
-                                                  </Link>
-                                                ))
-                                            : i2.children &&
-                                              i2.children.length > 0 &&
-                                              i2.children.map((i3, index3) => (
-                                                <Link
-                                                  prefetch={false}
-                                                  href={`${
-                                                    i3?.url
-                                                      ? BASE_URL + "/" + i3.url
-                                                      : "#"
-                                                  }`}
-                                                  key={`${i.menu.href}-col-${index}-content-${index2}-child-${index3}`}
-                                                >
-                                                  <div className="text-black hover-text-pallete-orange cursor-pointer">
-                                                    {i3.name}
-                                                  </div>
-                                                </Link>
-                                              ))}
                                           <Link
                                             prefetch={false}
                                             href={`${
@@ -301,27 +232,83 @@ export default function TuiNavbar({ logo, menu }) {
                                                 : "#"
                                             }`}
                                           >
-                                            <div className="text-black hover-text-pallete-orange cursor-pointer flex gap-[10px] items-center">
-                                              <Icon
-                                                icon="teenyicons:arrow-solid"
-                                                width="12"
-                                                height="12"
-                                              />
-                                              <div>Shop All</div>
+                                            <div className="text-black font-bold mb-[10px] hover-text-pallete-orange cursor-pointer">
+                                              {i2.name}
                                             </div>
                                           </Link>
+                                          <div className="flex flex-col gap-[5px]">
+                                            {i.name.toLowerCase() == "brands"
+                                              ? i2.children &&
+                                                i2.children.length > 0 &&
+                                                i2.children
+                                                  .slice(0, 3)
+                                                  .map((i3, index3) => (
+                                                    <Link
+                                                      prefetch={false}
+                                                      href={`${
+                                                        i3?.url
+                                                          ? BASE_URL +
+                                                            "/" +
+                                                            i3.url
+                                                          : "#"
+                                                      }`}
+                                                      key={`${i.menu.href}-col-${index}-content-${index2}-child-${index3}`}
+                                                    >
+                                                      <div className="text-black hover-text-pallete-orange cursor-pointer">
+                                                        {i3.name}
+                                                      </div>
+                                                    </Link>
+                                                  ))
+                                              : i2.children &&
+                                                i2.children.length > 0 &&
+                                                i2.children.map(
+                                                  (i3, index3) => (
+                                                    <Link
+                                                      prefetch={false}
+                                                      href={`${
+                                                        i3?.url
+                                                          ? BASE_URL +
+                                                            "/" +
+                                                            i3.url
+                                                          : "#"
+                                                      }`}
+                                                      key={`${i.menu.href}-col-${index}-content-${index2}-child-${index3}`}
+                                                    >
+                                                      <div className="text-black hover-text-pallete-orange cursor-pointer">
+                                                        {i3.name}
+                                                      </div>
+                                                    </Link>
+                                                  )
+                                                )}
+                                            <Link
+                                              prefetch={false}
+                                              href={`${
+                                                i2?.url
+                                                  ? BASE_URL + "/" + i2.url
+                                                  : "#"
+                                              }`}
+                                            >
+                                              <div className="text-black hover-text-pallete-orange cursor-pointer flex gap-[10px] items-center">
+                                                <Icon
+                                                  icon="teenyicons:arrow-solid"
+                                                  width="12"
+                                                  height="12"
+                                                />
+                                                <div>Shop All</div>
+                                              </div>
+                                            </Link>
+                                          </div>
                                         </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                ))}
+                                      ))}
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                        )}
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
@@ -397,44 +384,45 @@ export default function TuiNavbar({ logo, menu }) {
                   </div>
                 )}
                 <div className="">
-                  {activeMenu && activeMenu.map((i, index) => (
-                    <div
-                      key={`menu-${createSlug(i.name)}`}
-                      className="border-b p-[10px]"
-                    >
-                      {i.children && i.children.length > 0 ? (
-                        <div
-                          onClick={() => handleExpandOptionClick(i.name)}
-                          className=" flex justify-between items-center"
-                        >
-                          <div>{i.name}</div>
-                          <div className="">
-                            <Icon
-                              icon="ic:round-navigate-next"
-                              width="24"
-                              height="24"
-                            />
+                  {activeMenu &&
+                    activeMenu.map((i, index) => (
+                      <div
+                        key={`menu-${createSlug(i.name)}`}
+                        className="border-b p-[10px]"
+                      >
+                        {i.children && i.children.length > 0 ? (
+                          <div
+                            onClick={() => handleExpandOptionClick(i.name)}
+                            className=" flex justify-between items-center"
+                          >
+                            <div>{i.name}</div>
+                            <div className="">
+                              <Icon
+                                icon="ic:round-navigate-next"
+                                width="24"
+                                height="24"
+                              />
+                            </div>
                           </div>
-                        </div>
-                      ) : (
-                        <Link
-                          prefetch={false}
-                          href={`${BASE_URL}/${i?.url}`}
-                          onClick={handleMenuLinkItemClick}
-                          className=" flex justify-between items-center"
-                        >
-                          <div>{i.name}</div>
-                          <div className="">
-                            <Icon
-                              icon="ion:open-outline"
-                              width="24"
-                              height="24"
-                            />
-                          </div>
-                        </Link>
-                      )}
-                    </div>
-                  ))}
+                        ) : (
+                          <Link
+                            prefetch={false}
+                            href={`${BASE_URL}/${i?.url}`}
+                            onClick={handleMenuLinkItemClick}
+                            className=" flex justify-between items-center"
+                          >
+                            <div>{i.name}</div>
+                            <div className="">
+                              <Icon
+                                icon="ion:open-outline"
+                                width="24"
+                                height="24"
+                              />
+                            </div>
+                          </Link>
+                        )}
+                      </div>
+                    ))}
                 </div>
                 <div className="flex h-[120px] items-center justify-center">
                   <div className="text-stone-500 font-semibold">

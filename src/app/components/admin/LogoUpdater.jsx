@@ -89,7 +89,7 @@ function LogoUpdater({logo}) {
   return (
     <div className="p-3">
       <div className="font-bold text-lg">Logo</div>
-      <div>
+      <div className="text-sm">
         Update Logo Here or{" "}
         <span onClick={handleUseDefaultLogo} className="underline cursor-pointer text-blue-700 hover:text-blue-800">
           Click here
@@ -124,6 +124,10 @@ function LogoUpdater({logo}) {
               New Logo
             </div>)
         }
+      </div>
+      
+      <div className="text-xs mt-4">
+      For the best display quality, we recommend using a logo with dimensions of <span className="font-semibold">200x98 pixels (or a 2:1 aspect ratio)</span>. Ensure the image is clear and not stretched for optimal results.
       </div>
       <div className="mt-6">
         <label

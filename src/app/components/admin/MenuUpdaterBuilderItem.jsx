@@ -48,35 +48,31 @@ function MenuUpdaterBuilderItem({ item, itemList, onChange }) {
 
   const handleInputChange = (trigger, event) => {
     const { value } = event.target;
-    setLocalItem((prev) => {
-      console.log("prev", prev);
-    
-      const newState = { ...prev };
-    
-      switch (trigger) {
-        case "image_src":
-          newState.banner.img.src = value;
-          break;
-        case "image_alt":
-          newState.banner.img.alt = value;
-          break;
-        case "banner_title":
-          newState.banner.title = value;
-          break;
-        case "banner_tag_line":
-          newState.banner.tag_line = value;
-          break;
-        case "page_contact":
-          newState.page_contact_number = value;
-          break;
-        default:
-          console.warn("Unknown trigger:", trigger);
-      }
-    
-      console.log("value", value);
-      return newState; 
+    let newLocalItem = { ...localItem };
+    switch (trigger) {
+      case "image_src":
+        newLocalItem.banner.img.src = value;
+        break;
+      case "image_alt":
+        newLocalItem.banner.img.alt = value;
+        break;
+      case "banner_title":
+        newLocalItem.banner.title = value;
+        break;
+      case "banner_tag_line":
+        newLocalItem.banner.tag_line = value;
+        break;
+      case "page_contact":
+        newLocalItem.page_contact_number = value;
+        break;
+      default:
+        console.warn("Unknown trigger:", trigger);
+    }
+
+    onChange({
+      action: "updateItem",
+      target: { menu_id: newLocalItem.menu_id, item: newLocalItem },
     });
-    onChange({action:"updateItem", target: {menu_id: localItem.menu_id, item:localItem}})
   };
 
   // useEffects --------------------------------------------------------------------------
@@ -110,16 +106,12 @@ function MenuUpdaterBuilderItem({ item, itemList, onChange }) {
 
   useEffect(() => {
     if (item) {
+      setLocalItem(item);
       setParent(item?.parent_id);
       setOrder(item?.order);
     }
   }, [item]);
 
-  useEffect(()=>{
-    if(item){
-      setLocalItem(item);
-    }
-  },[])
   return (
     <div>
       <div className="w-full text-left p-2 border-l border-b flex items-center justify-between">

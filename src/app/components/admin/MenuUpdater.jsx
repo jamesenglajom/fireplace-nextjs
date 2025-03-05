@@ -14,65 +14,6 @@ const origin_menu = bc_categories
   .sort((a, b) => a.name.localeCompare(b.name))
   .map((i) => ({ ...i, selected: false }));
 // console.log("origin_menu", origin_menu);
-console.log("solana_categories", solana_categories);
-
-const HomePage = {
-  menu_id: "home_page",
-  parent_id: "",
-  searchable: false,
-  name: "Home",
-  url: "",
-  path: "",
-  banner: {
-    img: {
-      src: "",
-      alt: "Home-Banner",
-    },
-    title: "Modern Fireplaces and Outdoor Living",
-    tag_line:
-      "Transform Your Spaces with Elegant Designs Built for Comfort and Durability",
-  },
-  menu: {
-    href: "",
-    visible: true,
-  },
-  key_words: [],
-  children: [],
-};
-
-const SearchPage = {
-  menu_id: "search_page",
-  parent_id: "",
-  searchable: false,
-  name: "Search",
-  url: "search",
-  image_url: "",
-  path: "/search/",
-  menu: {
-    href: "search",
-    visible: false,
-  },
-  key_words: [
-    "/fireplaces/",
-    "/fire-pits/",
-    "/bbq-grills-and-smokers/",
-    "gas log",
-    "gas logs",
-    "gas-log",
-    "gas-logs",
-    "/outdoor-living/patio-heaters/",
-    "/outdoor-kitchen/",
-    "/brands/",
-    "new",
-    "new-arrivals",
-    "new-arrival",
-    "new arrivals",
-    "new arrival",
-    "/sale/",
-  ],
-  children: [],
-  links: [],
-};
 
 function MenuUpdater() {
   const [menu, setMenu] = useState([]);
@@ -85,9 +26,7 @@ function MenuUpdater() {
 
   const updateMenuList = () => {
     const queryKeys = [menuListKey, activeMenuKey];
-    console.log("queryKeys", queryKeys);
     redisGet(queryKeys).then((data) => {
-      console.log("updateMenuList", data);
       const [menu_list, active_menu] = data;
       setMenuList(menu_list);
       setActiveMenu(active_menu);
@@ -98,7 +37,6 @@ function MenuUpdater() {
 
   const handleInputChange = (element, event) => {
     const { value } = event.target;
-    console.log(element, value);
     if (element === "originMenuSearch") {
       setOriginMenuSearch(value);
       // filter origin menu
@@ -120,7 +58,6 @@ function MenuUpdater() {
           parseInt(value) === parseInt(i.category_id) ? checked : i.selected,
       }));
     });
-    console.log("checkboxChanged!", `${value}:${checked}`);
   };
 
   const highlightText = (text, query) => {
@@ -141,10 +78,6 @@ function MenuUpdater() {
   };
 
   const handleAddMenuItem = () => {
-    console.log(
-      "handleAddMenuItemTrigger",
-      originMenu.filter((i) => i.selected)
-    );
     const selected = originMenu.filter((i) => i.selected);
     // need to format object from here
     const mapped = selected.map((i) => ({
@@ -364,11 +297,13 @@ function MenuUpdater() {
 
     if (action === "updateItem") {
       const { menu_id, item } = target;
+      console.log("updateItemmenu_id",menu_id)
+      console.log("updateItemitem",item)
 
       setMenu((prev) => {
         const updatedMenu = replaceMenuItem(prev, menu_id, item);
         console.log("newMenu", updatedMenu);
-        return updatedMenu;
+        return [...updatedMenu];
       });
     }
   };
@@ -379,9 +314,9 @@ function MenuUpdater() {
   };
 
   const handleSetActiveMenu = () => {
-    console.log("handleSetActiveMenu:selectedMenu:", selectedMenu);
+    // console.log("handleSetActiveMenu:selectedMenu:", selectedMenu);
     redisSet(activeMenuKey, selectedMenu).then((response) => {
-      console.log(`redisSetResponse`, response);
+      // console.log(`redisSetResponse`, response);
       if (response.success) {
         const active = menuList.find(({ key }) => key === selectedMenu);
         updateMenuList();
@@ -392,7 +327,7 @@ function MenuUpdater() {
 
   const handleSelectMenuChange = (e) => {
     const { value } = e.target;
-    console.log("handleSelectMenuChange", value);
+    // console.log("handleSelectMenuChange", value);
     setSelectedMenu(value);
   };
 

@@ -12,7 +12,7 @@ import { solana_categories, solana_brands, flatCategories, bc_categories } from 
 import { useRouter } from "next/navigation";
 import { getCategoryIds } from "@/app/lib/helpers";
 // useful console that logs keywords for all main categories
-console.log("solanaCategories", solana_categories.flatMap(i=> i.key_words))
+// console.log("solanaCategories", solana_categories.flatMap(i=> i.key_words))
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 
