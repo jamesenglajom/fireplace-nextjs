@@ -104,7 +104,7 @@ const ProductToCart = ({ product, loading }) => {
       </div>
       <div className="flex items-center gap-[20px]">
         {
-          // productData.price > productData.sale_price ? 
+          productData.price > productData.sale_price ? 
           <div className="flex flex-col gap-[10px]">
             <div className="flex gap-[10px]">
               <div className="text-2xl md:text-3xl font-semibold text-stone-400 line-through">
@@ -118,10 +118,10 @@ const ProductToCart = ({ product, loading }) => {
               <div  className="font-semibold border-green-500 text-green-500 w-auto py-1 px-2 inline-block border-2">Save ${formatPrice(productData.price - productData.sale_price)}</div>
             </div>
           </div>
-        //   :
-        //   <div className="text-2xl md:text-3xl font-extrabold text-pallete-green">
-        //   ${formatPrice(productData?.sale_price)}
-        // </div>
+          :
+          <div className="text-2xl md:text-3xl font-extrabold text-pallete-green">
+          ${formatPrice(productData?.sale_price)}
+        </div>
         }
         <div className="font-bold">QTY</div>
         <div className="flex items-center">
