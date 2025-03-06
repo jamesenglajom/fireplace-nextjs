@@ -59,7 +59,9 @@ export default async function MarketLayout({ children }) {
             <TuiNavBar logo={redisLogo} menu={menu}/>
             <FixedHeader />
           <QuickViewProvider>
+          <div className="flex flex-col min-h-screen">
             {children}
+          </div>
           </QuickViewProvider>
           </SearchProvider>
           </FilterProvider>

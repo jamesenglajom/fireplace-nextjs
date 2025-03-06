@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { MingcuteDownLine, MingcuteUpLine } from "@/app/components/icons/lib";
-function MenuUpdaterBuilderItem({ item, itemList, onChange }) {
+function MenuUpdaterBuilderItem({ item, itemList, onChange, search }) {
   const [expanded, setExpanded] = useState(false);
   const [localItem, setLocalItem] = useState(null);
   const [parentList, setParentList] = useState([]);
@@ -62,8 +62,12 @@ function MenuUpdaterBuilderItem({ item, itemList, onChange }) {
       case "banner_tag_line":
         newLocalItem.banner.tag_line = value;
         break;
+      case "page_description":
+        console.log("page_description", value);
+        newLocalItem.banner.description = value;
+        break;
       case "page_contact":
-        newLocalItem.page_contact_number = value;
+        newLocalItem.banner.contact = value;
         break;
       default:
         console.warn("Unknown trigger:", trigger);
@@ -112,11 +116,30 @@ function MenuUpdaterBuilderItem({ item, itemList, onChange }) {
     }
   }, [item]);
 
+  const highlightText = (text, query) => {
+    if (!text) return;
+    if (!query) return text;
+    // Escape special characters in query
+    const safeQuery = query.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
+    const regex = new RegExp(`(${safeQuery})`, "gi");
+    return text.split(regex).map((part, index) =>
+      part.toLowerCase() === safeQuery.toLowerCase() ? (
+        <span key={index} className="bg-yellow-300 text-black px-1">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
+
   return (
-    <div>
+    <div id={`scroll-to-menu-${item?.menu_id}`} className="scroll-to-section">
       <div className="w-full text-left p-2 border-l border-b flex items-center justify-between">
         <div>
-          <div className="font-semibold text-xs">{item.name}</div>
+          <div className="font-semibold text-xs">
+            {highlightText(item.name, search)}
+          </div>
           <div className="text-[10px]">{item?.url?.path}</div>
         </div>
         <button onClick={() => setExpanded((prev) => !prev)}>
@@ -204,6 +227,7 @@ function MenuUpdaterBuilderItem({ item, itemList, onChange }) {
                   onChange={(e) => handleInputChange("image_src", e)}
                   type="text"
                   className="block w-full p-2 text-gray-900 border border-gray-300 bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  disabled
                 />
               </div>
 
@@ -216,6 +240,7 @@ function MenuUpdaterBuilderItem({ item, itemList, onChange }) {
                   onChange={(e) => handleInputChange("image_alt", e)}
                   type="text"
                   className="block w-full p-2 text-gray-900 border border-gray-300 bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  disabled
                 />
               </div>
             </div>
@@ -241,6 +266,16 @@ function MenuUpdaterBuilderItem({ item, itemList, onChange }) {
                   className="block w-full p-2 text-gray-900 border border-gray-300 bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
               </div>
+              <div className="w-full">
+                <label className="block text-sm font-medium text-gray-900 dark:text-white">
+                  Page Description
+                </label>
+                <textarea
+                  value={localItem?.banner?.description ?? ""}
+                  onChange={(e) => handleInputChange("page_description", e)}
+                  className="block w-full p-2 text-gray-900 border border-gray-300 bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+              </div>
             </div>
             <div className="my-2 text-[10px] uppercase">Contact</div>
             <div>
@@ -249,7 +284,7 @@ function MenuUpdaterBuilderItem({ item, itemList, onChange }) {
                   Number
                 </label>
                 <input
-                  value={localItem?.page_contact_number ?? ""}
+                  value={localItem?.banner?.contact ?? ""}
                   onChange={(e) => handleInputChange("page_contact", e)}
                   type="text"
                   className="block w-full p-2 text-gray-900 border border-gray-300 bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

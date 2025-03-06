@@ -44,11 +44,11 @@ export default function GenericCategoryPage({ params }) {
   }, [slug]);
 
   if (pageData === undefined) {
-    notFound();
+    {notFound()}
   } else {
     return (
-      <div className="min-h-screen">
-        <MobileLoader />
+      <div>
+        <MobileLoader isLoading={!pageData}/>
         <TuiHero data={pageData} />
         <ProductsSection category={slug} />
       </div>

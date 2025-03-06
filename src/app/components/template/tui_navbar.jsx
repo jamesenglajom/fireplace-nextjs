@@ -132,7 +132,7 @@ export default function TuiNavbar({ logo, menu }) {
                 <div className="flex items-center justify-center flex-1 sm:flex-initial sm:items-stretch sm:justify-start">
                   {/** flex-1 sm:items-stretch sm:justify-start */}
                   <div className="flex items-center relative w-[88px] aspect-2">
-                    <div className="absolute top-0 left-0 md:left-[5px] w-[100px] xl:w-[200px] bg-stone-100">
+                    <div className="absolute top-0 left-0 md:left-[5px] w-[100px] xl:w-[200px]">
                       {
                         <Link href={BASE_URL}>
                           <Image
@@ -174,7 +174,7 @@ export default function TuiNavbar({ logo, menu }) {
                 </div>
               </div>
             </div>
-            <div className="hidden lg:block mx-auto container px-2 sm:px-6 lg:px-8">
+            <div className="hidden lg:block mx-auto container px-2 sm:px-6 lg:px-8 min-h-[35px]">
               <div className="flex items-center justify-center mt-[20px] sm:flex-wrap">
                 <div className="flex sm:flex-wrap justify-center gap-y-4">
                   {navigation &&
