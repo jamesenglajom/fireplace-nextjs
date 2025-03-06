@@ -263,3 +263,12 @@ export function isProductOnSale(categories) {
 export const generateId = () => {
   return Math.random().toString(36).substring(2, 11);
 };
+
+export const stripHtmlTags = (html) => {
+  if (typeof document !== "undefined") {
+      let tempDiv = document.createElement("div");
+      tempDiv.innerHTML = html;
+      return tempDiv.innerText || tempDiv.textContent;
+  }
+  return html.replace(/<[^>]+>/g, ''); // Fallback for SSR
+}

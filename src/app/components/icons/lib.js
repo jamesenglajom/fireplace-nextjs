@@ -18,6 +18,7 @@ import MingcuteHome7Icon from "./MingCuteHome7Icon";
 
 import MDIPropaneTankIcon from "./MDIPropaneTankIcon";
 import MDIBaselineGasMeterIcon from "./MDIBaselineGasMeterIcon";
+import MDITruckOutlineIcon from "./MDITruckOutlineIcon";
 
 import AkarIconsShippingV1Icon from "./AkarIconsShippingV1Icon";
 import MaterialSymbolsCloseIcon from "./MaterialSymbolsCloseIcon";
@@ -25,6 +26,11 @@ import MaterialSymbolsCloseIcon from "./MaterialSymbolsCloseIcon";
 import Eos3DotsLoadingIcon from "./Eos3DotsLoadingIcon"
 
 import UIMCheckCircleIcon from "./UIMCheckCircleIcon"
+
+
+export const MDITruckOutline = ({ color, width, height }) => {
+  return <MDITruckOutlineIcon color={color} width={width} height={height} />;
+};
 
 export const UIMCheckCircle = ({ color, width, height }) => {
   return <UIMCheckCircleIcon color={color} width={width} height={height} />;

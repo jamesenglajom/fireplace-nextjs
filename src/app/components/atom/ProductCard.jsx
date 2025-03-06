@@ -91,7 +91,7 @@ const ProductCard = ({ product }) => {
           <div className="text-xs h-[44px] ">
             STARTING AT{" "}
             <span className="text-pallete-orange font-bold text-lg">
-              ${formatPrice(parseFloat(product.price).toFixed(2))}
+              ${formatPrice(parseFloat(product.sale_price).toFixed(2))}
             </span>
           </div>
           {/* bg-blue-300 */}
