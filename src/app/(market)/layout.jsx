@@ -30,17 +30,15 @@ export const metadata = {
 export default async function MarketLayout({ children }) {
   const redisLogoKey = "admin_solana_market_logo";
   // const redisLogo = await redis.get(redisLogoKey);
-  const menuKey = keys.active_menu.value;
-  const mgetKeys = [menuKey, redisLogoKey];
-  const [active_menu, redisLogo] = await redis.mget(mgetKeys);
-  const menu = await redis.get(active_menu);
-  // console.log("active_menu", active_menu);
-  // console.log("menuuuuuuuuuuuuuuuuuuuuuussssss", menu)
+  const dafaultKey = keys.default_menu.value;
+  const themeKey = keys.theme.value;
+  const mgetKeys = [dafaultKey, redisLogoKey, themeKey];
+  const [menu, redisLogo, color] = await redis.mget(mgetKeys);
   return (
     <html lang="en">
-      <body className={`antialiased ${MontserratFont.className}`}>
+      <body className={`antialiased ${MontserratFont.className} theme-${color}`}>
         <FreeShippingBanner />
-        <div className="hidden lg:block bg-pallete-orange py-[8px] px-[30px] text-white">
+        <div className="hidden lg:block bg-theme-500 py-[8px] px-[30px] text-white">
           <div className="container mx-auto  flex items-center justify-between">
             <div className="flex justify-between w-full">
               <div className="font-light text-xs">Promotions</div>

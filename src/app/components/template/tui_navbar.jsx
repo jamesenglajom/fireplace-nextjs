@@ -155,7 +155,7 @@ export default function TuiNavbar({ logo, menu }) {
                 <div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   <ul className="flex space-x-4">
                     <li className="relative">
-                      <CartButton className="text-gray-700 hover:text-orange-500" />
+                      <CartButton className="text-gray-700 hover:text-theme-500" />
                     </li>
                     {/* <li className="relative">
                     <div className="absolute text-[7px] w-full text-white bg-stone-900 uppercase text-center top-[20%] z-[1]">
@@ -164,7 +164,7 @@ export default function TuiNavbar({ logo, menu }) {
                     <a
                       href="#"
                       className="text-gray-700 hover:text-blue-500 relative">
-                      <div className="absolute bg-pallete-orange w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
+                      <div className="absolute bg-theme-500 w-[20px] h-[20px] overflow-hidden rounded-full text-pallete-dark bottom-[60%] left-[60%] flex justify-center items-center">
                         <div className="text-[10px]">739</div>
                       </div>
                       <HeartIcon color="black" width="24" height="24" />
@@ -181,9 +181,9 @@ export default function TuiNavbar({ logo, menu }) {
                     navigation.map((i, index) => (
                       <div
                         key={`parent-nav-${index}`}
-                        className={`group py-[5px] px-[10px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center border-b hover:bg-orange-500 hover:text-white ${
+                        className={`group py-[5px] px-[10px] rounded-tl-md rounded-tr-md flex gap-[8px] items-center border-b hover:bg-theme-500 hover:text-white ${
                           i.menu.href === ParentSlug
-                            ? "text-white bg-orange-400"
+                            ? "text-white bg-theme-400"
                             : "text-pallete-dark"
                         }`}
                       >
@@ -232,7 +232,7 @@ export default function TuiNavbar({ logo, menu }) {
                                                 : "#"
                                             }`}
                                           >
-                                            <div className="text-black font-bold mb-[10px] hover-text-pallete-orange cursor-pointer">
+                                            <div className="text-black font-bold mb-[10px] hover-text-theme-500 cursor-pointer">
                                               {i2.name}
                                             </div>
                                           </Link>
@@ -254,7 +254,7 @@ export default function TuiNavbar({ logo, menu }) {
                                                       }`}
                                                       key={`${i.menu.href}-col-${index}-content-${index2}-child-${index3}`}
                                                     >
-                                                      <div className="text-black hover-text-pallete-orange cursor-pointer">
+                                                      <div className="text-black hover-text-theme-500 cursor-pointer">
                                                         {i3.name}
                                                       </div>
                                                     </Link>
@@ -274,7 +274,7 @@ export default function TuiNavbar({ logo, menu }) {
                                                       }`}
                                                       key={`${i.menu.href}-col-${index}-content-${index2}-child-${index3}`}
                                                     >
-                                                      <div className="text-black hover-text-pallete-orange cursor-pointer">
+                                                      <div className="text-black hover-text-theme-500 cursor-pointer">
                                                         {i3.name}
                                                       </div>
                                                     </Link>
@@ -288,7 +288,7 @@ export default function TuiNavbar({ logo, menu }) {
                                                   : "#"
                                               }`}
                                             >
-                                              <div className="text-black hover-text-pallete-orange cursor-pointer flex gap-[10px] items-center">
+                                              <div className="text-black hover-text-theme-500 cursor-pointer flex gap-[10px] items-center">
                                                 <Icon
                                                   icon="teenyicons:arrow-solid"
                                                   width="12"

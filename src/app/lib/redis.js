@@ -21,7 +21,15 @@ export const keys = {
   },
   logo:{
     description: "used to retreive image_url of the logo",
-    value: "solana_log"
+    value: "admin_solana_market_logo"
+  },
+  logo:{
+    description: "used to retreive image_url of the logo",
+    value: "solana_favicon"
+  },
+  theme:{
+    description: "used to retreive theme color",
+    value: "solana_theme"
   }
 }
 

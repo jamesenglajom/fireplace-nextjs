@@ -449,7 +449,7 @@ export default function TuiFilterSort({
                       onClick={() =>
                         handleShowMorePagination(pagination.current_page + 1)
                       }
-                      className={`order-1 bg-pallete-orange text-white px-[25px] py-[7px] rounded-md`}>
+                      className={`order-1 bg-theme-500 text-white px-[25px] py-[7px] rounded-md`}>
                       Show More
                     </button>
                   </div>

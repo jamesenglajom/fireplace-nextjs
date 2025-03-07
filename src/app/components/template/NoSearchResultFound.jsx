@@ -27,7 +27,7 @@ function NoSearchResultFound({ query }) {
           <Link
             href="tel:(888)%20575-9720"
             prefetch={false}
-            className="flex items-center gap-[10px] font-bold text-orange-400 text-sm md:text-base"
+            className="flex items-center gap-[10px] font-bold text-theme-400 text-sm md:text-base"
           >
             <ICRoundPhone />
             <div>(888) 575-9720</div>
@@ -43,7 +43,7 @@ function NoSearchResultFound({ query }) {
               key={`main-category-item-${i.url}`}
               prefetch={false}
               href={i.url}
-              className="flex items-center gap-[20px] hover:shadow rounded-md overflow-hidden border hover:border-orange-500 xl:w-[calc(25%-15px)] lg:w-[calc(33.3%-15px)] sm:w-[calc(50%-15px)] w-full"
+              className="flex items-center gap-[20px] hover:shadow rounded-md overflow-hidden border hover:border-theme-500 xl:w-[calc(25%-15px)] lg:w-[calc(33.3%-15px)] sm:w-[calc(50%-15px)] w-full"
             >
               <div className="relative w-[70px] h-[70px] min-w-[70px] min-h-[70px] bg-stone-100 border-stone-300 border-r">
                 {

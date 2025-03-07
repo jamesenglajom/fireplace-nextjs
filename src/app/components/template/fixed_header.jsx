@@ -64,7 +64,7 @@ export default function FixedHeader() {
               <div>
                 <ul className="flex space-x-4">
                   <li>
-                    <CartButton className="text-white hover:text-orange-500" />
+                    <CartButton className="text-white hover:text-theme-500" />
                   </li>
                 </ul>
               </div>
@@ -85,12 +85,12 @@ export default function FixedHeader() {
                   </div>
                   <div>
                     <div className="text-[0.6rem] sm:text-xs text-white font-bold">CALL FOR BEST PRICING!</div>
-                    <Link href="tel:(888)%20575-9720" prefetch={false} className="font-bold text-orange-400 hover:text-orange-300">(888) 575-9720</Link>
+                    <Link href="tel:(888)%20575-9720" prefetch={false} className="font-bold text-theme-400 hover:text-theme-300">(888) 575-9720</Link>
                   </div>
                 </div>
                 
                 <div className="flex items-center gap-[20px]">
-                  <CartButton className="text-white hover:text-orange-500" />
+                  <CartButton className="text-white hover:text-theme-500" />
                   <button onClick={scrollToTop} className="w-[60px] h-[60px] border-l flex items-center justify-center text-stone-300 hover:text-stone-100">
                     <span className="sr-only">Move to top button</span>
                     <FluentChevronUp />

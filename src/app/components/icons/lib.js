@@ -22,10 +22,15 @@ import MDITruckOutlineIcon from "./MDITruckOutlineIcon";
 
 import AkarIconsShippingV1Icon from "./AkarIconsShippingV1Icon";
 import MaterialSymbolsCloseIcon from "./MaterialSymbolsCloseIcon";
+import MSLCheckIcon from "./MSLCheckIcon";
 
 import Eos3DotsLoadingIcon from "./Eos3DotsLoadingIcon"
 
 import UIMCheckCircleIcon from "./UIMCheckCircleIcon"
+
+export const MSLCheck = ({ color, width, height }) => {
+  return <MSLCheckIcon color={color} width={width} height={height} />;
+};
 
 
 export const MDITruckOutline = ({ color, width, height }) => {

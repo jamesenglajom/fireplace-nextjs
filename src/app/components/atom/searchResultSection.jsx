@@ -51,7 +51,7 @@ function SearchResultSection({ section, onOptionSelect }) {
                 className="group hover:bg-stone-50 px-2 py-[5px]"
                 onClick={() => handleSetSearch(recent)}
               >
-                <div className="text-[14px] group-hover:text-orange-600">
+                <div className="text-[14px] group-hover:text-theme-600">
                   {recent}
                 </div>
               </div>
@@ -84,7 +84,7 @@ function SearchResultSection({ section, onOptionSelect }) {
                       )}
                   </div>
                   <div className="w-full">
-                    <div className="text-[14px] group-hover:text-orange-600">
+                    <div className="text-[14px] group-hover:text-theme-600">
                       {product.name}
                     </div>
                     <div className="text-[10px] text-gray-500 font-normal">
@@ -103,7 +103,7 @@ function SearchResultSection({ section, onOptionSelect }) {
                 href={`${BASE_URL}/${category.url}`}
               >
                 <div className="group hover:bg-stone-200 px-2 py-[5px]">
-                  <div className="text-[14px] group-hover:text-orange-600">
+                  <div className="text-[14px] group-hover:text-theme-600">
                     {category.name}
                   </div>
                   <div className="text-[10px] text-gray-500 font-normal">
@@ -121,7 +121,7 @@ function SearchResultSection({ section, onOptionSelect }) {
                 href={`${BASE_URL}/${brand.url}`}
               >
                 <div className="w-full group hover:bg-stone-200 px-2 py-[5px]">
-                  <div className="text-[14px] group-hover:text-orange-600">
+                  <div className="text-[14px] group-hover:text-theme-600">
                     {brand.name}
                   </div>
                   <div className="text-[10px] text-gray-500 font-normal">

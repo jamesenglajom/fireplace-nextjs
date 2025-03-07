@@ -56,14 +56,14 @@ export default function Hero({ data }) {
           <div className="flex-col flex lg:flex-row">
             <div className="w-full lg:w-[calc(100%-250px)] p-[20px]">
               <div className="flex flex-col gap-[20px]">
-                <div className="border-orange-500 border-l-4 text-2xl pl-3 font-bold text-stone-600">
+                <div className="border-theme-500 border-l-4 text-2xl pl-3 font-bold text-stone-600">
                   {data?.name}
                 </div>
                 <div className="text-sm text-stone-600 font-light">
                   {data?.banner?.description}
                 </div>
                 <div className="flex flex-col gap-[10px]">
-                  {/* <div className="uppercase text-xs text-orange-500">
+                  {/* <div className="uppercase text-xs text-theme-500">
                       Link &gt;
                     </div> */}
                   <hr />
@@ -73,7 +73,7 @@ export default function Hero({ data }) {
                     </div>
                     <Link
                       href={`tel:${contact}`}
-                      className="flex md:ml-[8px] text-orange-500 font-bold"
+                      className="flex md:ml-[8px] text-theme-500 font-bold"
                     >
                       <Icon
                         icon="ic:baseline-phone"
@@ -146,11 +146,11 @@ export default function Hero({ data }) {
                             />
                           </div>
                           <div
-                            className={`text-sm uppercase text-stone-600 font-bold w-[calc(100%-95px)] group-hover:text-orange-500`}
+                            className={`text-sm uppercase text-stone-600 font-bold w-[calc(100%-95px)] group-hover:text-theme-500`}
                           >
                             {i.name}
                           </div>
-                          <div className="text-stone-600 group-hover:text-orange-500">
+                          <div className="text-stone-600 group-hover:text-theme-500">
                             <Icon
                               icon="icon-park:right"
                               width="30"

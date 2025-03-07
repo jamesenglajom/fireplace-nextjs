@@ -33,7 +33,7 @@ export default function SearchPage(props) {
         <div className="flex flex-col gap-[10px] w-full pb-[100px]">
           <div>
             Results found for{" "}
-            <span className="font-bold text-orange-600">{searchQuery}</span>
+            <span className="font-bold text-theme-600">{searchQuery}</span>
           </div>
           {/* tabs */}
           <div className="flex items-center justify-evenly w-full my-[10px]">
@@ -42,7 +42,7 @@ export default function SearchPage(props) {
               searchResults
                 .filter((i) => i.label !== "Recent")
                 .map((i, idx) => (
-                  <button onClick={()=>handleTabChange(i.prop)} key={`search-page-tab-${i.prop}`} className={`text-xs p-1 sm:text-base font-medium border-b-4 w-full ${tab===i.prop?"border-orange-600":"text-stone-500"}`}>
+                  <button onClick={()=>handleTabChange(i.prop)} key={`search-page-tab-${i.prop}`} className={`text-xs p-1 sm:text-base font-medium border-b-4 w-full ${tab===i.prop?"border-theme-600":"text-stone-500"}`}>
                     {i.label} ({i.total})
                   </button>
                 ))}
@@ -63,7 +63,7 @@ export default function SearchPage(props) {
                   searchResults.find(({prop})=> prop==="category").data.length > 0 ?
                   searchResults.find(({prop})=> prop==="category").data.map(i=> 
                     <Link key={`search-page-category-item-${i.url}`} href={`${BASE_URL}/${i.url}`}>
-                      <div className="hover:text-orange-600">{i.name}</div>
+                      <div className="hover:text-theme-600">{i.name}</div>
                     </Link>
                   )
                   :
@@ -85,7 +85,7 @@ export default function SearchPage(props) {
                   searchResults.find(({prop})=> prop==="brand").data.length > 0 ?
                   searchResults.find(({prop})=> prop==="brand").data.map(i=> 
                     <Link key={`search-page-category-item-${i.url}`} href={`${BASE_URL}/${i.url}`}>
-                      <div className="hover:text-orange-600">{i.name}</div>
+                      <div className="hover:text-theme-600">{i.name}</div>
                     </Link>)
                   :
                   <div className="h-[200px] flex items-center justify-center">

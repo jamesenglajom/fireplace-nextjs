@@ -73,7 +73,7 @@ const ProductCard = ({ product }) => {
             <LoaderIcon dark={false} />
           </div>
           <OnsaleTag categories={product?.categories} />
-          <div onClick={(e)=>handleQuickViewClick(e,product)} className="absolute bottom-0 left-0 bg-pallete-orange text-white text-[12px] py-[5px] md:py-[7px] md:px-[15px] flex items-center w-full justify-center gap-[5px] invisible group-hover:visible">
+          <div onClick={(e)=>handleQuickViewClick(e,product)} className="absolute bottom-0 left-0 bg-theme-500 text-white text-[12px] py-[5px] md:py-[7px] md:px-[15px] flex items-center w-full justify-center gap-[5px] invisible group-hover:visible">
             <div className="flex justify-center">
               <div  className="font-semibold text-[0.775rem] inline-block text-center">
                 <Icon
@@ -90,7 +90,7 @@ const ProductCard = ({ product }) => {
           {/* bg-red-500 */}
           <div className="text-xs h-[44px] ">
             STARTING AT{" "}
-            <span className="text-pallete-orange font-bold text-lg">
+            <span className="text-theme-500 font-bold text-lg">
               ${formatPrice(parseFloat(product.sale_price).toFixed(2))}
             </span>
           </div>

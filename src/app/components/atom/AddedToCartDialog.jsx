@@ -105,7 +105,7 @@ function AddedToCartDialog({ data, onClose }) {
                     data ? <>
                   <div className="font-bold text-sm lg:text-xl">{addedToCartItems?.name}</div>
                   <div className="font-medium text-sm">{`$${addedToCartItems?.price}x${addedToCartItems?.count}`}</div>
-                  <div className="font-extrabold text-orange-600 text-lg lg:text-2xl text-right">{`$${addedToCartItems?.count * addedToCartItems?.price}`}</div>
+                  <div className="font-extrabold text-theme-600 text-lg lg:text-2xl text-right">{`$${addedToCartItems?.count * addedToCartItems?.price}`}</div>
                   </>:
                   <Eos3DotsLoading />
                   }
@@ -128,7 +128,7 @@ function AddedToCartDialog({ data, onClose }) {
                 <Link
                   onClick={handleGoToCartClick}
                   href={cartPageUrl}
-                  className="border border-stone-300 rounded-md py-1 px-2 text-white bg-orange-600 hover:bg-orange-500 text-sm font-medium"
+                  className="border border-stone-300 rounded-md py-1 px-2 text-white bg-theme-600 hover:bg-theme-500 text-sm font-medium"
                 >
                   Go to Cart
                 </Link>

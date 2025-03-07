@@ -49,7 +49,7 @@ const ProductSection = ({ product, loading }) => {
 
   return (
     <>
-    <div className="p-2 bg-orange-300">
+    <div className="p-2 bg-theme-300">
     <div className="container max-w-7xl px-[0px] sm:px-[20px] mx-auto flex flex-col gap-[10px]">
           <div>
             {/* <BackButton /> */}

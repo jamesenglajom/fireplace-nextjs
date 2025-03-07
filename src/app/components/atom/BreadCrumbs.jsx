@@ -50,7 +50,7 @@ function BreadCrumbs({ category }) {
             <Link
               key={`crumb-link-${idx}`}
               href={`${BASE_URL}/${i.url}`}
-              className="font-bold text-orange-500 hover:underline hover:text-orange-600 uppercase"
+              className="font-bold text-theme-500 hover:underline hover:text-theme-600 uppercase"
             >
               <div className="flex items-center">
                 <FluentChevronLeft width={20} height={20} />

@@ -107,7 +107,7 @@ function ProductQuickView({ data, onClose }) {
                     </div>
                     <div className="flex gap-[10px]">
                       <Link
-                        className="w-full border border-orange-600 text-orange-600 p-2 text-center font-semibold text-sm"
+                        className="w-full border border-theme-600 text-theme-600 p-2 text-center font-semibold text-sm"
                         href={`${BASE_URL}/product/${data.custom_url.url}`}
                         onClick={handleViewProductClick}
                       >
@@ -116,7 +116,7 @@ function ProductQuickView({ data, onClose }) {
 
                       <button
                         onClick={() => handleAddToCart(data)}
-                        className={`w-full bg-orange-600 hover:bg-orange-500 text-white p-2 font-semibold text-sm h-[38px] flex justify-center items-center ${
+                        className={`w-full bg-theme-600 hover:bg-theme-500 text-white p-2 font-semibold text-sm h-[38px] flex justify-center items-center ${
                           addToCartLoading
                             ? "pointer-events-none"
                             : "pointer-events-auto"
@@ -130,7 +130,7 @@ function ProductQuickView({ data, onClose }) {
                         )}
                       </button>
                     </div>
-                    <Link href={`tel:(888) 575-9720`} className="border text-xs p-2 flex flex-col items-center border-stone-600 hover:border-orange-600 hover:bg-orange-600 hover:text-white transition-a;; duration-300 cursor-pointer text-stone-600 font-semibold">
+                    <Link href={`tel:(888) 575-9720`} className="border text-xs p-2 flex flex-col items-center border-stone-600 hover:border-theme-600 hover:bg-theme-600 hover:text-white transition-a;; duration-300 cursor-pointer text-stone-600 font-semibold">
                       <div>Exclusive Saving Just One Call Away!</div>
                       <div>Experts Standing By (888) 575-9720</div>
                     </Link>
@@ -149,16 +149,16 @@ function ProductQuickView({ data, onClose }) {
                               <div className="text-stone-500 line-through">
                                 {formatPrice(data.price)}
                               </div>
-                              <div className="font-semibold text-base md:text-lg text-orange-600">
+                              <div className="font-semibold text-base md:text-lg text-theme-600">
                                 {formatPrice(data.sale_price)}
                               </div>
                             </div>
-                            <div className="text-lg font-semibold text-orange-600">
+                            <div className="text-lg font-semibold text-theme-600">
                               Save ${formatPrice(data.price - data.sale_price)}
                             </div>
                           </div>
                         //   :
-                        //   <div className="font-semibold text-base md:text-lg text-orange-600">
+                        //   <div className="font-semibold text-base md:text-lg text-theme-600">
                         //   {formatPrice(data.price)}
                         // </div>
                         }
@@ -166,7 +166,7 @@ function ProductQuickView({ data, onClose }) {
                       <div className="text-sm flex items-center gap-[5px] text-stone-600">
                         <AkarIconsShippingV1 width={24} height={24} />
                         <div className="text-sm text-black">
-                          Call for Open Box Availability <Link href={`tel:(888) 575-9720`} className="font-semibold text-orange-600 hover:text-orange-500" >(888) 575-9720</Link>
+                          Call for Open Box Availability <Link href={`tel:(888) 575-9720`} className="font-semibold text-theme-600 hover:text-theme-500" >(888) 575-9720</Link>
                         </div>
                       </div>
                       {

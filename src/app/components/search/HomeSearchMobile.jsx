@@ -86,7 +86,7 @@ const HomeSearchMobile = ({ main, controlled_height }) => {
         onChange={handleSearch}
       />
       <button
-        className="w-[50px] h-[50px] flex items-center justify-center bg-orange-600 hover:bg-orange-500"
+        className="w-[50px] h-[50px] flex items-center justify-center bg-theme-600 hover:bg-theme-500"
         aria-label="search-button"
         onClick={handleSearchButtonClick}
       >

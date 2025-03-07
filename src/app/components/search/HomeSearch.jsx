@@ -78,14 +78,14 @@ const HomeSearch = ({ main, controlled_height }) => {
       <input
         type="search"
         placeholder="Search..."
-        className="w-full text-sm font-normal px-[20px] py-[10px] border border-orange-400 rounded-tl-full rounded-bl-full"
+        className="w-full text-sm font-normal px-[20px] py-[10px] border border-theme-400 rounded-tl-full rounded-bl-full"
         onClick={() => setOpenSearch(true)}
         onKeyDown={handleSearchEnterKey}
         value={searchQuery}
         onChange={handleSearch}
       />
       <button
-        className="rounded-tr-full rounded-br-full bg-pallete-orange text-white font-normal text-sm px-[20px] py-[10px]"
+        className="rounded-tr-full rounded-br-full bg-theme-500 text-white font-normal text-sm px-[20px] py-[10px]"
         aria-label="search-button"
         onClick={handleSearchButtonClick}
       >

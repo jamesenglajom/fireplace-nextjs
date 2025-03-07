@@ -3,6 +3,7 @@ import {redis} from "@/app/lib/redis";
 import CardWrap from '@/app/components/admin/CardWrap'
 import LogoUpdater from '@/app/components/admin/LogoUpdater'
 import MenuUpdater from "@/app/components/admin/MenuUpdater"
+import ThemeUpdater from "@/app/components/admin/ThemeUpdater"
 
 async function AdminIndexPage() {
   const logoRedisKey = "admin_solana_market_logo";
@@ -13,7 +14,8 @@ async function AdminIndexPage() {
         <LogoUpdater logo={logo}/>
       </CardWrap>
       {/*  */}
-      <MenuUpdater></MenuUpdater>
+      <ThemeUpdater />
+      <MenuUpdater />
     </div>
   )
 }

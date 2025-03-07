@@ -113,7 +113,7 @@ export default function BraintreeForm() {
       <button
         onClick={handlePayment}
         disabled={!instance}
-        className="text-sm md:text-base mt-2 font-bold bg-orange-600 hover:bg-orange-500 text-white py-[4px] px-[10px] md:py-[7px] md:px-[25px] rounded-md w-full max-w-[250px]"
+        className="text-sm md:text-base mt-2 font-bold bg-theme-600 hover:bg-theme-500 text-white py-[4px] px-[10px] md:py-[7px] md:px-[25px] rounded-md w-full max-w-[250px]"
       >
         Pay
       </button>

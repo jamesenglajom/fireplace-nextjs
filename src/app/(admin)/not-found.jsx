@@ -10,7 +10,7 @@ export default function NotFound() {
           Not Found
         </h2>
         <p className="text-stone-500">Could not find requested resource</p>
-        <Link href="/" className="text-orange-500">
+        <Link href="/" className="text-theme-500">
           Return Home
         </Link>
       </div>

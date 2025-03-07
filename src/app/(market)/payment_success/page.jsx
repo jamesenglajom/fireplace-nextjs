@@ -17,7 +17,7 @@ function SuccessPaymentPage() {
               <div className="font-bold text-lg">Payment Successful</div>
             </div>
             <div className="sm:mb-[250px]">
-              <Link href={`tel:${contact}`} className="font-semibold hover:font-bold hover:underline text-orange-500">
+              <Link href={`tel:${contact}`} className="font-semibold hover:font-bold hover:underline text-theme-500">
                 Call Us Now { contact }
               </Link>
             </div>
