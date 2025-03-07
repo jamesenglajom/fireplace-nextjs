@@ -1,5 +1,5 @@
 import React from "react";
-
+import {MSLCheck} from "@/app/components/icons/lib"
 function TailwindColors() {
   return (
     <div>
