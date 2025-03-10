@@ -7,11 +7,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Rating } from "@smastrom/react-rating";
 import { formatPrice, stripHtmlTags } from "@/app/lib/helpers";
-import { Eos3DotsLoading, MaterialSymbolsClose } from "../icons/lib";
 import { useRouter } from "next/navigation";
 import {
   AkarIconsShippingV1,
   MDITruckOutline,
+  Eos3DotsLoading,
+  MaterialSymbolsClose
 } from "@/app/components/icons/lib";
 import { useCart } from "@/app/context/cart";
 

@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useState, useEffect, useMemo } from "react";
 import CardWrap from "@/app/components/admin/CardWrap";
+import Button from "@/app/components/admin/Button";
 import { bc_categories, solana_categories } from "@/app/lib/category-helpers";
 import MenuItem from "@/app/components/admin/MenuUpdaterBuilderItem";
 import MenuCreate from "@/app/components/admin/MenuUpdaterCreate";
@@ -27,6 +28,22 @@ function MenuUpdater() {
 
   const [scrollToSearch, setScrollToSearch] = useState("");
   const [searchList, setSearchList] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [alertToggle, setAlertToggle] = useState(false);
+  const [alertType, setAlertType] = useState(null);
+  const [alertMessage, setAlertMessage] = useState("");
+
+  const showAlertMessage = (type, message) => {
+    setAlertType(type);
+    setAlertMessage(message);
+    setAlertToggle(true);
+    setTimeout(() => {
+      setAlertToggle(false);
+      setAlertType(null);
+      setAlertMessage("");
+    }, 5000);
+  };
 
   const updateMenuList = () => {
     const queryKeys = [menuListKey, activeMenuKey];
@@ -342,23 +359,32 @@ function MenuUpdater() {
   const handleSaveMenuChanges = () => {
     // console.log("selectedMenu", selectedMenu)
     // console.log("SaveMenu", menu)
+    setIsLoading(true);
     const search = solana_categories.find(({ name }) => name === "Search");
     // console.log("Append this search", search);
     const merged = [...menu, search];
     // console.log("merged", merged);
-    redisSet(selectedMenu, merged).then((response) => {
-      // console.log("redisSet", response);
-      if (response.success) {
-        alert("Update Successful.");
-      } else {
-        alert("There is a problem saving your updates.");
-      }
-    });
+    redisSet(selectedMenu, merged)
+      .then((response) => {
+        // console.log("redisSet", response);
+        if (response.success) {
+          showAlertMessage("success", "Menu object updated successful.")
+          // console.log("handleSaveMenuChangesFNSuccess", response);
+        } else {
+          showAlertMessage("error", "Failed to update. Please try again.")
+          // console.log("handleSaveMenuChangesFNError", response);
+        }
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        // console.log("error", "CATCH:Failed to update. Please try again.")
+      });
   };
 
-  useEffect(() => {
-    console.log("menu", menu);
-  }, [menu]);
+  // useEffect(() => {
+  //   console.log("menu", menu);
+  // }, [menu]);
 
   const tmpFnSetCatId = (i) => {
     const name = i?.name;
@@ -489,7 +515,22 @@ function MenuUpdater() {
       <CardWrap>
         <div className="p-3">
           <div className="font-bold text-lg">Menu Builder</div>
-          <div className="text-sm mb-2">
+          <div className="text-sm">Don't forget to save your changes.</div>
+          <div className="flex flex-col md:flex-row gap-[10px] my-[10px] items-center justify-between">
+            <Button onClick={handleSaveMenuChanges} loading={isLoading}>
+              Save
+            </Button>
+            <div
+              className={`text-sm py-1 px-2 rounded border flex items-center ${
+                alertType === "success"
+                  ? "bg-green-200 text-green-800  border-green-400"
+                  : "bg-red-200 text-red-800  border-red-400"
+              } ${alertToggle ? "opacity-100" : "opacity-0"}`}
+            >
+              {alertMessage}
+            </div>
+          </div>
+          {/* <div className="text-sm mb-2">
             Select a menu to edit or{" "}
             <button
               disabled
@@ -524,8 +565,8 @@ function MenuUpdater() {
             >
               Set Active
             </button>
-          </div>
-          <hr className="border-t border-gray-300 my-4"></hr>
+          </div> */}
+          {/* <hr className="border-t border-gray-300 my-4"></hr> */}
           <div className="flex gap-[20px] overflow-hidden">
             {/* <div className="border rounded w-[250px] h-[calc(100vh-100px)]">
               <div className="w-full border bg-stone-300 text-xs p-2 flex items-center justify-between">
@@ -581,12 +622,12 @@ function MenuUpdater() {
             <div className="border rounded w-full">
               <div className="w-full border bg-stone-300 text-sm p-2 flex items-center justify-between">
                 <div className="font-semibold">Menu</div>
-                <button
+                {/* <button
                   onClick={handleSaveMenuChanges}
                   className="font-semibold bg-blue-600 hover:bg-blue-700 text-white cursor-pointer px-2 rounded py-1 shadow"
                 >
                   Save
-                </button>
+                </button> */}
               </div>
 
               <div className="p-1">

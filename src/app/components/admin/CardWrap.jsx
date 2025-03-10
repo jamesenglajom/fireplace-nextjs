@@ -1,5 +1,3 @@
-import React from 'react'
-
 function CardWrap({children}) {
   return (
     <div className="shadow-md rounded-md bg-white overflow-hidden">{children}</div>

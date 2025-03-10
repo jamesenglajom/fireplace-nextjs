@@ -1,5 +1,5 @@
 import "@/app/globals.css";
-import {redis, keys, redisGet} from "@/app/lib/redis";
+import { redis, keys, redisGet } from "@/app/lib/redis";
 import { Montserrat } from "next/font/google";
 // import localFont from "next/font/local";
 import FixedHeader from "@/app/components/template/fixed_header";
@@ -10,6 +10,7 @@ import { CartProvider } from "@/app/context/cart";
 import { QuickViewProvider } from "@/app/context/quickview";
 import { SearchProvider } from "@/app/context/search";
 import { FilterProvider } from "@/app/context/filter";
+import { generateMetadata } from "@/app/metadata";
 const MontserratFont = Montserrat({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -22,11 +23,16 @@ const MontserratFont = Montserrat({
 //   variable: "--font-bell",
 //   display: "swap",
 // });
-export const metadata = {
-  title: "Solana Fireplaces | Stylish Indoor & Outdoor Heating",
-  description:
-    "Transform your home with Solana Fireplaces! Add warmth and style with our wood, gas, and electric designs. Shop now and create your perfect space!",
-};
+// export const metadata = {
+//   icons:{
+//     icon: '/api/favicon'
+//   },
+//   title: "Solana Fireplaces | Stylish Indoor & Outdoor Heating",
+//   description:
+//     "Transform your home with Solana Fireplaces! Add warmth and style with our wood, gas, and electric designs. Shop now and create your perfect space!",
+// };
+
+export const metadata = await generateMetadata();
 export default async function MarketLayout({ children }) {
   const redisLogoKey = "admin_solana_market_logo";
   // const redisLogo = await redis.get(redisLogoKey);
@@ -36,7 +42,9 @@ export default async function MarketLayout({ children }) {
   const [menu, redisLogo, color] = await redis.mget(mgetKeys);
   return (
     <html lang="en">
-      <body className={`antialiased ${MontserratFont.className} theme-${color}`}>
+      <body
+        className={`antialiased ${MontserratFont.className} theme-${color}`}
+      >
         <FreeShippingBanner />
         <div className="hidden lg:block bg-theme-500 py-[8px] px-[30px] text-white">
           <div className="container mx-auto  flex items-center justify-between">
@@ -53,15 +61,13 @@ export default async function MarketLayout({ children }) {
         </div>
         <CartProvider>
           <FilterProvider>
-          <SearchProvider>
-            <TuiNavBar logo={redisLogo} menu={menu}/>
-            <FixedHeader />
-          <QuickViewProvider>
-          <div className="flex flex-col min-h-screen">
-            {children}
-          </div>
-          </QuickViewProvider>
-          </SearchProvider>
+            <SearchProvider>
+              <TuiNavBar logo={redisLogo} menu={menu} />
+              <FixedHeader />
+              <QuickViewProvider>
+                <div className="flex flex-col min-h-screen">{children}</div>
+              </QuickViewProvider>
+            </SearchProvider>
           </FilterProvider>
         </CartProvider>
         <Footer />

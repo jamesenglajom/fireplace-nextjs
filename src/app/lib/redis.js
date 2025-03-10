@@ -23,8 +23,8 @@ export const keys = {
     description: "used to retreive image_url of the logo",
     value: "admin_solana_market_logo"
   },
-  logo:{
-    description: "used to retreive image_url of the logo",
+  favicon:{
+    description: "used to retreive image_url of the favicon",
     value: "solana_favicon"
   },
   theme:{
@@ -50,9 +50,8 @@ export const redisSet = async(key, value) => {
 
 export const redisGet = async(key) =>{
   try {
-    const params = new URLSearchParams({key:key});
-    // throw new Error(`RedisGetTest ${key}: ${params}`);
-    const response = await fetch(`/api/redis?key=${key}`,{
+    const params = new URLSearchParams({"key":key});
+    const response = await fetch(`/api/redis?${params.toString()}`,{
       cache:"no-store",
     });
     if (!response.ok) {

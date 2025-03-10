@@ -49,12 +49,6 @@ export default function HomePage({ params }) {
       });
     }, [slug]);
 
-  const page_data = {
-    name: "All Products",
-    children: [],
-    banner_img: null,
-  };
-
   return (
     // <HomePageWrapper data={page_data} />
     <>

@@ -1,8 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import CardWrap from "@/app/components/admin/CardWrap";
+import Button from "@/app/components/admin/Button"
 import { MSLCheck } from "@/app/components/icons/lib";
 import { keys, redisGet, redisSet } from "@/app/lib/redis";
+
 
 const colors = [
   "red",
@@ -40,59 +42,86 @@ const colors_obj = colors.map((i) => ({
   text500: `text-${i}-500`,
 }));
 
-console.log(colors.map(i=>{
-  return `<button className="border-4 border-${i}-900">
-              <div
-                className='h-[50px] w-[50px] aspect-1 border-4 transition-all duration-500 ease-in-out bg-${i}-500 relative border-${i}-500 hover:border-${i}-900'
-              >
-                <div
-                  className='text-white bg-${i}-900 flex items-center justify-center w-[18px] h-[18px] absolute top-[-4px] right-[-4px] transition-all duration-500 ease-in-out'
-                >
-                  <MSLCheck width={15} height={15} />
-                </div>
-              </div>
-              <div
-                className='text-[8px] uppercase font-semibold text-center text-${i}-500'
-              >
-                ${i}
-                </div>
-            </button>
-          `
-}).join(""))
+// console.log(colors.map(i=>{
+//   return `<button className="border-4 border-${i}-900">
+//               <div
+//                 className='h-[50px] w-[50px] aspect-1 border-4 transition-all duration-500 ease-in-out bg-${i}-500 relative border-${i}-500 hover:border-${i}-900'
+//               >
+//                 <div
+//                   className='text-white bg-${i}-900 flex items-center justify-center w-[18px] h-[18px] absolute top-[-4px] right-[-4px] transition-all duration-500 ease-in-out'
+//                 >
+//                   <MSLCheck width={15} height={15} />
+//                 </div>
+//               </div>
+//               <div
+//                 className='text-[8px] uppercase font-semibold text-center text-${i}-500'
+//               >
+//                 ${i}
+//                 </div>
+//             </button>
+//           `
+// }).join(""))
 
-console.log(colors.map(i=> `theme-${i}`))
+// console.log(colors.map(i=> `theme-${i}`))
 
 function ThemeUpdater() {
   const [selected, setSelected] = useState(null);
   const [activeColor, setActiveColor] = useState(null);
 
+  const [alertToggle, setAlertToggle] = useState(false);
+  const [alertType, setAlertType] = useState(null);
+  const [alertMessage, setAlertMessage] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleColorChange = (color) => {
     setSelected(color);
   };
+
+  
+  const showAlertMessage = (type, message) => {
+    setAlertType(type);
+    setAlertMessage(message);
+    setAlertToggle(true);
+    setTimeout(() => {
+      setAlertToggle(false);
+      setAlertType(null);
+      setAlertMessage("");
+    }, 5000);
+  };
+
+
   const handleSaveTheme = () => {
+    setIsLoading(true);
     // save color to redis as solana_theme
     redisSet(themeKey, selected)
       .then((response) => {
-        console.log(`redisSetResponse:`, response);
         if (response.success) {
-          console.log(`redisSetSuccess`);
           setActiveColor(selected);
+          showAlertMessage("success", `Color ${selected.toUpperCase()} successfully applied to your market pages.`);
+          // console.log(`handleSaveThemeFNSuccess:`, response);
         } else {
-          console.log(`redisSetError`);
+          showAlertMessage("error", `Failed to update theme.`);
+          // console.log(`handleSaveThemeFNError:`, response);
         }
+        setIsLoading(false);
       })
-      .catch((error) => console.log(`redisSetError:`, error));
+      .catch((error) => {
+        setIsLoading(false);
+        console.log(`handleSaveThemeFNError:`, error)
+      });
   };
 
   useEffect(() => {
     redisGet(themeKey)
       .then((color) => {
-        console.log("redisGetResponse:", color);
+        // console.log("redisGetFNSuccess(theme):", color);
         setActiveColor(color);
         setSelected(color);
       })
-      .catch((error) => console.log(`redisGetError:`, error));
+      .catch((error) => console.log(`redisGetFNError(theme):`, error));
   }, []);
+
   return (
     <CardWrap>
       <div className="p-3">
@@ -129,13 +158,17 @@ function ThemeUpdater() {
             </button>
           ))}
         </div>
-        <div>
-          <button
+        <div className="mt-2 flex items-center justify-between flex-col md:flex-row gap-[10px]">
+          <Button
             onClick={handleSaveTheme}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            loading={isLoading}
           >
             Save
-          </button>
+          </Button>
+          <div
+          className={`text-sm py-1 px-2 rounded border ${alertType === 'success' ? 'bg-green-200 text-green-800  border-green-400': 'bg-red-200 text-red-800  border-red-400' } ${alertToggle ? 'opacity-100':'opacity-0'}`}>
+            {alertMessage}
+          </div>
         </div>
       </div>
     </CardWrap>
