@@ -30,19 +30,25 @@ const ProductSection = ({ product, loading }) => {
 
   useEffect(() => {
     if (productMetaFields && productMetaFields.length > 0) {
-      setProductOptions(
-        productMetaFields[0].value
+      setProductOptions(prev=>{
+        // console.log("productMetaFields",productMetaFields);
+        const product_options = productMetaFields.find(({namespace})=> namespace==="product_options"); 
+        if(!product_options){
+          return null
+        }
+        return product_options.value
           .filter((i) => i.option !== "") // remove data with empty string
           .map((i) => ({
             ...i,
-            values: i.values
+            values: i?.values ? i.values
               .filter((i2) => i2.option_label !== "") // remove data with empty string
               .map((i2, idx2) => ({
                 ...i2,
                 is_checked: i2.sku.value === product?.sku,
               }))
-              .sort((a, b) => a.option_label.localeCompare(b.option_label)),
+              .sort((a, b) => a.option_label.localeCompare(b.option_label)): i?.handle,
           }))
+      }
       );
     }
   }, [productMetaFields]);
