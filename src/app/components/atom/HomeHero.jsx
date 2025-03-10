@@ -23,7 +23,7 @@ export default function Hero({ data }) {
               fill
               loading="eager"
               priority={true}
-              sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
+              sizes="100vw"
             />
           }
           {/* <RenderBanner img={useBanner} /> */}
