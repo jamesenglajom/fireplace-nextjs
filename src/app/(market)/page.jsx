@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import MobileLoader from "@/app/components/molecule/MobileLoader";
 // home page section import in order
-import TuiHero from "@/app/components/template/tui_hero";
+import HomeHero from "@/app/components/atom/HomeHero";
 import FeatureCategoriesSection from "@/app/components/section/HomePageFeatureCategories";
 import ShopAllClearanceSection from "@/app/components/section/HomePageShopAllClearance";
 import AboutProductSection from "@/app/components/section/HomePageAboutProduct";
@@ -53,7 +53,7 @@ export default function HomePage({ params }) {
     // <HomePageWrapper data={page_data} />
     <>
       <MobileLoader />
-      <TuiHero data={pageData} />
+      <HomeHero data={pageData} />
       <FeatureCategoriesSection />
       <ShopAllClearanceSection />
       <AboutProductSection />

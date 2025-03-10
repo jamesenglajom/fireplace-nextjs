@@ -85,7 +85,7 @@ function FaviconUpdater({ favicon }) {
 
     const result = await response.json();
     if (result.success) {
-      showAlertMessage("success", "Favicon Successfully Updated, Please Reload the market page.")
+      showAlertMessage("success", "Favicon successfully updated, Please reload the market page.")
       clear();
       setIsLoading(prev=> false);
       // console.log("handleSaveFaviconFNError: ", result);
@@ -106,7 +106,7 @@ function FaviconUpdater({ favicon }) {
 
     const result = await response.json();
     if (result.success) {
-      showAlertMessage("success", "Successfully Updated to Default Favicon.")
+      showAlertMessage("success", "Successfully updated to default favicon.")
       clear();
       // console.log('handleUseDefaultFaviconFNSuccess', result);
     } else {

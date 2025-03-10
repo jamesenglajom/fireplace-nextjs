@@ -83,7 +83,7 @@ function LogoUpdater({ logo }) {
 
     const result = await response.json();
     if (result.success) {
-      showAlertMessage("success", "Logo Successfully Updated, Please Reload the market page.")
+      showAlertMessage("success", "Logo successfully updated, Please reload the market page.")
       clear();
       setIsLoading(prev=> false);
       // console.log("handleSaveLogoFNError: ", result);
@@ -104,7 +104,7 @@ function LogoUpdater({ logo }) {
 
     const result = await response.json();
     if (result.success) {
-      showAlertMessage("success", "Successfully Updated to Default Logo.")
+      showAlertMessage("success", "Successfully updated to default logo.")
       clear();
       // console.log('handleUseDefaultLogoFNSuccess', result);
     } else {
