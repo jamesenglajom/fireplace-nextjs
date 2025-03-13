@@ -4,9 +4,7 @@ import { brands } from "@/app/lib/category-helpers";
 
 function ProductCardBrandDisplay({ product }) {
   const [brand, setBrand] = useState(null);
-  if (!product) {
-    return;
-  }
+  
 
   useEffect(()=>{
     if(product){
@@ -18,7 +16,8 @@ function ProductCardBrandDisplay({ product }) {
             return _brand;
         })
     }
-  },[])
+  },[product])
+  
 
   return <div className="text-xs text-stone-500">{brand?.name}</div>;
 }
