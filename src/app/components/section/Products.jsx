@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import useFetchProducts from "../../hooks/useFetchProducts";
-import TuiFilterSort from "../template/tui_filter_sort";
+import useFetchProducts from "@/app/hooks/useFetchProducts";
+import useESFetchProducts from "@/app/hooks/useESFetchProducts";
+import TuiFilterSort from "@/app/components/template/tui_filter_sort";
 import {
   getCategoryIds,
   getCategoryFilters,
@@ -24,16 +25,16 @@ const ProductsSection = ({ category, keyword }) => {
   const searchParams = useSearchParams();
   const [onloadParams, setOnloadParams] = useState(() => {
     const params = {
-      include: "images",
+      // include: "images",
       page: 1,
       limit: isMobile ? 4 : 10,
-      "categories:in": getCategoryIds(
+      "categories": getCategoryIds(
         category,
         flatCategories,
         bccat_json
       ).join(","),
-      sort: "total_sold",
-      direction: "desc",
+      // sort: "total_sold",
+      // direction: "desc",
     };
     // handle params for price range
     const priceParams = searchParams.get("price");
@@ -59,7 +60,7 @@ const ProductsSection = ({ category, keyword }) => {
   useEffect(()=>{
     if(category==="search"){
       setProductsParams(prev=>{
-        return {...prev, keyword:keyword}
+        return {...prev, q:keyword}
       })
     }
   },[category, keyword])
@@ -72,7 +73,7 @@ const ProductsSection = ({ category, keyword }) => {
     noResult,
     error: products_error,
     refetch: productsRefetch,
-  } = useFetchProducts(productsParams);
+  } = useESFetchProducts(productsParams);
 
   useEffect(() => {
     const limit = isMobile ? 4 : 10;

@@ -50,6 +50,7 @@ function SingleProductBreadCrumbs({ product }) {
   };
 
   const crumbs = useMemo(()=>{
+    const _mappedCategories = product.categories.map(({id})=> id);
     const tmp1 = findBreadcrumbs(solana_categories
       .filter(i=> i.name.toLowerCase() !== "brands")
       .filter(i=> i.name.toLowerCase() !== "search")
@@ -70,7 +71,7 @@ function SingleProductBreadCrumbs({ product }) {
           children: i3.children
         }))
       }))
-    })), product.categories);
+    })), _mappedCategories);
     const tmp2 = findBreadcrumbs(solana_categories
       .filter(i=> i.name.toLowerCase() !== "search")
       .map(i=> ({
@@ -90,7 +91,7 @@ function SingleProductBreadCrumbs({ product }) {
           children: i3.children
         }))
       }))
-    })), product.categories);
+    })), _mappedCategories);
     return tmp1.length > 0 ? tmp1: tmp2;
   },[product])
 

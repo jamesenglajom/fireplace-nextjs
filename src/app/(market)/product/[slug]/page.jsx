@@ -1,15 +1,19 @@
 "use client";
 import ProductSection from "@/app/components/pages/product/section/product";
 import React, { useState, useEffect } from "react";
-import useFetchProducts from "@/app/hooks/useFetchProducts";
+// import useFetchProducts from "@/app/hooks/useFetchProducts";
+import useESFetchProduct from "@/app/hooks/useESFetchProduct";
 import { notFound } from "next/navigation";
 import ProductPlaceholder from "@/app/components/atom/SingleProductPlaceholder"
 export default function Product({ params }) {
-  const [product, setProduct] = useState(null);
   const { slug } = React.use(params);
-  const { products, loading, error } = useFetchProducts({
-    keyword: slug,
-    include: "images",
+  // const { products, loading, error } = useFetchProducts({
+  //   keyword: slug,
+  //   include: "images",
+  // });
+  const [product, setProduct] = useState(null);
+  const { product:fetchedProduct, loading, error } = useESFetchProduct({
+    product_url: slug,
   });
 
   useEffect(() => {
@@ -17,12 +21,14 @@ export default function Product({ params }) {
       notFound();
     }
 
-    if (!loading && products.length === 0) {
+    if (!loading && fetchedProduct === null) {
       notFound();
-    } else {
-      setProduct(products[0]);
     }
-  }, [loading, products, error]);
+
+    if(fetchedProduct && fetchedProduct.length > 0){
+      setProduct(fetchedProduct[0])
+    }
+  }, [loading, fetchedProduct, error]);
 
   if(!product && loading){
     return <ProductPlaceholder />

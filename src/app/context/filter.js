@@ -286,8 +286,8 @@ export function FilterProvider({ children }) {
   useEffect(() => {
     // get all brands related to this query
     if (Object.keys(baseQuery).length > 0) {
-      // set a variable for base products based on categories:in value
-      const baseCategories = baseQuery?.["categories:in"]
+      // set a variable for base products based on categories value
+      const baseCategories = baseQuery?.["categories"]
         .split(",")
         .map((value) => parseInt(value, 10)); // make sure this array has interger values
       const _baseProducts = products_json.filter((i) =>

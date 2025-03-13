@@ -93,7 +93,7 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
         <div className="flex flex-col px-[15px] pt-[5px] border-t">
-          <div className="text-sm line-clamp-2 font-semibold text-stone-700">
+          <div className="text-sm line-clamp-2 font-semibold text-stone-700" title={product.name}>
             {product.name}
           </div>
           <div className={`flex items-center gap-[5px]`}>

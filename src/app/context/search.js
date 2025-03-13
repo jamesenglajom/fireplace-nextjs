@@ -7,8 +7,9 @@ import React, {
   useMemo,
   useRef,
 } from "react";
-import useFetchProducts from "@/app/hooks/useFetchProducts";
-import { solana_categories, solana_brands, flatCategories, bc_categories } from "../lib/category-helpers";
+// import useFetchProducts from "@/app/hooks/useFetchProducts";
+import useESFetchProducts from "@/app/hooks/useESFetchProducts";
+import { solana_categories, solana_brands, flatCategories, bc_categories } from "@/app/lib/category-helpers";
 import { useRouter } from "next/navigation";
 import { getCategoryIds } from "@/app/lib/helpers";
 // useful console that logs keywords for all main categories
@@ -86,14 +87,13 @@ export const SearchProvider = ({ children }) => {
       .map((i) => ({ name: i.name, url: i.menu.href }));
   });
   const [brandResults, setBrandResults] = useState(solana_brands);
+
   const {
     products: productResults,
     loading,
     pagination:productPagination,
     refetch: refetchProducts,
-  } = useFetchProducts({
-    include: "images",
-  });
+  } = useESFetchProducts({sort:"name.keyword:asc"});
 
   const getSectionData = (section) => {
     switch (section) {
@@ -109,18 +109,17 @@ export const SearchProvider = ({ children }) => {
   };
 
   const setSearch = (search_string) => {
-    // console.log("setSearchFromContext", search_string);
-    const categoryIds = getCategoryIds(
-            "search",
-            flatCategories,
-            bc_categories
-          ).join(",");
     setSearchQuery(search_string);
+    const categoryIds = getCategoryIds(
+      "search",
+      flatCategories,
+      bc_categories
+    ).join(",");
     refetchProducts((prev) => {
       if (search_string === "") {
-        return { include: "images", "categories:in": categoryIds};
+        return {sort:"name.keyword:asc", categories: categoryIds};
       } else {
-        return { keyword: search_string, include: "images", "categories:in": categoryIds};
+        return { q: search_string, sort:"name.keyword:asc", categories: categoryIds};
       }
     });
     getSearchResults(search_string);
