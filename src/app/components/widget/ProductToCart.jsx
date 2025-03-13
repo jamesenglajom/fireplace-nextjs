@@ -3,11 +3,13 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Rating } from "@smastrom/react-rating";
 import { useState, useEffect } from "react";
 import { bc_categories as bccat_json } from "../../lib/category-helpers";
-import { formatPrice, getCategoryNameById } from "@/app/lib/helpers";
+import { createSlug, formatPrice, getCategoryNameById } from "@/app/lib/helpers";
 import OnsaleTag from "@/app/components/atom/SingleProductOnsaleTag";
 import Link from "next/link";
 import { useCart } from "@/app/context/cart";
 import { ICRoundPhone, AkarIconsShippingV1, Eos3DotsLoading } from "../icons/lib";
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 const ProductToCart = ({ product, loading }) => {
   const { addToCart } = useCart();
@@ -72,12 +74,18 @@ const ProductToCart = ({ product, loading }) => {
   const createItemsArray = (item, quantity) => {
     return new Array(quantity).fill(item);
   };
+
   const handleAddToCart = async(item) => {
     setATCLoading(true);
     const items = createItemsArray(item, quantity);
     const response = await addToCart(items);
     setATCLoading(false);
   };
+
+  const createBrandUrl = (brandName) => {
+    const slug_name = createSlug(brandName);
+    return `${BASE_URL}/brands-${slug_name}`;
+  }
 
   
   return (
@@ -87,8 +95,8 @@ const ProductToCart = ({ product, loading }) => {
       </div>
       <div className="">
         <div className="font-bold text-sm md:text-lg">{productData?.name}</div>
-        <div className="text-stone-400 text-xs md:text-sm">
-          {productData?.sku}
+        <div className="text-stone-400 text-xs md:text-sm uppercase">
+          <Link prefetch={false} href={createBrandUrl(productData?.brand?.name)}>{productData?.brand?.name + " "}</Link>&#9679; SKU: {productData?.sku}
         </div>
       </div>
       <div className="flex items-center">
