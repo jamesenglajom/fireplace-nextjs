@@ -5,6 +5,16 @@
 @import "@smastrom/react-rating/style.css";
 
 @layer base {
+  h1 {
+    @apply text-2xl font-bold;
+  }
+  h2 {
+    @apply text-xl font-bold;
+  }
+  h3 {
+    @apply text-lg font-bold;
+  }
+  
   :root {
     --theme-primary-50: oklch(0.98 0.016 73.684);
     --theme-primary-100: oklch(0.954 0.038 75.164);

@@ -28,10 +28,43 @@ import Eos3DotsLoadingIcon from "./Eos3DotsLoadingIcon"
 
 import UIMCheckCircleIcon from "./UIMCheckCircleIcon"
 
+
+
+
+import IMBoldIcon from "./IMBoldIcon"
+import IMItalicIcon from "./IMItalicIcon"
+import GIH1Icon from "./GIH1Icon"
+import MSH1Icon from "./MSH1Icon"
+
+
+
+export const GIH1 = ({ color, width, height }) => {
+  return <GIH1Icon color={color} width={width} height={height} />;
+};
+
+export const MSH1 = ({ color, width, height }) => {
+  return <MSH1Icon color={color} width={width} height={height} />;
+};
+
+
+
+
+
+export const IMItalic = ({ color, width, height }) => {
+  return <IMItalicIcon color={color} width={width} height={height} />;
+};
+
+export const IMBold = ({ color, width, height }) => {
+  return <IMBoldIcon color={color} width={width} height={height} />;
+};
+
+
+
+
+
 export const MSLCheck = ({ color, width, height }) => {
   return <MSLCheckIcon color={color} width={width} height={height} />;
 };
-
 
 export const MDITruckOutline = ({ color, width, height }) => {
   return <MDITruckOutlineIcon color={color} width={width} height={height} />;

@@ -10,11 +10,39 @@ export default async function handler(req, res) {
       await redis.set(key, JSON.stringify(value)); // Store as JSON
       res.status(200).json({ success: true, message: `Saved successfully` });
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          error: `failed to write data to redis. req: ${JSON.stringify(req)}`,
-        });
+      res.status(500).json({
+        error: `failed to write data to redis. req: ${JSON.stringify(req)}`,
+      });
+    }
+  } else if (req.method === "PUT") {
+    // PUT for writing value in redis
+    try {
+      const data = req.body;
+    
+      // Convert nulls to empty strings
+      const sanitizedData = Object.fromEntries(
+        Object.entries(data).map(([key, value]) => [key, value ?? ""])
+      );
+    
+      console.log("Attempting to save:", sanitizedData);
+    
+      // Save to Redis (corrected)
+      await redis.mset(sanitizedData);
+    
+      // Read back to verify
+      const storedValues = await redis.mget(...Object.keys(sanitizedData));
+    
+      console.log("Saved values in Redis:", storedValues);
+    
+      res.json({
+        success: true,
+        message: "Saved successfully",
+        saved: storedValues,
+        params: sanitizedData,
+      });
+    } catch (error) {
+      console.error("Redis Error:", error);
+      res.status(500).json({ success: false, error: error.message });
     }
   } else if (req.method === "GET") {
     try {
@@ -24,10 +52,10 @@ export default async function handler(req, res) {
 
       let data = null;
       const mkey = key.split(",");
-      if(mkey.length > 1){
+      if (mkey.length > 1) {
         // if key is an array use mget to get multiple values
         data = await redis.mget(mkey);
-      }else{
+      } else {
         data = await redis.get(key);
       }
 

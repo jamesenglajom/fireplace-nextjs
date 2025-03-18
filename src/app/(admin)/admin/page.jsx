@@ -4,6 +4,7 @@ import FavidonUpdater from '@/app/components/admin/FaviconUpdater'
 import LogoUpdater from '@/app/components/admin/LogoUpdater'
 import MenuUpdater from "@/app/components/admin/MenuUpdater"
 import ThemeUpdater from "@/app/components/admin/ThemeUpdater"
+import FaqsUpdater from "@/app/components/admin/FaqsUpdater"
 
 async function AdminIndexPage() {
   const logoRedisKey = keys.logo.value;
@@ -14,6 +15,7 @@ async function AdminIndexPage() {
       <FavidonUpdater favicon={favicon}/>
       <LogoUpdater logo={logo}/>
       <ThemeUpdater />
+      <FaqsUpdater />
       <MenuUpdater />
     </div>
   )

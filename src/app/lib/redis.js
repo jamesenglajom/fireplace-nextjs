@@ -30,6 +30,22 @@ export const keys = {
   theme:{
     description: "used to retreive theme color",
     value: "solana_theme"
+  },
+  faqs_about_solana:{
+    description: "section faqs about solana on single product page",
+    value: "solana_faqs_about_solana"
+  },
+  faqs_shipping_policy:{
+    description: "section faqs shipping policy on single product page",
+    value: "solana_faqs_shipping_policy"
+  },
+  faqs_return_policy:{
+    description: "section faqs return policy on single product page",
+    value: "solana_faqs_return_policy"
+  },
+  faqs_warranty:{
+    description: "section faqs warranty on single product page",
+    value: "solana_faqs_warranty"
   }
 }
 
@@ -37,14 +53,26 @@ export const keys = {
 export const redisSet = async(key, value) => {
   try{
     const response = await fetch("/api/redis", {
-      cache:"no-store",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ key, value }),
     });
     return await response.json();
   }catch(error){
-    console.log(`RedisGetError: ${error}`);
+    console.log(`RedisSetError: ${error}`);
+  }
+}
+
+export const redisMultiSet = async(obj) => {
+  try{
+    const response = await fetch("/api/redis", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(obj),
+    });
+    return await response.json();
+  }catch(error){
+    console.log(`RedisMultiSetError: ${error}`);
   }
 }
 

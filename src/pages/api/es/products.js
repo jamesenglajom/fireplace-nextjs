@@ -76,27 +76,47 @@ export default async function handler(req, res) {
         : body.categories;
 
     const new_body = {
-      query: {
-        bool: {
-          filter: [
+      "query": {
+        "bool": {
+          "filter": [
             {
-              nested: {
-                path: "categories",
-                query: {
-                  bool: {
-                    should: categories.map((i) => ({
+              "nested": {
+                "path": "categories",
+                "query": {
+                  "bool": {
+                    "should": categories.map((i) => ({
                       match: { "categories.id": i },
                     })),
-                    minimum_should_match: 1,
-                  },
-                },
-              },
-            },
-          ],
+                    "minimum_should_match": 1
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "aggs": {
+        "unique_brands": {
+          "terms": {
+            "field": "brand.name.keyword",  
+            "size": 1000
+          }
         },
+        "price_ranges": {
+          "range": {
+            "field": "price",
+            "ranges": [
+              { "key": "Under $99", "from": 1, "to": 99 },
+              { "key": "$100 - $499", "from": 100, "to": 499 },
+              { "key": "$500 - $999", "from": 500, "to": 999 },
+              { "key": "$1,000 - $,2400", "from": 1000, "to": 2499 },
+              { "key": "$2500 - $4999", "from": 2500, "to": 4999 },
+              { "key": "$5000 - $200,000", "from": 5000, "to": 200000 }
+            ]
+          }
+        }
       },
     };
-
     // insert sort property
     if (body?.sort) {
       new_body.sort = body.sort.split(",").map((i) => {
