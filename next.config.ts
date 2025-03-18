@@ -1,7 +1,7 @@
 
 module.exports = {
   images: {
-    domains: ['cdn11.bigcommerce.com', 'onsite-cdn.sfo3.cdn.digitaloceanspaces.com'],
+    domains: ['cdn11.bigcommerce.com', 'onsite-cdn.sfo3.cdn.digitaloceanspaces.com', "bbq-spaces.sfo3.digitaloceanspaces.com"],
   },
   // async headers() {
   //   return [
