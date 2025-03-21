@@ -1,4 +1,4 @@
-'use client'
+
 import SearchFilter from "@/app/filter/SearchFilter"
 
 function SearchKitPage() {

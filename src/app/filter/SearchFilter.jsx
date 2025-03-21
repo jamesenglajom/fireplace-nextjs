@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import ReactDOM from "react-dom";
 import Client from "@searchkit/instantsearch-client";
@@ -8,7 +9,7 @@ import { InstantSearch, SearchBox, Hits, RefinementList } from "react-instantsea
 // This is the configuration for Searchkit, specifying the fields to attributes used for search, facets, etc.
 const sk = new Searchkit({
   connection: {
-    host: "http://164.92.65.4:9200",
+    host: "https://solanafireplaces.com/es",
     // cloud_id: "my-cloud-id" // if using Elastic Cloud
     // if you're authenticating with username/password
     // https://www.searchkit.co/docs/guides/setup-elasticsearch#connecting-with-usernamepassword
@@ -18,7 +19,7 @@ const sk = new Searchkit({
     //},
     // if you're authenticating with api key
     // https://www.searchkit.co/docs/guides/setup-elasticsearch#connecting-with-api-key
-     apiKey: "bigcommerce_products"
+     apiKey: "eHgtQWI1VUI0Nm1Xbl9IdGNfRG46bFZqUjQtMzJRN3kzdllmVjVDemNHdw=="
   },
   search_settings: {
     search_attributes: ['name'],
