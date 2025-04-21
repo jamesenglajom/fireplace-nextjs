@@ -11,8 +11,8 @@ function Extra() {
     <section className="my-[20px]">
       <div className="container mx-auto">
         <div className="flex items-center">
-          {labels.map((label) => (
-            <div className="w-full flex flex-col justify-center items-center">
+          {labels.map((label, index) => (
+            <div key={label+"-"+index} className="w-full flex flex-col justify-center items-center">
               <div className="w-[200px] border aspect-1 center bg-zinc-100"></div>
               <div className="uppercase h-[48px] text-center">{label}</div>
             </div>
