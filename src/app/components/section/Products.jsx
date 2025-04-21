@@ -36,14 +36,14 @@ const ProductsSection = ({ category, keyword }) => {
     return result;
   };
 
-  console.log("solana_categories", solana_categories);
-  console.log("flattened solana_categories", flattenCategories(solana_categories));
-  console.log("bccat_json", bccat_json)
-  console.log("category_ids", getCategoryIds(
-    category,
-    flattenCategories(solana_categories),
-    bccat_json
-  ).join(","));
+  // console.log("solana_categories", solana_categories);
+  // console.log("flattened solana_categories", flattenCategories(solana_categories));
+  // console.log("bccat_json", bccat_json)
+  // console.log("category_ids", getCategoryIds(
+  //   category,
+  //   flattenCategories(solana_categories),
+  //   bccat_json
+  // ).join(","));
   const {filters, initFilters} = useFilter();
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const searchParams = useSearchParams();

@@ -4,7 +4,7 @@ import { createContext, useContext, useMemo } from "react";
 const CategoriesContext = createContext([]);
 
 export function CategoriesProvider({ categories, children }) {
-    console.log("from context categories", categories)
+    // console.log("from context categories", categories)
 
     const flattenCategories = (categories, flatArray = []) =>  {
       categories.forEach(category => {
