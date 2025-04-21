@@ -18,7 +18,7 @@ import {
 import Client from "@searchkit/instantsearch-client";
 
 const searchClient = Client({
-  url: "/api/es/searchkit",
+  url: "/api/es/searchkit", // This is the backend API endpoint
 });
 
 const HitView = (props) => {
@@ -62,6 +62,9 @@ const QueryRulesBanner = () => {
 };
 
 export default function Web() {
+  // Frontend filter you want to apply
+  const filters = "categories.id:34"; // Apply filter for category with ID 34
+
   return (
     <div className="">
       <InstantSearch
@@ -69,16 +72,17 @@ export default function Web() {
         searchClient={searchClient}
         routing
       >
-        <Configure hitsPerPage={15} filters={"category_page:34"} />
+        {/* Pass filters to Configure widget */}
+        <Configure
+          hitsPerPage={15}
+          filters={filters}  // Filters passed here
+        />
         <div className="container">
           <div className="search-panel">
             <div className="search-panel__filters">
               <DynamicWidgets facets={["*"]}>
                 <Panel header="brand">
-                  <RefinementList
-                    attribute="brand"
-                    searchable
-                  />
+                  <RefinementList attribute="brand" searchable />
                 </Panel>
                 <Panel header="price">
                   <RangeInput attribute="price" />
