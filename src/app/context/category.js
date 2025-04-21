@@ -27,9 +27,15 @@ export function CategoriesProvider({ categories, children }) {
     const flatCategories = useMemo(()=>{
       const _flatCategories =  flattenCategories(categories);
       return _flatCategories;
-    }, [categories])
+    }, [categories]);
+
+    const price_hidden_categories = useMemo(()=>{
+      const _flatCategories =  flattenCategories(categories);
+      const hidden_cats = _flatCategories.filter(category => category.price_visibility === "hide");
+      return hidden_cats.map(({category_id})=> category_id);
+    },[categories])
   return (
-    <CategoriesContext.Provider value={{categories, solana_categories, flatCategories}}>
+    <CategoriesContext.Provider value={{categories, solana_categories, flatCategories, price_hidden_categories}}>
       {children}
     </CategoriesContext.Provider>
   );

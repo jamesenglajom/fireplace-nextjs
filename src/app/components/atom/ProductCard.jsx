@@ -11,8 +11,13 @@ import BrandDisplay from "@/app/components/atom/ProductCardBrandDisplay";
 import PriceDisplay from "@/app/components/atom/ProductCardPriceDisplay";
 import { ICRoundPhone } from "../icons/lib";
 import { useQuickView } from "@/app/context/quickview";
+import { useSolanaCategories } from "@/app/context/category";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const ProductCard = ({ product }) => {
+  const { price_hidden_categories } = useSolanaCategories();
+  console.log("price_hidden_categories",price_hidden_categories);
+  console.log("product_categories", price_hidden_categories);
+
   const { viewItem } = useQuickView();
   const [thumbnail, setThumbnail] = useState(null);
   useEffect(() => {
@@ -111,7 +116,11 @@ const ProductCard = ({ product }) => {
             <BrandDisplay product={product}/>
           </div>
           <div className="mt-3">
-            <PriceDisplay product={product}/>
+            {
+              price_hidden_categories.some(id => product?.categories.some(cat => cat.id === id)) ?
+              // display no price
+              <div className="font-medium text-[14px] text-stone-700">Contact us for pricing.</div>:<PriceDisplay product={product}/>
+            }
           </div>
           <div className="flex  h-[48px] items-center">
             <div className=" flex-wrap flex flex-col md:flex-row md:items-center justify-between gap-[5px]">
@@ -162,7 +171,12 @@ const ProductCard = ({ product }) => {
           </div>
 
           <div className="text-xs my-[5px] text-blue-500 flex items-center cursor-default gap-[7px] flex-wrap">
-            Found It Cheaper?{" "}
+            {
+              price_hidden_categories.some(id => product?.categories.some(cat => cat.id === id)) ?
+              <>Call for Price{" "}</>
+              :
+              <>Found It Cheaper?{" "}</>
+            }
             <div
               onClick={triggerCall}
               className="hover:underline flex items-center gap-[3px] cursor-pointer"
