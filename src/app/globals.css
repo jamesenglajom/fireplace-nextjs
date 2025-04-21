@@ -610,6 +610,7 @@ input[type="checkbox"].market:checked::before {
   width:calc(100% - var(--pfd-filter-nav-width));
 }
 
+
 ol.ais-Hits-list {
   display: flex;
   gap: var(--pfd-product-grid-gap);

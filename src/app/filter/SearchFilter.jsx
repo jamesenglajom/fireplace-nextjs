@@ -26,7 +26,7 @@ const searchClient = Client({
 
 const Panel = ({ header, children }) => (
   <div className="panel">
-    <h5>{header}</h5>
+    <h5 className="my-3">{header}</h5>
     {children}
   </div>
 )
@@ -60,17 +60,23 @@ export default function Web() {
           <div className="search-panel flex">
             <div className="search-panel__filters  pfd-filter-section">
               <DynamicWidgets facets={['*']}>
-                <Panel header="brand">
-                  <RefinementList attribute="brand" searchable />
-                </Panel>
+                <div className="my-5">
                 <Panel header="Categories">
                   <HierarchicalMenu
                     attributes={['categories']}
                   />
                 </Panel>
+                </div>
+                <div className="my-5">
+                  <Panel header="brand">
+                    <RefinementList attribute="brand" searchable />
+                  </Panel>
+                </div>
+                <div className="my-5">
                 <Panel header="price">
                   <RangeInput attribute="price" />
                 </Panel>
+                </div>
               </DynamicWidgets>
             </div>
             <div className="search-panel__results pfd-product-section">
