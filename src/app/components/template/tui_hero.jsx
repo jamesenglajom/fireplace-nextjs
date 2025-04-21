@@ -40,12 +40,12 @@ export default function Hero({ data }) {
             <div className="text-center flex justify-center">
               <div className="px-[20px] py-[7px]">
                 <div>
-                  <div className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
+                  <h1 className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
                     {data?.banner?.title}
-                  </div>
-                  <div className="text-xs md:text-base text-balance mt-1 tracking-wide text-white text-shadow-lg">
+                  </h1>
+                  <h2 className="text-xs md:text-base text-balance mt-1 tracking-wide text-white text-shadow-lg">
                     {data?.banner?.tag_line}
-                  </div>
+                  </h2>
                 </div>
               </div>
             </div>
@@ -55,9 +55,9 @@ export default function Hero({ data }) {
           <div className="flex-col flex lg:flex-row">
             <div className="w-full lg:w-[calc(100%-250px)] p-[20px]">
               <div className="flex flex-col gap-[20px]">
-                <div className="border-theme-500 border-l-4 text-2xl pl-3 font-bold text-stone-600">
+                {/* <div className="border-theme-500 border-l-4 text-2xl pl-3 font-bold text-stone-600">
                   {data?.name}
-                </div>
+                </div> */}
                 <div className="text-sm text-stone-600 font-light">
                   {data?.banner?.description}
                 </div>

@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import CardWrap from "@/app/components/admin/CardWrap";
 import Button from "@/app/components/admin/Button";
 import { bc_categories, solana_categories } from "@/app/lib/category-helpers";
+import aira_cat from "@/app/data/nav-obj-updated.json";
 import MenuItem from "@/app/components/admin/MenuUpdaterBuilderItemV2";
 import MenuCreate from "@/app/components/admin/MenuUpdaterCreate";
 import { generateId } from "@/app/lib/helpers";
@@ -412,11 +413,12 @@ function MenuUpdater() {
   useEffect(() => {
     updateMenuList();
 
-    redisGet(defaultMenuKey).then((data) => {
-      // setMenu(data.filter(({ name }) => name !== "Search").map(item=> ({...item, meta_title:"", meta_description:"", price_visibility:"show"})));  // map and add additional properties 
-      setMenu(data.filter(({ name }) => name !== "Search"));
-      setSearchList(flattenMenu(data.filter(({ name }) => name !== "Search")));
-    });
+    setMenu(aira_cat.filter(({ name }) => name !== "Search").map(item=> ({...item, meta_title:"", meta_description:"", price_visibility:"show"})))
+    // redisGet(defaultMenuKey).then((data) => {
+    //   // setMenu(data.filter(({ name }) => name !== "Search").map(item=> ({...item, meta_title:"", meta_description:"", price_visibility:"show"})));  // map and add additional properties 
+    //   setMenu(data.filter(({ name }) => name !== "Search"));
+    //   setSearchList(flattenMenu(data.filter(({ name }) => name !== "Search")));
+    // });
 
     // this commented code displays menu from json file
     // const mappedSolanaCategories = solana_categories
