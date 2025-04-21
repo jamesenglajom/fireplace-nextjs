@@ -121,6 +121,10 @@ function MenuUpdater() {
       children: [],
       path: i.url.path,
       key_words: [i.url.path],
+      price_visibility: "show",
+      // meta
+      meta_title:"",
+      meta_description:"",
       // content
       banner: {
         img: {
@@ -408,101 +412,102 @@ function MenuUpdater() {
   useEffect(() => {
     updateMenuList();
 
-    // redisGet(defaultMenuKey).then((data) => {
-    //   setMenu(data.filter(({ name }) => name !== "Search"));
-    //   setSearchList(flattenMenu(data.filter(({ name }) => name !== "Search")));
-    // });
+    redisGet(defaultMenuKey).then((data) => {
+      // setMenu(data.filter(({ name }) => name !== "Search").map(item=> ({...item, meta_title:"", meta_description:"", price_visibility:"show"})));  // map and add additional properties 
+      setMenu(data.filter(({ name }) => name !== "Search"));
+      setSearchList(flattenMenu(data.filter(({ name }) => name !== "Search")));
+    });
 
     // this commented code displays menu from json file
-    const mappedSolanaCategories = solana_categories
-      .filter((i) => i.name !== "Search")
-      .map((i) => {
-        const parent_menu_id = i.name === "Home" ? "home_page" : generateId();
-        return {
-          banner: i?.banner ?? {
-            title: null,
-            tag_line: null,
-            description: null,
-            contact: null,
-            img: {
-              src: null,
-              alt: null,
-            },
-          },
+    // const mappedSolanaCategories = solana_categories
+    //   .filter((i) => i.name !== "Search")
+    //   .map((i) => {
+    //     const parent_menu_id = i.name === "Home" ? "home_page" : generateId();
+    //     return {
+    //       banner: i?.banner ?? {
+    //         title: null,
+    //         tag_line: null,
+    //         description: null,
+    //         contact: null,
+    //         img: {
+    //           src: null,
+    //           alt: null,
+    //         },
+    //       },
 
-          category_id: tmpFnSetCatId(i),
-          menu_id: parent_menu_id,
-          name: i.name,
-          // order:
-          origin_name: i?.name === "Home" ? "Home" : i?.name,
-          origin_url: "",
-          page_contact_number: null,
-          parent_cat_id: i?.parent_id ?? "",
-          parent_id: "",
-          path: i?.path ?? "",
-          url: i?.url,
-          menu: i?.menu,
-          children: i.children.map((i1) => {
-            const child_menu_id = generateId();
-            return {
-              banner: i1?.banner ?? {
-                title: null,
-                tag_line: null,
-                description: null,
-                contact: null,
-                img: {
-                  src: null,
-                  alt: null,
-                },
-              },
+    //       category_id: tmpFnSetCatId(i),
+    //       menu_id: parent_menu_id,
+    //       name: i.name,
+    //       // order:
+    //       origin_name: i?.name === "Home" ? "Home" : i?.name,
+    //       origin_url: "",
+    //       page_contact_number: null,
+    //       parent_cat_id: i?.parent_id ?? "",
+    //       parent_id: "",
+    //       path: i?.path ?? "",
+    //       url: i?.url,
+    //       menu: i?.menu,
+    //       children: i.children.map((i1) => {
+    //         const child_menu_id = generateId();
+    //         return {
+    //           banner: i1?.banner ?? {
+    //             title: null,
+    //             tag_line: null,
+    //             description: null,
+    //             contact: null,
+    //             img: {
+    //               src: null,
+    //               alt: null,
+    //             },
+    //           },
 
-              category_id: tmpFnSetCatId(i1),
-              menu_id: child_menu_id,
-              name: i1.name,
-              // order:
-              origin_name: i1?.name === "Home" ? "Home" : i1?.name,
-              origin_url: "",
-              page_contact_number: null,
-              parent_cat_id: i1?.parent_id ?? "",
-              parent_id: parent_menu_id,
-              path: i1?.path ?? "",
-              url: i1?.url,
-              menu: i1?.menu,
-              children: i1.children.map((i2) => {
-                const grand_child_menu_id = generateId();
-                return {
-                  banner: i2?.banner ?? {
-                    title: null,
-                    tag_line: null,
-                    description: null,
-                    contact: null,
-                    img: {
-                      src: null,
-                      alt: null,
-                    },
-                  },
+    //           category_id: tmpFnSetCatId(i1),
+    //           menu_id: child_menu_id,
+    //           name: i1.name,
+    //           // order:
+    //           origin_name: i1?.name === "Home" ? "Home" : i1?.name,
+    //           origin_url: "",
+    //           page_contact_number: null,
+    //           parent_cat_id: i1?.parent_id ?? "",
+    //           parent_id: parent_menu_id,
+    //           path: i1?.path ?? "",
+    //           url: i1?.url,
+    //           menu: i1?.menu,
+    //           children: i1.children.map((i2) => {
+    //             const grand_child_menu_id = generateId();
+    //             return {
+    //               banner: i2?.banner ?? {
+    //                 title: null,
+    //                 tag_line: null,
+    //                 description: null,
+    //                 contact: null,
+    //                 img: {
+    //                   src: null,
+    //                   alt: null,
+    //                 },
+    //               },
 
-                  category_id: tmpFnSetCatId(i2),
-                  menu_id: grand_child_menu_id,
-                  name: i2.name,
-                  // order:
-                  origin_name: i2?.name === "Home" ? "Home" : i2?.name,
-                  origin_url: "",
-                  page_contact_number: null,
-                  parent_cat_id: i2?.parent_id ?? "",
-                  parent_id: child_menu_id,
-                  path: i2?.path ?? "",
-                  url: i2?.url,
-                  menu: i2?.menu,
-                  children: i2.children,
-                };
-              }),
-            };
-          }),
-        };
-      });
-    setMenu(mappedSolanaCategories);
-    setSearchList(flattenMenu(mappedSolanaCategories));
+    //               category_id: tmpFnSetCatId(i2),
+    //               menu_id: grand_child_menu_id,
+    //               name: i2.name,
+    //               // order:
+    //               origin_name: i2?.name === "Home" ? "Home" : i2?.name,
+    //               origin_url: "",
+    //               page_contact_number: null,
+    //               parent_cat_id: i2?.parent_id ?? "",
+    //               parent_id: child_menu_id,
+    //               path: i2?.path ?? "",
+    //               url: i2?.url,
+    //               menu: i2?.menu,
+    //               children: i2.children,
+    //             };
+    //           }),
+    //         };
+    //       }),
+    //     };
+    //   });
+    // setMenu(mappedSolanaCategories);
+    // setSearchList(flattenMenu(mappedSolanaCategories));
 
     // console.log("solana_categoriesFlat", mappedSolanaCategories);
   }, []);

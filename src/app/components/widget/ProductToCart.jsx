@@ -9,27 +9,40 @@ import Link from "next/link";
 import { useCart } from "@/app/context/cart";
 import { ICRoundPhone, AkarIconsShippingV1, Eos3DotsLoading } from "../icons/lib";
 
+import { useSolanaCategories } from "@/app/context/category";
+
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 const ProductToCart = ({ product, loading }) => {
+  const { flatCategories } = useSolanaCategories();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [ATCLoading, setATCLoading] = useState(false);
   const [filteredCategoryIds, setFilteredCategoryIds] = useState([]);
+  const [showPrice, setShowPrice] = useState(true);
 
   useEffect(() => {
+    // if (product?.categories.length > 0) {
+    //   let filterCat = [];
+    //   product.categories.forEach((v, i) => {
+    //     const cat_name = getCategoryNameById(v, bccat_json);
+    //     if (
+    //       cat_name !== undefined &&
+    //       !cat_name.toLowerCase().includes("shop all")
+    //     ) {
+    //       filterCat.push(v);
+    //     }
+    //   });
+    //   setFilteredCategoryIds(filterCat);
+    // }
+
+    // hide or show price
     if (product?.categories.length > 0) {
-      let filterCat = [];
       product.categories.forEach((v, i) => {
-        const cat_name = getCategoryNameById(v, bccat_json);
-        if (
-          cat_name !== undefined &&
-          !cat_name.toLowerCase().includes("shop all")
-        ) {
-          filterCat.push(v);
-        }
+        console.log(`product category ${v.id} - ${v.name}`)
       });
-      setFilteredCategoryIds(filterCat);
+    }else{
+      setShowPrice(false);
     }
   }, [product]);
 

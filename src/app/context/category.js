@@ -21,7 +21,7 @@ export function CategoriesProvider({ categories, children }) {
     }
     
     const solana_categories = useMemo(()=>{
-        return categories;
+        return categories.map(item=> ({...item, key_words:[item.path]}));
     },[categories]);
 
     const flatCategories = useMemo(()=>{
