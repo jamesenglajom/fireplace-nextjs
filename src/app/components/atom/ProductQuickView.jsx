@@ -123,9 +123,12 @@ function ProductQuickView({ data, onClose }) {
                             ? "pointer-events-none"
                             : "pointer-events-auto"
                         }`}
-                        disabled={addToCartLoading || price_hidden_categories.some((id) =>
-                          data?.categories.some((cat) => cat.id === id)
-                        )}
+                        disabled={
+                          addToCartLoading ||
+                          price_hidden_categories.some((id) =>
+                            data?.categories.some((cat) => cat.id === id)
+                          )
+                        }
                       >
                         {addToCartLoading ? (
                           <Eos3DotsLoading width={52} height={52} />
@@ -148,27 +151,31 @@ function ProductQuickView({ data, onClose }) {
                         {data?.name}
                       </div>
                       <div className="">
-                        <div className="text-xs font-semibold">Price</div>
                         {price_hidden_categories.some((id) =>
                           data?.categories.some((cat) => cat.id === id)
                         ) ? (
                           <div className="font-medium text-[14px] text-stone-700">
                             Contact us for pricing.
                           </div>
-                        ) : (data.sale_price !== 0 && data.sale_price < data.price) ? (
-                          <div>
-                            <div className="flex gap-[10px] items-center">
-                              <div className="text-stone-500 line-through">
-                                {formatPrice(data.price)}
+                        ) : data.sale_price !== 0 &&
+                          data.sale_price < data.price ? (
+                          <>
+                            <div className="text-xs font-semibold">Price</div>
+                            <div>
+                              <div className="flex gap-[10px] items-center">
+                                <div className="text-stone-500 line-through">
+                                  {formatPrice(data.price)}
+                                </div>
+                                <div className="font-semibold text-base md:text-lg text-theme-600">
+                                  {formatPrice(data.sale_price)}
+                                </div>
                               </div>
-                              <div className="font-semibold text-base md:text-lg text-theme-600">
-                                {formatPrice(data.sale_price)}
+                              <div className="text-lg font-semibold text-theme-600">
+                                Save $
+                                {formatPrice(data.price - data.sale_price)}
                               </div>
                             </div>
-                            <div className="text-lg font-semibold text-theme-600">
-                              Save ${formatPrice(data.price - data.sale_price)}
-                            </div>
-                          </div>
+                          </>
                         ) : (
                           <div className="font-semibold text-base md:text-lg text-theme-600">
                             ${formatPrice(data.price)}

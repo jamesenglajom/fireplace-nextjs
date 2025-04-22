@@ -16,7 +16,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 const ProductCard = ({ product }) => {
   const { price_hidden_categories } = useSolanaCategories();
   console.log("price_hidden_categories",price_hidden_categories);
-  console.log("product_categories", price_hidden_categories);
+  console.log("product_categories", product?.categories);
 
   const { viewItem } = useQuickView();
   const [thumbnail, setThumbnail] = useState(null);

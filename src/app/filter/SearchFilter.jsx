@@ -1,7 +1,6 @@
-'use client'
+"use client";
 
-import ProductCard from '@/app/components/atom/ProductCardV2'
-
+import ProductCard from "@/app/components/atom/ProductCardV2";
 import {
   InstantSearch,
   SearchBox,
@@ -16,25 +15,25 @@ import {
   Configure,
   DynamicWidgets,
   RangeInput,
-  useQueryRules
-} from 'react-instantsearch'
-import Client from '@searchkit/instantsearch-client'
+  useQueryRules,
+} from "react-instantsearch";
+import Client from "@searchkit/instantsearch-client";
 
 const searchClient = Client({
-  url: '/api/es/searchkit'
-})
+  url: "/api/es/searchkit",
+});
 
 const Panel = ({ header, children }) => (
   <div className="panel">
     <h5 className="my-3">{header}</h5>
     {children}
   </div>
-)
+);
 
 const QueryRulesBanner = () => {
-  const { items } = useQueryRules({})
+  const { items } = useQueryRules({});
   if (items.length === 0) {
-    return null
+    return null;
   }
 
   return (
@@ -48,34 +47,36 @@ const QueryRulesBanner = () => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 export default function Web() {
   return (
     <div className="">
-      <InstantSearch indexName="bigcommerce_products" searchClient={searchClient} routing>
-        <Configure hitsPerPage={15}/>
+      <InstantSearch
+        indexName="bigcommerce_products"
+        searchClient={searchClient}
+        routing
+      >
+        <Configure hitsPerPage={15} filters="category_page:148"/>
         <div className="container">
           <div className="search-panel flex">
             <div className="search-panel__filters  pfd-filter-section">
-              <DynamicWidgets facets={['*']}>
-                <div className="my-5">
-                <Panel header="Categories">
-                  <HierarchicalMenu
-                    attributes={['categories']}
-                  />
-                </Panel>
-                </div>
+              <DynamicWidgets facets={["*"]}>
+                {/* <div className="my-5">
+                  <Panel header="Categories">
+                    <HierarchicalMenu attributes={["categories"]} />
+                  </Panel>
+                </div> */}
                 <div className="my-5">
                   <Panel header="brand">
                     <RefinementList attribute="brand" searchable />
                   </Panel>
                 </div>
                 <div className="my-5">
-                <Panel header="price">
-                  <RangeInput attribute="price" />
-                </Panel>
+                  <Panel header="price">
+                    <RangeInput attribute="price" />
+                  </Panel>
                 </div>
               </DynamicWidgets>
             </div>
@@ -95,5 +96,5 @@ export default function Web() {
         </div>
       </InstantSearch>
     </div>
-  )
+  );
 }

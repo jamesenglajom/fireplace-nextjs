@@ -58,7 +58,7 @@ export default function Hero({ data }) {
                 {/* <div className="border-theme-500 border-l-4 text-2xl pl-3 font-bold text-stone-600">
                   {data?.name}
                 </div> */}
-                <div className="text-sm text-stone-600 font-light">
+                <div className="text-sm text-stone-600 font-light lg:text-lg">
                   {data?.banner?.description}
                 </div>
                 <div className="flex flex-col gap-[10px]">
@@ -66,19 +66,17 @@ export default function Hero({ data }) {
                       Link &gt;
                     </div> */}
                   <hr />
-                  <div className="text-xs flex flex-col md:flex-row">
+                  <div className="text-xs flex flex-col md:flex-row  lg:text-lg">
                     <div className="font-bold text-stone-500">
                       Further Questions? ASK AN EXPERT!
                     </div>
                     <Link
                       href={`tel:${contact}`}
-                      className="flex md:ml-[8px] text-theme-500 font-bold"
+                      className="flex md:ml-[8px] text-theme-500 font-bold items-center"
                     >
                       <Icon
                         icon="ic:baseline-phone"
                         className=" mr-[3px]"
-                        width="15"
-                        height="15"
                       />
                       {contact}
                     </Link>

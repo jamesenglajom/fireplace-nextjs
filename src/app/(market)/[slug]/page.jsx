@@ -34,7 +34,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function GenericCategoryPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const menuData = await redis.get(defaultMenuKey);
   const flatData = flattenNav(menuData);
   const pageData = getPageData(slug, flatData);
