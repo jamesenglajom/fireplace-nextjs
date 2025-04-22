@@ -54,7 +54,7 @@ export default function Web() {
   return (
     <div className="">
       <InstantSearch
-        indexName="bigcommerce_products"
+        indexName="bigcommerce_products_3"
         searchClient={searchClient}
         routing
       >

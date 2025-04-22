@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   console.log(filter_price_range);
   const ESURL = "http://164.92.65.4:9200";
   // const ESShard = "bigcommerce_products";
-  const ESShard = "bigcommerce_products";
+  const ESShard = "bigcommerce_products_3";
   const ESApiKey =
     "apiKey eHgtQWI1VUI0Nm1Xbl9IdGNfRG46bFZqUjQtMzJRN3kzdllmVjVDemNHdw==";
 
