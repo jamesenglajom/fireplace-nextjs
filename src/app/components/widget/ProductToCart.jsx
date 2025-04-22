@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Rating } from "@smastrom/react-rating";
 import { useState, useEffect } from "react";
 import { bc_categories as bccat_json } from "../../lib/category-helpers";
+import FicDropDown from "@/app/components/atom/FicDropDown";
 import {
   createSlug,
   formatPrice,
@@ -251,6 +252,7 @@ const ProductToCart = ({ product, loading }) => {
           </div>
         </>
       }
+      <FicDropDown>
       <div className="text-blue-500 text-sm my-[5px] flex items-center gap-[7px]">
         {
           price_hidden_categories.some(id => productData?.categories.some(cat => cat.id === id)) ?
@@ -258,13 +260,13 @@ const ProductToCart = ({ product, loading }) => {
           :
           <>Found It Cheaper?{" "}</>
         }
-        <Link
-          href="tel:(888)%205759720"
+        <div
           className="hover:underline flex gap-[3px]"
         >
           <ICRoundPhone width={20} height={20} /> (888) 575-9720
-        </Link>
+        </div>
       </div>
+      </FicDropDown>
       <div className="flex  flex-col md:flex-row md:items-center gap-[10px] md:gap-[25px]">
         <div className="flex items-center font-bold gap-[8px]">
           <div>

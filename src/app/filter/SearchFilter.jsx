@@ -1,6 +1,7 @@
 "use client";
 
 import ProductCard from "@/app/components/atom/ProductCardV2";
+import FicDropDown from "@/app/components/atom/FicDropDown";
 import {
   InstantSearch,
   SearchBox,
@@ -53,6 +54,11 @@ const QueryRulesBanner = () => {
 export default function Web() {
   return (
     <div className="">
+      <div>
+      <FicDropDown>
+        <div>Fic fo</div>
+      </FicDropDown>
+      </div>
       <InstantSearch
         indexName="bigcommerce_products_3"
         searchClient={searchClient}
