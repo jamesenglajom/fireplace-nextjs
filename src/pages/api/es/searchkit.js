@@ -88,50 +88,8 @@ const apiClient = API({
     ],
     facet_attributes: [
       { attribute: "brand", field: "brand.name.keyword", type: "string" },
-      // { attribute: 'categories', field: 'categories.name.keyword', type: 'string' },
+      { attribute: 'categories', field: 'name.keyword', type: 'string', nestedPath:"categories" },
       { attribute: "price", field: "price", type: "numeric" },
-    ],
-    filter_attributes: [
-      // {
-      //   attribute: "category_page",
-      //   field: "categories.id",
-      //   type: "string",
-      //   filterQuery: (field, value) => {
-      //     const values = value.split(" OR ");
-      //     return {
-      //       nested: {
-      //         path: "categories",
-      //         query: {
-      //           bool: {
-      //             should: [{ term: { "categories.id": "148" } }],
-      //             minimum_should_match: 1
-      //           }
-      //         }
-      //       }
-      //     };
-      //   },
-      // },
-      {
-        attribute: 'category_page',
-        field: 'categories.id',
-        type: 'string',
-        filterQuery: (field, value) => {
-          const values = value.split(' OR ');
-          return {
-            nested: {
-              path: 'categories',
-              query: {
-                bool: {
-                  should: values.map((v) => ({
-                    match: { [field]: v }
-                  })),
-                  minimum_should_match: 1
-                }
-              }
-            }
-          };
-        }
-      }
     ],
   },
 });
@@ -145,23 +103,7 @@ export default async function handler(req, res) {
   try {
     const data = req.body;
     console.log("data", data);
-    const results = await apiClient.handleRequest(data, {
-      getBaseFilters: () => {
-        return [
-          {
-            bool: {
-              must_not: [
-                {
-                  term: {
-                    "categories.id": 32,
-                  },
-                },
-              ],
-            },
-          },
-        ];
-      },
-    });
+    const results = await apiClient.handleRequest(data);
     res.status(200).json(results);
   } catch (err) {
     console.error("Searchkit Error:", err);

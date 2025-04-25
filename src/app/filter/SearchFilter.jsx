@@ -64,7 +64,7 @@ export default function Web() {
         searchClient={searchClient}
         routing
       >
-        <Configure hitsPerPage={15} filters="category_page:148"/>
+        <Configure hitsPerPage={15} facetFilters={["categories:Uncategorized"]}/>
         <div className="container">
           <div className="search-panel flex">
             <div className="search-panel__filters  pfd-filter-section">
