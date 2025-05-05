@@ -11,6 +11,12 @@ const questions = [
   },
 ];
 
+const feat_image = [
+  { src: "/images/grandeur/at-grandeur-1.webp", title: "", alt: "" },
+  { src: "/images/grandeur/at-grandeur-2.webp", title: "", alt: "" },
+  { src: "/images/grandeur/at-grandeur-3.webp", title: "", alt: "" },
+];
+
 function AtBrand() {
   return (
     <>
@@ -35,24 +41,15 @@ function AtBrand() {
 
           {/* 3 col images */}
           <div className="flex gap-[50px] items-center">
-            <div
-              className="w-full aspect-1 bg-zinc-300 h-full bg-cover bg-center bg-no-repeat shadow-lg"
-              style={{
-                backgroundImage: "url('/images/banner/bbq-banner.webp')",
-              }}
-            ></div>
-            <div
-              className="w-full aspect-1 bg-zinc-300 h-full bg-cover bg-center bg-no-repeat shadow-lg"
-              style={{
-                backgroundImage: "url('/images/banner/bbq-banner.webp')",
-              }}
-            ></div>
-            <div
-              className="w-full aspect-1 bg-zinc-300 h-full bg-cover bg-center bg-no-repeat shadow-lg"
-              style={{
-                backgroundImage: "url('/images/banner/bbq-banner.webp')",
-              }}
-            ></div>
+            {feat_image.map((image, index) => (
+              <div
+                key={`feat-img-${index}`}
+                className="w-full aspect-1 bg-zinc-300 h-full bg-cover bg-center bg-no-repeat shadow-lg"
+                style={{
+                  backgroundImage: `url('${image.src}')`,
+                }}
+              ></div>
+            ))}
           </div>
 
           <div className="mt-[30px] font-bold text-lg w-full text-center">
@@ -67,7 +64,10 @@ function AtBrand() {
         <div className="container mx-auto py-[40px] flex items-center gap-[50px]">
           <div className="w-[60%] text-2xl flex flex-col gap-[50px]">
             {questions.map((item, index) => (
-              <div key={`atbrand-q-and-a-${index}`} className="flex flex-col gap-[30px]">
+              <div
+                key={`atbrand-q-and-a-${index}`}
+                className="flex flex-col gap-[30px]"
+              >
                 <div className="font-bold">{item.q}</div>
                 <div>{item.a}</div>
               </div>
@@ -75,7 +75,10 @@ function AtBrand() {
           </div>
           <div
             className="w-[40%] aspect-1 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('/images/banner/bbq-banner.webp')" }}
+            style={{
+              backgroundImage:
+                "url('/images/grandeur/freestanding-grill.webp')",
+            }}
           ></div>
         </div>
       </section>

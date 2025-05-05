@@ -12,7 +12,7 @@ function NewsLetter() {
                       <div className="absolute left-[15px] text-neutral-600">
                         <MDIEmailOutline />
                       </div>
-                      <input  className="w-full rounded-full p-3 pl-[50px]" type="text" placeholder='Entery your email address' />
+                      <input  className="w-full rounded-full p-3 pl-[50px]" type="text" placeholder='Enter your email address' />
                     </div>
                     <button className="w-full rounded-full p-3 bg-white text-black font-bold">Subscribe to Newsletter</button>
                 </div>

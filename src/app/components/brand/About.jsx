@@ -16,7 +16,7 @@ function About() {
             <div
               className="w-full h-full bg-no-repeat bg-cover bg-center relative shadow-lg"
               style={{
-                backgroundImage: "url('/images/banner/bbq-banner.webp')",
+                backgroundImage: "url('/images/grandeur/built-in-grills.webp')",
               }}
             >
               <div className="text-white bg-orange-600 px-5 py-3 inline-block absolute bottom-[10%] right-0 font-bold">BUILT-IN GRILLS</div>
@@ -26,7 +26,7 @@ function About() {
             <div
               className="w-full h-[70%] bg-no-repeat bg-cover bg-center relative shadow-lg"
               style={{
-                backgroundImage: "url('/images/banner/bbq-banner.webp')",
+                backgroundImage: "url('/images/grandeur/outdoor-storage.webp')",
               }}
             >
               <div className="text-white bg-orange-600 px-5 py-3 inline-block absolute bottom-[10%] right-0 font-bold">OUTDOOR STORAGE</div>
@@ -34,7 +34,7 @@ function About() {
             <div
               className="w-full h-[30%] bg-no-repeat bg-cover bg-center relative shadow-lg"
               style={{
-                backgroundImage: "url('/images/banner/bbq-banner.webp')",
+                backgroundImage: "url('/images/grandeur/outdoor-kitchen.webp')",
               }}
             >
               <div className="text-white bg-orange-600 px-5 py-3 inline-block absolute bottom-[10%] right-0 font-bold">MORE ON OUTDOOR KITCHEN</div>

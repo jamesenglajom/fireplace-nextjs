@@ -10,8 +10,8 @@ function Hero() {
     <section>
       <div className="container mx-auto">
         <div
-          className="w-full h-[calc(100vh-4rem)] flex items-center justify-center bg-cover bg-center relative p-[20px] rounded-2xl bg-no-repeat max-h-[899px] min-h-[340px]"
-          style={{ backgroundImage: "url('/images/banner/bbq-banner.webp')" }}
+          className="w-full h-[calc(100vh-170px)] flex items-center justify-center bg-cover bg-center relative p-[20px] rounded-2xl bg-no-repeat max-h-[899px] min-h-[340px]"
+          style={{ backgroundImage: "url('/images/grandeur/grandeur-banner.webp')" }}
         >
           <div className="absolute bg-orange-600 right-[20px] py-[30px] px-[25px] shadow-2xl w-[500px] text-white">
             <div className="font-bold text-4xl">{title}</div>

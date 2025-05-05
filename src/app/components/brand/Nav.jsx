@@ -5,7 +5,7 @@ function Nav() {
       <div className="flex gap-[20px] items-center">
         <div className="w-[390px] h-[150px] p-3 flex items-center justify-center relative">
           <Image
-            src="/images/grandeur/grandeur-logo.webp"
+            src="/images/grandeur/grandeur-logo-1.webp"
             alt="Grandeur Logo"
             fill
             className="object-contain"

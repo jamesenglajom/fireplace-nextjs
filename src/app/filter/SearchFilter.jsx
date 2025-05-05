@@ -55,23 +55,28 @@ export default function Web() {
   return (
     <div className="">
       <div>
-      <FicDropDown>
-        <div>Fic fo</div>
-      </FicDropDown>
+        <FicDropDown>
+          <div>Fic fo</div>
+        </FicDropDown>
       </div>
       <InstantSearch
         indexName="bigcommerce_products_3"
         searchClient={searchClient}
         routing
       >
-        <Configure hitsPerPage={15} facetFilters={["categories:Uncategorized"]}/>
+        <Configure hitsPerPage={15} facetFilters={["categories:Fireplaces"]}/>
         <div className="container">
           <div className="search-panel flex">
             <div className="search-panel__filters  pfd-filter-section">
               <DynamicWidgets facets={["*"]}>
                 {/* <div className="my-5">
                   <Panel header="Categories">
-                    <HierarchicalMenu attributes={["categories"]} />
+                    <RefinementList
+                      attribute="categories"
+                      defaultRefinement={["Fireplaces"]}
+                      searchable={false}
+                      transformItems={() => []}
+                    />
                   </Panel>
                 </div> */}
                 <div className="my-5">

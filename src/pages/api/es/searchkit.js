@@ -92,7 +92,7 @@ const apiClient = API({
       { attribute: "price", field: "price", type: "numeric" },
     ],
   },
-});
+}, { debug: true });
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {

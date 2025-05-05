@@ -39,7 +39,7 @@ function Reviews({ label }) {
   return (
     <section className="my-[20px]">
       <div className="container mx-auto flex justify-center flex-col items-center">
-        <div className="font-extrabold text-5xl py-[100px]">{label}</div>
+        <div className="font-extrabold text-5xl pt-[100px] pb-[50px] uppercase">{label}</div>
         {/* review cards */}
         <div className="w-full">
           <Carousel breakpoints={items_per_break_point}>
