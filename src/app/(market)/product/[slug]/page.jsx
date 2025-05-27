@@ -7,10 +7,6 @@ import { notFound } from "next/navigation";
 import ProductPlaceholder from "@/app/components/atom/SingleProductPlaceholder"
 export default function Product({ params }) {
   const { slug } = React.use(params);
-  // const { products, loading, error } = useFetchProducts({
-  //   keyword: slug,
-  //   include: "images",
-  // });
   const [product, setProduct] = useState(null);
   const { product:fetchedProduct, loading, error } = useESFetchProduct({
     product_url: slug,

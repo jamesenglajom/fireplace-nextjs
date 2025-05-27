@@ -21,6 +21,7 @@ const ProductCard = ({ product }) => {
   console.log("product_categories", product?.categories);
 
   const { viewItem } = useQuickView();
+  
   const [thumbnail, setThumbnail] = useState(null);
   useEffect(() => {
     if (product) {

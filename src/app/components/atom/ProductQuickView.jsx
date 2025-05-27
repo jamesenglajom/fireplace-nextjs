@@ -35,7 +35,7 @@ function ProductQuickView({ data, onClose }) {
     if (data) {
       console.log("data", data);
       const thumbnail =
-        data?.images?.find(({ is_thumbnail }) => is_thumbnail)?.url_standard ??
+        data?.images?.find(({ position }) => position===1)?.src ??
         null;
 
       setImage(thumbnail);
@@ -93,14 +93,20 @@ function ProductQuickView({ data, onClose }) {
               {data && (
                 <div className="flex flex-col lg:flex-row relative">
                   <div className="top-[10px] left-0 absolute z-[1]">
-                    <OnsaleTag categories={data.categories} />
+                    {/* <OnsaleTag categories={data.categories} /> */}
+                    {
+                      data?.variants && Array.isArray(data.variants) && data.variants.length > 0 && data.variants?.[0]?.price < data.variants?.[0]?.compare_at_price &&   
+                      <div className="absolute bottom-[60px] left-0 rounded-r-full bg-theme-500 text-white text-[12px] font-bold py-[7px] px-[15px]">
+                        ONSALE
+                      </div>
+                    }
                   </div>
                   <div className="w-full lg:w-[40%] p-[5px] flex flex-col gap-[10px] pb-5">
                     <div className="aspect-w-2 aspect-h-1 lg:aspect-w-1 lg:aspect-h-1 relative rounded-md overflow-hidden">
                       {image && (
                         <Image
                           src={image}
-                          alt={data?.name}
+                          alt={data?.title}
                           objectFit="contain"
                           objectPosition="center"
                           fill
@@ -110,7 +116,7 @@ function ProductQuickView({ data, onClose }) {
                     <div className="flex gap-[10px]">
                       <Link
                         className="w-full border border-theme-600 text-theme-600 p-2 text-center font-semibold text-sm"
-                        href={`${BASE_URL}/product/${data.custom_url.url}`}
+                        href={`${BASE_URL}/product/${data?.url}`}
                         onClick={handleViewProductClick}
                       >
                         View Item
@@ -123,10 +129,16 @@ function ProductQuickView({ data, onClose }) {
                             ? "pointer-events-none"
                             : "pointer-events-auto"
                         }`}
+                        // disabled={
+                        //   addToCartLoading ||
+                        //   price_hidden_categories.some((id) =>
+                        //     data?.categories.some((cat) => cat.id === id)
+                        //   )
+                        // }
                         disabled={
                           addToCartLoading ||
-                          price_hidden_categories.some((id) =>
-                            data?.categories.some((cat) => cat.id === id)
+                          price_hidden_categories.some((name) =>
+                            data?.product_category.some(({category_name}) => category_name === name)
                           )
                         }
                       >
@@ -148,11 +160,43 @@ function ProductQuickView({ data, onClose }) {
                   <div className="w-full lg:w-[60%] p-[10px]">
                     <div className="flex flex-col gap-[15px] lg:min-h-[340px] mb-5">
                       <div className="font-semibold text-base mt-[20px]">
-                        {data?.name}
+                        {data?.title}
                       </div>
                       <div className="">
-                        {price_hidden_categories.some((id) =>
+                        {/* {price_hidden_categories.some((id) =>
                           data?.categories.some((cat) => cat.id === id)
+                        ) ? (
+                          <div className="font-medium text-[14px] text-stone-700">
+                            Contact us for pricing.
+                          </div>
+                        ) : data.sale_price !== 0 &&
+                          data.sale_price < data.price ? (
+                          <>
+                            <div className="text-xs font-semibold">Price</div>
+                            <div>
+                              <div className="flex gap-[10px] items-center">
+                                <div className="text-stone-500 line-through">
+                                  {formatPrice(data.price)}
+                                </div>
+                                <div className="font-semibold text-base md:text-lg text-theme-600">
+                                  {formatPrice(data.sale_price)}
+                                </div>
+                              </div>
+                              <div className="text-lg font-semibold text-theme-600">
+                                Save $
+                                {formatPrice(data.price - data.sale_price)}
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <div className="font-semibold text-base md:text-lg text-theme-600">
+                            ${formatPrice(data.price)}
+                          </div>
+                        )} */}
+
+                        
+                        {price_hidden_categories.some((name) =>
+                          data?.product_category.some(({category_name}) => category_name === name)
                         ) ? (
                           <div className="font-medium text-[14px] text-stone-700">
                             Contact us for pricing.
@@ -205,12 +249,12 @@ function ProductQuickView({ data, onClose }) {
                       <div className="">
                         <div className="text-xs font-semibold">Description</div>
                         <div className="line-clamp-3 text-sm leading-relaxed">
-                          {stripHtmlTags(data.description)}
+                          {stripHtmlTags(data.body_html)}
                         </div>
 
                         <Link
                           className="text-[10px] text-blue-600 font-semibold"
-                          href={`${BASE_URL}/product/${data.custom_url.url}`}
+                          href={`${BASE_URL}/product/${data?.url}`}
                           onClick={handleViewProductClick}
                         >
                           Read More

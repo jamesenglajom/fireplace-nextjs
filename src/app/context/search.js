@@ -86,7 +86,7 @@ export const SearchProvider = ({ children }) => {
   const [categoryResults, setCategoryResults] = useState(() => {
     return solana_categories
       .filter((i) => i.searchable === true)
-      .map((i) => ({ name: i.name, url: i.menu.href }));
+      .map((i) => ({ name: i.name, url: i.url }));
   });
   const [brandResults, setBrandResults] = useState(solana_brands);
 
