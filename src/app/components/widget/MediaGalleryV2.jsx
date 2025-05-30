@@ -1,8 +1,10 @@
+// Shopify Structure Component
+
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 
-const MediaGallery = ({ mediaItems, loading }) => {
+const MediaGallery = ({ mediaItems }) => {
   const [activeIndex, setActiveIndex] = useState(0); // Track active media item
   const [activeItem, setActiveItem] = useState(null); // Track active media item
   const containerRef = useRef(null);
@@ -13,7 +15,6 @@ const MediaGallery = ({ mediaItems, loading }) => {
   const [mobileGalleryOverflow, setMobileGalleryOverflow] = useState(false);
   
   useEffect(() => {
-    console.log("updateWidths");
     const updateWidths = () => {
       const screenWidth = window.innerWidth;
       setIsSmallScreen(screenWidth < 641); // Track if screen is below 640px

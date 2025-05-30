@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import useESFetchProductShopify from "@/app/hooks/useESFetchProductShopify";
 import { notFound } from "next/navigation";
 import ProductPlaceholder from "@/app/components/atom/SingleProductPlaceholder";
+import MediaGallery from "@/app/components/widget/MediaGalleryV2";
 export default function ShopifySolanaProduct({ params }) {
   const { slug } = React.use(params);
 
@@ -49,9 +50,26 @@ export default function ShopifySolanaProduct({ params }) {
     );
   };
 
+
   return (
     <div className="min-h-screen">
-      {product && <JsonViewer product={product} loading={loading} />}
+      {/* {product && <JsonViewer product={product} loading={loading} />} */}
+      <div className="p-2 bg-theme-300">
+        <div className="container max-w-7xl px-[0px] sm:px-[20px] mx-auto flex flex-col gap-[10px]">
+          <div className="uppercase font-bold">
+            {/* <BackButton /> */}
+            {/* <BreadCrumbs product={product} /> */}
+            Component BreadCrumbs Need Update
+          </div>
+        </div>
+      </div>
+      <div className="p-4">
+        <div className="container max-w-7xl px-[0px] sm:px-[20px] mx-auto flex flex-col lg:flex-row gap-[0px] lg:gap-[40px] py-[20px]">
+          <div className="w-full relative">
+            <MediaGallery mediaItems={product?.images} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
