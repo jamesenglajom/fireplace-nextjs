@@ -7,6 +7,8 @@ import { useSolanaCategories } from "@/app/context/category";
 import FicDropDown from "@/app/components/atom/FicDropDown";
 import Link from "next/link";
 import { useQuickView } from "@/app/context/quickview";
+import { formatPrice } from "@/app/lib/helpers";
+
 import {
   InstantSearch,
   SearchBox,
@@ -74,6 +76,23 @@ const JsonViewer = ({ hit }) => {
     </pre>
   );
 };
+
+const ProductCardPriceDisplay = ({ price_details }) => {
+  if (!price_details) {
+    return;
+  }
+  if (price_details?.price > 0 && price_details?.compare_at_price > price_details?.price) {
+    return <div className="text-sm flex flex-wrap gap-[5px]">
+        <div className="flex gap-[5px]">
+            <div className="text-theme-500 font-semibold">${formatPrice(price_details.price)}</div>
+            <div className="line-through text-stone-400">${formatPrice(price_details.compare_at_price)}</div>
+        </div>
+        <div className="text-green-600  font-semibold">Save ${formatPrice(price_details.compare_at_price - price_details.price)}</div>
+    </div>
+  } else {
+    return <div className="text-sm font-semibold">${formatPrice(price_details.price)}</div>;
+  }
+}
 
 const SPProductCard = ({ hit }) => {
   const { viewItem } = useQuickView();
@@ -159,10 +178,7 @@ const SPProductCard = ({ hit }) => {
                 Contact us for pricing.
               </div>
             ) : (
-              <div>
-                <div>Price: {hit.variants[0].price}</div>
-                <div>BasePrice: {hit.variants[0]?.compare_at_price}</div>
-              </div>
+              <ProductCardPriceDisplay price_details={hit?.variants?.[0]} />
             )}
           </div>
           <FicDropDown>

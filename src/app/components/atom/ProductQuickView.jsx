@@ -201,28 +201,29 @@ function ProductQuickView({ data, onClose }) {
                           <div className="font-medium text-[14px] text-stone-700">
                             Contact us for pricing.
                           </div>
-                        ) : data.sale_price !== 0 &&
-                          data.sale_price < data.price ? (
+                        ) : data?.variants?.[0]?.compare_at_price &&
+                        data?.variants?.[0]?.price &&
+                          data?.variants?.[0]?.compare_at_price > data?.variants?.[0]?.price ? (
                           <>
                             <div className="text-xs font-semibold">Price</div>
                             <div>
                               <div className="flex gap-[10px] items-center">
                                 <div className="text-stone-500 line-through">
-                                  {formatPrice(data.price)}
+                                  {formatPrice(data?.variants?.[0]?.compare_at_price)}
                                 </div>
                                 <div className="font-semibold text-base md:text-lg text-theme-600">
-                                  {formatPrice(data.sale_price)}
+                                  {formatPrice(data?.variants?.[0]?.price)}
                                 </div>
                               </div>
                               <div className="text-lg font-semibold text-theme-600">
                                 Save $
-                                {formatPrice(data.price - data.sale_price)}
+                                {formatPrice(data?.variants?.[0]?.compare_at_price - data?.variants?.[0]?.price)}
                               </div>
                             </div>
                           </>
                         ) : (
                           <div className="font-semibold text-base md:text-lg text-theme-600">
-                            ${formatPrice(data.price)}
+                            ${formatPrice(data?.variants?.[0]?.price)}
                           </div>
                         )}
                       </div>
