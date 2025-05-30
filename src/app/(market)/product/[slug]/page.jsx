@@ -20,13 +20,17 @@ export default function Product({ params }) {
     product: fetchedProduct,
     loading,
     error,
-  } = shopify_structure
-    ? useESFetchProductShopify({
+  } = useESFetchProductShopify({
         handle: slug,
-      })
-    : useESFetchProduct({
-        product_url: slug,
       });
+
+  // const {
+  //   product: fetchedProduct,
+  //   loading,
+  //   error,
+  // } = useESFetchProduct({
+  //       product_url: slug,
+  //     });
 
   useEffect(() => {
     if (error) {
