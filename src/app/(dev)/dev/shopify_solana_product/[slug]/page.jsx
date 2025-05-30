@@ -6,6 +6,7 @@ import useESFetchProductShopify from "@/app/hooks/useESFetchProductShopify";
 import { notFound } from "next/navigation";
 import ProductPlaceholder from "@/app/components/atom/SingleProductPlaceholder";
 import MediaGallery from "@/app/components/widget/MediaGalleryV2";
+import ProductToCart from "@/app/components/widget/ProductToCartV2";
 export default function ShopifySolanaProduct({ params }) {
   const { slug } = React.use(params);
 
@@ -67,6 +68,48 @@ export default function ShopifySolanaProduct({ params }) {
         <div className="container max-w-7xl px-[0px] sm:px-[20px] mx-auto flex flex-col lg:flex-row gap-[0px] lg:gap-[40px] py-[20px]">
           <div className="w-full relative">
             <MediaGallery mediaItems={product?.images} />
+          </div>
+          <div className="w-full">
+            <ProductToCart product={product} loading={loading} />
+            <div className="py-[30px] flex flex-col gap-[15px]">
+              {/* product options */}
+              {/* commented code because property metafield was changed */}
+              {/* {productOptions && productOptions.length > 0 && (
+                <div className="flex flex-col gap-[15px]">
+                  <div className="font-bold text-sm lg:text-lg">Options</div>
+                  <div className="border">
+                    {productOptions.map((item, idx) => (
+                      <div
+                        key={`product-option-${idx}`}
+                        className="flex flex-col gap-[10px]"
+                      >
+                        <div className="font-medium text-xs lg:text-sm px-4 py-1 bg-stone-300 text-black">
+                          {item.option}
+                        </div>
+                        <div className="flex items-center gap-[10px] p-1 pb-3">
+                          {item?.values &&
+                            item.values.map((item2, idx2) => (
+                              <Link
+                                key={`product-option-${idx}-value-${idx2}`}
+                                href={`${BASE_URL}/product/${item2.sku.link}`}
+                              >
+                                <ProductOption option={item2} />
+                              </Link>
+                            ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )} */}
+              {/* Category */}
+              <div>
+                <div className="font-bold text-sm lg:text-lg mb-[15px]">
+                  Category
+                </div>
+                {/* <CategoryChips categories={product?.categories} /> */}
+              </div>
+            </div>
           </div>
         </div>
       </div>

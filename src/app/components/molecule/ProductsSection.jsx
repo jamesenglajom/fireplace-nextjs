@@ -107,7 +107,7 @@ const SPProductCard = ({ hit }) => {
   return (
     <Link
       prefetch={false}
-      href={`/dev/shopify_solana_product/${hit.handle}`}
+      href={`/product/${hit.handle}`}
       // onClick={handleProductItemClick}
       className="flex w-full h-full bg-white overflow-hidden rounded-md border duration-500  hover:shadow-xl pb-[8px] hover:border-stone-700 group"
     >
