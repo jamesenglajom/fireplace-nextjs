@@ -81,7 +81,7 @@ const MediaGallery = ({ mediaItems }) => {
                   }`}
                 >
                   <Image
-                    src={item.url_thumbnail}
+                    src={item.src}
                     alt={`Thumbnail ${index}`}
                     className={`cursor-pointer hover:opacity-100 transition duration-300`}
                     objectFit="contain"
@@ -95,7 +95,7 @@ const MediaGallery = ({ mediaItems }) => {
         <div className="order-1 sm:order-2w-full h-full sm:w-[calc(100%-110px)] bg-white relative overflow-hidden border shadow">
           {activeItem && (
             <Image
-              src={activeItem?.url_standard}
+              src={activeItem?.src}
               alt="Product"
               className="w-full"
               objectFit="contain"
