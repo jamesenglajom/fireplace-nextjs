@@ -13,9 +13,11 @@ import MediaGallery from "@/app/components/widget/MediaGalleryV2";
 import ProductToCart from "@/app/components/widget/ProductToCartV2";
 import ProductMetaTabs from "@/app/components/product/meta/Tabs";
 import { createSlug, formatPrice } from "@/app/lib/helpers";
+import { useSolanaCategories } from "@/app/context/category";
 
 export default function Product({ params }) {
   const { slug } = React.use(params);
+  const { getProductCategories } = useSolanaCategories();
   const [product, setProduct] = useState(null);
   const {
     product: fetchedProduct,
@@ -52,16 +54,20 @@ export default function Product({ params }) {
   }
 
   const CategoryChips = ({categories}) => {
+    if(!categories){
+      return;
+    }
+    const [localCategories, setCategories] = useState(getProductCategories(categories));
     return (
       <div className="flex gap-[5px] flex-wrap">
-        {categories &&
-          categories.length > 0 &&
-          categories.map((v, i) => (
+        {localCategories &&
+          localCategories.length > 0 &&
+          localCategories.map((v, i) => (
             <div
-              key={`category-tag-${v.id}`}
+              key={`category-tag-${createSlug(v)}`}
               className="text-[9px] py-[4px] px-[8px] bg-theme-200 text-theme-700 font-semibold rounded-full"
             >
-              {v.category_name}
+              {v}
             </div>
           ))}
       </div>
