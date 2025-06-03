@@ -36,14 +36,15 @@ const BreadCrumbs = ({ slug, product_path }) => {
 };
 
 const CategoryChips = ({ categories }) => {
+  
+  if (!categories) {
+    return;
+  }
   const {getProductCategories} = useSolanaCategories();
   const [localCategories, setCategories] = useState(
     getProductCategories(categories)
   );
   
-  if (!categories) {
-    return;
-  }
   return (
     <div className="flex gap-[5px] flex-wrap">
       {localCategories &&
@@ -325,7 +326,10 @@ export default function Product({ params }) {
                     <div className="font-bold text-sm lg:text-lg mb-[15px]">
                       Category
                     </div>
-                    <CategoryChips categories={product?.product_category} />
+                    {
+                      product?.product_category &&
+                    <CategoryChips categories={product.product_category} />
+                    }
                   </div>
                 </div>
               </div>
