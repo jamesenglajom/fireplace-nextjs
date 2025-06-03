@@ -16,6 +16,10 @@ import { createSlug, formatPrice } from "@/app/lib/helpers";
 import { useSolanaCategories } from "@/app/context/category";
 
 const BreadCrumbs = ({ slug, product_path }) => {
+  if(!slug && !product_path){
+    return;
+  }
+
   return (
     <div className="flex items-center gap-[10px]">
       <Link prefetch={false} href={`/`} className="hover:underline">
@@ -56,7 +60,7 @@ const CategoryChips = ({ categories }) => {
   );
 };
 
-const ProductOptions = ({ product }) => {
+const ProductOptions = ({ product, slug }) => {
   if (!product && !product?.accentuate_data) {
     return;
   }
@@ -66,6 +70,7 @@ const ProductOptions = ({ product }) => {
       {/* Gas type */}
       {product.accentuate_data?.[0]?.["bbq.option_related_product"] && (
         <ProductOptionItem
+          slug={slug}
           title={product.accentuate_data?.[0]?.["bbq.option_title"]}
           options={product.accentuate_data?.[0]?.["bbq.option_type"]}
           urls={product.accentuate_data?.[0]?.["bbq.option_related_product"]}
@@ -76,6 +81,7 @@ const ProductOptions = ({ product }) => {
       {/* Configuration */}
       {product.accentuate_data?.[0]?.["bbq.configuration_product"] && (
         <ProductOptionItem
+          slug={slug}
           title={
             product.accentuate_data?.[0]?.["bbq.configuration_heading_title"]
           }
@@ -88,6 +94,7 @@ const ProductOptions = ({ product }) => {
       {/* Product Size */}
       {product.accentuate_data?.[0]?.["bbq.related_product"] && (
         <ProductOptionItem
+          slug={slug}
           title={product.accentuate_data?.[0]?.["bbq.size_heading_title"]}
           options={product.accentuate_data?.[0]?.["size_title"]}
           urls={product.accentuate_data?.[0]?.["bbq.related_product"]}
@@ -98,6 +105,7 @@ const ProductOptions = ({ product }) => {
       {/* Product Option */}
       {product.accentuate_data?.[0]?.["bbq.product_option_related_product"] && (
         <ProductOptionItem
+          slug={slug}
           title={
             product.accentuate_data?.[0]?.["bbq.product_option_heading_title"]
           }
@@ -112,6 +120,7 @@ const ProductOptions = ({ product }) => {
       {/* Hinge */}
       {product.accentuate_data?.[0]?.["bbq.hinge_related_product"] && (
         <ProductOptionItem
+          slug={slug}
           title={product.accentuate_data?.[0]?.["hinge_heading_title"]}
           options={product.accentuate_data?.[0]?.["hinge_selection"]}
           urls={product.accentuate_data?.[0]?.["bbq.hinge_related_product"]}
@@ -149,12 +158,14 @@ const ProductOptionItem = ({
   urls,
   current_url,
   product_options,
+  slug,
 }) => {
   const [localTitle, setLocalTitle] = useState(null);
   const [localOptions, setLocalOptions] = useState(null);
   const [localUrls, setLocalUrls] = useState(null);
   const [localCurrentUrl, setLocalCurrentUrl] = useState(null);
   const [localProductOptions, setLocalProductOptions] = useState(null);
+  const [localSlug, setLocalSlug] = useState(null);
   useEffect(() => {
     if (title) {
       setLocalTitle(title);
@@ -171,7 +182,10 @@ const ProductOptionItem = ({
     if (product_options) {
       setLocalProductOptions(product_options);
     }
-  }, [title, options, urls, current_url]);
+    if (slug) {
+      setLocalSlug(slug);
+    }
+  }, [title, options, urls, current_url, slug]);
 
   return (
     <div>
@@ -182,7 +196,7 @@ const ProductOptionItem = ({
           localOptions.map((item, index) => (
             <Link
               prefetch={false}
-              href={`/${slug}/product/${localUrls[index]}`}
+              href={`/${localSlug}/product/${localUrls[index]}`}
               key={`${createSlug(title)}-option-${index}`}
               className={`px-3 py-1 rounded border flex flex-col items-center justify-center transition-colors duration-200 ${
                 localUrls[index] === localCurrentUrl
@@ -277,7 +291,7 @@ export default function Product({ params }) {
                 <ProductToCart product={product} loading={loading} />
                 <div className="py-[30px] flex flex-col gap-[15px]">
                   {/* product options */}
-                  <ProductOptions product={product} />
+                  <ProductOptions product={product} slug={slug}/>
                   {/* {productOptions && productOptions.length > 0 && (
                     <div className="flex flex-col gap-[15px]">
                       <div className="font-bold text-sm lg:text-lg">Options</div>
