@@ -18,7 +18,7 @@ import { useCart } from "@/app/context/cart";
 import { useSolanaCategories } from "@/app/context/category";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
-function ProductQuickView({ data, onClose }) {
+function ProductQuickView({ data, product_link, onClose }) {
   const router = useRouter();
   const { price_hidden_categories } = useSolanaCategories();
   const { addToCart, addToCartLoading } = useCart();
@@ -116,7 +116,7 @@ function ProductQuickView({ data, onClose }) {
                     <div className="flex gap-[10px]">
                       <Link
                         className="w-full border border-theme-600 text-theme-600 p-2 text-center font-semibold text-sm"
-                        href={`${BASE_URL}/product/${data?.url}`}
+                        href={product_link || '#'}
                         onClick={handleViewProductClick}
                       >
                         View Item
@@ -255,7 +255,7 @@ function ProductQuickView({ data, onClose }) {
 
                         <Link
                           className="text-[10px] text-blue-600 font-semibold"
-                          href={`${BASE_URL}/product/${data?.url}`}
+                          href={product_link || '#'}
                           onClick={handleViewProductClick}
                         >
                           Read More

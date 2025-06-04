@@ -118,7 +118,7 @@ const SPProductCard = ({ hit, category }) => {
   const handleQuickViewClick = (e, item) => {
     e.stopPropagation();
     e.preventDefault();
-    viewItem(item);
+    viewItem(item, category);
   };
 
   return (
