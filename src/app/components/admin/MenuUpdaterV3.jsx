@@ -169,7 +169,8 @@ function MenuUpdaterV3() {
       },
       page_contact_number: null,
       searchable: true,
-      nav_visibility:true
+      nav_visibility:true,
+      nav_type: i.nav_type
     })); // inject properties
     setMenu((prev) => {
       const newValue = [...prev, ...mapped];
@@ -458,38 +459,38 @@ function MenuUpdaterV3() {
       setMenu([HomeNavItem, ...data.filter(({ name }) => !["Home", "Search"].includes(name))]);
       setSearchList(flattenMenu([HomeNavItem, ...data.filter(({ name }) => !["Home", "Search"].includes(name))]));
     });
-    fetch('/api/es/shopify/categories', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log("shopify categories", data);
-        setOriginMenu(data.map(item=> ({...item, slug: createSlug(item.key), selected: false})))
-    });
-    // Promise.all([
-    //   fetch("/api/es/shopify/categories", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //   }).then((res) => res.json()),
+    // fetch('/api/es/shopify/categories', {
+    // method: 'POST',
+    // headers: { 'Content-Type': 'application/json' },
+    // })
+    // .then(res => res.json())
+    // .then(data => {
+    //     console.log("shopify categories", data);
+    //     setOriginMenu(data.map(item=> ({...item, slug: createSlug(item.key), selected: false})))
+    // });
+    Promise.all([
+      fetch("/api/es/shopify/categories", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      }).then((res) => res.json()),
 
-    //   fetch("/api/es/shopify/brands", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //   }).then((res) => res.json()),
-    // ])
-    //   .then(([categories, brands]) => {
-    //     const merged = [...categories, ...brands].map((item) => ({
-    //       ...item,
-    //       slug: createSlug(item.key),
-    //       selected: false,
-    //     }));
-
-    //     setOriginMenu(merged);
-    //   })
-    //   .catch((err) => {
-    //     console.error("Error fetching categories or brands:", err);
-    //   });
+      fetch("/api/es/shopify/brands", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      }).then((res) => res.json()),
+    ])
+      .then(([categories, brands]) => {
+        const merged = [...categories, ...brands].map((item) => ({
+          ...item,
+          slug: createSlug(item.key),
+          selected: false,
+        }));
+        console.log("merged", merged);
+        setOriginMenu(merged);
+      })
+      .catch((err) => {
+        console.error("Error fetching categories or brands:", err);
+      });
   }, []);
 
   const searchListObj = useMemo(() => {
@@ -505,16 +506,18 @@ function MenuUpdaterV3() {
   }, [scrollToSearch, searchList]);
 
   const originMenuSearchResults = useMemo(() => {
-    if (!originMenuSearch.trim()) return originMenu;
+  if (!originMenuSearch.trim()) {
+    return [...originMenu].sort((a, b) => a.key.localeCompare(b.key));
+  }
 
-    const _originMenuObj = originMenu.filter(({ key }) =>
+  const _originMenuObj = originMenu
+    .filter(({ key }) =>
       key.toLowerCase().includes(originMenuSearch.toLowerCase())
-    );
-
-    // console.log("_originMenuObj", _originMenuObj);
-
-    return _originMenuObj;
-  }, [originMenuSearch, originMenu]);
+    )
+    .sort((a, b) => a.key.localeCompare(b.key)); 
+    
+  return _originMenuObj;
+}, [originMenuSearch, originMenu]);
 
   return (
     <section>
