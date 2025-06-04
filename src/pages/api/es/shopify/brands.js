@@ -19,9 +19,9 @@ export default async function handler(req, res) {
     body: JSON.stringify({
       size: 0,
       aggs: {
-        unique_category_names: {
+        brands: {
           terms: {
-            field: "product_category.category_name.keyword",
+            field: "brand.keyword",
             size: 1000,
           },
         },
@@ -32,7 +32,7 @@ export default async function handler(req, res) {
   try {
     const response = await fetch(`${ESURL}/${ESShard}/_search`, fetchConfig);
     const data = await response.json();
-    res.status(200).json(data?.aggregations?.unique_category_names?.buckets?.map(item => ({...item, nav_type:"category"})));
+    res.status(200).json(data?.aggregations?.brands?.buckets?.map(item => ({...item, nav_type:"brand"})));
   } catch (error) {
     res
       .status(500)

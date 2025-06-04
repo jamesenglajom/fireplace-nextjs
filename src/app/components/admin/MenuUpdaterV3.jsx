@@ -467,6 +467,29 @@ function MenuUpdaterV3() {
         console.log("shopify categories", data);
         setOriginMenu(data.map(item=> ({...item, slug: createSlug(item.key), selected: false})))
     });
+    // Promise.all([
+    //   fetch("/api/es/shopify/categories", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //   }).then((res) => res.json()),
+
+    //   fetch("/api/es/shopify/brands", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //   }).then((res) => res.json()),
+    // ])
+    //   .then(([categories, brands]) => {
+    //     const merged = [...categories, ...brands].map((item) => ({
+    //       ...item,
+    //       slug: createSlug(item.key),
+    //       selected: false,
+    //     }));
+
+    //     setOriginMenu(merged);
+    //   })
+    //   .catch((err) => {
+    //     console.error("Error fetching categories or brands:", err);
+    //   });
   }, []);
 
   const searchListObj = useMemo(() => {
