@@ -19,12 +19,6 @@ const menuListKey = keys.menu_list_shopify.value;
 const activeMenuKey = keys.active_shopify_menu.value;
 const defaultMenuKey = keys.default_shopify_menu.value;
 
-
-
-console.log("menuListKey",menuListKey)
-console.log("activeMenuKey",activeMenuKey)
-console.log("defaultMenuKey",defaultMenuKey)
-
 const HomeNavItem = {   
     "menu_id": "kw5dsac1q",
     "parent_id": "",
@@ -110,6 +104,51 @@ function MenuUpdaterV3() {
       setScrollToSearch(value);
     }
   };
+
+  const handleCreateCustomPage = () => {
+    const flatMenu = flattenMenu(menu);
+    const restrictedNames = [...(flatMenu.map(item=> item?.key?.toLowerCase())), "search"];
+    console.log("restrictedNames", restrictedNames)
+    const custom_page = prompt("Custom Page Name");
+    if(custom_page){
+      if(restrictedNames.includes(custom_page.toLowerCase())){
+        alert(`You set "${custom_page}", But it is already taken please choose another.`);
+      }else{
+        const custom_menu_item = {
+            menu_id: generateId(),
+            parent_id: "",
+            key: custom_page,
+            name: custom_page,
+            url: createSlug(custom_page),
+            slug: createSlug(custom_page),
+            origin_name: custom_page,
+            children: [],
+            price_visibility: "hide",
+            meta_title:"",
+            meta_description:"",
+            banner: {
+              img: {
+                src: null,
+                alt: "",
+              },
+              title: "",
+              tag_line: "",
+            },
+            page_contact_number: null,
+            searchable: true,
+            nav_visibility:true,
+            nav_type: "custom_page",
+        };
+        setMenu((prev) => {
+          const newValue = [...prev, custom_menu_item];
+          newValue.forEach((item, index) => {
+            item.order = index + 1; // Assign order starting from 1
+          });
+          return newValue;
+        });
+      }
+    }
+  }
 
   const handleOriginMenuCheckbox = (e) => {
     const { value, checked } = e.target;
@@ -515,7 +554,7 @@ function MenuUpdaterV3() {
       key.toLowerCase().includes(originMenuSearch.toLowerCase())
     )
     .sort((a, b) => a.key.localeCompare(b.key)); 
-    
+
   return _originMenuObj;
 }, [originMenuSearch, originMenu]);
 
@@ -629,12 +668,12 @@ function MenuUpdaterV3() {
             <div className="border rounded w-full">
               <div className="w-full border bg-stone-300 text-sm p-2 flex items-center justify-between">
                 <div className="font-semibold">Menu</div>
-                {/* <button
-                  onClick={handleSaveMenuChanges}
-                  className="font-semibold bg-blue-600 hover:bg-blue-700 text-white cursor-pointer px-2 rounded py-1 shadow"
+                <button
+                  onClick={handleCreateCustomPage}
+                  className="text-blue-600 hover:text-blue-700 underline cursor-pointer text-xs"
                 >
-                  Save
-                </button> */}
+                  Custom Page
+                </button>
               </div>
 
               <div className="p-1">

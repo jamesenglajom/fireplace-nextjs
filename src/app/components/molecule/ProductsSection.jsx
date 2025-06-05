@@ -268,7 +268,8 @@ const InnerUI = ({ category, page_details, onDataLoaded }) => {
         <div className="search-panel flex pb-[50px]">
           <div className="search-panel__filters  pfd-filter-section">
             {/* <FilterWrapper page_details={page_details} /> */}
-            {page_details ? (
+            {
+              page_details && page_details?.nav_type === "category" && 
               <DynamicWidgets facets={["*"]}>
                 <div className="my-5 facet_brand">
                   <Panel header="brand">
@@ -281,7 +282,26 @@ const InnerUI = ({ category, page_details, onDataLoaded }) => {
                   </Panel>
                 </div>
               </DynamicWidgets>
-            ) : (
+            }
+
+             {
+              page_details && page_details?.nav_type === "brand" && 
+              <DynamicWidgets facets={["*"]}>
+                <div className="my-5">
+                  <Panel header="Categories">
+                    <RefinementList attribute="product_category" searchable />
+                  </Panel>
+                </div>
+                <div className="my-5">
+                  <Panel header="price">
+                    <RangeInput attribute="price" />
+                  </Panel>
+                </div>
+              </DynamicWidgets>
+            }
+
+            {
+              page_details && page_details?.nav_type === "custom_page" && 
               <DynamicWidgets facets={["*"]}>
                 <div className="my-5">
                   <Panel header="Categories">
@@ -299,8 +319,8 @@ const InnerUI = ({ category, page_details, onDataLoaded }) => {
                   </Panel>
                 </div>
               </DynamicWidgets>
-            )}
-          </div>
+            }
+            </div>
           <div className="search-panel__results pfd-product-section">
             <CurrentRefinements />
             <QueryRulesBanner />
@@ -378,14 +398,27 @@ function ProductsSection({ category }) {
   const { solana_categories } = useSolanaCategories();
   const [pageDetails, setPageDetails] = useState(null);
   const [firstLoad, setFirstLoad] = useState(true);
+  const [filterString, setFilterString] = useState("");
 
   useEffect(() => {
     if (category) {
       const details = solana_categories.find(({ url }) => url === category);
+      console.log("details", details);
       if (details) {
         setPageDetails(details);
+        setFilterString(prev=>{
+          let result="";
+          if(details?.nav_type==="category"){
+            setFilterString(`page_category:${details?.origin_name}`);
+          }else if(details?.nav_type==="brand"){
+            setFilterString(`page_brand:${details?.origin_name}`);
+          }else if(details?.nav_type==="custom_page"){
+            setFilterString(`custom_page:${details?.origin_name}`);
+          }
+        });
       } else {
         setPageDetails(null);
+        setFilterString("");
       }
     }
   }, [category, solana_categories]);
@@ -404,10 +437,10 @@ function ProductsSection({ category }) {
             searchClient={searchClient}
             future={{ preserveSharedStateOnUnmount: false }}
           >
-            {pageDetails ? (
+            {filterString ? (
               <Configure
                 hitsPerPage={15}
-                filter={`page_category:${pageDetails?.origin_name}`}
+                filter={filterString}
               />
             ) : (
               <Configure hitsPerPage={15} />
