@@ -121,6 +121,16 @@ const SPProductCard = ({ hit, category }) => {
     viewItem(item, category);
   };
 
+  function parseRatingCount(value) {
+    if (typeof value === 'string') {
+      // Remove any non-digit characters (like surrounding quotes)
+      value = value.replace(/[^\d]/g, '');
+    }
+    const count = parseInt(value, 10);
+    return isNaN(count) ? 0 : count;
+  }
+
+
   return (
     <Link
       prefetch={false}
@@ -177,13 +187,13 @@ const SPProductCard = ({ hit, category }) => {
           <div className={`flex items-center gap-[5px]`}>
             <Rating
               readOnly
-              value={hit.ratings.rating_count}
+              value={parseRatingCount(hit.ratings.rating_count)}
               fractions={2}
               style={{ maxWidth: 100 }}
             ></Rating>
-            <div className={`text-[0.75rem]`}>
-              ({hit.ratings.rating_count}){/* (id:{product.id}) */}
-            </div>
+            {/* <div className={`text-[0.75rem]`}>
+              ({parseRatingCount(hit.ratings.rating_count)})
+            </div> */}
           </div>
           <div className="mt-3">{hit.brand}</div>
           <div className="mt-3">
