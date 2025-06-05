@@ -395,14 +395,15 @@ const SkeletonLoader = () => {
 };
 
 function ProductsSection({ category }) {
-  const { solana_categories } = useSolanaCategories();
+  const { flatCategories } = useSolanaCategories();
   const [pageDetails, setPageDetails] = useState(null);
   const [firstLoad, setFirstLoad] = useState(true);
   const [filterString, setFilterString] = useState("");
 
   useEffect(() => {
     if (category) {
-      const details = solana_categories.find(({ url }) => url === category);
+      console.log("flatCategories", flatCategories);
+      const details = flatCategories.find(({ url }) => url === category);
       console.log("details", details);
       if (details) {
         setPageDetails(details);
@@ -421,7 +422,7 @@ function ProductsSection({ category }) {
         setFilterString("");
       }
     }
-  }, [category, solana_categories]);
+  }, [category, flatCategories]);
 
   return (
     <>
