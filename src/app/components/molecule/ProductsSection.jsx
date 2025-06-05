@@ -11,8 +11,6 @@ import { formatPrice } from "@/app/lib/helpers";
 
 import {
   InstantSearch,
-  useInstantSearch,
-  SearchBox,
   Hits,
   Highlight,
   RefinementList,
@@ -20,12 +18,13 @@ import {
   Stats,
   Snippet,
   CurrentRefinements,
-  HierarchicalMenu,
   Configure,
   DynamicWidgets,
   RangeInput,
   useQueryRules,
   SortBy,
+  useInstantSearch,
+  useSearchResults,
 } from "react-instantsearch";
 import Client from "@searchkit/instantsearch-client";
 
@@ -191,9 +190,7 @@ const SPProductCard = ({ hit, category }) => {
               fractions={2}
               style={{ maxWidth: 100 }}
             ></Rating>
-            {/* <div className={`text-[0.75rem]`}>
-              ({parseRatingCount(hit.ratings.rating_count)})
-            </div> */}
+            {/* <div className={`text-[0.75rem]`}>git  */}
           </div>
           <div className="mt-3">{hit.brand}</div>
           <div className="mt-3">
@@ -233,7 +230,7 @@ const SPProductCard = ({ hit, category }) => {
 };
 
 const InnerUI = ({ category, page_details, onDataLoaded }) => {
-  const { status } = useInstantSearch();
+  const { status, results } = useInstantSearch();
   const [loadHint, setLoadHint] = useState("");
   const [firstLoad, setFirstLoad] = useState(true);
   useEffect(() => {
@@ -265,7 +262,7 @@ const InnerUI = ({ category, page_details, onDataLoaded }) => {
     return (
       <div className="container">
         <div className="flex items-center justify-between mb-5">
-          <h1 className="uppercase text-lg font-bold">{page_details?.name}</h1>
+          <h1 className="uppercase text-lg font-bold">{`${page_details?.name} ${results?.nbHits && `(${results?.nbHits})`}`}</h1>
           <SortBy
             items={[
               { label: "Most Popular", value: "popular" },

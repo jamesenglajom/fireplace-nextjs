@@ -110,6 +110,16 @@ const ProductToCart = ({ product, loading }) => {
     return `${BASE_URL}/brands-${slug_name}`;
   };
 
+  function parseRatingCount(value) {
+    if (typeof value === 'string') {
+      value = value.replace(/[^\d]/g, '');
+    }
+    const count = parseInt(value, 10);
+    return isNaN(count) ? 0 : count;
+  }
+
+
+
   return (
     <div className="flex flex-col gap-[10px] w-full relative">
       <div className="relative">
@@ -130,7 +140,7 @@ const ProductToCart = ({ product, loading }) => {
       </div>
       <div className="flex items-center">
         <Rating
-          value={productData?.ratings?.rating_count ? productData?.ratings?.rating_count: 0}
+          value={parseRatingCount(productData?.ratings?.rating_count)}
           style={{ maxWidth: 100 }}
           readOnly
         ></Rating>
