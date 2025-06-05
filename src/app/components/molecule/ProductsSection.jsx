@@ -89,7 +89,7 @@ const ProductCardPriceDisplay = ({ price_details }) => {
     return (
       <div className="text-sm flex flex-wrap gap-[5px]">
         <div className="flex gap-[5px]">
-          <div className="text-theme-500 font-semibold">
+          <div className="font-semibold">
             ${formatPrice(price_details.price)}
           </div>
           <div className="line-through text-stone-400">
