@@ -20,7 +20,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 function ProductQuickView({ data, product_link, onClose }) {
   const router = useRouter();
-  const { price_hidden_categories } = useSolanaCategories();
+  const { price_hidden_categories, isPriceVisible } = useSolanaCategories();
   const { addToCart, addToCartLoading } = useCart();
   const [toggle, setToggle] = useState(false);
   const [image, setImage] = useState(null);
@@ -129,17 +129,9 @@ function ProductQuickView({ data, product_link, onClose }) {
                             ? "pointer-events-none"
                             : "pointer-events-auto"
                         }`}
-                        // disabled={
-                        //   addToCartLoading ||
-                        //   price_hidden_categories.some((id) =>
-                        //     data?.categories.some((cat) => cat.id === id)
-                        //   )
-                        // }
                         disabled={
                           addToCartLoading ||
-                          price_hidden_categories.some((name) =>
-                            data?.product_category.some(({category_name}) => category_name === name)
-                          )
+                          !isPriceVisible(data?.product_category, data?.brand)
                         }
                       >
                         {addToCartLoading ? (
@@ -195,9 +187,9 @@ function ProductQuickView({ data, product_link, onClose }) {
                         )} */}
 
                         
-                        {price_hidden_categories.some((name) =>
-                          data?.product_category.some(({category_name}) => category_name === name)
-                        ) ? (
+                        {
+                        !isPriceVisible(data?.product_category, data?.brand)
+                        ? (
                           <div className="font-medium text-[14px] text-stone-700">
                             Contact us for pricing.
                           </div>

@@ -132,14 +132,16 @@ export function CategoriesProvider({ categories, children }) {
       return "#";
     }
 
-    const pathname = window.location.pathname;
+    const pathname = window.location.pathname.replace(/\//g, "");
     const product_urls = getProductUrls(hit.product_category, hit.brand, hit.handle);
-    console.log("[product_urls]",product_urls)
+
     if(product_urls.length === 0){
+      console.log("[Product Url Error]");
       return "#";
     }
 
-    if(["/","/search"].includes(pathname)){
+    const menu_item = flatCategories.find(({url})=> url === pathname);
+    if(menu_item?.nav_type === "custom_page"){
       return product_urls[0];
     }
 

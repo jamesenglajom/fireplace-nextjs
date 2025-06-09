@@ -54,7 +54,10 @@ const QueryRulesBanner = () => {
   return (
     <div className="query-rules">
       {items.map((item, index) => (
-        <div key={`query-rules-${index}-${item.objectID}`} className="query-rules__item">
+        <div
+          key={`query-rules-${index}-${item.objectID}`}
+          className="query-rules__item"
+        >
           <a href={item.url}>
             <b className="query-rules__item-title">{item.title}</b>
             <span className="query-rules__item-description">{item.body}</span>
@@ -117,11 +120,12 @@ const SPProductCard = ({ hit, category }) => {
   const { viewItem } = useQuickView();
   const { isPriceVisible, getProductUrl } = useSolanaCategories();
 
-  if(hit){
-    console.log("[hit] ", hit);
-    console.log("[product_url] ", getProductUrl(hit));
+  if (hit) {
+    console.log(
+      `[${hit.title}][hit]`,
+      isPriceVisible(hit.product_category, hit.brand)
+    );
   }
-
   const handleQuickViewClick = (e, item) => {
     e.stopPropagation();
     e.preventDefault();
@@ -140,7 +144,7 @@ const SPProductCard = ({ hit, category }) => {
   return (
     <Link
       prefetch={false}
-      href={`/${category}/product/${hit.handle}`}
+      href={`${getProductUrl(hit)}`}
       // onClick={handleProductItemClick}
       className="flex w-full h-full bg-white overflow-hidden rounded-md border duration-500  hover:shadow-xl pb-[8px] hover:border-stone-700 group"
     >
@@ -201,9 +205,7 @@ const SPProductCard = ({ hit, category }) => {
           </div>
           <div className="mt-3">{hit.brand}</div>
           <div className="mt-3">
-            {
-            !isPriceVisible(hit?.product_category, hit?.brand)
-            ? (
+            {!isPriceVisible(hit?.product_category, hit?.brand) ? (
               <div className="font-medium text-[14px] text-stone-700">
                 Contact us for pricing.
               </div>
@@ -213,9 +215,7 @@ const SPProductCard = ({ hit, category }) => {
           </div>
           <FicDropDown>
             <div className="text-xs my-[5px] text-blue-500 flex items-center cursor-default gap-[7px] flex-wrap">
-              {
-              !isPriceVisible(hit?.product_category, hit?.brand)  
-              ? (
+              {!isPriceVisible(hit?.product_category, hit?.brand) ? (
                 <>Call for Price </>
               ) : (
                 <>Found It Cheaper? </>
@@ -259,12 +259,24 @@ const InnerUI = ({ category, page_details, onDataLoaded }) => {
     });
     onDataLoaded(result);
   }, [loadHint]);
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     const count = results?.nbHits || 0;
-    console.log("[RESULTS COUNT]", count);
-    setSearchPageProductCount(count)
-  },[results])
+    setSearchPageProductCount(count);
+  }, [results]);
+
+  if (!firstLoad && results?.nbHits === 0) {
+    return (
+      <div className="container">
+        <div className="flex items-center justify-between mb-5">
+          <h1 className="uppercase text-lg font-bold">{`${page_details?.name} ${
+            results?.nbHits && `(${results?.nbHits})`
+          }`}</h1>
+        </div>
+        <div className="pb-[100px] flex justify-center text-neutral-600 font-bold text-lg">No Results Found...</div>
+      </div>
+    );
+  }
 
   if (!firstLoad) {
     return (
@@ -408,20 +420,19 @@ const SkeletonLoader = () => {
   );
 };
 
-
-const Refresh = ({search}) => {
-  const {refresh, setUiState} = useInstantSearch()
-  useEffect(()=>{
-    setUiState((prev)=>{
+const Refresh = ({ search }) => {
+  const { refresh, setUiState } = useInstantSearch();
+  useEffect(() => {
+    setUiState((prev) => {
       const new_state = prev;
       new_state[es_index]["query"] = search;
       console.log("[NEWSTATE] ", new_state);
       return new_state;
-    })
+    });
     refresh();
-  },[search]);
+  }, [search]);
   return null;
-}
+};
 
 function ProductsSection({ category, search = "" }) {
   // search is assigned only on search page
@@ -490,7 +501,7 @@ function ProductsSection({ category, search = "" }) {
             // }}
           >
             <SearchBox className="hidden-main-search-input hidden" />
-            <Refresh search={search}/>
+            <Refresh search={search} />
             {/* <HitsPerPage /> */}
             {filterString ? (
               <Configure hitsPerPage={15} filter={filterString} />

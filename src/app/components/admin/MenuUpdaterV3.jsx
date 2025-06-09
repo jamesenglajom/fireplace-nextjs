@@ -1,6 +1,5 @@
 // this menu updater is used to make menu using es shopify structure products
 
-
 "use client";
 import Link from "next/link";
 import React, { useState, useEffect, useMemo } from "react";
@@ -19,39 +18,44 @@ const menuListKey = keys.menu_list_shopify.value;
 const activeMenuKey = keys.active_shopify_menu.value;
 const defaultMenuKey = keys.default_shopify_menu.value;
 
-const HomeNavItem = {   
-    "menu_id": "kw5dsac1q",
-    "parent_id": "",
-    "url":"",
-    "key": "Home",
-    "name": "Home",
-    "slug": "home",
-    "origin_name": "Home",
-    "children": [],
-    "price_visibility": "hide",
-    "meta_title": "",
-    "meta_description": "",
-    "banner": {
-        "img": {
-            "src": "",
-            "alt": "Home-Banner"
-        },
-        "title": "Modern Fireplaces and Outdoor Living",
-        "tag_line": "Transform Your Spaces with Elegant Designs Built for Comfort and Durability"
+const HomeNavItem = {
+  menu_id: "kw5dsac1q",
+  parent_id: "",
+  url: "",
+  key: "Home",
+  name: "Home",
+  slug: "home",
+  origin_name: "Home",
+  children: [],
+  price_visibility: "hide",
+  meta_title: "",
+  meta_description: "",
+  banner: {
+    img: {
+      src: "",
+      alt: "Home-Banner",
     },
-    "page_contact_number": null,
-    "searchable": true,
-    "nav_visibility": true,
-    "order": 1
-}
+    title: "Modern Fireplaces and Outdoor Living",
+    tag_line:
+      "Transform Your Spaces with Elegant Designs Built for Comfort and Durability",
+  },
+  page_contact_number: null,
+  searchable: true,
+  nav_visibility: true,
+  order: 1,
+  nav_type: "custom_page",
+};
 
 const SearchNavItem = {
-    "searchable": false,
-    "name": "Search",
-    "url": "search",
-    "nav_visibility": false,
-    "nav_type": "custom_page",
-}
+  searchable: false,
+  name: "Search",
+  key: "Search",
+  url: "search",
+  slug: "search",
+  nav_visibility: false,
+  price_visibility: "show",
+  nav_type: "custom_page",
+};
 
 function MenuUpdaterV3() {
   const [menu, setMenu] = useState([]);
@@ -82,7 +86,7 @@ function MenuUpdaterV3() {
   };
 
   const updateMenuList = () => {
-    const queryKeys = [menuListKey,activeMenuKey];
+    const queryKeys = [menuListKey, activeMenuKey];
     redisGet(queryKeys).then((data) => {
       const [menu_list, active_menu] = data;
       console.log(menu_list, active_menu);
@@ -106,37 +110,42 @@ function MenuUpdaterV3() {
 
   const handleCreateCustomPage = () => {
     const flatMenu = flattenMenu(menu);
-    const restrictedNames = [...(flatMenu.map(item=> item?.key?.toLowerCase())), "search"];
-    console.log("restrictedNames", restrictedNames)
+    const restrictedNames = [
+      ...flatMenu.map((item) => item?.key?.toLowerCase()),
+      "search",
+    ];
+    console.log("restrictedNames", restrictedNames);
     const custom_page = prompt("Custom Page Name");
-    if(custom_page){
-      if(restrictedNames.includes(custom_page.toLowerCase())){
-        alert(`You set "${custom_page}", But it is already taken please choose another.`);
-      }else{
+    if (custom_page) {
+      if (restrictedNames.includes(custom_page.toLowerCase())) {
+        alert(
+          `You set "${custom_page}", But it is already taken please choose another.`
+        );
+      } else {
         const custom_menu_item = {
-            menu_id: generateId(),
-            parent_id: "",
-            key: custom_page,
-            name: custom_page,
-            url: createSlug(custom_page),
-            slug: createSlug(custom_page),
-            origin_name: custom_page,
-            children: [],
-            price_visibility: "hide",
-            meta_title:"",
-            meta_description:"",
-            banner: {
-              img: {
-                src: null,
-                alt: "",
-              },
-              title: "",
-              tag_line: "",
+          menu_id: generateId(),
+          parent_id: "",
+          key: custom_page,
+          name: custom_page,
+          url: createSlug(custom_page),
+          slug: createSlug(custom_page),
+          origin_name: custom_page,
+          children: [],
+          price_visibility: "hide",
+          meta_title: "",
+          meta_description: "",
+          banner: {
+            img: {
+              src: null,
+              alt: "",
             },
-            page_contact_number: null,
-            searchable: true,
-            nav_visibility:true,
-            nav_type: "custom_page",
+            title: "",
+            tag_line: "",
+          },
+          page_contact_number: null,
+          searchable: true,
+          nav_visibility: true,
+          nav_type: "custom_page",
         };
         setMenu((prev) => {
           const newValue = [...prev, custom_menu_item];
@@ -147,15 +156,14 @@ function MenuUpdaterV3() {
         });
       }
     }
-  }
+  };
 
   const handleOriginMenuCheckbox = (e) => {
     const { value, checked } = e.target;
     setOriginMenu((prev) => {
       return prev.map((i) => ({
         ...i,
-        selected:
-          value === i.slug ? checked : i.selected,
+        selected: value === i.slug ? checked : i.selected,
       }));
     });
   };
@@ -178,8 +186,7 @@ function MenuUpdaterV3() {
   };
 
   function transformUrl(url) {
-    return url.replace(/^\/|\/$/g, '')
-              .replace(/\//g, '-');
+    return url.replace(/^\/|\/$/g, "").replace(/\//g, "-");
   }
 
   const handleAddMenuItem = () => {
@@ -191,12 +198,12 @@ function MenuUpdaterV3() {
       key: i.key,
       name: i.key,
       url: createSlug(i.key),
-      slug: i.slug,
+      slug: createSlug(i.key),
       origin_name: i.key,
       children: [],
       price_visibility: "hide",
-      meta_title:"",
-      meta_description:"",
+      meta_title: "",
+      meta_description: "",
       banner: {
         img: {
           src: null,
@@ -207,8 +214,8 @@ function MenuUpdaterV3() {
       },
       page_contact_number: null,
       searchable: true,
-      nav_visibility:true,
-      nav_type: i.nav_type
+      nav_visibility: true,
+      nav_type: i.nav_type,
     })); // inject properties
     setMenu((prev) => {
       const newValue = [...prev, ...mapped];
@@ -356,8 +363,6 @@ function MenuUpdaterV3() {
 
   const handleMenuItemChanges = (e) => {
     const { action, target } = e;
-    // console.log("action:", action);
-    // console.log("target:", target);
 
     if (action === "remove") {
       setMenu((prev) => removeMenuItem(prev, target));
@@ -404,9 +409,6 @@ function MenuUpdaterV3() {
 
     if (action === "updateItem") {
       const { menu_id, item } = target;
-      console.log("updateItemmenu_id", menu_id);
-      console.log("updateItemitem", item);
-
       setMenu((prev) => {
         const updatedMenu = replaceMenuItem(prev, menu_id, item);
         console.log("newMenu", updatedMenu);
@@ -445,16 +447,55 @@ function MenuUpdaterV3() {
     // const search = solana_categories.find(({ name }) => name === "Search");
     // console.log("Append this search", search);
     const merged = [...menu, SearchNavItem];
-    console.log("selectedMenu", selectedMenu);
-    console.log("merged", merged);
+    // console.log("selectedMenu", selectedMenu);
+    // console.log("merged", merged)
+
+    // temporary: inject all brands under Brands menu as children
+    // const all_brands = originMenu.filter(({nav_type})=> nav_type==="brand")
+    // .sort((a, b) => a.key.localeCompare(b.key))
+    // .map((i) => ({
+    //   menu_id: generateId(),
+    //   parent_id: "e3gza49s5",
+    //   key: i.key,
+    //   name: i.key,
+    //   url: createSlug(i.key),
+    //   slug: createSlug(i.key),
+    //   origin_name: i.key,
+    //   children: [],
+    //   price_visibility: "hide",
+    //   meta_title:"",
+    //   meta_description:"",
+    //   banner: {
+    //     img: {
+    //       src: null,
+    //       alt: "",
+    //     },
+    //     title: "",
+    //     tag_line: "",
+    //   },
+    //   page_contact_number: null,
+    //   searchable: true,
+    //   nav_visibility:true,
+    //   nav_type: i.nav_type
+    // }));
+    // inject
+    // const toSave = merged.map((item)=> {
+    //   if(item.key === "Brands"){
+    //     const new_item = item;
+    //     item["children"] = all_brands;
+    //     return new_item;
+    //   }
+    //   return item;
+    // });
+
     redisSet(selectedMenu, merged)
       .then((response) => {
         // console.log("redisSet", response);
         if (response.success) {
-          showAlertMessage("success", "Menu object updated successful.")
+          showAlertMessage("success", "Menu object updated successful.");
           // console.log("handleSaveMenuChangesFNSuccess", response);
         } else {
-          showAlertMessage("error", "Failed to update. Please try again.")
+          showAlertMessage("error", "Failed to update. Please try again.");
           // console.log("handleSaveMenuChangesFNError", response);
         }
         setIsLoading(false);
@@ -481,21 +522,28 @@ function MenuUpdaterV3() {
   };
 
   function hidePriceVisibility(items) {
-    return items.map(item => ({
+    return items.map((item) => ({
       ...item,
-      price_visibility: 'hide',
-      children: item.children ? hidePriceVisibility(item.children) : []
+      price_visibility: "hide",
+      children: item.children ? hidePriceVisibility(item.children) : [],
     }));
   }
 
-  
   useEffect(() => {
     updateMenuList();
     // setMenu(aira_cat.filter(({ name }) => name !== "Search").map(item=> ({...item, meta_title:"", meta_description:"", price_visibility:"show"})))
     redisGet(defaultMenuKey).then((data) => {
       // setMenu(hidePriceVisibility(data.filter(({ name }) => name !== "Search")));
-      setMenu([HomeNavItem, ...data.filter(({ name }) => !["Home", "Search"].includes(name))]);
-      setSearchList(flattenMenu([HomeNavItem, ...data.filter(({ name }) => !["Home", "Search"].includes(name))]));
+      setMenu([
+        HomeNavItem,
+        ...data.filter(({ name }) => !["Home", "Search"].includes(name)),
+      ]);
+      setSearchList(
+        flattenMenu([
+          HomeNavItem,
+          ...data.filter(({ name }) => !["Home", "Search"].includes(name)),
+        ])
+      );
     });
     // fetch('/api/es/shopify/categories', {
     // method: 'POST',
@@ -523,8 +571,7 @@ function MenuUpdaterV3() {
           slug: createSlug(item.key),
           selected: false,
         }));
-        console.log("merged", merged);
-        setOriginMenu(merged);
+        setOriginMenu(merged.filter(({ nav_type }) => nav_type === "category"));
       })
       .catch((err) => {
         console.error("Error fetching categories or brands:", err);
@@ -544,24 +591,26 @@ function MenuUpdaterV3() {
   }, [scrollToSearch, searchList]);
 
   const originMenuSearchResults = useMemo(() => {
-  if (!originMenuSearch.trim()) {
-    return [...originMenu].sort((a, b) => a.key.localeCompare(b.key));
-  }
+    if (!originMenuSearch.trim()) {
+      return [...originMenu].sort((a, b) => a.key.localeCompare(b.key));
+    }
 
-  const _originMenuObj = originMenu
-    .filter(({ key }) =>
-      key.toLowerCase().includes(originMenuSearch.toLowerCase())
-    )
-    .sort((a, b) => a.key.localeCompare(b.key)); 
+    const _originMenuObj = originMenu
+      .filter(({ key }) =>
+        key.toLowerCase().includes(originMenuSearch.toLowerCase())
+      )
+      .sort((a, b) => a.key.localeCompare(b.key));
 
-  return _originMenuObj;
-}, [originMenuSearch, originMenu]);
+    return _originMenuObj;
+  }, [originMenuSearch, originMenu]);
 
   return (
     <section>
       <CardWrap>
         <div className="p-3">
-          <div className="font-bold text-lg">Menu Builder - Shopify Product Structure</div>
+          <div className="font-bold text-lg">
+            Menu Builder - Shopify Product Structure
+          </div>
           <div className="text-sm">Don't forget to save your changes.</div>
           <div className="flex flex-col md:flex-row gap-[10px] my-[10px] items-center justify-between">
             <Button onClick={handleSaveMenuChanges} loading={isLoading}>
@@ -651,9 +700,8 @@ function MenuUpdaterV3() {
                         />
                         <div className="w-[calc(100%-30px)]">
                           <div className="font-medium text-xs">
-                            {highlightText(item.key, originMenuSearch)} <span>
-                            ({item.doc_count})
-                            </span>
+                            {highlightText(item.key, originMenuSearch)}{" "}
+                            <span>({item.doc_count})</span>
                           </div>
                         </div>
                       </div>
@@ -687,65 +735,64 @@ function MenuUpdaterV3() {
 
               <div className="p-1">
                 <div>
-                  {
-                  scrollToSearch === "" ? menu
-                    .sort((a, b) => a.order - b.order)
-                    .map((item, index) => (
-                      <div key={`menu-item-${item.menu_id}`}>
-                        <MenuItem
-                          item={item}
-                          itemList={menu}
-                          onChange={handleMenuItemChanges}
-                          search={scrollToSearch}
-                        />
-                        {item.children &&
-                          item.children.length > 0 &&
-                          item.children
-                            .sort((a, b) => a.order - b.order)
-                            .map((item1, index1) => (
-                              <div
-                                className="ml-8"
-                                key={`menu-item-${item1.menu_id}`}
-                              >
-                                <MenuItem
-                                  item={item1}
-                                  itemList={menu}
-                                  onChange={handleMenuItemChanges}
-                                  search={scrollToSearch}
-                                />
+                  {scrollToSearch === ""
+                    ? menu
+                        .sort((a, b) => a.order - b.order)
+                        .map((item, index) => (
+                          <div key={`menu-item-${item.menu_id}`}>
+                            <MenuItem
+                              item={item}
+                              itemList={menu}
+                              onChange={handleMenuItemChanges}
+                              search={scrollToSearch}
+                            />
+                            {item.children &&
+                              item.children.length > 0 &&
+                              item.children
+                                .sort((a, b) => a.order - b.order)
+                                .map((item1, index1) => (
+                                  <div
+                                    className="ml-8"
+                                    key={`menu-item-${item1.menu_id}`}
+                                  >
+                                    <MenuItem
+                                      item={item1}
+                                      itemList={menu}
+                                      onChange={handleMenuItemChanges}
+                                      search={scrollToSearch}
+                                    />
 
-                                {item1.children &&
-                                  item1.children.length > 0 &&
-                                  item1.children
-                                    .sort((a, b) => a.order - b.order)
-                                    .map((item2, index2) => (
-                                      <div
-                                        className="ml-8"
-                                        key={`menu-item-${item2.menu_id}`}
-                                      >
-                                        <MenuItem
-                                          item={item2}
-                                          itemList={menu}
-                                          onChange={handleMenuItemChanges}
-                                          search={scrollToSearch}
-                                        />
-                                      </div>
-                                    ))}
-                              </div>
-                            ))}
-                      </div>
-                    )):
-                    searchListObj.map((item, index) => (
-                      <div key={`menu-item-${item.menu_id}`}>
-                        <MenuItem
-                          item={item}
-                          itemList={searchList}
-                          onChange={handleMenuItemChanges}
-                          search={scrollToSearch}
-                        />
-                      </div>
-                    ))
-                    }
+                                    {item1.children &&
+                                      item1.children.length > 0 &&
+                                      item1.children
+                                        .sort((a, b) => a.order - b.order)
+                                        .map((item2, index2) => (
+                                          <div
+                                            className="ml-8"
+                                            key={`menu-item-${item2.menu_id}`}
+                                          >
+                                            <MenuItem
+                                              item={item2}
+                                              itemList={menu}
+                                              onChange={handleMenuItemChanges}
+                                              search={scrollToSearch}
+                                            />
+                                          </div>
+                                        ))}
+                                  </div>
+                                ))}
+                          </div>
+                        ))
+                    : searchListObj.map((item, index) => (
+                        <div key={`menu-item-${item.menu_id}`}>
+                          <MenuItem
+                            item={item}
+                            itemList={searchList}
+                            onChange={handleMenuItemChanges}
+                            search={scrollToSearch}
+                          />
+                        </div>
+                      ))}
                 </div>
               </div>
             </div>
