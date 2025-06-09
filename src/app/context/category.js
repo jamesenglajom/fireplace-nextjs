@@ -42,13 +42,15 @@ export function CategoriesProvider({ categories, children }) {
 
     let visible = false;
 
+    const visible_price_categories = flatCategories
+      .filter(({ name }) => !["Home", "Search"].includes(name))
+      .filter(({ price_visibility }) => price_visibility === "show");
+
     const product_category_array = product_category
       .map(({ category_name }) => category_name)
       .filter(Boolean);
 
-    const flat_categories_array = flatCategories
-      .filter(({ name }) => !["Home", "Search"].includes(name))
-      .filter(({ price_visibility }) => price_visibility === "show")
+    const flat_categories_array = visible_price_categories
       .map(({ key }) => key)
       .filter(Boolean);
 
@@ -60,6 +62,18 @@ export function CategoriesProvider({ categories, children }) {
       visible = true;
     }
 
+    // hide and show price by custom_page
+    const page_pathname = window.location.pathname.replace(/\//g, "");
+    const visible_price_categories_urls = flatCategories
+      .filter(({ name }) => !["Home", "Search"].includes(name))
+      .filter(({ price_visibility }) => price_visibility === "show")
+      .map(({url})=> url)
+      .filter(Boolean);
+
+    if(visible_price_categories_urls.includes(page_pathname)){
+      visible = true;
+    }
+    
     return visible;
   };
 
