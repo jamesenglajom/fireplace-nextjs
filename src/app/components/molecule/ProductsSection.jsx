@@ -115,8 +115,12 @@ const ProductCardPriceDisplay = ({ price_details }) => {
 
 const SPProductCard = ({ hit, category }) => {
   const { viewItem } = useQuickView();
-  const { isPriceVisible } = useSolanaCategories();
-  console.log("hit", hit);
+  const { isPriceVisible, getProductUrl } = useSolanaCategories();
+
+  if(hit){
+    console.log("[hit] ", hit);
+    console.log("[product_url] ", getProductUrl(hit));
+  }
 
   const handleQuickViewClick = (e, item) => {
     e.stopPropagation();

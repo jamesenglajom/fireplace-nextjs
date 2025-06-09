@@ -54,6 +54,14 @@ export function CategoriesProvider({ categories, children }) {
       .map(({ key }) => key)
       .filter(Boolean);
 
+    const page_pathname = window.location.pathname.replace(/\//g, "");
+
+    const visible_price_categories_urls = flatCategories
+      .filter(({ name }) => !["Home", "Search"].includes(name))
+      .filter(({ price_visibility }) => price_visibility === "show")
+      .map(({ url }) => url)
+      .filter(Boolean);
+
     if (hasCommonValue(flat_categories_array, product_category_array)) {
       visible = true;
     }
@@ -63,17 +71,10 @@ export function CategoriesProvider({ categories, children }) {
     }
 
     // hide and show price by custom_page
-    const page_pathname = window.location.pathname.replace(/\//g, "");
-    const visible_price_categories_urls = flatCategories
-      .filter(({ name }) => !["Home", "Search"].includes(name))
-      .filter(({ price_visibility }) => price_visibility === "show")
-      .map(({url})=> url)
-      .filter(Boolean);
-
-    if(visible_price_categories_urls.includes(page_pathname)){
+    if (visible_price_categories_urls.includes(page_pathname)) {
       visible = true;
     }
-    
+
     return visible;
   };
 
@@ -103,6 +104,48 @@ export function CategoriesProvider({ categories, children }) {
       .map((menuItem) => menuItem.name);
   };
 
+  const getProductUrls = (product_category, product_brand, handle) => {
+    if (!product_category && !product_brand && !handle) return [];
+
+    const valid_categories = flatCategories.filter(
+      ({ name }) => !["Home", "Search"].includes(name)
+    );
+    const product_categories_brand = [
+      ...new Set([
+        ...product_category.map(({ category_name }) => category_name),
+        product_brand,
+      ]),
+    ].filter(Boolean);
+    const valid_product_categories = valid_categories.filter(
+      ({ origin_name }) => product_categories_brand.includes(origin_name)
+    );
+
+    const result =
+      valid_product_categories.length > 0
+        ? valid_product_categories.map(({ url }) => `/${url}/product/${handle}`)
+        : [];
+    return result;
+  };
+
+  const getProductUrl = (hit) => {
+    if(!hit){
+      return "#";
+    }
+
+    const pathname = window.location.pathname;
+    const product_urls = getProductUrls(hit.product_category, hit.brand, hit.handle);
+    console.log("[product_urls]",product_urls)
+    if(product_urls.length === 0){
+      return "#";
+    }
+
+    if(["/","/search"].includes(pathname)){
+      return product_urls[0];
+    }
+
+    return product_urls.find((item)=> item.includes(pathname+"/")) || "#";
+  }
+
   const solana_categories = useMemo(() => {
     return categories.map((item) => ({ ...item }));
   }, [categories]);
@@ -119,6 +162,7 @@ export function CategoriesProvider({ categories, children }) {
         solana_categories,
         flatCategories,
         isPriceVisible,
+        getProductUrl,
         getProductCategories,
       }}
     >
