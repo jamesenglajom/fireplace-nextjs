@@ -56,9 +56,7 @@ export function CategoriesProvider({ categories, children }) {
 
     const page_pathname = window.location.pathname.replace(/\//g, "");
 
-    const visible_price_categories_urls = flatCategories
-      .filter(({ name }) => !["Home", "Search"].includes(name))
-      .filter(({ price_visibility }) => price_visibility === "show")
+    const visible_price_categories_urls = visible_price_categories
       .map(({ url }) => url)
       .filter(Boolean);
 
@@ -128,25 +126,33 @@ export function CategoriesProvider({ categories, children }) {
   };
 
   const getProductUrl = (hit) => {
-    if(!hit){
+    if (!hit) {
+      console.error("[Product Url Error] hit undefined");
       return "#";
     }
 
     const pathname = window.location.pathname.replace(/\//g, "");
-    const product_urls = getProductUrls(hit.product_category, hit.brand, hit.handle);
+    const product_urls = getProductUrls(
+      hit.product_category,
+      hit.brand,
+      hit.handle
+    );
 
-    if(product_urls.length === 0){
-      console.log("[Product Url Error]");
+    if (product_urls.length === 0) {
+      console.error("[Product Url Error] product urls length is 0");
       return "#";
     }
 
-    const menu_item = flatCategories.find(({url})=> url === pathname);
-    if(menu_item?.nav_type === "custom_page"){
-      return product_urls[0];
-    }
+    // const menu_item = flatCategories.find(({url})=> url === pathname);
+    // if(menu_item?.nav_type === "custom_page"){
+    //   return product_urls[0];
+    // }
 
-    return product_urls.find((item)=> item.includes(pathname+"/")) || "#";
-  }
+    return (
+      product_urls.find((item) => item.includes(pathname + "/")) ||
+      product_urls[0]
+    );
+  };
 
   const solana_categories = useMemo(() => {
     return categories.map((item) => ({ ...item }));
@@ -165,6 +171,7 @@ export function CategoriesProvider({ categories, children }) {
         flatCategories,
         isPriceVisible,
         getProductUrl,
+        getProductUrls,
         getProductCategories,
       }}
     >

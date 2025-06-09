@@ -14,9 +14,11 @@ import ProductToCart from "@/app/components/widget/ProductToCartV2";
 import ProductMetaTabs from "@/app/components/product/meta/Tabs";
 import { createSlug, formatPrice } from "@/app/lib/helpers";
 import { useSolanaCategories } from "@/app/context/category";
+import FaqSection from "@/app/components/molecule/SingleProductFaqSection";
+import YouMayAlsoLike from "@/app/components/molecule/YouMayAlsoLike";
 
 const BreadCrumbs = ({ slug, product_path }) => {
-  if(!slug && !product_path){
+  if (!slug && !product_path) {
     return;
   }
 
@@ -36,16 +38,15 @@ const BreadCrumbs = ({ slug, product_path }) => {
 };
 
 const CategoryChips = ({ categories }) => {
-  
-  const {getProductCategories} = useSolanaCategories();
+  const { getProductCategories } = useSolanaCategories();
   const [localCategories, setCategories] = useState(
     getProductCategories(categories)
   );
-  
+
   if (!categories) {
     return;
   }
-  
+
   return (
     <div className="flex gap-[5px] flex-wrap">
       {localCategories &&
@@ -292,45 +293,14 @@ export default function Product({ params }) {
               <div className="w-full">
                 <ProductToCart product={product} loading={loading} />
                 <div className="py-[30px] flex flex-col gap-[15px]">
-                  {/* product options */}
-                  <ProductOptions product={product} slug={slug}/>
-                  {/* {productOptions && productOptions.length > 0 && (
-                    <div className="flex flex-col gap-[15px]">
-                      <div className="font-bold text-sm lg:text-lg">Options</div>
-                      <div className="border">
-                        {productOptions.map((item, idx) => (
-                          <div
-                            key={`product-option-${idx}`}
-                            className="flex flex-col gap-[10px]"
-                          >
-                            <div className="font-medium text-xs lg:text-sm px-4 py-1 bg-stone-300 text-black">
-                              {item.option}
-                            </div>
-                            <div className="flex items-center gap-[10px] p-1 pb-3">
-                              {item?.values &&
-                                item.values.map((item2, idx2) => (
-                                  <Link
-                                    key={`product-option-${idx}-value-${idx2}`}
-                                    href={`${BASE_URL}/product/${item2.sku.link}`}
-                                  >
-                                    <ProductOption option={item2} />
-                                  </Link>
-                                ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )} */}
-                  {/* Category */}
+                  <ProductOptions product={product} slug={slug} />
                   <div>
                     <div className="font-bold text-sm lg:text-lg mb-[15px]">
                       Category
                     </div>
-                    {
-                      product?.product_category &&
-                     <CategoryChips categories={product.product_category} />
-                    }
+                    {product?.product_category && (
+                      <CategoryChips categories={product.product_category} />
+                    )}
                   </div>
                 </div>
               </div>
@@ -339,6 +309,12 @@ export default function Product({ params }) {
           <div className="p-4">
             <div className="container max-w-7xl px-[0px] sm:px-[20px] mx-auto">
               <ProductMetaTabs product={product} />
+            </div>
+          </div>
+          <FaqSection />
+          <div className="p-4">
+            <div className="container max-w-7xl px-[0px] sm:px-[20px] mx-auto">
+              <YouMayAlsoLike displayItems={4} />
             </div>
           </div>
         </div>

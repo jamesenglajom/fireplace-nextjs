@@ -20,7 +20,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 function ProductQuickView({ data, product_link, onClose }) {
   const router = useRouter();
-  const { price_hidden_categories, isPriceVisible } = useSolanaCategories();
+  const { isPriceVisible, getProductUrl } = useSolanaCategories();
   const { addToCart, addToCartLoading } = useCart();
   const [toggle, setToggle] = useState(false);
   const [image, setImage] = useState(null);
@@ -116,7 +116,7 @@ function ProductQuickView({ data, product_link, onClose }) {
                     <div className="flex gap-[10px]">
                       <Link
                         className="w-full border border-theme-600 text-theme-600 p-2 text-center font-semibold text-sm"
-                        href={product_link || '#'}
+                        href={getProductUrl(data)}
                         onClick={handleViewProductClick}
                       >
                         View Item
