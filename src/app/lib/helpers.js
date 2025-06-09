@@ -67,6 +67,10 @@ function hasEqualValue(array1, array2) {
   return array1.some((value) => array2.includes(value));
 }
 
+export function hasCommonValue(array1, array2) {
+  return array1.some((value) => array2.includes(value));
+}
+
 export function getCategoryFilters(active_filters = {}) {
   const active_categories = active_filters?.["categories:in"]
     ? active_filters["categories:in"]

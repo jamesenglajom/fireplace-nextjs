@@ -1,15 +1,21 @@
 "use client";
 import { createContext, useContext, useMemo } from "react";
+import { hasCommonValue } from "@/app/lib/helpers";
 
 const CategoriesContext = createContext([]);
 
 export function CategoriesProvider({ categories, children }) {
+  /**
+   * Recursively flattens a nested category tree into a single-level array.
+   *
+   * @param {Array} categories - An array of category objects. Each category may contain a `children` array with nested categories.
+   * @param {Array} [flatArray=[]] - (Optional) The accumulator array used to collect flattened categories during recursion.
+   *
+   * @returns {Array} - A flat array containing all categories from the nested structure.
+   */
   const flattenCategories = (categories, flatArray = []) => {
     categories.forEach((category) => {
-      // Add the current category to the flat array
       flatArray.push(category);
-
-      // If there are children, recursively process them
       if (category.children && category.children.length > 0) {
         flattenCategories(category.children, flatArray);
       }
@@ -18,30 +24,62 @@ export function CategoriesProvider({ categories, children }) {
     return flatArray;
   };
 
-  const solana_categories = useMemo(() => {
-    return categories.map((item) => ({ ...item, key_words: [item.path] }));
-  }, [categories]);
+  /**
+   * Determines whether the price of a product should be visible based on its category and brand.
+   *
+   * @param {Array} product_category - An array of objects representing the product's categories.
+   *        Each object is expected to have a `category_name` property.
+   * @param {string} product_brand - The brand of the product.
+   *
+   * @returns {boolean} - Returns `true` if the product belongs to a category or has a brand
+   *        that matches any in the globally defined `flatCategories` list with `price_visibility` set to "show";
+   *        otherwise, returns `false`.
+   */
+  const isPriceVisible = (product_category, product_brand) => {
+    if (!product_category || !product_brand) {
+      return false;
+    }
 
-  const flatCategories = useMemo(() => {
-    const _flatCategories = flattenCategories(categories);
-    return _flatCategories;
-  }, [categories]);
+    let visible = false;
 
-  const price_hidden_categories = useMemo(() => {
-    const _flatCategories = flattenCategories(categories);
-    const hidden_cats = _flatCategories.filter(
-      (category) => category.price_visibility === "hide"
-    );
-    return hidden_cats.map(({ origin_name }) => origin_name);
-  }, [categories]);
+    const product_category_array = product_category
+      .map(({ category_name }) => category_name)
+      .filter(Boolean);
 
+    const flat_categories_array = flatCategories
+      .filter(({ name }) => !["Home", "Search"].includes(name))
+      .filter(({ price_visibility }) => price_visibility === "show")
+      .map(({ key }) => key)
+      .filter(Boolean);
+
+    if (hasCommonValue(flat_categories_array, product_category_array)) {
+      visible = true;
+    }
+
+    if (flat_categories_array.includes(product_brand)) {
+      visible = true;
+    }
+
+    return visible;
+  };
+
+  /**
+   * Retrieves a list of valid category names for a given product, excluding "Home" and "Search".
+   *
+   * @param {Array} product_category - An array of product category objects, each containing a `category_name` property.
+   *
+   * @returns {Array} - An array of category names from `solana_categories` that match the product's categories
+   *                    based on `origin_name`, excluding "Home" and "Search".
+   */
   const getProductCategories = (product_category) => {
-    if(!product_category){
+    if (!product_category) {
       return [];
     }
+
     const category_scope = solana_categories.filter(
       ({ name }) => !["Home", "Search"].includes(name)
     );
+
     return category_scope
       .filter((menuItem) =>
         product_category.some(
@@ -51,13 +89,22 @@ export function CategoriesProvider({ categories, children }) {
       .map((menuItem) => menuItem.name);
   };
 
+  const solana_categories = useMemo(() => {
+    return categories.map((item) => ({ ...item }));
+  }, [categories]);
+
+  const flatCategories = useMemo(() => {
+    const _flatCategories = flattenCategories(categories);
+    return _flatCategories;
+  }, [categories]);
+
   return (
     <CategoriesContext.Provider
       value={{
         categories,
         solana_categories,
         flatCategories,
-        price_hidden_categories,
+        isPriceVisible,
         getProductCategories,
       }}
     >
@@ -66,7 +113,6 @@ export function CategoriesProvider({ categories, children }) {
   );
 }
 
-// Custom hook for using the context
 export function useSolanaCategories() {
   return useContext(CategoriesContext);
 }

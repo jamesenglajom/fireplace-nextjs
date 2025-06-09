@@ -50,9 +50,8 @@ const SearchNavItem = {
     "name": "Search",
     "url": "search",
     "nav_visibility": false,
+    "nav_type": "custom_page",
 }
-
-
 
 function MenuUpdaterV3() {
   const [menu, setMenu] = useState([]);

@@ -8,10 +8,10 @@ const apiClient = API(
       apiKey: "eHgtQWI1VUI0Nm1Xbl9IdGNfRG46bFZqUjQtMzJRN3kzdllmVjVDemNHdw==",
     },
     search_settings: {
-      highlight_attributes: ["name"],
+      highlight_attributes: ["title"],
       snippet_attributes: ["description:200"],
       search_attributes: [
-        { field: "name", weight: 3 },
+        { field: "title", weight: 3 },
         { field: "brand", weight: 2 },
         "description",
       ],
@@ -76,7 +76,7 @@ const apiClient = API(
         },
       },
     },
-  }
+  },
   // { debug: true }
 );
 

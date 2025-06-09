@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useRef, use } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Rating } from "@smastrom/react-rating";
 import { ICRoundPhone } from "@/app/components/icons/lib";
@@ -8,10 +8,12 @@ import FicDropDown from "@/app/components/atom/FicDropDown";
 import Link from "next/link";
 import { useQuickView } from "@/app/context/quickview";
 import { formatPrice } from "@/app/lib/helpers";
+import { useSearch } from "@/app/context/search";
 
 import {
   InstantSearch,
   Hits,
+  HitsPerPage,
   Highlight,
   RefinementList,
   Pagination,
@@ -25,6 +27,7 @@ import {
   SortBy,
   useInstantSearch,
   useSearchResults,
+  SearchBox,
 } from "react-instantsearch";
 import Client from "@searchkit/instantsearch-client";
 
@@ -50,8 +53,8 @@ const QueryRulesBanner = () => {
 
   return (
     <div className="query-rules">
-      {items.map((item) => (
-        <div key={item.objectID} className="query-rules__item">
+      {items.map((item, index) => (
+        <div key={`query-rules-${index}-${item.objectID}`} className="query-rules__item">
           <a href={item.url}>
             <b className="query-rules__item-title">{item.title}</b>
             <span className="query-rules__item-description">{item.body}</span>
@@ -112,7 +115,8 @@ const ProductCardPriceDisplay = ({ price_details }) => {
 
 const SPProductCard = ({ hit, category }) => {
   const { viewItem } = useQuickView();
-  const { price_hidden_categories } = useSolanaCategories();
+  const { isPriceVisible } = useSolanaCategories();
+  console.log("hit", hit);
 
   const handleQuickViewClick = (e, item) => {
     e.stopPropagation();
@@ -121,14 +125,13 @@ const SPProductCard = ({ hit, category }) => {
   };
 
   function parseRatingCount(value) {
-    if (typeof value === 'string') {
+    if (typeof value === "string") {
       // Remove any non-digit characters (like surrounding quotes)
-      value = value.replace(/[^\d]/g, '');
+      value = value.replace(/[^\d]/g, "");
     }
     const count = parseInt(value, 10);
     return isNaN(count) ? 0 : count;
   }
-
 
   return (
     <Link
@@ -186,7 +189,7 @@ const SPProductCard = ({ hit, category }) => {
           <div className={`flex items-center gap-[5px]`}>
             <Rating
               readOnly
-              value={parseRatingCount(hit.ratings.rating_count)}
+              value={parseRatingCount(hit?.ratings?.rating_count)}
               fractions={2}
               style={{ maxWidth: 100 }}
             ></Rating>
@@ -194,11 +197,9 @@ const SPProductCard = ({ hit, category }) => {
           </div>
           <div className="mt-3">{hit.brand}</div>
           <div className="mt-3">
-            {price_hidden_categories.some((name) =>
-              hit?.product_category.some(
-                ({ category_name }) => category_name === name
-              )
-            ) ? (
+            {
+            !isPriceVisible(hit?.product_category, hit?.brand)
+            ? (
               <div className="font-medium text-[14px] text-stone-700">
                 Contact us for pricing.
               </div>
@@ -208,11 +209,9 @@ const SPProductCard = ({ hit, category }) => {
           </div>
           <FicDropDown>
             <div className="text-xs my-[5px] text-blue-500 flex items-center cursor-default gap-[7px] flex-wrap">
-              {price_hidden_categories.some((name) =>
-                hit?.product_category.some(
-                  ({ category_name }) => category_name === name
-                )
-              ) ? (
+              {
+              !isPriceVisible(hit?.product_category, hit?.brand)  
+              ? (
                 <>Call for Price </>
               ) : (
                 <>Found It Cheaper? </>
@@ -231,8 +230,10 @@ const SPProductCard = ({ hit, category }) => {
 
 const InnerUI = ({ category, page_details, onDataLoaded }) => {
   const { status, results } = useInstantSearch();
+  const { setSearchPageProductCount } = useSearch();
   const [loadHint, setLoadHint] = useState("");
   const [firstLoad, setFirstLoad] = useState(true);
+
   useEffect(() => {
     setLoadHint((prev) => {
       let result = prev;
@@ -254,15 +255,20 @@ const InnerUI = ({ category, page_details, onDataLoaded }) => {
     });
     onDataLoaded(result);
   }, [loadHint]);
-  // const firstLoad = useMemo(() => {
-  //   return ["loading"].includes(loadHint);
-  // }, [loadHint]);
+  
+  useEffect(()=>{
+    const count = results?.nbHits || 0;
+    console.log("[RESULTS COUNT]", count);
+    setSearchPageProductCount(count)
+  },[results])
 
   if (!firstLoad) {
     return (
       <div className="container">
         <div className="flex items-center justify-between mb-5">
-          <h1 className="uppercase text-lg font-bold">{`${page_details?.name} ${results?.nbHits && `(${results?.nbHits})`}`}</h1>
+          <h1 className="uppercase text-lg font-bold">{`${page_details?.name} ${
+            results?.nbHits && `(${results?.nbHits})`
+          }`}</h1>
           <SortBy
             items={[
               { label: "Most Popular", value: "popular" },
@@ -275,8 +281,7 @@ const InnerUI = ({ category, page_details, onDataLoaded }) => {
         <div className="search-panel flex pb-[50px]">
           <div className="search-panel__filters  pfd-filter-section">
             {/* <FilterWrapper page_details={page_details} /> */}
-            {
-              page_details && page_details?.nav_type === "category" && 
+            {page_details && page_details?.nav_type === "category" && (
               <DynamicWidgets facets={["*"]}>
                 <div className="my-5 facet_brand">
                   <Panel header="brand">
@@ -289,10 +294,9 @@ const InnerUI = ({ category, page_details, onDataLoaded }) => {
                   </Panel>
                 </div>
               </DynamicWidgets>
-            }
+            )}
 
-             {
-              page_details && page_details?.nav_type === "brand" && 
+            {page_details && page_details?.nav_type === "brand" && (
               <DynamicWidgets facets={["*"]}>
                 <div className="my-5">
                   <Panel header="Categories">
@@ -305,10 +309,9 @@ const InnerUI = ({ category, page_details, onDataLoaded }) => {
                   </Panel>
                 </div>
               </DynamicWidgets>
-            }
+            )}
 
-            {
-              page_details && page_details?.nav_type === "custom_page" && 
+            {page_details && page_details?.nav_type === "custom_page" && (
               <DynamicWidgets facets={["*"]}>
                 <div className="my-5">
                   <Panel header="Categories">
@@ -326,8 +329,8 @@ const InnerUI = ({ category, page_details, onDataLoaded }) => {
                   </Panel>
                 </div>
               </DynamicWidgets>
-            }
-            </div>
+            )}
+          </div>
           <div className="search-panel__results pfd-product-section">
             <CurrentRefinements />
             <QueryRulesBanner />
@@ -401,7 +404,24 @@ const SkeletonLoader = () => {
   );
 };
 
-function ProductsSection({ category }) {
+
+const Refresh = ({search}) => {
+  const {refresh, setUiState} = useInstantSearch()
+  useEffect(()=>{
+    setUiState((prev)=>{
+      const new_state = prev;
+      new_state[es_index]["query"] = search;
+      console.log("[NEWSTATE] ", new_state);
+      return new_state;
+    })
+    refresh();
+  },[search]);
+  return null;
+}
+
+function ProductsSection({ category, search = "" }) {
+  // search is assigned only on search page
+  const [searchState, setSearchState] = useState({});
   const { flatCategories } = useSolanaCategories();
   const [pageDetails, setPageDetails] = useState(null);
   const [firstLoad, setFirstLoad] = useState(true);
@@ -414,13 +434,13 @@ function ProductsSection({ category }) {
       console.log("details", details);
       if (details) {
         setPageDetails(details);
-        setFilterString(prev=>{
-          let result="";
-          if(details?.nav_type==="category"){
+        setFilterString((prev) => {
+          let result = "";
+          if (details?.nav_type === "category") {
             setFilterString(`page_category:${details?.origin_name}`);
-          }else if(details?.nav_type==="brand"){
+          } else if (details?.nav_type === "brand") {
             setFilterString(`page_brand:${details?.origin_name}`);
-          }else if(details?.nav_type==="custom_page"){
+          } else if (details?.nav_type === "custom_page") {
             setFilterString(`custom_page:${details?.origin_name}`);
           }
         });
@@ -431,9 +451,18 @@ function ProductsSection({ category }) {
     }
   }, [category, flatCategories]);
 
+  // useEffect(() => {
+  //   console.log("[SEARCH] ", search);
+  //   const input = document.querySelector('.ais-SearchBox.hidden-main-search-input input.ais-SearchBox-input');
+  //   if (input && input.value !== search) {
+  //     input.value = search;
+  //     input.dispatchEvent(new KeyboardEvent('keyup', { bubbles: true }));
+  //   }
+  // }, [search]);
+
   return (
     <>
-      <div className={`container mx-auto ${firstLoad ? "":"hidden"}`}>
+      <div className={`container mx-auto ${firstLoad ? "" : "hidden"}`}>
         <div className="mt-5">
           <SkeletonLoader />
         </div>
@@ -443,13 +472,24 @@ function ProductsSection({ category }) {
           <InstantSearch
             indexName={es_index}
             searchClient={searchClient}
-            future={{ preserveSharedStateOnUnmount: false }}
+            searchState={searchState}
+            // initialUiState={searchState}
+            // onStateChange={({ uiState, setUiState }) => {
+            //   console.log("[uiState] ", uiState);
+            //   setUiState(prev => {
+            //     const new_state = prev;
+            //     new_state["solana_products"]["query"] = search;
+            //     console.log("[NEW STATE]",new_state)
+            //     return new_state
+            //   });
+            //   // setSearchState(updatedState); // keeps InstantSearch in sync
+            // }}
           >
+            <SearchBox className="hidden-main-search-input hidden" />
+            <Refresh search={search}/>
+            {/* <HitsPerPage /> */}
             {filterString ? (
-              <Configure
-                hitsPerPage={15}
-                filter={filterString}
-              />
+              <Configure hitsPerPage={15} filter={filterString} />
             ) : (
               <Configure hitsPerPage={15} />
             )}

@@ -33,7 +33,7 @@ const OnsaleTag = ({ price_details }) => {
 
 
 const ProductToCart = ({ product, loading }) => {
-  const { price_hidden_categories } = useSolanaCategories();
+  const { isPriceVisible } = useSolanaCategories();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [ATCLoading, setATCLoading] = useState(false);
@@ -152,7 +152,7 @@ const ProductToCart = ({ product, loading }) => {
       </div>
 
       {
-        price_hidden_categories.some(name => productData?.product_category.some(cat => cat.category_name === name)) ?
+        !isPriceVisible(productData?.product_category, productData?.brand)   ?
         // display no price
         <div className="font-medium text-[14px] text-stone-700">Contact us for pricing.</div>:<>
           <div className="flex items-center gap-[20px]">
@@ -278,7 +278,7 @@ const ProductToCart = ({ product, loading }) => {
       <FicDropDown>
       <div className="text-blue-500 text-sm my-[5px] flex items-center gap-[7px]">
         {
-          price_hidden_categories.some(name => productData?.product_category.some(cat => cat.category_name === name)) ?
+          !isPriceVisible(productData?.product_category, productData?.brand)  ?
           <>Call for Price{" "}</>
           :
           <>Found It Cheaper?{" "}</>
