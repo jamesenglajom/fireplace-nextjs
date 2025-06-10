@@ -20,6 +20,7 @@ import { useSolanaCategories } from "@/app/context/category";
 // useful console that logs keywords for all main categories
 // console.log("solanaCategories", solana_categories.flatMap(i=> i.key_words))
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
+const exclude_brands = ["Bull Outdoor Products"];
 
 const SearchContext = createContext();
 export const useSearch = () => {
@@ -124,6 +125,13 @@ export const SearchProvider = ({ children }) => {
                     ],
                   },
                 },
+                must_not: [
+                  {
+                    terms: {
+                      "brand.keyword": exclude_brands,
+                    },
+                  },
+                ],
               },
             },
             size: 15,

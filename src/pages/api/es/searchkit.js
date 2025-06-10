@@ -1,11 +1,12 @@
 // pages/api/es/searchkit.js
 import API from "@searchkit/api";
-
+const exclude_brands = ["Bull Outdoor Products"];
 const apiClient = API(
   {
     connection: {
       host: "https://solanafireplaces.com/es",
       apiKey: "eHgtQWI1VUI0Nm1Xbl9IdGNfRG46bFZqUjQtMzJRN3kzdllmVjVDemNHdw==",
+      index: "solana_products"
     },
     search_settings: {
       highlight_attributes: ["title"],
@@ -76,7 +77,7 @@ const apiClient = API(
         },
       },
     },
-  },
+  }
   // { debug: true }
 );
 
@@ -87,82 +88,142 @@ export default async function handler(req, res) {
   }
 
   try {
-    console.log("searchkit body", req.body);
     const check_filter = req.body?.[0]?.params?.filter;
 
     let filter_key = null;
     let filter_value = null;
     let filter_option = null;
+
+    // filter out Bull Outdoor Products
+    let filter_query = [
+      {
+        bool: {
+          must_not: {
+            terms: {
+              "brand.keyword": exclude_brands,
+            },
+          },
+        },
+      },
+    ];
+
     if (check_filter) {
       filter_key = check_filter.split(":")[0];
       filter_value = check_filter.split(":")[1];
     }
 
     if (filter_key === "page_category") {
-      filter_option = {
-        getBaseFilters: () => [
-          {
-            term: {
-              "product_category.category_name.keyword": filter_value,
-            },
-          },
-        ],
-      };
+      filter_query.push({
+        term: {
+          "product_category.category_name.keyword": filter_value,
+        },
+      });
+      // filter_option = {
+      //   getBaseFilters: () => [
+      //     {
+      //       term: {
+      //         "product_category.category_name.keyword": filter_value,
+      //       },
+      //     },
+      //   ],
+      // };
     }
 
     if (filter_key === "page_brand") {
-      filter_option = {
-        getBaseFilters: () => [
-          {
-            term: {
-              "brand.keyword": filter_value,
-            },
-          },
-        ],
-      };
+      filter_query.push({
+        term: {
+          "brand.keyword": filter_value,
+        },
+      });
+      // filter_option = {
+      //   getBaseFilters: () => [
+      //     {
+      //       term: {
+      //         "brand.keyword": filter_value,
+      //       },
+      //     },
+      //   ],
+      // };
     }
 
     if (filter_key === "custom_page" && filter_value === "New Arrivals") {
-      filter_option = {
-        getBaseFilters: () => [
-          {
-            range: {
-              created_at: {
-                gte: "now-30d/d", // You can customize this value as needed
-              },
-            },
+      filter_query.push({
+        range: {
+          created_at: {
+            gte: "now-30d/d", // You can customize this value as needed
           },
-        ],
-      };
+        },
+      });
+      // filter_option = {
+      //   getBaseFilters: () => [
+      //     {
+      //       range: {
+      //         created_at: {
+      //           gte: "now-30d/d", // You can customize this value as needed
+      //         },
+      //       },
+      //     },
+      //   ],
+      // };
     }
 
     if (filter_key === "custom_page" && filter_value === "On Sale") {
-      filter_option = {
-        getBaseFilters: () => [
-          {
-            exists: {
-              field: "variants.compare_at_price",
+      const tmp_query = [
+        {
+          exists: {
+            field: "variants.compare_at_price",
+          },
+        },
+        {
+          range: {
+            "variants.compare_at_price": {
+              gt: 0,
             },
           },
-          {
-            range: {
-              "variants.compare_at_price": {
-                gt: 0,
-              },
-            },
-          },
-          {
+        },
+        {
+          script: {
             script: {
-              script: {
-                source:
-                  "doc['variants.compare_at_price'].size() > 0 && doc['variants.price'].size() > 0 && doc['variants.compare_at_price'].value > doc['variants.price'].value",
-                lang: "painless",
-              },
+              source:
+                "doc['variants.compare_at_price'].size() > 0 && doc['variants.price'].size() > 0 && doc['variants.compare_at_price'].value > doc['variants.price'].value",
+              lang: "painless",
             },
           },
-        ],
-      };
+        },
+      ];
+
+      filter_query.push(...tmp_query);
+      // filter_option = {
+      //   getBaseFilters: () => [
+      //     {
+      //       exists: {
+      //         field: "variants.compare_at_price",
+      //       },
+      //     },
+      //     {
+      //       range: {
+      //         "variants.compare_at_price": {
+      //           gt: 0,
+      //         },
+      //       },
+      //     },
+      //     {
+      //       script: {
+      //         script: {
+      //           source:
+      //             "doc['variants.compare_at_price'].size() > 0 && doc['variants.price'].size() > 0 && doc['variants.compare_at_price'].value > doc['variants.price'].value",
+      //           lang: "painless",
+      //         },
+      //       },
+      //     },
+      //   ],
+      // };
     }
+
+    // create the filter option
+    filter_option = {
+      getBaseFilters: () => filter_query,
+    };
 
     const data = req.body;
     let results = null;
