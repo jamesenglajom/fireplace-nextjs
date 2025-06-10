@@ -14,7 +14,7 @@ export default function Hero({ data }) {
       className={`container mx-auto flex flex-col md:flex-row`}
     >
       <div className={`w-full`}>
-        <div className="w-full relative isolate px-6 lg:px-8 bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px]  md:h-[calc(100vh-450px)]">
+        <div className="w-full relative isolate px-6 lg:px-8 bg-no-repeat bg-center bg-cover bg-stone-800 h-[250px]  md:h-[calc(100vh-450px)] md:max-h-[550px]">
           {
             <Image
               src={useBanner}
