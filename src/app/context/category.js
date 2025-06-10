@@ -132,11 +132,6 @@ export function CategoriesProvider({ categories, children }) {
       return "#";
     }
 
-    if(hit._index !== "solana_products"){
-      // console.log("[Product Url] hit index is not equal to solana products", hit);
-      return "#";
-    }
-
     const pathname = window.location.pathname.replace(/\//g, "");
     const product_urls = getProductUrls(
       hit.product_category,

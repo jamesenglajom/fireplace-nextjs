@@ -6,10 +6,12 @@ import { useRouter } from "next/navigation";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 import { useSearch } from "@/app/context/search";
+import { useSolanaCategories } from "@/app/context/category";
 
 function SearchResultSection({ section, onOptionSelect }) {
   const router = useRouter();
   const { setSearch } = useSearch();
+  const { getProductUrl } = useSolanaCategories();
   const [sectionData, setSectionData] = useState([]);
   const [expanded, setExpanded] = useState(false);
 
@@ -63,7 +65,7 @@ function SearchResultSection({ section, onOptionSelect }) {
                 prefetch={false}
                 onClick={handleOptionClick}
                 key={`product-result-${product?.handle}`}
-                href={`${BASE_URL}/product/${product?.handle}`}
+                href={`${getProductUrl(product)}`}
               >
                 <div className="flex items-center group hover:bg-stone-50 px-2 py-[5px]">
                   <div className="w-[75px] h-[75px] overflow-hidden bg-white mr-[10px] flex items-center rounded relative">
