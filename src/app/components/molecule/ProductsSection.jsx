@@ -72,7 +72,6 @@ const InnerUI = ({ category, page_details, onDataLoaded }) => {
       if (prev === "loading" && status === "idle") {
         result = "loading-idle";
       }
-      console.log("loadinghint: ", result);
       return result;
     });
   }, [status]);
@@ -251,7 +250,6 @@ const Refresh = ({ search }) => {
     setUiState((prev) => {
       const new_state = prev;
       new_state[es_index]["query"] = search;
-      console.log("[NEWSTATE] ", new_state);
       return new_state;
     });
     refresh();
@@ -269,20 +267,19 @@ function ProductsSection({ category, search = "" }) {
 
   useEffect(() => {
     if (category) {
-      console.log("flatCategories", flatCategories);
       const details = flatCategories.find(({ url }) => url === category);
-      console.log("details", details);
       if (details) {
         setPageDetails(details);
         setFilterString((prev) => {
           let result = "";
           if (details?.nav_type === "category") {
-            setFilterString(`page_category:${details?.origin_name}`);
+            result = `page_category:${details?.origin_name}`;
           } else if (details?.nav_type === "brand") {
-            setFilterString(`page_brand:${details?.origin_name}`);
+            result = `page_brand:${details?.origin_name}`;
           } else if (details?.nav_type === "custom_page") {
-            setFilterString(`custom_page:${details?.origin_name}`);
+            result = `custom_page:${details?.origin_name}`;
           }
+          return result;
         });
       } else {
         setPageDetails(null);
@@ -290,15 +287,6 @@ function ProductsSection({ category, search = "" }) {
       }
     }
   }, [category, flatCategories]);
-
-  // useEffect(() => {
-  //   console.log("[SEARCH] ", search);
-  //   const input = document.querySelector('.ais-SearchBox.hidden-main-search-input input.ais-SearchBox-input');
-  //   if (input && input.value !== search) {
-  //     input.value = search;
-  //     input.dispatchEvent(new KeyboardEvent('keyup', { bubbles: true }));
-  //   }
-  // }, [search]);
 
   return (
     <>
@@ -313,17 +301,6 @@ function ProductsSection({ category, search = "" }) {
             indexName={es_index}
             searchClient={searchClient}
             searchState={searchState}
-            // initialUiState={searchState}
-            // onStateChange={({ uiState, setUiState }) => {
-            //   console.log("[uiState] ", uiState);
-            //   setUiState(prev => {
-            //     const new_state = prev;
-            //     new_state["solana_products"]["query"] = search;
-            //     console.log("[NEW STATE]",new_state)
-            //     return new_state
-            //   });
-            //   // setSearchState(updatedState); // keeps InstantSearch in sync
-            // }}
           >
             <SearchBox className="hidden-main-search-input hidden" />
             <Refresh search={search} />

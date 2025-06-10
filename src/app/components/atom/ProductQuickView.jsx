@@ -33,7 +33,7 @@ function ProductQuickView({ data, product_link, onClose }) {
 
   useEffect(() => {
     if (data) {
-      console.log("data", data);
+      // console.log("data", data);
       const thumbnail =
         data?.images?.find(({ position }) => position===1)?.src ??
         null;
@@ -60,7 +60,7 @@ function ProductQuickView({ data, product_link, onClose }) {
     if (code === 200) {
       handleClose();
     } else {
-      console.log("handleAddToCart:Error", message);
+      // console.log("handleAddToCart:Error", message);
     }
   };
 

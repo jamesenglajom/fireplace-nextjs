@@ -6,7 +6,7 @@ const apiClient = API(
     connection: {
       host: "https://solanafireplaces.com/es",
       apiKey: "eHgtQWI1VUI0Nm1Xbl9IdGNfRG46bFZqUjQtMzJRN3kzdllmVjVDemNHdw==",
-      index: "solana_products"
+      index: "solana_products",
     },
     search_settings: {
       highlight_attributes: ["title"],
@@ -48,7 +48,6 @@ const apiClient = API(
           type: "string",
         },
         { attribute: "brand", field: "brand.keyword", type: "string" },
-        // { attribute: 'categories', field: 'name.keyword', type: 'string', nestedPath:"categories" },
         { attribute: "price", field: "variants.price", type: "numeric" },
       ],
       filter_attributes: [
@@ -105,6 +104,12 @@ export default async function handler(req, res) {
           },
         },
       },
+      // adding the query below solves an issue when visiting the /brands page where an error occurs when toggling sort options.
+      {
+        exists: {
+          field: "brand.keyword",
+        },
+      },
     ];
 
     if (check_filter) {
@@ -118,15 +123,6 @@ export default async function handler(req, res) {
           "product_category.category_name.keyword": filter_value,
         },
       });
-      // filter_option = {
-      //   getBaseFilters: () => [
-      //     {
-      //       term: {
-      //         "product_category.category_name.keyword": filter_value,
-      //       },
-      //     },
-      //   ],
-      // };
     }
 
     if (filter_key === "page_brand") {
@@ -135,15 +131,6 @@ export default async function handler(req, res) {
           "brand.keyword": filter_value,
         },
       });
-      // filter_option = {
-      //   getBaseFilters: () => [
-      //     {
-      //       term: {
-      //         "brand.keyword": filter_value,
-      //       },
-      //     },
-      //   ],
-      // };
     }
 
     if (filter_key === "custom_page" && filter_value === "New Arrivals") {
@@ -154,17 +141,6 @@ export default async function handler(req, res) {
           },
         },
       });
-      // filter_option = {
-      //   getBaseFilters: () => [
-      //     {
-      //       range: {
-      //         created_at: {
-      //           gte: "now-30d/d", // You can customize this value as needed
-      //         },
-      //       },
-      //     },
-      //   ],
-      // };
     }
 
     if (filter_key === "custom_page" && filter_value === "On Sale") {
@@ -193,42 +169,16 @@ export default async function handler(req, res) {
       ];
 
       filter_query.push(...tmp_query);
-      // filter_option = {
-      //   getBaseFilters: () => [
-      //     {
-      //       exists: {
-      //         field: "variants.compare_at_price",
-      //       },
-      //     },
-      //     {
-      //       range: {
-      //         "variants.compare_at_price": {
-      //           gt: 0,
-      //         },
-      //       },
-      //     },
-      //     {
-      //       script: {
-      //         script: {
-      //           source:
-      //             "doc['variants.compare_at_price'].size() > 0 && doc['variants.price'].size() > 0 && doc['variants.compare_at_price'].value > doc['variants.price'].value",
-      //           lang: "painless",
-      //         },
-      //       },
-      //     },
-      //   ],
-      // };
     }
-
-    // create the filter option
-    filter_option = {
-      getBaseFilters: () => filter_query,
-    };
 
     const data = req.body;
     let results = null;
 
-    if (filter_option) {
+    if (filter_query.length > 0) {
+      // create the filter option
+      filter_option = {
+        getBaseFilters: () => filter_query,
+      };
       results = await apiClient.handleRequest(data, filter_option);
     } else {
       results = await apiClient.handleRequest(data);

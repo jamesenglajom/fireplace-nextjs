@@ -153,7 +153,7 @@ export const SearchProvider = ({ children }) => {
       const data = await res.json();
       const formatted_results = data?.hits?.hits?.map(({ _source }) => _source);
       const result_total_count = data?.hits?.total?.value;
-      console.log("[MANUALQUERYRESULTCOUNT] ", result_total_count);
+      // console.log("[MANUALQUERYRESULTCOUNT] ", result_total_count);
       setProductResult(formatted_results);
       setProductResultsCount(result_total_count);
       return data;

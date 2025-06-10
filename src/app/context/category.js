@@ -103,11 +103,12 @@ export function CategoriesProvider({ categories, children }) {
   };
 
   const getProductUrls = (product_category, product_brand, handle) => {
-    if (!product_category && !product_brand && !handle) return [];
+    if (!product_category || !product_brand || !handle) return [];
 
     const valid_categories = flatCategories.filter(
       ({ name }) => !["Home", "Search"].includes(name)
     );
+
     const product_categories_brand = [
       ...new Set([
         ...product_category.map(({ category_name }) => category_name),
@@ -127,7 +128,12 @@ export function CategoriesProvider({ categories, children }) {
 
   const getProductUrl = (hit) => {
     if (!hit) {
-      console.error("[Product Url Error] hit undefined");
+      // console.error("[Product Url Error] hit undefined");
+      return "#";
+    }
+
+    if(hit._index !== "solana_products"){
+      // console.log("[Product Url] hit index is not equal to solana products", hit);
       return "#";
     }
 
@@ -139,7 +145,7 @@ export function CategoriesProvider({ categories, children }) {
     );
 
     if (product_urls.length === 0) {
-      console.error("[Product Url Error] product urls length is 0");
+      // console.log("[Product Url Error] product urls length is 0", hit?.handle);
       return "#";
     }
 

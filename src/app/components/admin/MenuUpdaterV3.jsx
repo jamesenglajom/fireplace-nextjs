@@ -10,9 +10,6 @@ import MenuCreate from "@/app/components/admin/MenuUpdaterCreateV2";
 import { generateId, createSlug } from "@/app/lib/helpers";
 import { keys, redisGet, redisSet } from "@/app/lib/redis";
 
-import { bc_categories, solana_categories } from "@/app/lib/category-helpers";
-
-console.log("solana_categories", solana_categories);
 
 const menuListKey = keys.menu_list_shopify.value;
 const activeMenuKey = keys.active_shopify_menu.value;
@@ -89,7 +86,6 @@ function MenuUpdaterV3() {
     const queryKeys = [menuListKey, activeMenuKey];
     redisGet(queryKeys).then((data) => {
       const [menu_list, active_menu] = data;
-      console.log(menu_list, active_menu);
       setMenuList(menu_list);
       setActiveMenu(active_menu);
       const selected_menu = active_menu ?? menu_list?.[0]?.key;
@@ -114,7 +110,6 @@ function MenuUpdaterV3() {
       ...flatMenu.map((item) => item?.key?.toLowerCase()),
       "search",
     ];
-    console.log("restrictedNames", restrictedNames);
     const custom_page = prompt("Custom Page Name");
     if (custom_page) {
       if (restrictedNames.includes(custom_page.toLowerCase())) {
@@ -386,7 +381,6 @@ function MenuUpdaterV3() {
 
     if (action === "orderChange") {
       const { order, item } = target;
-      // console.log("triggerOrderChange");
       // updateOrder(items, menuId, newOrder)
       // get the parent first to use in menu params u
       if (item.parent_id !== "") {
@@ -399,7 +393,7 @@ function MenuUpdaterV3() {
           updateChildren(
             prev,
             item.parent_id,
-            updateOrder(siblings, item.menu_id, order)
+            newOrder
           )
         );
       } else {
@@ -411,7 +405,6 @@ function MenuUpdaterV3() {
       const { menu_id, item } = target;
       setMenu((prev) => {
         const updatedMenu = replaceMenuItem(prev, menu_id, item);
-        console.log("newMenu", updatedMenu);
         return [...updatedMenu];
       });
     }
@@ -423,9 +416,7 @@ function MenuUpdaterV3() {
   };
 
   const handleSetActiveMenu = () => {
-    console.log("handleSetActiveMenu:selectedMenu:", selectedMenu);
     redisSet(activeMenuKey, selectedMenu).then((response) => {
-      // console.log(`redisSetResponse`, response);
       if (response.success) {
         const active = menuList.find(({ key }) => key === selectedMenu);
         updateMenuList();
@@ -436,19 +427,12 @@ function MenuUpdaterV3() {
 
   const handleSelectMenuChange = (e) => {
     const { value } = e.target;
-    // console.log("handleSelectMenuChange", value);
     setSelectedMenu(value);
   };
 
   const handleSaveMenuChanges = () => {
-    // console.log("selectedMenu", selectedMenu)
-    // console.log("SaveMenu", menu)
     setIsLoading(true);
-    // const search = solana_categories.find(({ name }) => name === "Search");
-    // console.log("Append this search", search);
     const merged = [...menu, SearchNavItem];
-    // console.log("selectedMenu", selectedMenu);
-    // console.log("merged", merged)
 
     // temporary: inject all brands under Brands menu as children
     // const all_brands = originMenu.filter(({nav_type})=> nav_type==="brand")
@@ -490,24 +474,20 @@ function MenuUpdaterV3() {
 
     redisSet(selectedMenu, merged)
       .then((response) => {
-        // console.log("redisSet", response);
         if (response.success) {
           showAlertMessage("success", "Menu object updated successful.");
-          // console.log("handleSaveMenuChangesFNSuccess", response);
         } else {
           showAlertMessage("error", "Failed to update. Please try again.");
-          // console.log("handleSaveMenuChangesFNError", response);
         }
         setIsLoading(false);
       })
       .catch((error) => {
         setIsLoading(false);
-        // console.log("error", "CATCH:Failed to update. Please try again.")
       });
   };
 
   useEffect(() => {
-    console.log("menu", menu);
+    // console.log("menu", menu);
   }, [menu]);
 
   const tmpFnSetCatId = (i) => {
@@ -545,15 +525,6 @@ function MenuUpdaterV3() {
         ])
       );
     });
-    // fetch('/api/es/shopify/categories', {
-    // method: 'POST',
-    // headers: { 'Content-Type': 'application/json' },
-    // })
-    // .then(res => res.json())
-    // .then(data => {
-    //     console.log("shopify categories", data);
-    //     setOriginMenu(data.map(item=> ({...item, slug: createSlug(item.key), selected: false})))
-    // });
     Promise.all([
       fetch("/api/es/shopify/categories", {
         method: "POST",

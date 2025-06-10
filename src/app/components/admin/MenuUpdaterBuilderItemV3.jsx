@@ -23,7 +23,6 @@ function MenuUpdaterBuilderItem({ item, itemList, onChange, search }) {
 
   const handleParentChange = (e) => {
     const { value } = e.target;
-    console.log("parentIdOnParentChange", value);
     setParent(value);
     onChange({
       action: "parentChange",
@@ -33,7 +32,6 @@ function MenuUpdaterBuilderItem({ item, itemList, onChange, search }) {
 
   const handleOrderChange = (e) => {
     const { value } = e.target;
-    console.log("handeOrderChange", value);
     setOrder(value);
     onChange({
       action: "orderChange",
@@ -71,7 +69,6 @@ function MenuUpdaterBuilderItem({ item, itemList, onChange, search }) {
         newLocalItem.banner.tag_line = value;
         break;
       case "page_description":
-        console.log("page_description", value);
         newLocalItem.banner.description = value;
         break;
       case "page_contact":

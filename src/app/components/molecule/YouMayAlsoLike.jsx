@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import ProductCard from "@/app/components/atom/ProductCard";
 import ProductCardLoader from "@/app/components/atom/ProductCardLoader";
 
+const exclude_brands = ["Bull Outdoor Products"];
+
 export default function YouMayAlsoLike({ displayItems }) {
   const [products, setProducts] = useState([]);
 
@@ -18,30 +20,47 @@ export default function YouMayAlsoLike({ displayItems }) {
           query: {
             function_score: {
               query: {
-                match_all: {},
+                bool: {
+                  must: [
+                    {
+                      match_all: {},
+                    },
+                  ],
+                  must_not: [
+                    {
+                      terms: {
+                        "brand.keyword": exclude_brands,
+                      },
+                    },
+                  ],
+                },
               },
               random_score: {
                 seed: seed,
-                field: "title.keyword"
+                field: "title.keyword",
               },
             },
           },
         };
-
         const res = await fetch("/api/es/shopify/search", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(query),
         });
 
-        const data = await res.json();
+        // console.log("[YMAL req.res]", res);
 
-        if (data?.error) {
+        if (!res.ok) {
           setProducts([]);
           throw new Error(`[SHOPIFY SEARCH] Failed`);
         }
 
-        setProducts(data?.hits?.hits?.map(({ _source }) => _source));
+        const data = await res.json();
+
+        // console.log("[YMAL DATA]", data);
+        const formatted_data = data?.hits?.hits?.map(({ _source }) => _source);
+        // console.log("[YMAL formatted_data]", formatted_data);
+        setProducts(formatted_data);
       } catch (err) {
         console.error(err);
       }
@@ -82,7 +101,7 @@ export default function YouMayAlsoLike({ displayItems }) {
                   "w-[calc(50%-10px)] lg:w-[calc(33%-10px)]"
                 }`}
               >
-                <ProductCard key={`product-card-${idx}`} hit={item} />
+                <ProductCard key={`product-card-${item}`} hit={item} />
               </div>
             ))}
       </div>

@@ -1,12 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
 import CartListItem from "@/app/components/atom/CartListItem";
 import CartOrderSummary from "@/app/components/atom/CartOrderSummary";
 import YouMayAlsoLike from "@/app/components/molecule/YouMayAlsoLike"
 
 import { useCart } from "@/app/context/cart";
 export default function CartPage() {
-  const { cartItems, formattedCart, loadingCartItems, increaseProductQuantity, decreaseProductQuantity } = useCart();
+  const { formattedCart, loadingCartItems, increaseProductQuantity, decreaseProductQuantity } = useCart();
 
   const handleItemCountUpdate=(value)=>{
     const {increment, product} = value;
@@ -46,8 +45,8 @@ export default function CartPage() {
           </div>
           <CartOrderSummary />
         </div>
-        <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
-            <YouMayAlsoLike displayItems={4}/>
+        <div className="mt-6">
+            <YouMayAlsoLike displayItems={4} />
         </div>
       </div>
     </section>

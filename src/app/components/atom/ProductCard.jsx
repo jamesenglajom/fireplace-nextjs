@@ -44,12 +44,7 @@ const ProductCardPriceDisplay = ({ price_details }) => {
 
 const ProductCard = ({ hit }) => {
   const { viewItem } = useQuickView();
-  const { isPriceVisible, getProductUrl, getProductUrls } = useSolanaCategories();
-
-  if(hit){
-    console.log("[product urls] ",getProductUrls(hit.product_category, hit.brand, hit.handle));
-    console.log("[product url] ",getProductUrl(hit));
-  }
+  const { isPriceVisible, getProductUrl} = useSolanaCategories();
 
   const handleQuickViewClick = (e, item) => {
     e.stopPropagation();

@@ -101,7 +101,7 @@ export default function HomePageShopOpenBox() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("response data:", data);
+        // console.log("response data:", data);
 
         const products = data?.hits?.hits;
 

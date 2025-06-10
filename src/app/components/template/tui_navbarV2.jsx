@@ -28,7 +28,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 
 export default function TuiNavbar({ logo, menu }) {
   const { solana_categories: solana_menu_object } = useSolanaCategories();
-  console.log("solana_menu_object",solana_menu_object)
+  // console.log("solana_menu_object",solana_menu_object)
   const [navigation, setNavigation] = useState(null);
   const [activeMenu, setActiveMenu] = useState(null);
   // const [navigation, setMobileNavigation] = useState(null);
@@ -107,7 +107,7 @@ export default function TuiNavbar({ logo, menu }) {
     });
   };
   useEffect(() => {
-    console.log("tui_navbar", menu);
+    // console.log("tui_navbar", menu);
     const injectedMenu = addLinksProperty(menu)
       .filter((i) => i.nav_visibility === true)
       .sort((a, b) => a.order - b.order);

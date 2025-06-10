@@ -3,7 +3,7 @@ import Image from "next/image";
 
 
 export default function Hero({ data }) {
-  console.log("data", data);
+  // console.log("data", data);
   const useBanner =
     !data?.banner?.img?.src || data?.banner?.img?.src === ""
       ? "/images/banner/solana-home-hero.webp"
