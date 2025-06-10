@@ -155,6 +155,10 @@ export function CategoriesProvider({ categories, children }) {
     );
   };
 
+  const getNameBySlug = (slug) => {
+    return flatCategories.find(({url})=> slug === url)?.name || "";
+  }
+
   const solana_categories = useMemo(() => {
     return categories.map((item) => ({ ...item }));
   }, [categories]);
@@ -171,6 +175,7 @@ export function CategoriesProvider({ categories, children }) {
         solana_categories,
         flatCategories,
         isPriceVisible,
+        getNameBySlug,
         getProductUrl,
         getProductUrls,
         getProductCategories,

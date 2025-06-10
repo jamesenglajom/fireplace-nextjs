@@ -61,7 +61,7 @@ function SearchResultSection({ section, onOptionSelect }) {
 
           { sectionData && section.prop === "product" &&
             sectionData.map((product, index) => (
-              <Link
+              <Link 
                 prefetch={false}
                 onClick={handleOptionClick}
                 key={`product-result-${product?.handle}`}

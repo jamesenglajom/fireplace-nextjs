@@ -36,18 +36,8 @@ const MediaGallery = ({ mediaItems }) => {
   }, []);
 
   useEffect(() => {
-    console.log("isSmallScreen", isSmallScreen);
-    console.log("mobileGalleryOverflow", mobileGalleryOverflow);
-    console.log("containerWidth", containerWidth);
-    console.log("contentWidth", contentWidth);
-    
-  }, [isSmallScreen, mobileGalleryOverflow, containerWidth, contentWidth]);
-
-  useEffect(() => {
-    // console.log(mediaItems);
     if (mediaItems && mediaItems.length > 0) {
       setActiveItem(mediaItems[activeIndex]);
-      // console.log("activeItem", mediaItems[activeIndex])
     }
   }, [mediaItems, activeIndex]);
 

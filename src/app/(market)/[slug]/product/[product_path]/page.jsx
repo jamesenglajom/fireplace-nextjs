@@ -18,6 +18,7 @@ import FaqSection from "@/app/components/molecule/SingleProductFaqSection";
 import YouMayAlsoLike from "@/app/components/molecule/YouMayAlsoLike";
 
 const BreadCrumbs = ({ slug, product_path }) => {
+  const {getNameBySlug} = useSolanaCategories();
   if (!slug && !product_path) {
     return;
   }
@@ -28,11 +29,15 @@ const BreadCrumbs = ({ slug, product_path }) => {
         Home
       </Link>
       /
-      <Link prefetch={false} href={`/${slug}`} className="hover:underline">
-        {slug}
+      <Link
+        prefetch={false}
+        href={`/${slug}`}
+        className="hover:underline whitespace-nowrap"
+      >
+        {getNameBySlug(slug)}
       </Link>
       <span>/</span>
-      <div className="underline">{product_path}</div>
+      <div className="underline line-clamp-1">{product_path}</div>
     </div>
   );
 };
@@ -280,7 +285,7 @@ export default function Product({ params }) {
           {/* {product && <JsonViewer product={product} loading={loading} />} */}
           <div className="p-2 bg-theme-300">
             <div className="container max-w-7xl px-[0px] sm:px-[20px] mx-auto flex flex-col gap-[10px]">
-              <div className="uppercase font-semibold text-theme-800">
+              <div className="text-theme-800">
                 <BreadCrumbs slug={slug} product_path={product_path} />
               </div>
             </div>
