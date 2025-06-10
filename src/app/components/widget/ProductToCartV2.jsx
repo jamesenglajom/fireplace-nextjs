@@ -82,7 +82,7 @@ const ProductToCart = ({ product, loading }) => {
 
   const [productData, setProductData] = useState(product);
   useEffect(() => {
-    console.log("product data", product);
+    // console.log("product data", product);
     setProductData(product);
   }, [product]);
 

@@ -434,7 +434,7 @@ function MenuUpdaterV3() {
     setIsLoading(true);
     const merged = [...menu, SearchNavItem];
 
-    // temporary: inject all brands under Brands menu as children
+    // // temporary: inject all brands under Brands menu as children
     // const all_brands = originMenu.filter(({nav_type})=> nav_type==="brand")
     // .sort((a, b) => a.key.localeCompare(b.key))
     // .map((i) => ({
@@ -446,7 +446,7 @@ function MenuUpdaterV3() {
     //   slug: createSlug(i.key),
     //   origin_name: i.key,
     //   children: [],
-    //   price_visibility: "hide",
+    //   price_visibility: "show",
     //   meta_title:"",
     //   meta_description:"",
     //   banner: {
@@ -462,7 +462,7 @@ function MenuUpdaterV3() {
     //   nav_visibility:true,
     //   nav_type: i.nav_type
     // }));
-    // inject
+    // // inject
     // const toSave = merged.map((item)=> {
     //   if(item.key === "Brands"){
     //     const new_item = item;
@@ -542,7 +542,7 @@ function MenuUpdaterV3() {
           slug: createSlug(item.key),
           selected: false,
         }));
-        setOriginMenu(merged.filter(({ nav_type }) => nav_type === "category"));
+        setOriginMenu(merged);
       })
       .catch((err) => {
         console.error("Error fetching categories or brands:", err);
