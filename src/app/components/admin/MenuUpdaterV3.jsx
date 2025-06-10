@@ -634,9 +634,9 @@ function MenuUpdaterV3() {
           </div>
           <hr className="border-t border-gray-300 my-4"></hr>
           <div className="flex gap-[20px] overflow-hidden">
-            <div className="border rounded w-[250px] h-[calc(100vh-100px)]">
+            <div className="border rounded w-[350px] h-[calc(100vh-100px)]">
               <div className="w-full border bg-stone-300 text-xs p-2 flex items-center justify-between">
-                <div className="font-semibold">Categories</div>
+                <div className="font-semibold">Categories/Brands</div>
                 <button
                   onClick={handleAddMenuItem}
                   className="text-blue-600 hover:text-blue-700 underline cursor-pointer"
@@ -670,9 +670,10 @@ function MenuUpdaterV3() {
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
                         <div className="w-[calc(100%-30px)]">
-                          <div className="font-medium text-xs">
-                            {highlightText(item.key, originMenuSearch)}{" "}
-                            <span>({item.doc_count})</span>
+                          <div className=" text-xs">
+                            <div className="font-medium line-clamp-1" title={item.key}>{highlightText(item.key, originMenuSearch)}{" "}</div>
+                            <div className={`${item.nav_type === "category" && "text-orange-700"} ${item.nav_type === "brand" && "text-blue-700"}` }>{item.nav_type}</div>
+                            <div>({item.doc_count})</div>
                           </div>
                         </div>
                       </div>
