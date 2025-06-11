@@ -43,7 +43,6 @@ const BreadCrumbs = ({ slug, product_path }) => {
 };
 
 const CategoryChips = ({ categories }) => {
-  console.log("[PRODUCT CATEGORIES] ", categories);
   const { getProductCategories } = useSolanaCategories();
   const [localCategories, setCategories] = useState(
     getProductCategories(categories)
