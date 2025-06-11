@@ -39,6 +39,8 @@ const ProductToCart = ({ product, loading }) => {
   const [ATCLoading, setATCLoading] = useState(false);
   const [filteredCategoryIds, setFilteredCategoryIds] = useState([]);
 
+
+  console.log("[PRODUCT DATA]", product)
   useEffect(() => {
     // if (product?.categories.length > 0) {
     //   let filterCat = [];
