@@ -3,7 +3,7 @@ import SectionHeader from "../atom/SectionHeader";
 
 const menu = [
   {
-    name: "Fireplaces",
+    name: "Fireplaces for Sale",
     child: [
       { name: "Shop All Fireplaces" },
       { name: "Shop Fireplace Savings" },
@@ -16,7 +16,7 @@ const menu = [
     ],
   },
   {
-    name: "Fireplaces & Stove Accessories",
+    name: "Fireplace Accessories for Sale",
     child: [
       { name: "Bulk Savings on Fire Glass" },
       { name: "Bulk Savings on Fire Starters" },
@@ -27,7 +27,7 @@ const menu = [
     ],
   },
   {
-    name: "Outdoor Heating",
+    name: "Outdoor Heating for Sale",
     child: [
       { name: "Outdoor Fireplaces" },
       { name: "Fire Pits" },
@@ -99,7 +99,7 @@ export default function HomePageShopCategory() {
             <div className="w-[25%] min-w-[250px] flex flex-col gap-5">
               {menu.map((i, idx) => (
                 <div key={`menu-item-${idx}`} className="">
-                  <div className="font-bold">{i.name}</div>
+                  <h3 className="font-bold">{i.name}</h3>
                   <div className="mt-3">
                     {i.child.map((i2, idx2) => (
                       <div key={`menu-sub-item-${idx}-${idx2}`}>{i2.name}</div>
@@ -109,9 +109,9 @@ export default function HomePageShopCategory() {
               ))}
             </div>
             <div className="border-l w-[calc(100%-250px)]  pl-[20px]">
-              <div className="text-3xl italic font-semibold __className_b1512a">
-                Fireplaces & Stove
-              </div>
+              <h3 className="text-3xl italic font-semibold __className_b1512a">
+                Fireplaces and Stove
+              </h3>
               <div className="flex flex-col gap-[30px] mt-5">
                 <div className=" w-full flex flex-col md:flex-row md:flex-wrap gap-[4px]">
                   {fireplacesStoves.map((i, idx) => (
@@ -123,6 +123,7 @@ export default function HomePageShopCategory() {
                           <Image
                             src={i.img}
                             alt={`${i.name}-image`}
+                            title={`${i.name}-image`}
                             className="w-full h-full object-cover"
                             // width={100}
                             // height={100}
@@ -136,9 +137,9 @@ export default function HomePageShopCategory() {
                         }
                       </div>
                       <div className="h-[72px] flex justify-center items-center">
-                        <div className="font-medium text-sm md:text-base text-center">
+                        <h4 className="font-medium text-sm md:text-base text-center">
                           {i.name}
-                        </div>
+                        </h4>
                       </div>
                     </div>
                   ))}
@@ -163,6 +164,7 @@ export default function HomePageShopCategory() {
                       <Image
                         src={i.img}
                         alt={`${i.name}-image`}
+                        title={`${i.name}-image`}
                         className="w-full h-full object-contain"
                         // width={100}
                         // height={100}
@@ -176,9 +178,9 @@ export default function HomePageShopCategory() {
                     }
                   </div>
                   <div className="h-[49px]">
-                    <div className="font-bold text-sm text-center">
+                    <h3 className="font-bold text-sm text-center">
                       {i.name}
-                    </div>
+                    </h3>
                   </div>
                 </div>
               ))}

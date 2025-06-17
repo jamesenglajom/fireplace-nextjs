@@ -11,6 +11,8 @@ export async function generateMetadata() {
     return {
       title: title,
       description: description,
+      authors: [{name:"Justin Cedeno"},{name:"Denver Contaoi"},{name:"Aira Palaganas"}],
+      publisher: "Solanafireplaces",
       icons: {
         icon: faviconUrl,
       },
@@ -23,8 +25,13 @@ export async function generateMetadata() {
     return {
       title: title,
       description: description,
+      authors: [{name:"Justin Cedeno"},{name:"Denver Contaoi"},{name:"Aira Palaganas"}],
+      publisher: "Solanafireplaces",
       icons: {
         icon: "/logo-s1.webp", // Default favicon from public/
+      },
+      other: {
+        "google-site-verification": "h2rOGIJQRMPLIaE7T0hRzFUK313zZjb-QoztYvHW90Q",
       },
     };
   }

@@ -54,7 +54,7 @@ export default function HomePagePartsAndAccessories() {
   return (
     <div className="w-full mt-10">
       <div className="container mx-auto px-[10px] lg:px-[20px]">
-        <SectionHeader text="Fireplace Parts & Accessories" />
+        <SectionHeader text="Fireplace Parts and Accessories" />
         {/* update */}
         <div className="flex md:hidden flex-col gap-[10px] mt-5">
           <div className=" w-full flex flex-wrap md:flex-row gap-[10px] justify-center">
@@ -67,6 +67,7 @@ export default function HomePagePartsAndAccessories() {
                     <Image
                       src={i.img}
                       alt={i.name}
+                      title={i.name}
                       className="w-full h-full object-cover"
                       width={50}
                       height={50}
@@ -78,9 +79,9 @@ export default function HomePagePartsAndAccessories() {
                   }
                 </div>
                 <div className="h-[49px]">
-                  <div className="font-medium text-sm md:text-base text-center">
+                  <h3 className="font-medium text-sm md:text-base text-center">
                     {i.name}
-                  </div>
+                  </h3>
                 </div>
               </div>
             ))}
@@ -97,6 +98,7 @@ export default function HomePagePartsAndAccessories() {
                     <Image
                       src={i.img}
                       alt={i.name}
+                      title={i.name}
                       className="w-full h-full object-cover"
                       width={50}
                       height={50}
@@ -108,9 +110,9 @@ export default function HomePagePartsAndAccessories() {
                   }
                 </div>
                 <div className="h-[49px]">
-                  <div className="font-medium text-sm md:text-base text-center">
+                  <h3 className="font-medium text-sm md:text-base text-center">
                     {i.name}
-                  </div>
+                  </h3>
                 </div>
               </div>
             ))}

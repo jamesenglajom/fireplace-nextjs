@@ -19,6 +19,7 @@ export default function Hero({ data }) {
             <Image
               src={useBanner}
               alt={data?.banner?.img?.alt ?? "Banner"}
+              title={data?.banner?.img?.alt ?? "Banner"}
               className="w-full h-full object-cover"
               fill
               loading="eager"
@@ -31,9 +32,9 @@ export default function Hero({ data }) {
             <div className="text-center flex justify-center">
               <div className="px-[20px] py-[7px]">
                 <div>
-                  <div className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
+                  <h1 className="text-balance text-md font-extrabold tracking-wide text-white md:text-5xl text-shadow-lg">
                     {data?.banner?.title}
-                  </div>
+                  </h1>
                   <div className="text-xs md:text-base text-balance mt-1 tracking-wide text-white text-shadow-lg">
                     {data?.banner?.tag_line}
                   </div>

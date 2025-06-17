@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useContext, useState, useEffect, useMemo } from "react";
 import Image from "next/image";
-import { createSlug } from "../lib/helpers";
+import { createSlug } from "@/app/lib/helpers";
 import Link from "next/link";
 
 const CompareProducts = createContext([]);
@@ -10,24 +10,42 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_BASE_URL;
 export function CompareProductsProvider({ children }) {
   const productsLimit = 4;
   const compareHandleSeparator = "__";
+  const compareProductKey = "compare_products";
   const [products, setProducts] = useState([]);
   const [openWidget, setOpenWidget] = useState(false);
+  
+  const [lForage, setLForage] = useState(null);
+  const [compareProductsChannel, setCompareProductsChannel] = useState(null);
 
-  const addProduct = (product) => {
-    setProducts((prev) => [...prev, product]);
+
+  const addProduct = async(product) => {
+    const stored_products = (await getProductFromForage()) || [];
+    const new_products = [...stored_products, product];
+    await lForage.setItem(compareProductKey, new_products);
+    setProducts(new_products);
   };
 
-  const removeProduct = (product) => {
-    setProducts((prev) =>
-      prev.filter(
+  const removeProduct = async(product) => {
+    const stored_products = (await getProductFromForage()) || [];
+    const new_products = stored_products.filter(
         ({ variants }) => variants?.[0]?.sku !== product?.variants?.[0]?.sku
-      )
-    );
+      );
+    await lForage.setItem(compareProductKey, new_products);
+    setProducts(new_products);
   };
 
-  const removeProducts = () => {
+  const removeProducts = async() => {
+    await lForage.setItem(compareProductKey,[]);
     setProducts([]);
   };
+
+  const getProductFromForage = async() => {
+    try{
+      return await lForage.getItem(compareProductKey)
+    }catch(error){
+      console.log(error)
+    }
+  }
 
   
 
@@ -36,12 +54,32 @@ export function CompareProductsProvider({ children }) {
   },[products])
 
   useEffect(() => {
-    console.log("[COMPARE PRODUCTS] ", products);
-    console.log("[COMPAREHANDLE] ", compareHandle);
     if (products.length === 0) {
       setOpenWidget(false);
     }
   }, [products]);
+
+  useEffect(() => {
+      if (typeof window !== "undefined") {
+        import("@/app/lib/localForage")
+          .then((module) => {
+            setLForage(module);
+            // set initial recent serach value
+            setProducts((prev) => {
+              const products = module.getItem(compareProductKey);
+              if (products) {
+                return Array.isArray(products) ? products : [];
+              } else {
+                return [];
+              }
+            });
+          })
+          .catch((error) => {
+            console.error("Error loading localForage module:", error);
+          });
+      }
+    }, []);
+  
   return (
     <CompareProducts.Provider
       value={{

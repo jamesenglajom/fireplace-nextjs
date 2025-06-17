@@ -13,16 +13,15 @@ export default function HomePageAboutProduct() {
     <div className="container mx-auto bg-[#F6F6F6] mt-5">
       <div className="w-full flex flex-col md:flex-row">
         <div className="w-full xl:w-[60%] p-[40px] flex flex-col gap-[30px]">
-          <div className="text-xl md:text-3xl font-semibold">
-            {/* font-bell */}
-            {/* About Blaze Grill Products */}
+          <h2 className="text-xl md:text-3xl font-semibold">
             About Solana Fireplaces
-          </div>
+          </h2>
           <div className="relative w-full flex items-center justify-center xl:hidden aspect-2">
             {
               <Image
                 src={img}
-                alt="About-Blaze-Image"
+                alt="About Solana Fireplaces"
+                title="About Solana Fireplaces"
                 className="w-full h-full object-cover"
                 // width={500}
                 // height={500}

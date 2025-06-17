@@ -67,6 +67,7 @@ export default function HomePageFeatureCategories() {
               <Image
                 src={v.img}
                 alt={`${v.label} Image`}
+                title={`${v.label} Image`}
                 className="w-full h-full object-contain"
                 width={500}
                 height={500}
@@ -75,7 +76,7 @@ export default function HomePageFeatureCategories() {
             </div>
             <div
               className={`flex items-center justify-center w-full h-[60px] overflow-hidden`}>
-              <div className="break-words text-center">{v.label}</div>
+              <h2 className="break-words text-center">{v.label}</h2>
             </div>
           </Link>
         ))}

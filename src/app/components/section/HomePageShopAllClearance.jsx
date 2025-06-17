@@ -15,7 +15,7 @@ export default function HomePageShopAllClearance() {
         "A modern fireplace can elevate your home, providing both warmth and a stylish focal point for family gatherings or quiet evenings. We offer a wide selection of fireplaces including wood-burning, gas, and electric.",
       button: {
         label: "Shop All Fireplaces",
-        url: `${BASE_URL}/fireplaces`,
+        url: `https://solanafireplaces.com/blogs/modern-fireplace-designs`,
       },
     },
     {
@@ -28,7 +28,7 @@ export default function HomePageShopAllClearance() {
         "Create your dream backyard kitchen with top-of-the-line grills, BBQ islands, and all the essential accessories, all while taking advantage of great deals and savings.",
       button: {
         label: "Shop All Outdoor Kitchen Deals",
-        url: `${BASE_URL}/outdoor-kitchen`,
+        url: `#`,
       },
     },
   ];
@@ -44,14 +44,15 @@ export default function HomePageShopAllClearance() {
               <Image
                 src={item.image.src}
                 alt={item.image.alt}
+                title={item.image.alt}
                 className="w-full h-full min-h-[200px] object-cover"
                 fill
                 sizes="100vw"
               />
             </div>
-            <div className="text-center text-xl md:text-3xl font-semibold">
+            <h2 className="text-center text-xl md:text-3xl font-semibold">
               {item.title}
-            </div>
+            </h2>
             <div className="text-center px-[10px] md:text-lg">
               {item.content}
             </div>
