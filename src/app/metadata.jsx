@@ -11,8 +11,8 @@ export async function generateMetadata() {
     return {
       title: title,
       description: description,
-      authors: [{name:"Justin Cedeno"},{name:"Denver Contaoi"},{name:"Aira Palaganas"}],
-      publisher: "Solanafireplaces",
+      authors: [{name:"Solana Fireplaces"}],
+      publisher: "Solana Fireplaces",
       icons: {
         icon: faviconUrl,
       },
@@ -25,8 +25,8 @@ export async function generateMetadata() {
     return {
       title: title,
       description: description,
-      authors: [{name:"Justin Cedeno"},{name:"Denver Contaoi"},{name:"Aira Palaganas"}],
-      publisher: "Solanafireplaces",
+      authors: [{name:"Solana Fireplaces"}],
+      publisher: "Solana Fireplaces",
       icons: {
         icon: "/logo-s1.webp", // Default favicon from public/
       },
