@@ -37,15 +37,14 @@ export default async function handler(req, res) {
 
     try {
       let product_options = null;
+      let similar_products = null;
       const response = await fetch(API_URL, fetchConfig);
 
-      // if (!response.ok) {
-      //   throw new Error(`Error fetching products: ${response}`);
-      // }
       const data = await response.json();
       // elasticsearch result restructured to bigcommerce response object
       const product = data?.hits?.hits.map((i) => i._source);
 
+      // send request to get product options data
       if (product?.[0] && product[0].accentuate_data?.[0]) {
         const accentuate_data = product[0].accentuate_data[0];
         // console.log("accentuate_data",accentuate_data)
@@ -65,8 +64,6 @@ export default async function handler(req, res) {
 
         // Flatten all handles from the accentuate_data fields
         const mergedProducts = mergeRelatedProducts(accentuate_data, keys);
-
-        console.log("Merged Handles:", mergedProducts);
 
         const secondFetchConfig = {
           ...fetchConfig,
@@ -90,8 +87,64 @@ export default async function handler(req, res) {
         );
       }
 
-      if(product.length > 0){
+      // send request to get similar options data
+      const comparable_tags = [
+        "27-33 Inches",
+        "304 Stainless Steel",
+        "4 Burners",
+        "Analog",
+        "BLZ4BICV",
+        "Built In",
+        "Built In Gas Grills",
+        "Depth 0-26 Inches",
+        "Free Accessories",
+        "Gas Grills",
+        "Height 0-26 Inches",
+        "Internal and External Lights",
+        "Internal Lights",
+        "Liquid Propane Gas",
+        "Optional Rotisserie",
+        "Top Deals",
+        "Width 27-33 Inches",
+        "With Rear Infrared Burner",
+      ];
+
+      const product_tags_string = product?.[0]?.tags || ""; // e.g., "Built In,Gas Grills,Random Tag"
+      const product_tags = product_tags_string
+        .split(",")
+        .map((tag) => tag.trim());
+
+      // Get matching tags
+      const matching_tags = product_tags.filter((tag) =>
+        comparable_tags.includes(tag)
+      );
+
+      if (matching_tags && matching_tags.length > 0) {
+        const similarProductFetchConfig = {
+          ...fetchConfig,
+          body: JSON.stringify({
+            query: {
+              bool: {
+                must: matching_tags.map((item) => ({
+                  match_phrase: { tags: item },
+                })),
+              },
+            },
+          }),
+        };
+        const similar_products_response = await fetch(
+          API_URL,
+          similarProductFetchConfig
+        );
+        const similar_products_json = await similar_products_response.json();
+        similar_products = similar_products_json?.hits?.hits.map(
+          (i) => i._source
+        );
+      }
+
+      if (product.length > 0) {
         product[0]["sp_product_options"] = product_options;
+        product[0]["sp_similar_products"] = similar_products;
       }
 
       const bc_formated_data = {
