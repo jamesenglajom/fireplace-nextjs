@@ -93,20 +93,21 @@ export default async function handler(req, res) {
         "304 Stainless Steel",
         "4 Burners",
         "Analog",
-        "BLZ4BICV",
+        // "BLZ4BICV",
         "Built In",
         "Built In Gas Grills",
         "Depth 0-26 Inches",
-        "Free Accessories",
-        "Gas Grills",
+        // "Free Accessories",
+        // "Gas Grills",
         "Height 0-26 Inches",
         "Internal and External Lights",
         "Internal Lights",
         "Liquid Propane Gas",
         "Optional Rotisserie",
-        "Top Deals",
+        // "Top Deals",
         "Width 27-33 Inches",
         "With Rear Infrared Burner",
+        "Basic Package (2-3 items)"
       ];
 
       const product_tags_string = product?.[0]?.tags || ""; // e.g., "Built In,Gas Grills,Random Tag"
