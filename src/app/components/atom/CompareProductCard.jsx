@@ -73,7 +73,7 @@ function CompareProductCard({ is_active = false, product }) {
       </div>
       <Link prefetch={false} href={getProductUrl(product)}>
         <h4 className="text-xs font-normal line-clamp-3 text-left hover:underline" title={product?.title}>
-          {product.title}
+          {product?.title}
         </h4>
       </Link>
 
