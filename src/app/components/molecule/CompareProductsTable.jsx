@@ -3,29 +3,28 @@ import { useMemo } from "react";
 import Image from "next/image";
 import CompareProductCard from "@/app/components/atom/CompareProductCard"
 
-function CompareProductsTable({ similar_products, handle }) {
+function CompareProductsTable({ similar_products, product }) {
+  console.log("[TEST] CompareProductsTable similar_products", similar_products);
+  console.log("[TEST] CompareProductsTable product", product);
   const compare_products = useMemo(() => {
-    if (similar_products.length > 0 && handle) {
-      const active_product = similar_products.find(
-        (item) => item.handle === handle
-      );
-      const filtered_similars = similar_products.filter((item) => item.handle !== handle);
+    if (similar_products.length > 0 && product) {
+      const filtered_similars = similar_products.filter((item) => item.handle !== product?.handle);
+      console.log("[TEST] product", product);
+      console.log("[TEST] product.handle", product?.handle);
+      console.log("[TEST] filtered_similars", filtered_similars);
       return [
-        active_product,
+        product,
         ...filtered_similars
       ];
     }
     return [];
-  }, [similar_products, handle]);
+  }, [similar_products, product]);
 
   const product_accentuates = useMemo(() => {
-    if (similar_products.length > 0 && handle) {
-      const active_product = similar_products.find(
-        (item) => item.handle === handle
-      );
-      const filtered_similars = similar_products.filter((item) => item.handle !== handle);
+    if (similar_products.length > 0 && product) {
+      const filtered_similars = similar_products.filter((item) => item.handle !== product?.handle);
       const tmp = [
-        active_product?.accentuate_data?.[0] || [],
+        product?.accentuate_data?.[0] || [],
         ...(filtered_similars.map(({accentuate_data})=> accentuate_data && accentuate_data?.[0]))
       ];
 
@@ -46,7 +45,7 @@ function CompareProductsTable({ similar_products, handle }) {
 
     }
     return [];
-  }, [similar_products, handle]);
+  }, [similar_products, product]);
 
   const getPropLabel = (prop) => {
     const noPrefix = prop.replace("bbq.seo_meta_", "");
@@ -72,7 +71,7 @@ function CompareProductsTable({ similar_products, handle }) {
                     key={`thead-${index}`}
                     className="min-w-[200px] max-w-[250px] border-r border-gray-400"
                   >
-                    <CompareProductCard is_active={item?.handle === handle} product={item}/>
+                    <CompareProductCard is_active={item?.handle === product?.handle} product={item}/>
                   </th>
                 ))}
               </tr>

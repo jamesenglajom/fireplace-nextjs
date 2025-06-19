@@ -311,7 +311,7 @@ export default function Product({ params }) {
             product && product?.sp_similar_products && product?.handle && 
           <div className="p-4">
             <div className="container max-w-7xl px-[0px] sm:px-[20px] mx-auto">
-              <CompareProductsTable similar_products={product.sp_similar_products} handle={product.handle}/>
+              <CompareProductsTable similar_products={product.sp_similar_products} product={product}/>
             </div>
           </div>
           }
