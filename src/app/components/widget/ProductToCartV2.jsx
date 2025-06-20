@@ -275,7 +275,7 @@ const ProductToCart = ({ product, loading }) => {
                 </div>
               </div>
             </button>
-            <CompareButton product={productData} />
+            {/* <CompareButton product={productData} /> */}
           </div>
         </>
       }
