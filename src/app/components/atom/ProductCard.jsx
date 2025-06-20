@@ -75,9 +75,9 @@ const ProductCard = ({ hit }) => {
         <div
           className={`w-full flex items-center justify-center h-[230px] overflow-hidden relative bg-white`}
         >
-          <div className="absolute top-0 right-0 p-1">
+          {/* <div className="absolute top-0 right-0 p-1">
             <CompareButton product={hit}/>
-          </div>
+          </div> */}
           {hit?.images &&
             Array.isArray(hit?.images) &&
             hit?.images?.length > 0 &&
